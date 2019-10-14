@@ -7,15 +7,22 @@ use App\Product;
 use App\Category;
 use App\Alias;
 use App\Discount;
+use Illuminate\Support\Facades\Cookie;
 class HomeController extends Controller
 {
     public function Index(Request $req){
+        
+        $viewedList = Cookie::get('viewedList');
+        
+        if($viewedList===null){
+            Cookie::queue('viewedList',json_encode([]),9999999999);
+        }
+        $viewedList = json_decode(Cookie::get('viewedList'),true) ?? [];
         $alias = Alias::class;
         $products = Product::get();
         $categories = Category::get();
         $flashsales = new Discount();
         $flashsales =$flashsales->Flashsales();
-        // dd($products[0]->ExistDiscount()->get()[0]->percent);
-        return view('index',compact('products','categories','alias','flashsales'));
+        return view('index',compact('products','categories','alias','flashsales','viewedList'));
     }
 }

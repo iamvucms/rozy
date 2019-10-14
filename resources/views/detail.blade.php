@@ -2,6 +2,7 @@
 <html lang="en">
 @extends('includes.head')
 @section('title',$product->name)
+
 <body>
     <div class="rozy">
         {{-- <div class="inbox" id="notactive">
@@ -137,32 +138,22 @@
                         </div>
                         <!-- boxsearch -->
                         <div class="boxsearch">
-                            <form action="result.html">
+                        <form action="{{url('/search')}}">
                                 <input autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..."
-                                    type="search" class="searchinput"><button onclick=""
+                                    type="search" class="searchinput">
+                                <button onclick=""
                                     class="searchnow micnow"><span><i
-                                            class="fas fa-microphone"></i></span></button><input type="text"
-                                    id="category_select" list="datalist" placeholder="Tất cả danh mục"
-                                    value="Tất cả danh mục"><button class="searchnow"><span><i
+                                            class="fas fa-microphone"></i></span>
+                                </button>
+                                <select name="cat" type="text" id="category_select">
+                                        <option value="0" selected=selected>Tất cả danh mục</option>
+                                        @foreach($categories as $category)
+                                           <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                     </select><button class="searchnow"><span><i
                                             class="fas fa-search"></i><span id="search_none">Tìm
                                             kiếm</span></span></button>
-                                <datalist name="category_select" id="datalist">
-                                    <option value="Tất cả danh mục" selected="selected">
-                                    <option value="Điện Thoại - Máy Tính Bảng">
-                                    <option value="Điện Tử - Điện Lạnh">
-                                    <option value="Phụ Kiện - Thiết Bị Số">
-                                    <option value="Laptop - Thiết bị IT">
-                                    <option value="Máy Ảnh - Quay Phim">
-                                    <option value="Điện Gia Dụng ">
-                                    <option value="Nhà Cửa Đời Sống">
-                                    <option value="Hàng Tiêu Dùng - Thực Phẩm">
-                                    <option value="Đồ chơi, Mẹ & Bé">
-                                    <option value="Làm Đẹp - Sức Khỏe">
-                                    <option value="Thời trang - Phụ kiện">
-                                    <option value="Thể Thao - Dã Ngoại">
-                                    <option value="Xe Máy, Ô tô, Xe Đạp">
-                                    <option value="Sách, VPP & Quà Tặng">
-                                </datalist>
+                            
                                 <div class="boxmic">
                                     <p><span id="gifload"><i class="fas fa-spinner"></i></span>
                                         <span id="micicon"><i class="fas fa-microphone-alt"></i><span>Hãy Nói Từ Khóa
@@ -419,7 +410,7 @@
                                 @endphp
                                 @foreach ($Images as $Img)
                                     <div class="item">
-                                    <li class="active"><img src="{{url($Img->src)}}" alt=""></li>
+                                    <li class="active"><img src="{{url($Img->src ?? '')}}" alt=""></li>
                                     </div>
                                 @endforeach
                                 <div class="item">
@@ -563,7 +554,7 @@
                             <ul><span></span>
                                 <li><i class="fas fa-tshirt"></i>
                                     <span>
-                                        <b>{{$product->Seller()->getTotalProducts()<1000 ?$product->Seller()->getTotalProducts() : $product->Seller()->getTotalProducts()/1000 ."k"}}</b><br>
+                                        <b>{{$product->Seller()->getTotalProducts()< 1000 ?$product->Seller()->getTotalProducts() : $product->Seller()->getTotalProducts()/1000 ."k"}}</b><br>
                                         <small>Sản phẩm</small>
                                     </span>
                                 </li>
@@ -866,7 +857,7 @@
                                             
                                                 <p class="rvgallery">
                                                     @foreach ($review->getImages() as $rvimg)
-                                                        <img src="{{url($rvimg->src)}}" alt="{{$product->name}}">
+                                                        <img src="{{url($rvimg->src ?? '')}}" alt="{{$product->name}}">
                                                     @endforeach
                                                 </p>
                                                 <p class="rvat">

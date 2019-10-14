@@ -191,31 +191,21 @@
                      </ul>
                   </div>
                   <!-- boxsearch -->
-                  <div class="boxsearch">
+                  <div class="boxsearch"> 
                   <form action="{{url('/search')}}">
                         <input autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..." type="search"
-                           class="searchinput"><button onclick="" class="searchnow micnow"><span><i
-                                 class="fas fa-microphone"></i></span></button><input type="text" id="category_select"
-                           list="datalist" placeholder="Tất cả danh mục" value="Tất cả danh mục"><button
+                           class="searchinput">
+                           <button onclick="" class="searchnow micnow"><span><i
+                                 class="fas fa-microphone"></i></span></button>
+                           <select name="cat" type="text" id="category_select">
+                              <option value="0" selected=selected>Tất cả danh mục</option>
+                              @foreach ($categories as $category)
+                                 <option value="{{$category->id}}">{{$category->name}}</option>
+                              @endforeach
+                           </select>
+                           <button
                            class="searchnow"><span><i class="fas fa-search"></i><span id="search_none">Tìm
                                  kiếm</span></span></button>
-                        <datalist name="category_select" id="datalist">
-                           <option value="Tất cả danh mục" selected="selected">
-                           <option value="Điện Thoại - Máy Tính Bảng">
-                           <option value="Điện Tử - Điện Lạnh">
-                           <option value="Phụ Kiện - Thiết Bị Số">
-                           <option value="Laptop - Thiết bị IT">
-                           <option value="Máy Ảnh - Quay Phim">
-                           <option value="Điện Gia Dụng ">
-                           <option value="Nhà Cửa Đời Sống">
-                           <option value="Hàng Tiêu Dùng - Thực Phẩm">
-                           <option value="Đồ chơi, Mẹ & Bé">
-                           <option value="Làm Đẹp - Sức Khỏe">
-                           <option value="Thời trang - Phụ kiện">
-                           <option value="Thể Thao - Dã Ngoại">
-                           <option value="Xe Máy, Ô tô, Xe Đạp">
-                           <option value="Sách, VPP & Quà Tặng">
-                        </datalist>
                         <div class="boxmic">
                            <p><span id="gifload"><i class="fas fa-spinner"></i></span>
                               <span id="micicon"><i class="fas fa-microphone-alt"></i><span>Hãy Nói Từ Khóa Cần Tìm
@@ -474,27 +464,12 @@
 
                </div>
                <div class="justviewlist">
-
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product1.png"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product.jpg"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product5.jpg"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product2.jpg"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product3.jpg"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product4.jpg"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product5.jpg"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product.jpg"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product1.png"></div>
-                  <div><a href="#productpreview " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="assets/img/product2.jpg"></div>
+                  @foreach ($viewedList ?? [] as $viewedProduct)
+                     <div>
+                        <a href="{{url('/products/'.$viewedProduct['slug'])}} " class="iconsearch"><i class="fas fa-search"></i></a> <img
+                        class="smallboxproduct" src="{{url($viewedProduct['avt'])}}">
+                     </div>
+                  @endforeach
                </div>
                <div class="megamenu" id="megaheader">
                   <ul>

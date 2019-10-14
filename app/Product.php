@@ -40,9 +40,9 @@ class Product extends Model
         $stars = [];
         $TotalStars = $this->getCountReview();
         for($i=1;$i<=4;$i++){
-            $stars[] = round($this->getCountReviewAt($i)/$TotalStars*100);
+            $stars[] = $TotalStars !=0 ? round($this->getCountReviewAt($i)/$TotalStars*100) :0;
         }
-        $stars[] = 100- array_sum($stars);
+        $stars[] = $TotalStars !=0 ? 100- array_sum($stars) :0;
         $stars = array_reverse($stars);
         return $stars;
     }
@@ -76,32 +76,34 @@ class Product extends Model
         return $props;
     }
     //Product For Filter
-    public function search($keyword){
-        if($keyword===null) return $this;
-        return $this->where('name','like',"%$keyword%");
-    }
-    public function withPrice($keyword,$from,$to){
+    public function search($cat,$keyword){
+        $temp = $this;
+        if($keyword!==null) $temp = $temp->where('name','like',"%$keyword%");
+        if(!($cat==0 || $cat===null)) $temp = $temp->where('idcat',$cat);
+        return $temp;
+    }   
+    public function withPrice($cat,$keyword,$from,$to){
         if($from===null) $from = 0;
         if($to===null) $to = PHP_INT_MAX;
-        return $this->search($keyword)->where([['sale_price','>=',$from],['sale_price','<=',$to]]);
+        return $this->search($cat,$keyword)->where([['sale_price','>=',$from],['sale_price','<=',$to]]);
     }
-    public function withPriceAddress($keyword,$from,$to,$address){
+    public function withPriceAddress($cat,$keyword,$from,$to,$address){
         if($address===null) $address = '';
-        return $this->withPrice($keyword,$from,$to)->where('city_address','like',"%$address%");
+        return $this->withPrice($cat,$keyword,$from,$to)->where('city_address','like',"%$address%");
     }
-    public function withPriceAddressReview($keyword,$from,$to,$address,$star){
-        if($star===null) return $this->withPriceAddress($keyword,$from,$to,$address);
-        return $this->withPriceAddress($keyword,$from,$to,$address)
+    public function withPriceAddressReview($cat,$keyword,$from,$to,$address,$star){
+        if($star===null) return $this->withPriceAddress($cat,$keyword,$from,$to,$address);
+        return $this->withPriceAddress($cat,$keyword,$from,$to,$address)
         ->select('products.*')->join('reviews','reviews.idpro','=','products.id')
         ->groupBy('reviews.idpro')->havingRaw('avg(star) >= '.$star);
     } 
-    public function withPriceAddressReviewOrder($keyword,$from,$to,$address,$star,$order){
+    public function withPriceAddressReviewOrder($cat,$keyword,$from,$to,$address,$star,$order){
         if($order===null) $order = 'ASC';
-        return $this->withPriceAddressReview($keyword,$from,$to,$address,$star)
+        return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)
         ->orderBy('price',$order);
     }
-    public function ProductFilter($keyword,$from,$to,$address,$star,$order){
-        return $this->withPriceAddressReview($keyword,$from,$to,$address,$star,$order)
+    public function ProductFilter($cat,$keyword,$from,$to,$address,$star,$order){
+        return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star,$order)
         ->paginate(20);
     }
 }

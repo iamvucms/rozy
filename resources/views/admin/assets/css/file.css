@@ -1,0 +1,303 @@
+.vucms{
+          position: relative;
+}
+.foldercreate,.renamebox{
+          position: absolute;
+          transform: translateX(-50%);
+          left:50%;
+          background: white;
+          top:300px;
+          width: 350px;
+          transform: scale(0);
+          box-shadow: 0px 0px 0px 1000px rgba(0,0,0,0.5);
+          transition: all ease 0.2s;
+}
+.folderbottom{
+          padding:15px;
+          border:1px solid #ddd;
+}
+.folderbottom form{
+          width:100%;
+}
+.folderbottom form button{
+          cursor: pointer;
+          border:none;
+          color:white;
+          background:#404e67;
+          height: 35px;
+          line-height: 35px;
+          text-align: center;
+          padding:0px 5px;
+          width: 38px;
+          outline: none;
+}
+.folderbottom form input{
+          border:none;
+          border:1px solid #ddd;
+          height: 35px;
+          line-height: 35px;
+          padding:0px 5px;
+          width:calc(100% - 38px);
+          outline: none;
+}
+.foldertop{
+          padding-left: 15px;
+          height: 40px;
+          background: #404e67;
+          color:white;
+          line-height: 40px;
+          position: relative;
+}
+.closefolder{
+          position: absolute;
+          right:7px;
+          font-size: 1.3em;
+          cursor: pointer;
+}
+.filelist{
+          padding:5px;
+          background: white;
+}
+.files{
+          border:1px solid #ddd;
+}
+.toptool{
+          padding:5px;
+          border-bottom: 1px solid #ddd;
+}
+.maintoptool {
+          display:inline-block;
+          margin-bottom: 0px!important;
+          
+}
+.maintoptool li.t1{
+          display: inline-block;
+          position: relative;
+}
+.maintoptool li.t1:hover ul{
+          display: block;
+}
+.maintoptool li.t1 ul{
+          top:100%;
+          left:0px;
+          z-index: 100;
+          position: absolute;
+          color:#555;
+          width: calc(100% + 20px);
+          background: white;
+          border:1px solid #ddd;
+          font-size: 0.85em;
+          text-align: left;
+          display: none;
+}
+.maintoptool li.t1 ul li{
+          padding-left: 10px;
+          transition: all ease 0.2s;
+          height: 30px;
+          line-height: 30px
+}
+.maintoptool li.t1 ul li:hover{
+          background: #404e67;
+          color:white;
+          
+}
+.toptool button, .toptool li.t1{
+          font-size: 0.95em;
+          height: 35px;
+          line-height: 35px;
+          text-align: center;
+          padding:0px 7px;
+          border:none;
+          color:white;
+          background:#404e67;
+          cursor: pointer;
+}
+.bottool{
+          display: flex;
+          flex-wrap: wrap;
+          border-bottom: 1px solid #ddd;
+}
+.bottool ul{
+          margin-bottom: 0px !important;
+}
+.csrc{
+          padding-left: 10px;;
+          max-width: 203px;
+}
+.csrc li{
+          display: inline-block;
+          height: 50px;
+          line-height: 50px;  
+}
+.csrc li::after{
+          content: '/';
+          display: inline-block;
+          width: 20px;
+          text-align: center;
+}
+.csrc li:last-child:after{
+          display: none;
+}
+.rightsort{
+          width:calc(100% - 203px);
+          display: flex;
+          justify-content: flex-end;
+}
+.sortaction{
+          padding-right: 15px;
+}
+.sortaction, .actiontool{
+          margin-bottom: 0px!important
+}
+
+.sortaction li.s1{
+          font-size: 0.9em;
+          cursor: pointer;
+          display: inline-block;
+          padding:0px 10px;
+          text-align: center;
+          height: 40px;
+          margin-top:5px;
+          line-height: 40px;
+          border:1px solid #404e67;
+          position: relative;
+}
+.sortaction li.s1:hover{
+          background: #404e67;
+          color:white;
+}
+.sortaction li.s1:hover ul{
+          display: block;
+}
+.sortaction li.s1 ul{
+          top:calc(100% + 1px);
+          left:0px;
+          z-index: 100;
+          position: absolute;
+          color:#555;
+          width: calc(100% + 10px);
+          background: white;
+          border:1px solid #ddd;
+          font-size: 0.85em;
+          text-align: left;
+          display: none;
+}
+.sortaction li.s1 ul li{
+          padding-left: 10px;
+          transition: all ease 0.2s;
+          height: 30px;
+          line-height: 30px
+}
+.sortaction li.s1 ul li:hover{
+          background: #404e67;
+          color:white;
+}
+.filehere{
+          display: flex;
+          flex-wrap: wrap;
+}
+.filehere .thumb{
+          width: 85%;
+          border: 1px solid #ddd;
+          border-top: none;
+          padding:10px;
+          display: flex;
+          flex-wrap: wrap
+}
+.filehere .thumb .folder{
+          transition:all ease 0.1s;
+          cursor: pointer;
+          width:calc((100% - 80px)/9);
+          margin-right: 10px;
+          border:1px solid #ddd;
+          margin-bottom: 10px;
+}
+.filehere .thumb .folder .centerfolder{
+          font-size: 5em;
+          text-align: center;
+          height:120px;
+          line-height: 120px;
+}
+.filehere .thumb .folder .botfolder{
+          font-size: 0.95em;
+          background: #ddd;
+          text-align: center;
+          line-height: 40px;
+
+}
+.filehere .thumb .folder:nth-child(9n){
+          margin-right: 0px;
+}
+.filehere .fileinfo{
+          width:15%;
+}
+.rclickmenu{
+          z-index: 999;
+          position: absolute;
+          display: none;
+          background: white;
+          color:#555;
+          box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+          font-size: 0.9em;
+}
+.rclickmenu ul{
+          margin-bottom: 0px;
+}
+.rclickmenu li{
+          padding-left: 15px;
+          padding-right: 35px;
+          height: 35px;
+          line-height: 35px;
+          transition: all ease-in 0.2s;
+         
+}
+.rclickmenu li:hover{
+          background:#404e67;
+          color:white;
+          cursor: pointer;
+}
+.imgfile img{
+          height: 100%;
+          width: 100%;
+          padding:5px;
+          display: block;
+}
+.imgfile .imghere{
+          height: 120px;
+          
+}
+.imgfileinfo{
+          border-bottom: 1px solid #ddd;
+          height:230px;
+          font-size: 7em;
+          line-height: 230px;
+          text-align: center;
+}
+.datafileinfo{
+          padding:10px;
+          font-size: 0.85em;
+}
+.filescroll{
+          overflow-x: scroll;
+}
+@media only screen and (max-width:1200px){
+          .filehere{
+                    width:1000px;
+          }
+          .filehere .thumb .folder{
+                    width:calc((100% - 60px)/7);
+                    margin-right: 10px!important; 
+          }
+          .filehere .thumb .folder:nth-child(7n){
+                    margin-right: 0px!important;
+          }
+}
+@media only screen and (max-width:550px){
+          .filetool button{
+                    margin-bottom: 3px;
+          }
+          .rightsort{
+                    width:100%;
+                    justify-content: flex-start;
+          }
+}

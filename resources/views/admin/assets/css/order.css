@@ -1,0 +1,126 @@
+.cattitle{
+}
+.taborder table td:last-child a{
+          display: inline-block!important;
+          line-height: 30px!important;
+}
+.taborder table td:last-child{
+          width:100px;
+}
+.right .bottom{
+          padding-bottom: 150px;
+}
+table td  li#showoption{
+          height: 30px;
+          border:none;
+          padding:0px 7px;
+          line-height: 30px;
+          background:#1e91cf;
+          border-left: 1px solid rgba(221, 221, 221, 0.541);
+          color:white;
+          outline: none;
+          cursor: pointer;
+          border-radius: 2px;
+          border-bottom-left-radius: 0px;
+          border-top-left-radius: 0px;
+          position: relative;
+}
+table td  li#showoption:hover ul{
+          display: block;
+}
+table td  li#showoption ul{
+          z-index: 999;
+          width:160px;
+          position: absolute;
+          top:100%;
+          right:0%;
+          background:white;
+          color:#555;
+          border:1px solid #ddd;
+          display: none;
+}
+ table td  li#showoption ul li{
+          padding: 0px 10px;
+}
+ table td  li#showoption ul li:hover{
+          background:#ddd;
+}
+ table td  li#showoption ul li i{
+          display: inline-block;
+          width:15px;
+          text-align: center;
+}
+.taborder table td:last-child button{
+          border-bottom-right-radius: 0px;
+          border-top-right-radius: 0px;
+}
+.lasttd{
+          display: flex;
+}
+.cattitle li{
+          white-space: nowrap;
+          display: inline-block;
+          position: relative;
+          margin-left: 10px;
+          height: 35px;
+          line-height: 35px;
+          padding:0px 10px;
+          border:none;
+          background:#06cec4;
+          color:white;
+          cursor: pointer;
+          text-transform: capitalize;
+}
+ul.catright{
+          
+          margin-top: 1.5px;
+          display: flex;
+          float:right;
+          margin-right: 25px;
+}
+.cattitle li:hover ul{
+          display: block;
+}
+.cattitle ul{
+          margin-bottom: 0px!important
+}
+.cattitle li ul{
+          display: none;
+          top:100%;
+          left:0px;
+          z-index: 99;
+          position: absolute;
+          width:calc(100% + 20px);
+          background:white!important;
+          border:1px solid rgba(221, 221, 221, 0.5);
+}
+.cattitle li ul li{
+          margin-left: 0px!important;
+          display: block;
+          background:white;
+          color:#555;
+          height:35px;
+          line-height: 35px;
+          border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+}
+.cattitle li ul li:hover{
+          background:#ddd;
+}
+.taborder tr td{
+          padding-right: 10px!important;
+}
+.taborder tr td:nth-child(5),.taborder tr td:nth-child(6){
+          min-width:130px;
+}
+.tabcat #tab2 td{
+          padding:5px!important;
+}
+.tabcat #tab2 th{
+          font-size: 0.9em;
+          color:#4c4d5a!important;
+}
+@media only screen and (max-width:450px){
+          ul.catright{
+                    margin-right: 5px;
+          }
+}

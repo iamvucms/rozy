@@ -1,0 +1,17 @@
+
+.table thead td span[data-toggle="tooltip"]:after, label.control-label span:after {
+	font-family: FontAwesome;
+	color: #1E91CF;
+	content: "\f059";
+	margin-left: 4px;
+}
+.table thead td {
+          font-weight: bold;
+          text-transform: capitalize;
+}
+.table thead > tr > td, .table tbody > tr > td {
+	vertical-align: middle;
+}
+.table{
+          border-color:rgba(221, 221, 221, 0.377)!important;
+}

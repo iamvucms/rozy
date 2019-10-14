@@ -1,0 +1,107 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+class Product extends Model
+{
+    protected $table = 'products';
+    //Discount Relationship
+    public function Discount()
+    {
+        return $this->hasMany('App\Discount', 'idproduct', 'id');
+    }
+    public function AvailableDiscount()
+    {
+        $current = date("Y-m-d");
+        return $this->Discount()->select("percent")
+        ->where([['from','<',$current],['to','>',$current]])
+        ->whereRaw('(discount.total - discount.selled >0 OR (total IS NULL AND selled IS NULL))')
+        ->orderBy('percent','DESC')->limit(1);
+    }
+    //Review Relationship
+    public function Review(){
+        return $this->hasMany('App\Review','idpro','id');
+    }
+    public function getCountReview($star=0){
+        return $this->Review()->where('star','>',$star)->count();
+    }
+    public function getCountReviewAt($star=1){
+        return $this->Review()->where('star','=',$star)->count();
+    }
+    public function getAvgReview(){
+        return round($this->Review()->avg('star'));
+    }
+    public function getReviews(){
+        return $this->Review()->orderBy('reviews.create_at','desc')->paginate(5);
+    }
+    public function getPercentReview(){
+        $stars = [];
+        $TotalStars = $this->getCountReview();
+        for($i=1;$i<=4;$i++){
+            $stars[] = round($this->getCountReviewAt($i)/$TotalStars*100);
+        }
+        $stars[] = 100- array_sum($stars);
+        $stars = array_reverse($stars);
+        return $stars;
+    }
+    //OrderDetail Relationship
+    public function OrderDetail(){
+        return $this->hasMany('App\OrderDetail','idpro','id');
+    }
+    public function getTotalQuantitySelled(){
+        return $this->OrderDetail()->sum('quantity');
+    }
+    public function isTrending(){
+        
+    }
+    //Images relationships
+    public function Images(){
+        return $this->hasMany('App\Image','id_product','id')->select('src')->whereNull('id_avt_product')->get();
+    }
+    public function Avatar(){
+        return $this->hasOne('App\Image','id_avt_product','id')->select('src')->first();
+    }
+    //Seller Relationships
+    public function Seller(){
+        return $this->hasOne('App\Seller','id','idsell')->first();
+    }
+    //Property Relationships
+    public function Property(){
+        return $this->hasOne('App\Property','id','id');
+    }
+    public function getProps(){
+        $props = json_decode($this->Property()->select('json')->first()->json,true);
+        return $props;
+    }
+    //Product For Filter
+    public function search($keyword){
+        if($keyword===null) return $this;
+        return $this->where('name','like',"%$keyword%");
+    }
+    public function withPrice($keyword,$from,$to){
+        if($from===null) $from = 0;
+        if($to===null) $to = PHP_INT_MAX;
+        return $this->search($keyword)->where([['sale_price','>=',$from],['sale_price','<=',$to]]);
+    }
+    public function withPriceAddress($keyword,$from,$to,$address){
+        if($address===null) $address = '';
+        return $this->withPrice($keyword,$from,$to)->where('city_address','like',"%$address%");
+    }
+    public function withPriceAddressReview($keyword,$from,$to,$address,$star){
+        if($star===null) return $this->withPriceAddress($keyword,$from,$to,$address);
+        return $this->withPriceAddress($keyword,$from,$to,$address)
+        ->select('products.*')->join('reviews','reviews.idpro','=','products.id')
+        ->groupBy('reviews.idpro')->havingRaw('avg(star) >= '.$star);
+    } 
+    public function withPriceAddressReviewOrder($keyword,$from,$to,$address,$star,$order){
+        if($order===null) $order = 'ASC';
+        return $this->withPriceAddressReview($keyword,$from,$to,$address,$star)
+        ->orderBy('price',$order);
+    }
+    public function ProductFilter($keyword,$from,$to,$address,$star,$order){
+        return $this->withPriceAddressReview($keyword,$from,$to,$address,$star,$order)
+        ->paginate(20);
+    }
+}

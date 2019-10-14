@@ -1,0 +1,105 @@
+*{
+          margin: 0;
+          padding:0;
+          box-sizing: border-box;
+          font-family: 'Roboto';
+          font-size: 16px;
+          color:rgba(0, 0, 0, 0.7)
+}
+html,body{
+          height: 100%;
+}
+body{
+          background-image: url('../img/logback.jpg');
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          align-items: center;
+}
+.loginbox{
+          width:35%;
+          margin:0 auto;
+          background: rgba(255, 255, 255, 0.383);
+          border-radius: 10px;
+          padding-bottom: 20px;
+          box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25)
+}
+.logtitle{
+          text-transform: capitalize;
+          font-size: 1.6em;
+          display: block;
+          text-align: center;
+          margin: 20px auto;
+}
+#logform{
+          width:50%;
+          margin:15px auto;
+          text-align: center;
+}
+#logform input{
+          text-align: center;
+          margin:15px 0px;
+          height:40px;
+          border:none;
+          border-radius: 48px;
+          padding:0px 15px;
+          display: block;
+          width: 100%;
+          background: rgba(255, 255, 255, 0.514);
+          outline: none;
+          font-size: 1em;
+          transition: all ease 0.2s;
+}
+#logform input:focus{
+         font-size: 1.2em;
+}
+#logform button{
+          border:none;
+          border-radius: 48px;
+          height: 40px;
+          text-align: center;
+          line-height: 40px;
+          font-size: 1.2em;
+          cursor: pointer;
+          padding:0px 15px;
+          background:rgba(255, 255, 255, 0.65);
+}
+@media only screen and (max-width: 1110px){
+          #logform{
+                    width:70%;
+          }
+          .loginbox{
+                    width:40%
+          }
+}
+@media only screen and (max-width: 900px){
+          .loginbox{
+                    width:45%
+          }
+          *{
+                    font-size: 0.95em;
+          }
+}
+@media only screen and (max-width: 680px){
+          .loginbox{
+                    width:60%
+          }
+}
+@media only screen and (max-width: 500px){
+          *{
+                    font-size: 0.95em;
+          }
+          .loginbox{
+                    width:65%
+          }
+}
+@media only screen and (max-width: 450px){
+          .loginbox{
+                    width:80%
+          }
+}
+@media only screen and (max-width: 370px){
+          .loginbox{
+                    width:90%
+          }
+}

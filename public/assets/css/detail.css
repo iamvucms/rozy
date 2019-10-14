@@ -1,0 +1,1102 @@
+.productmain {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    background: white;
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.5)
+}
+
+.productmain .gallery {
+    max-width: 40%;
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery .mainphoto {
+    flex-grow: 1;
+    flex-basis: 100%;
+    text-align: center;
+}
+
+.gallery .mainphoto img {
+    max-width: 350px;
+}
+
+.gallery .mainphoto a {
+    height: 400px;
+    display: inline-block;
+}
+
+.gallery .photolist {
+    flex-grow: 1;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 75px;
+}
+
+.gallery .photolist li {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid rgba(51, 51, 51, 0.25);
+    border-radius: 2px;
+    transition: all ease 0.2s;
+}
+
+.gallery .photolist li:hover {
+    border: 1px solid red;
+}
+
+.gallery .photolist li.active {
+    border: 1px solid red;
+}
+
+.photolist img {
+    width: 60px!important;
+    height: 60px;
+}
+
+.photolist .left {
+    transform: translateY(-50%);
+    top: 50%;
+    left: 10%;
+}
+
+.photolist .right {
+    transform: translateY(-50%);
+    top: 50%;
+    right: 10%;
+}
+
+.photolist:hover button {
+    font-size: 1.5em;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.photolist button {
+    cursor: pointer;
+    transform: all ease 0.4s;
+    border: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    height: 30px;
+    position: absolute;
+    z-index: 10;
+    width: 20px;
+    font-size: 1.1em;
+    line-height: 30px;
+}
+
+#keyslider {
+    height: 75px;
+    width: 80%;
+}
+
+.productmain .order {
+    max-width: 40%;
+    flex-grow: 2;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.order .pname h1 {
+    font-weight: 400;
+    font-size: 1.4em;
+}
+
+.order .votecount {
+    color: rgb(133, 123, 123);
+    margin-top: 10px;
+}
+
+.order .votecount p {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.order #star:nth-child(1), .order #star:nth-child(2), .order #star:nth-child(3), .order #star:nth-child(4) {
+    color: orange;
+}
+
+.order .votecount a {
+    font-size: 0.9em;
+    color: #007ff0;
+}
+
+.order #salecount {
+    padding-left: 20px;
+    border-left: 0.5px solid rgba(133, 123, 123, 0.644);
+}
+
+.order #salecount b {
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 300;
+}
+
+.order .pprice .newp {
+    color: red;
+    font-size: 2em;
+}
+
+.order .pprice .oldp {
+    text-decoration-line: line-through;
+}
+
+.order .pprice .discount {
+    background: orange;
+    color: white;
+    margin-left: 10px;
+    padding: 0 5px;
+    border-radius: 2px;
+}
+
+.order .pprice {
+    padding-top: 20px;
+    color: rgb(133, 123, 123);
+}
+
+.order .traninfo {
+    margin-top: 25px;
+    display: flex;
+    font-weight: bold;
+    width: calc(100% - 50px);
+    color: #30a43b;
+    border-radius: 2px;
+    background: #ecf7ed;
+    height: 30px;
+    border: 0.5px solid #c4ddc8;
+}
+
+.order .traninfo span {
+    padding: 0px 10px;
+    border-right: 1px solid #c4ddc8;
+    line-height: 30px;
+}
+
+.order .traninfo p {
+    padding: 0px 10px;
+    line-height: 30px;
+}
+
+.order .colorpick {
+    margin-top: 25px;
+    display: flex;
+}
+
+.colorpick .ctitle {
+    line-height: 40px;
+    margin-right: 20px;
+    font-size: 1em;
+    text-transform: uppercase
+}
+
+.colorpick .listcolors {
+    display: inline-block;
+    height: 40px;
+}
+
+.colorpick .listcolors li {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: red;
+    cursor: pointer;
+}
+
+.colorpick .listcolors li.active {
+    border: 3px solid red;
+}
+
+.order .quantity {
+    margin-top: 25px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.order .quantity .qtitle {
+    font-size: 0.9em;
+    margin-right: 15px;
+}
+
+.order .quantity .updowngroup {
+    display: inline-flex;
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    border-radius: 2px;
+}
+
+.quantity .updowngroup button {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background: #acacac28;
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.quantity .updowngroup button:hover {
+    background: #acacac69;
+    cursor: pointer;
+}
+
+.quantity .updowngroup input {
+    border: none;
+    display: inline-block;
+    height: 30px;
+    width: 40px;
+    border-right: 1px solid rgba(51, 51, 51, 0.3);
+    border-left: 1px solid rgba(51, 51, 51, 0.3);
+    text-align: center;
+    font-size: 1em;
+}
+
+.quantity .amout {
+    color: rgb(133, 123, 123);
+    line-height: 30px;
+    margin-left: 10px;
+}
+
+.order .orderbtn {
+    margin-top: 25px;
+}
+
+.order .orderbtn button {
+    height: 45px;
+    padding: 0px 10px;
+    border: none;
+    font-size: 1.1em;
+    color: white;
+    background: orange;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.order .orderbtn button:hover {
+    opacity: 0.9;
+}
+
+.order .orderbtn button:last-child {
+    background: #e5101d;
+}
+
+.orderbtn span a {
+    color: rgba(255, 0, 0, 0.8);
+}
+
+.orderbtn span a:hover {
+    color: red;
+}
+
+.order .sharetool {
+    margin-top: 20px;
+}
+
+.order .sharetool li {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2em;
+    height: 32px;
+}
+
+.sharetool span {
+    line-height: 32px;
+    margin-right: 10px;
+}
+
+.owl-dots {
+    display: none;
+}
+
+/* SHOP STYLE */
+
+.productmain .shop {
+    max-width: 20%;
+    flex-grow: 1;
+    color: rgba(0, 0, 0, 0.8);
+    border: 2px dashed rgba(133, 123, 123, 0.2);
+    ;
+    padding: 10px;
+}
+
+.shop .shopname {
+    display: flex;
+    border-bottom: 1px solid rgba(133, 123, 123, 0.2);
+}
+
+.shopname i {
+    font-size: 1.8em;
+    margin-right: 10px;
+    line-height: 38px;
+    color: orange
+}
+
+.shopname a {
+    color: #007ff0
+}
+
+.shopname small {
+    color: rgba(0, 0, 0, 0.8)
+}
+
+.shop .cefi {
+    margin-top: 10px;
+    display: flex;
+}
+
+.cefi i {
+    font-size: 1.2em;
+    color: #30a43b;
+    line-height: 30px;
+}
+
+.cefi small {
+    line-height: 15px;
+    margin-left: 5px;
+}
+
+.shop #viewshop {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.shop .viewshop {
+    width: 90%;
+    border: none;
+    border-radius: 10px;
+    line-height: 20px;
+    color: white;
+    background-color: #007ff0;
+    cursor: pointer;
+}
+
+.shop .award {
+    margin-top: 15px;
+    color: rgb(133, 123, 123);
+}
+
+.shop .award li {
+    display: inline-block;
+    width: calc(50% - 2px);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.shop .award li b {
+    color: #007ff0
+}
+
+.namegroup {
+    display: flex;
+    margin-top: 10px;
+}
+
+.relatedshop {
+    margin-top: 15px;
+    padding-bottom: 5px;
+    border-bottom: 0.5px solid #74737371;
+}
+
+.namegroup p {
+    width: 80%;
+    font-size: 0.9em;
+}
+
+.namegroup p b {
+    color: #007ff0
+}
+
+.namegroup p small {
+    color: red;
+}
+
+.namegroup a {
+    line-height: 34px;
+}
+
+.namegroup a button {
+    cursor: pointer;
+    color: #747373;
+    border-radius: 2px;
+    border: none;
+    padding: 5px;
+    background: white;
+    border: 0.5px solid #acacac75;
+}
+
+.contactshop {
+    margin-top: 10px;
+}
+
+.contactshop img {
+    height: 30px;
+    width: 30px;
+    font-size: 0.9em;
+    margin-right: 10px;
+}
+
+.contactshop b {
+    font-size: 0.9em;
+}
+
+.contactshop small {
+    font-size: 0.8em;
+}
+
+.contactshop .hotline, .contactshop .email {
+    display: flex;
+    margin-bottom: 5px;
+    border: 1px dashed rgba(51, 51, 51, 0.514);
+    padding: 5px;
+}
+
+.contactshop .email p {
+    display: flex;
+    align-items: center;
+}
+
+.chatonline {
+    display: flex;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.85em;
+}
+
+.chatonline p {
+    max-width: 70%;
+    ;
+    margin-right: 5px;
+}
+
+.chatonline button {
+    cursor: pointer;
+    max-width: calc(30% - 5px);
+    border: none;
+    border-radius: 2px;
+    background: #007ff0;
+    color: white;
+}
+
+.productinfo {
+    margin-top: 15px;
+    background: white;
+    padding: 20px;
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.5)
+}
+
+.productinfo .dtitle {
+    background: rgba(0, 0, 0, .02);
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.productinfo .dtitle p {
+    font-size: 1.2em;
+    padding: 10px 5px;
+}
+
+.productinfo .detailinfo {}
+
+.productinfo .detailinfo table {
+    width: calc(100% - 0px);
+    margin-top: 10px;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.detailinfo table, td {
+    border: 1px solid #ddd;
+}
+
+.productinfo .detailinfo table td {
+    padding: 10px
+}
+
+.productinfo .detailinfo table tr td:first-child {
+    color: #4f4f4f;
+    font-weight: bold;
+    background: #efefef;
+    min-width: 150px;
+}
+
+.productinfo .detailinfo table tr td:nth-child(2) {
+    width: 80%;
+}
+
+.productinfo .description {
+    margin-top: 25px;
+}
+
+.description .dgroup {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    margin-top: 15px;
+}
+
+.description .dgroup .destext {
+    flex-grow: 5;
+    max-width: calc(71% - 50px);
+}
+
+.description .dgroup .desnumber {
+    flex-grow: 2;
+    padding-left: 50px;
+    max-width: calc(29% + 50px);
+}
+
+.description .dgroup .desnumber h2:first-child, .description .dgroup .destext h2:first-child {
+    padding-left: 5px;
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+.productinfo .description table {
+    margin-top: 10px;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+.description td {
+    border: none;
+    border-top: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+.productinfo .description table a {
+    color: #007ff0
+}
+
+.productinfo .description table a:hover {
+    text-decoration: underline;
+}
+
+.productinfo .description table td {
+    padding: 10px 0px;
+}
+
+.productinfo .description table tr td:first-child {
+    color: #4f4f4fce;
+}
+
+.productinfo .description table tr td:nth-child(2) {
+    width: calc(100% - 120px);
+}
+
+.description .desnumber .btnviewmore {
+    margin-top: 10px;
+}
+
+.description .desnumber .btnviewmore button {
+    cursor: pointer;
+    padding: 0px 10px;
+    padding-left: 0px;
+    font-size: 0.9em;
+    border: none;
+    background: none;
+    color: #007ff0;
+}
+
+.description .desnumber .btnviewmore button:hover {
+    color: #0059ff;
+}
+
+.description .destext .dslider {
+    margin-top: 15px;
+    position: relative;
+}
+
+.description .destext #dslider a {
+    display: block;
+}
+
+.description .destext #dslider a img {
+    width: 100%;
+}
+
+.description .destext .dslider #goright, #goleft {
+    height: 50px;
+    font-size: 2.8em;
+    border: none;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: calc((100% - 50px)/2);
+    z-index: 10;
+    cursor: pointer;
+    transition: all ease 0.2s;
+}
+
+.description .destext .dslider:hover #goright, .description .destext .dslider:hover #goleft {
+    font-size: 3em;
+    color: rgba(0, 0, 0, 0.8);
+    top: calc((100% - 50px)/2);
+}
+
+#goright {
+    right: 0px;
+}
+
+#goleft {
+    left: 0px;
+}
+
+.destext .productnews {
+    margin-top: 25px;
+}
+
+.destext .productnews h2:first-child {
+    padding-left: 0px!important;
+    font-size: 1.1em;
+    font-weight: bold!important;
+}
+
+.destext .productnews .blocknew {
+    padding-bottom: 15px;
+    letter-spacing: 0.5px;
+    font-size: 1em;
+}
+
+.destext .productnews .blocknew a {
+    color: #007ff0
+}
+
+.destext .productnews .blocknew a:hover {
+    text-decoration: underline
+}
+
+.destext .productnews .blocknew .hightlight {
+    margin-top: 15px;
+}
+
+.destext .productnews .blocknew .nonetext {
+    margin-top: 10px;
+}
+
+.destext .productnews .blocknew img {
+    width: 100%;
+}
+
+.destext .productnews .readmore {
+    text-align: center;
+}
+
+.destext .productnews .readmore a {
+    color: #007ff0;
+}
+
+.readmore a:hover {
+    color: #0059ff;
+}
+
+.desnumber .pbanner {
+    margin-top: 25px;
+    border: 2px dashed #007ff0
+}
+
+.desnumber .pbanner img {
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+}
+
+.review {
+    margin-top: 20px;
+}
+
+.review .totalreview {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.8);
+    flex-wrap: wrap;
+}
+
+.review .total, .review .statis, .review .writereview {
+    flex-grow: 1;
+    text-align: center;
+    max-width: 33%;
+}
+
+.totalreview .stars li {
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+.totalreview span, .totalreview p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.totalreview .rate {
+    font-size: 3.5em;
+    color: red;
+}
+
+.ratecount {
+    margin-top: 15px;
+}
+
+.review .statis {
+    color: rgba(0, 0, 0, 0.6);
+    text-align: left
+}
+
+.statis .liststatis li {
+    display: flex;
+    line-height: 18px;
+    margin-bottom: 12px;
+}
+
+.statis .liststatis li i {
+    font-size: 0.9em;
+}
+
+.statis .ratebar {
+    width: calc(100% - 80px);
+    margin: 0 5px;
+    height: 15px;
+    background: #30a43b;
+    position: relative;
+}
+
+.ratebar p {
+    background: #efefef;
+    height: 15px;
+    position: absolute;
+    top: 0%;
+    right: 0%
+}
+
+.writereview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 2px dashed #007ff0;
+}
+
+.writereview p {
+    color: rgba(0, 0, 0, 0.7)
+}
+
+.writereview button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    font-size: 0.9em;
+    background: orange;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.reviewlist .rvauthor {
+    display: flex;
+    flex-wrap: wrap;
+    color: rgba(0, 0, 0, 0.7)
+}
+
+.reviewlist .rvauthor img:first-child {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.rvlist .rv {
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #acacac;
+}
+
+.rvauthor p:first-child {
+    padding-bottom: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.rvauthor p:nth-child(2) i {
+    font-size: 0.8em;
+}
+
+.rvauthor p:nth-child(3) {
+    padding-top: 5px;
+    font-size: 0.9em;
+}
+
+.rvcontent {
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 5px;
+    max-width: 850px;
+}
+
+.rvtitle p {
+    padding: 10px 0px;
+    font-weight: bold;
+}
+
+.rvat {
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+.rvauthor div{
+    min-width: 250px;   
+}
+.rvauthor a:last-child {
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+}
+
+.rvauthor a:last-child button {
+    cursor: pointer;
+    background: gold;
+    color: white;
+    font-weight: bold;
+    border: none;
+    line-height: 20px;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.rvauthor a:last-child button:hover {
+    opacity: 0.8;
+}
+
+.rvauthor a:last-child span {
+    font-size: 0.8em!important;
+}
+
+.rvgallery {
+    display: flex;
+    margin-top: 10px;
+}
+
+.rvgallery img {
+    width: 80px!important;
+    height: 80px!important;
+    border-radius: 0px!important;
+    margin-right: 10px!important;
+    padding: 5px;
+    border: 1px dashed #007ff0;
+    cursor: pointer;
+}
+
+#pagination {
+    border-top: 0.5px dashed rgba(51, 51, 51, 0.5);
+    padding-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#pagination button {
+    display: inline-block;
+    height: 35px;
+    width: auto;
+    padding: 0px 10px;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    border: none;
+}
+
+#pagination button:hover{
+    background: #2ecc71
+}
+
+#pagination button:first-child {
+    border-radius: 48px 0px 0px 48px;
+}
+#pagination button:last-child {
+    border-radius: 0px 48px 48px 0px;
+}
+
+#pagination ul {
+    display: inline-block
+}
+
+#pagination ul li {
+    
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 35px;
+    text-align: center;
+    line-height: 35px;
+    height: 35px;
+    display: inline-block;
+    margin: 0px 6px;
+    transition: all ease 0.4s;
+    background: transparent;
+}
+#pagination ul li a{
+    color: rgba(0, 0, 0, 0.7);
+}
+#pagination ul li:hover {
+    background: #2ecc71
+}
+#pagination ul li:hover a,#pagination ul li:hover span{
+    color: white;
+}
+#pagination ul li.active {
+    color: white;
+    background: #2ecc71
+}
+
+.tabfade {
+    display: none!important;
+}
+
+@media only screen and (max-width:768px) {
+    .productmain .gallery {
+        max-width: 45%;
+        overflow: hidden;
+        margin-right: 10px;
+    }
+    .productmain .order {
+        max-width: calc(55% - 10px);
+    }
+    .productmain .shop {
+        max-width: 100%;
+    }
+    .shop .cefi small {
+        line-height: 30px;
+    }
+    .traninfo {
+        width: 100%!important;
+    }
+    .tabfade {
+        display: block!important;
+        margin-left: 20px;
+    }
+    .tabhiden {
+        display: none!important;
+    }
+    .relatedshop .namegroup {
+        display: inline-block;
+    }
+    .relatedshop .namegroup p:first-child {
+        width: 100px!important;
+    }
+    .shop {
+        margin-top: 20px;
+    }
+    .shop .award li {
+        width: calc(25% - 3px);
+        padding: 10px;
+        border: 1px dashed #007ff0
+    }
+    .shopname span {
+        min-width: 150px!important;
+    }
+    .contactshop .hotline, .contactshop .email {
+        border: none;
+        padding: 0px;
+    }
+    a#viewshop.tabfade {
+        margin: 0px;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+    }
+    .viewshop {
+        width: 150px!important;
+    }
+    .viewshop small {
+        color: white!important
+    }
+    .chatonline p {
+        line-height: 25px;
+    }
+    .chatonline button {
+        padding: 5px;
+    }
+    .rvauthor div {
+        max-width: 74%!important;
+    }
+}
+
+@media only screen and (max-width:450px) {
+    * {
+        font-size: 14px;
+        letter-spacing: normal
+    }
+    .productmain .gallery {
+        max-width: 100%;
+        overflow: hidden;
+        margin-right: 0px!important;
+    }
+    .productmain .order {
+        border: 2px dashed rgba(133, 123, 123, 0.2);
+        padding: 10px;
+        padding-top: 15px;
+        max-width: 100%;
+        margin-top: 10px;
+    }
+    .pbanner {
+        display: none;
+    }
+    .description .dgroup .destext {
+        flex-basis: 100%;
+        max-width: 100%;
+        padding-top: 15px;
+    }
+    .description .dgroup .desnumber {
+        flex-basis: 100%;
+        max-width: 100%;
+        padding-left: 0px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #333;
+    }
+    .tablenumber h2:first-child {
+        text-decoration: underline;
+    }
+    .totalreview .total {
+        max-width: 50%;
+    }
+    .totalreview .statis {
+        max-width: 50%;
+    }
+    .totalreview .writereview {
+        margin-top: 10px;
+        max-width: 100%;
+    }
+    .rvauthor div:first-child {
+        max-width: calc(100% - 60px);
+    }
+    .totalreview .writereview {
+        margin-top: 10px;
+        max-width: 100%;
+    }
+    .rvauthor div {
+        max-width: calc(100% - 60px)!important;
+    }
+    .rvauthor a:last-child {
+        padding-left: 0px;
+        margin-left: 60px;
+        margin-top: 7px;
+    }
+    .traninfo p {
+        font-size: 0.9em!important;
+    }
+    .shopname span {
+        min-width: 100px!important;
+    }
+    .shop .award li {
+        width: calc(50% - 2px);
+        padding: 10px;
+    }
+    .shop .award li {
+        margin-bottom: 3px!important;
+    }
+    #foryou {
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,81 @@
+.tabcat table tr th:nth-child(2){
+         text-align: center;
+         padding-left: 0px!important;
+}
+.tabcat table tr td:nth-child(2){
+          width: 100px;
+          text-align: center;
+          padding-left: 0px!important;
+} 
+.tabcat table tr td:nth-child(2) p{
+          margin-bottom: 0px!important;
+}
+.tabcat table tr td:nth-child(2) img{
+          height: 70px;
+          width:70px;
+          padding:7px;
+          margin:10px 0px;
+          border: 1px solid #ddd;
+} 
+
+.tabcat table tr td:nth-child(3){
+          width: 250px;
+}
+.tabcat table tr td:nth-child(3) a{
+          white-space: nowrap;
+          display: inline-block;
+          width: 230px;
+          overflow: hidden !important;
+          text-overflow: ellipsis;
+}
+
+.tabcat table tr td:nth-child(6) p{
+          width: 35px;
+          background:#4cb64c;
+          height: 25px;
+          line-height: 25px;
+          text-align: center;
+          border-radius: 5px;
+}
+.tabcat table tr td:nth-child(6) p.war{
+          background:#f3a638;
+}
+.tabcat table tr td:nth-child(6) p.dan{
+          background:rgba(255, 0, 0, 0.801);
+}
+.tabcat table tr td:nth-child(6) p span{
+          
+          color:white;
+          
+          
+}
+.sellstt{
+          font-weight: bold;
+}
+.sellstt#selling{
+          color:#4cb64c
+}
+.sellstt#stopsell{
+          color:rgba(255, 0, 0, 0.801); 
+}
+.sellstt#hethang{
+          color:#f3a638;
+}
+@media only screen and (max-width:1200px){
+          .tabcat table tr td:nth-child(1){
+                    min-width: 30px!important;
+          }
+          .tabcat table tr td:nth-child(2){
+                    min-width: 100px!important;
+          }
+          .tabcat table tr td:nth-child(5),.tabcat table tr td:nth-child(4),.tabcat table tr td:nth-child(6){
+                    min-width:150px!important;
+          }
+          .tabcat table tr td:nth-child(7){
+                    min-width: 115px!important;
+          }
+          .tabcat table tr td:nth-child(8){
+                    min-width: 100px!important;
+          }
+          
+}

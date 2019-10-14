@@ -13,7 +13,7 @@ class ProductController extends Controller
         $categories = Category::get();  
         $viewedList = Cookie::get('viewedList');
         if($viewedList===null){
-            Cookie::queue('viewedList',json_encode([]),9999999999);
+            Cookie::queue('viewedList',json_encode([]),9999999999); 
         }
         $viewedList = json_decode(Cookie::get('viewedList'),true) ?? [];
         $viewedProduct = ['avt'=>$product->Avatar()->src ?? '','slug'=>$product->slug];
@@ -23,6 +23,7 @@ class ProductController extends Controller
                 $exist = true;
                 break;
             }
+            
         }
         if(!$exist) $viewedList[] = $viewedProduct;
         Cookie::queue('viewedList',json_encode($viewedList),9999999999);

@@ -23,7 +23,6 @@ class ProductController extends Controller
                 $exist = true;
                 break;
             }
-            
         }
         if(!$exist) $viewedList[] = $viewedProduct;
         Cookie::queue('viewedList',json_encode($viewedList),9999999999);

@@ -1,1136 +1,1312 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <title>Giỏ Hàng Của Bạn</title>
-          <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-          <link rel="stylesheet" href="assets/css/index.css">
-          <link rel="stylesheet" href="assets/css/cart.css">
-          <link rel="stylesheet" href="assets/css/slide.min.css">
-          <link rel="stylesheet" href="assets/css/slide.theme.min.css">
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-          <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
-          <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
-          <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
-          
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giỏ Hàng Của Bạn</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/slide.min.css">
+    <link rel="stylesheet" href="assets/css/slide.theme.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
+
 </head>
+
 <body>
-          <div class="rozy">
-                     <div class="inbox" id="notactive"> 
-                              <p class="intitle"><i class="far fa-comment-alt"></i> Trò Chuyện
-                                        <div class="boxchat">
-                                                  <div class="preboxchat">
-                                                            <div class="toptool"><span class="centername">Support Rozy: VuCms</span> <button class="closechat">×</button></div>
-                                                            <div class="chatlist">
-                                                                      <div class="scrolllog">
-                                                                                <ul>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">askraw student driven worse religious worried trail globe nest article wood birth love tower recent stream island outside chance stay band late piece bone before </p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll check perhaps force policeman action industry physical command coal forest second cream spider silent job stiff </p>
-                                                                                          </li>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">askraw student driven worse religious worried trail globe nest article wood birth love tower recent stream island outside chance stay band late piece bone before </p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll check perhaps force policeman action industry physical command coal forest second cream spider silent job stiff </p>
-                                                                                          </li>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">askraw student driven worse religious worried trail globe nest article wood birth love tower recent stream island outside chance stay band late piece bone before </p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll check perhaps force policeman action industry physical command coal forest second cream spider silent job stiff </p>
-                                                                                          </li>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="left">
-                                                                                                    <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
-                                                                                                    <p class="msgcontent">buy slowly metal tiny land declared finish stage wide correct truck warm zoo exchange structure figure brain women so my behavior primitive east understanding</p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">askraw student driven worse religious worried trail globe nest article wood birth love tower recent stream island outside chance stay band late piece bone before </p>
-                                                                                          </li>
-                                                                                          <li class="right">
-                                                                                                    <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll check perhaps force policeman action industry physical command coal forest second cream spider silent job stiff </p>
-                                                                                          </li>
-                                                                                </ul>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="send">
-                                                                      <form action="#" >
-                                                                                <input type="text" placeholder="Nhập tin nhắn">
-                                                                                <button><i class="far fa-paper-plane"></i></button>
-                                                                      </form>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                              </p>
-                              
+    <div class="rozy">
+        <div class="inbox" id="notactive">
+            <p class="intitle"><i class="far fa-comment-alt"></i> Trò Chuyện
+                <div class="boxchat">
+                    <div class="preboxchat">
+                        <div class="toptool"><span class="centername">Support Rozy: VuCms</span> <button
+                                class="closechat">×</button></div>
+                        <div class="chatlist">
+                            <div class="scrolllog">
+                                <ul>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">askraw student driven worse religious worried trail globe
+                                            nest article wood birth love tower recent stream island outside chance stay
+                                            band late piece bone before </p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll
+                                            check perhaps force policeman action industry physical command coal forest
+                                            second cream spider silent job stiff </p>
+                                    </li>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">askraw student driven worse religious worried trail globe
+                                            nest article wood birth love tower recent stream island outside chance stay
+                                            band late piece bone before </p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll
+                                            check perhaps force policeman action industry physical command coal forest
+                                            second cream spider silent job stiff </p>
+                                    </li>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">askraw student driven worse religious worried trail globe
+                                            nest article wood birth love tower recent stream island outside chance stay
+                                            band late piece bone before </p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll
+                                            check perhaps force policeman action industry physical command coal forest
+                                            second cream spider silent job stiff </p>
+                                    </li>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="left">
+                                        <img src="admin/assets/img/avt.jpg" alt="" class="avtsend">
+                                        <p class="msgcontent">buy slowly metal tiny land declared finish stage wide
+                                            correct truck warm zoo exchange structure figure brain women so my behavior
+                                            primitive east understanding</p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">askraw student driven worse religious worried trail globe
+                                            nest article wood birth love tower recent stream island outside chance stay
+                                            band late piece bone before </p>
+                                    </li>
+                                    <li class="right">
+                                        <p class="msgcontent">labelmad driven wing avoid ear price support slightly doll
+                                            check perhaps force policeman action industry physical command coal forest
+                                            second cream spider silent job stiff </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="send">
+                            <form action="#">
+                                <input type="text" placeholder="Nhập tin nhắn">
+                                <button><i class="far fa-paper-plane"></i></button>
+                            </form>
+                        </div>
                     </div>
-                    <!-- header -->
-                    <div class="header">
-                              
-                              <div class="topinfo">
-                                        <span style="margin-left:18%"><i class="fas fa-map-marker-alt"></i> 123 Nam Ky Khoi Nghia, Da Nang</span>
-                                        <span style="margin-left:300px"><i class="fas fa-phone"></i> +84 766 730 945 | Support: 0236 456 789 | Sales: 0236 456 710</span>
-                              </div>
-                              <!-- boxtop -->
-                              <div class="boxtop">
-                                        <!-- boxtopmain -->
-                                       <div class="boxtopmain">
-                                        <div class="centerboxtop">
-                                                  <div class="logo">
-                                                            <i class="fas fa-cart-arrow-down"></i>
-                                                            <span class="logoname"> Rozy.</span>      
-                                                  </div>
-                                                  <div class="mobilelogo"><a href="filter.html"><i class="fas fa-arrow-left"></i></a>
-                                                  </div>
-                                                  <!-- boxsearch -->
-                                                  <div class="boxsearch">
-                                                            <form action="result.html">
-                                                                      <input autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..." type="search" class="searchinput"><button onclick="" class="searchnow micnow"><span><i class="fas fa-microphone"></i></span></button><input type="text" id="category_select" list="datalist" placeholder="Tất cả danh mục" value="Tất cả danh mục"><button class="searchnow"><span><i class="fas fa-search"></i><span id="search_none">Tìm kiếm</span></span></button>
-                                                                      <datalist name="category_select" id="datalist" >
-                                                                                <option value="Tất cả danh mục" selected="selected">
-                                                                                <option value="Điện Thoại - Máy Tính Bảng">
-                                                                                <option value="Điện Tử - Điện Lạnh">
-                                                                                <option value="Phụ Kiện - Thiết Bị Số">
-                                                                                <option value="Laptop - Thiết bị IT">
-                                                                                <option value="Máy Ảnh - Quay Phim">
-                                                                                <option value="Điện Gia Dụng ">
-                                                                                <option value="Nhà Cửa Đời Sống">
-                                                                                <option value="Hàng Tiêu Dùng - Thực Phẩm">
-                                                                                <option value="Đồ chơi, Mẹ & Bé">
-                                                                                <option value="Làm Đẹp - Sức Khỏe">
-                                                                                <option value="Thời trang - Phụ kiện">
-                                                                                <option value="Thể Thao - Dã Ngoại">
-                                                                                <option value="Xe Máy, Ô tô, Xe Đạp">
-                                                                                <option value="Sách, VPP & Quà Tặng">
-                                                                      </datalist>
-                                                                      <div class="boxmic">
-                                                                                <p><span id="gifload"><i class="fas fa-spinner"></i></span>
-                                                                                <span id="micicon"><i class="fas fa-microphone-alt"></i><span>Hãy Nói Từ Khóa Cần Tìm  </span></span>
-                                                                                </p>
-                                                                      </div>
-                                                            </form>
-                                                            <div class="ideaforsearch">
-                                                                      <p class="ideatitle">
-                                                                                Gợi Ý Cho Bạn:
-                                                                      </p>
-                                                                      <ul id="idealist">
-                                                                                <li><a href="result.html"><img src="assets/img/denwa.png"><span>SamSung Galaxy A30</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/product1.png"><span>iPhone X</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/product.jpg"><span>Móc Khóa</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/product2.jpg"><span>SmartPhone</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/product4.jpg"><span>Chuột Máy Tính</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/product5.jpg"><span>Đồng Hồ</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/mega14.jpg"><span>Sách Hay</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/denwa.png"><span>Điện Thoại</span></a></li>
-                                                                                <li><a href="result.html"><img src="assets/img/bike.png"><span>Xe máy Sirius</span></a></li>
-                                                                      </ul>
-                                                                      <p class="ideatitle">
-                                                                                          Từ Khóa Hot:
-                                                                      </p>
-                                                                      <ul id="hotkeyidea">
-                                                                                <li><a href="result.html">bone </a></li>
-                                                                                <li><a href="result.html">then </a></li>
-                                                                                <li><a href="result.html">why </a></li>
-                                                                                <li><a href="result.html">prevent </a></li>
-                                                                                <li><a href="result.html">adventure </a></li>
-                                                                                <li><a href="result.html">blank </a></li>
-                                                                                <li><a href="result.html">enjoy </a></li>
+                </div>
+            </p>
 
-                                                                      </ul>
-                                                            </div>
-                                                            <p>GIỎ HÀNG</p>
-                                                  </div>
-                                                  <div class="mobliecart" id="tools">
-                                                            <i class="fas fa-ellipsis-v">
-                                                                      <span>
-                                                                                <li><a href="#"><i class="fas fa-user-circle"></i> Tài khoản</a></li>
-                                                                                <li><a href="#"><i class="fas fa-bell"></i> Thông báo</a></li>
-                                                                                <li><a href="#"><i class="fas fa-clipboard-check"></i> Theo dõi đơn hàng</a></li>
-                                                                                <li><a href="#"><i class="fas fa-shopping-basket"></i> Mua hàng</a></li>
-                                                                      </span>
-                                                            </i>
-                                                  </div>
-                                                  <!-- endboxsearch -->
-                                                  <!-- rightoption  -->
-                                                  <div class="sales" >
-                                                                      <li class="saleoption">
-                                                                      <i class="fab fa-hotjar"></i>
-                                                                       Khuyến mãi <sup id="salepercent">-5%</sup>
-                                                                      </li>
-                                                  </div>
-                                                  <div class="rightoptions">
-                                                            <li class="roption">
-                                                                      <i class="fas fa-user-alt"></i>
-                                                                      <span class="uptitle">VuCms0202</span>
-                                                                      <span class="downtitle">Tài khoản</span>
-                                                                      
-                                                            </li>
-                                                            
-                                                  </div>
-                                                  <div class="cartarea" >
-                                                            <li>
-                                                                      <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                                                                      <span class="carttitle">Giỏ hàng </span><b>2</b>
-                                                                      <ul>
-                                                                                <span class="yourcart">Sản phẩm đã chọn:</span>
-                                                                                <li>
-                                                                                          <img src="assets/img/product1.png" alt="" class="cartimg">
-                                                                                <span class="cartname"><a href="#">Galaxy S6 32Gb 3Gb Ram abc xyz </a></span>
-                                                                                <span class="cartinfo">
-                                                                                          <span class="cartcost">10,000,000 <sup>VND</sup></span> x
-                                                                                          <span class="quantity">1</span>
-                                                                                </span>
-                                                                                <span class="closecart">×</span>
-                                                                                </li>
-                                                                                <li>
-                                                                                          <img src="assets/img/product2.jpg" alt="" class="cartimg">
-                                                                                <span class="cartname"><a href="#">Iphone X 64 GB Ram 4Gb</a></span>
-                                                                                <span class="cartinfo">
-                                                                                          <span class="cartcost">20,000,000 <sup>VND</sup></span> x
-                                                                                          <span class="quantity">1</span>
-                                                                                </span>
-                                                                                <span class="closecart">×</span>
-                                                                                </li>
-                                                                                <li class="carttotal">
-                                                                                         <span> Tổng cộng: 30,000,000 <sup>VND</sup></span>
-                                                                                </li>
-                                                                                <div class="groupcartbtn">
-                                                                                          <button class="btnviewcart"><a  href="cart.html">Xem giỏ hàng</a></button>
-                                                                                          <button class="btncartpay"><a href="payment.html">Thanh toán ngay</a></button>
-                                                                                </div>
-                                                                                
+        </div>
+        <!-- header -->
+        <div class="header">
 
-                                                                                
-                                                                                
-                                                                      </ul>
-                                                            </li>
-                                                  </div>
-                                        </div>
-                                                  
-                                                  
-                                       </div>
-                                       <!-- endboxtopmain -->
+            <div class="topinfo">
+                <span style="margin-left:18%"><i class="fas fa-map-marker-alt"></i> 123 Nam Ky Khoi Nghia, Da
+                    Nang</span>
+                <span style="margin-left:300px"><i class="fas fa-phone"></i> +84 766 730 945 | Support: 0236 456 789 |
+                    Sales: 0236 456 710</span>
+            </div>
+            <!-- boxtop -->
+            <div class="boxtop">
+                <!-- boxtopmain -->
+                <div class="boxtopmain">
+                    <div class="centerboxtop">
+                        <div class="logo">
+                            <i class="fas fa-cart-arrow-down"></i>
+                            <span class="logoname"> Rozy.</span>
+                        </div>
+                        <div class="mobilelogo"><a href="filter.html"><i class="fas fa-arrow-left"></i></a>
+                        </div>
+                        <!-- boxsearch -->
+                        <div class="boxsearch">
+                            <form action="result.html">
+                                <input autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..."
+                                    type="search" class="searchinput"><button onclick=""
+                                    class="searchnow micnow"><span><i class="fas fa-microphone"></i></span></button>
+                                <select name="cat" type="text" id="category_select">
+                                    <option value="0" selected=selected>Tất cả danh mục</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select><button class="searchnow"><span><i class="fas fa-search"></i><span
+                                            id="search_none">Tìm
+                                            kiếm</span></span></button>
+                                <div class="boxmic">
+                                    <p><span id="gifload"><i class="fas fa-spinner"></i></span>
+                                        <span id="micicon"><i class="fas fa-microphone-alt"></i><span>Hãy Nói Từ Khóa
+                                                Cần Tìm </span></span>
+                                    </p>
+                                </div>
+                            </form>
+                            <div class="ideaforsearch">
+                                <p class="ideatitle">
+                                    Gợi Ý Cho Bạn:
+                                </p>
+                                <ul id="idealist">
+                                    <li><a href="result.html"><img src="assets/img/denwa.png"><span>SamSung Galaxy
+                                                A30</span></a></li>
+                                    <li><a href="result.html"><img src="assets/img/product1.png"><span>iPhone
+                                                X</span></a></li>
+                                    <li><a href="result.html"><img src="assets/img/product.jpg"><span>Móc
+                                                Khóa</span></a></li>
+                                    <li><a href="result.html"><img
+                                                src="assets/img/product2.jpg"><span>SmartPhone</span></a></li>
+                                    <li><a href="result.html"><img src="assets/img/product4.jpg"><span>Chuột Máy
+                                                Tính</span></a></li>
+                                    <li><a href="result.html"><img src="assets/img/product5.jpg"><span>Đồng
+                                                Hồ</span></a></li>
+                                    <li><a href="result.html"><img src="assets/img/mega14.jpg"><span>Sách Hay</span></a>
+                                    </li>
+                                    <li><a href="result.html"><img src="assets/img/denwa.png"><span>Điện
+                                                Thoại</span></a></li>
+                                    <li><a href="result.html"><img src="assets/img/bike.png"><span>Xe máy
+                                                Sirius</span></a></li>
+                                </ul>
+                                <p class="ideatitle">
+                                    Từ Khóa Hot:
+                                </p>
+                                <ul id="hotkeyidea">
+                                    <li><a href="result.html">bone </a></li>
+                                    <li><a href="result.html">then </a></li>
+                                    <li><a href="result.html">why </a></li>
+                                    <li><a href="result.html">prevent </a></li>
+                                    <li><a href="result.html">adventure </a></li>
+                                    <li><a href="result.html">blank </a></li>
+                                    <li><a href="result.html">enjoy </a></li>
 
- 
-                              </div>
-                              <!-- endboxtop -->
+                                </ul>
+                            </div>
+                            <p>GIỎ HÀNG</p>
+                        </div>
+                        <div class="mobliecart" id="tools">
+                            <i class="fas fa-ellipsis-v">
+                                <span>
+                                    <li><a href="#"><i class="fas fa-user-circle"></i> Tài khoản</a></li>
+                                    <li><a href="#"><i class="fas fa-bell"></i> Thông báo</a></li>
+                                    <li><a href="#"><i class="fas fa-clipboard-check"></i> Theo dõi đơn hàng</a></li>
+                                    <li><a href="#"><i class="fas fa-shopping-basket"></i> Mua hàng</a></li>
+                                </span>
+                            </i>
+                        </div>
+                        <!-- endboxsearch -->
+                        <!-- rightoption  -->
+                        <div class="sales">
+                            <li class="saleoption">
+                                <i class="fab fa-hotjar"></i>
+                                Khuyến mãi <sup id="salepercent">-5%</sup>
+                            </li>
+                        </div>
+                        <div class="rightoptions">
+                            <li class="roption">
+                                <i class="fas fa-user-alt"></i>
+                                <span class="uptitle">VuCms0202</span>
+                                <span class="downtitle">Tài khoản</span>
 
+                            </li>
+
+                        </div>
+                        <div class="cartarea">
+                            <li>
+                                <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
+                                <span class="carttitle">Giỏ hàng </span><b>{{$myCart->getQuantityAll()}}</b>
+                                <ul>
+                                    @if ($myCart->getTotal()>0)
+                                    <span class="yourcart">Sản phẩm đã chọn:</span>
+                                    @foreach ($myCart->getCart() as $myProduct)
+                                    <li>
+                                        <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
+                                        <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
+                                        <span class="cartinfo">
+                                            <span class="cartcost">{{number_format($myProduct['price'])}}
+                                                <sup>VND</sup></span> x
+                                            <span class="quantity">{{$myProduct['quantity']}}</span>
+                                        </span>
+                                        <span class="closecart">×</span>
+                                    </li>
+                                    @endforeach
+
+                                    <li class="carttotal">
+                                        <span> Tổng cộng: {{number_format($myCart->getTotal())}} <sup>VND</sup></span>
+                                    </li>
+                                    <div class="groupcartbtn">
+                                        <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
+                                        <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán
+                                                ngay</a></button>
+                                    </div>
+                                    @else
+                                    <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                    @endif
+
+
+
+
+                                </ul>
+                            </li>
+                        </div>
                     </div>
-                  
-                    <!-- endheader -->
-                    <!-- body -->
-                    <div class="body">
-                              
-                              <!-- bodycenter -->
-                              <div class="bodycenter">
-                                        <div class="mobilecats">
-                                                 <p>DANH MỤC SẢN PHẨM</p>
-                                                 <div class="mcats">
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/dodadung.png" alt="">
-                                                                      <a href="#viewcat"><p>Đồ da dụng</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/hon.png" alt="">
-                                                                      <a href="#viewcat"><p>Văn phòng phẩm</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/denwa.png" alt="">
-                                                                      <a href="#viewcat"><p>Điện thoại</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/fuku.png" alt="">
-                                                                      <a href="#viewcat"><p>Thời trang<br>Phụ kiện</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/kireinishi.png" alt="">
-                                                                      <a href="#viewcat"><p>Sức khỏe<br>làm đẹp</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/oto.jpg" alt="">
-                                                                      <a href="#viewcat"><p>Xe máy, Ô tô</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/headphone.png" alt="">
-                                                                      <a href="#viewcat"><p>Phụ Kiện<br>Thiết Bị Số</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/microwave.jpg" alt="">
-                                                                      <a href="#viewcat"><p>Điện Gia Dụng</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/fan.png" alt="">
-                                                                      <a href="#viewcat"><p>Nhà Cửa<br> Đời Sống</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/food.jpg" alt="">
-                                                                      <a href="#viewcat"><p>Hàng Tiêu Dùng<br>Thực Phẩm</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/camera.png" alt="">
-                                                                      <a href="#viewcat"><p>Máy Ảnh<br>Quay Phim</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/toy.png" alt="">
-                                                                      <a href="#viewcat"><p>Đồ chơi<br>Mẹ & Bé</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/tent.jpg" alt="">
-                                                                      <a href="#viewcat"><p>Thể Thao - Dã Ngoại</p></a>
-                                                            </div>
-                                                            <div class="boxcat">
-                                                                      <img src="assets/img/fridge.png" alt="">
-                                                                      <a href="#viewcat"><p>Điện Tử - Điện Lạnh</p></a>
-                                                            </div>
-                                                 </div>
-                                        </div>
-                                        <div class="centerbanner" id="mobliebanner">
-                                                  <a href="#centerbanner"><img src="assets/img/topbanner.png"></a>
-                                        </div>
-                                        <!-- breadcrumb -->
-                                        <div class="breadcrumb">
-                                                  <ul>
-                                                            <li><a href="index.html"><i class="fas fa-home"></i><span> Trang chủ</span></a></li>
-                                                            <i class="fas fa-chevron-right breadarrow"></i>
-                                                            <li><a href="filter.html"><i class="fas fa-store"></i><span> Cửa hàng</span></a></li>
-                                                            <i class="fas fa-chevron-right breadarrow"></i>
-                                                            <li class="active"><a href="#cart"><i class="fas fa-shopping-cart"></i> Giỏ hàng <small>(2 Sản phẩm)</small></a></li>
-                                                            
-                                                  </ul>
-                                        </div>
-                                        <!-- endbreadcrumb -->
-                                        <div class="cartlist">
-                                                  <div class="groupcarts">
-                                                            <div class="listproducts">
-                                                                      <table>
-                                                                                <tr>
-                                                                                          <th>Sản phẩm</th>
-                                                                                          <th>Đơn giá</th>
-                                                                                          <th>Số lượng</th>
-                                                                                          <th>Thao tác</th>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                          <td class="productcart">
-                                                                                                    <img src="assets/img/product2.jpg" alt="">
-                                                                                                    <a href="detail.html">
-                                                                                                              <p>Điện thoại Galaxy s8 64Gb Rom</p>
-                                                                                                    </a>
-                                                                                          </td>
-                                                                                          <td class="pricecart">7.800.000 <sup>VND</sup></td>
-                                                                                          <td>
-                                                                                                    <div class="quantitycart"><button>-</button><input type="text" value="1"><button>+</button>
-                                                                                                    </div>
-                                                                                          </td>
-                                                                                          <td><a href="#delete"><button class="delproduct"><i class="fas fa-trash"></i></button></a></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                          <td class="productcart">
-                                                                                                    <img src="assets/img/product1.png" alt="">
-                                                                                                    <a href="detail.html">
-                                                                                                              <p>Điện thoại Galaxy s8 64Gb Rom</p>
-                                                                                                    </a>
-                                                                                          </td>
-                                                                                          <td class="pricecart">5.800.000 <sup>VND</sup></td>
-                                                                                          <td>
-                                                                                                    <div class="quantitycart"><button>-</button><input type="text" value="1"><button>+</button>
-                                                                                                    </div>
-                                                                                          </td>
-                                                                                          <td><a href="#delete"><button class="delproduct"><i class="fas fa-trash"></i></button></a></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                          <td colspan="4" id="freeship">
-                                                                                                    <img src="assets/img/shipped.png" alt="">
-                                                                                                    <p>miễn phí vận chuyển cho đơn hàng từ ₫200.000 (giảm tối đa ₫40.000) </p>
-                                                                                          </td>
-                                                                                </tr>
-                                                                      </table>
-                                                                      <div class="updatecart">
-                                                                                <a href="filter.html">
-                                                                                          <button class="backtobuy"><i class="fas fa-arrow-left"></i> Tiếp tục mua hàng</button>
-                                                                                </a>
-                                                                                <a href="">
-                                                                                          <button class="updatecartbtn">Cập nhật</button>
-                                                                                </a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="paynow">
-                                                                      <div class="ptitle">
-                                                                                Đặt hàng
-                                                                      </div>
-                                                                      <div class="eachprice">
-                                                                                <li>Tổng cộng: <span>13.600.000 <sup>đ</sup></span></li>
-                                                                                <li>Phí vận chuyển:<span>60.000 <sup>đ</sup></span></li>
-                                                                                <li>Mã giảm giá:<span>600.000 <sup>đ</sup></span></li>
-                                                                                <li>Thành tiền:<span>12.490.000 <sup>đ</sup></span></li>
-                                                                                <li><a href="payment.html"><button class="paynowbtn">THANH TOÁN NGAY</button></a></li>
-                                                                      </div>
-                                                                      <div class="coupon">
-                                                                                <p class="cptitle"><i class="fas fa-tags"></i> Mã khuyến mãi</p>
-                                                                                <div class="coupongroup">
-                                                                                          <input type="text"><button>Áp dụng</button>
-                                                                                </div>
-                                                                      </div>
-                                                            </div>
-                                                  </div>
-                                        </div>
-                                        <!-- flashsales -->
-                                        <div class="flashsales" id="foryou">
-                                                  <div class="salestitle">
-                                                            CÓ THỂ BẠN CŨNG THÍCH
-                                                  </div>
-                                                  <div class="salesproducts">
-                                                            
-                                                           
-                                                            <div class="product" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            
-                                                            <div class="salespercent">-30%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">449.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">563.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(458)</span>
-                                                                                </p>
-                                                                      <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            
-                                                            </div>
-                                                            <div class="product">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
-                                                                      <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                                      <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-                                                            </div>
-                                                            <div class="salespercent">-36%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">262.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">596.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(186)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 241</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Hà Nội
-                                                            </div>
-                                                            </div>
-                                                            <div class="product" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-25%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">235.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">504.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(493)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 402</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      TP Hồ Chí Minh
-                                                            </div>
-                                                            </div>
-                                                            <div class="product">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product3.jpg" alt=""></a>
-                                                                      <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                                      <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-                                                            </div>
-                                                            <div class="salespercent">-31%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">410.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">577.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(455)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 447</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            </div>
-                                                            
-                                                            <div class="product" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product5.jpg" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-18%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">431.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">502.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(425)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Hà Nội
-                                                            </div>
-                                                            </div>
-                                                            <div class="product " >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-15%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">425.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">754.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(461)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 369</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            </div>
-                                                            <div class="product ">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-20%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">195.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">686.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(440)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 356</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                     Hải Phòng
-                                                            </div>
-                                                            </div>
-                                                            <div class="product ">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product4.jpg" alt=""></a>
-                                                                      <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                                      <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-                                                            </div>
-                                                            <div class="salespercent">-35%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">476.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">779.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(346)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 307</span>
-                                                            </div>
-                                                            <div class="supaddress" >
-                                                                      Quảng Nam
-                                                            </div>
-                                                            </div>
-                                                            
-                                                            <div class="product" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-37%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">300.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">755.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(116)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 171</span>
-                                                            </div>
-                                                            <div class="supaddress" >
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            </div>
-                                                            <div class="product ">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
-                                                                      <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                                      <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-                                                            </div>
-                                                            <div class="salespercent">-36%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">118.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">605.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(277)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 235</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Bình Dương
-                                                            </div>
-                                                            </div>
-                                                            <div class="product flashnext1" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            
-                                                            <div class="salespercent">-30%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">449.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">563.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(458)</span>
-                                                                                </p>
-                                                                      <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                                                            </div>
-                                                            <div class="supaddress" >
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            
-                                                            </div>
-                                                            <div class="product flashnext1">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-36%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">262.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">596.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(186)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 241</span>
-                                                            </div>
-                                                            <div class="supaddress" >
-                                                                      Hà Nội
-                                                            </div>
-                                                            </div>
-                                                            <div class="product flashnext1" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
-                                                                      <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                                      <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-                                                            </div>
-                                                            <div class="salespercent">-25%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">235.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">504.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(493)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 402</span>
-                                                            </div>
-                                                            <div class="supaddress" >
-                                                                      TP Hồ Chí Minh
-                                                            </div>
-                                                            </div>
-                                                            <div class="product flashnext1">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product3.jpg" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-31%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">410.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">577.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(455)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 447</span>
-                                                            </div>
-                                                            <div class="supaddress" >
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            </div>
-                                                            
-                                                            <div class="product flashnext1" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product5.jpg" alt=""></a>
-                                                                      <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                                      <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-                                                            </div>
-                                                            <div class="salespercent">-18%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">431.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">502.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(425)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Hà Nội
-                                                            </div>
-                                                            </div>
-                                                            <div class="product flashnext1" >
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-15%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">425.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">754.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(461)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 369</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            </div>
-                                                            <div class="product flashnext1">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
-                                                                      <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                                      <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-                                                            </div>
-                                                            <div class="salespercent">-20%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">195.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">686.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(440)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 356</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                     Hải Phòng
-                                                            </div>
-                                                            </div>
-                                                            <div class="product flashnext1">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product4.jpg" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-35%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">476.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">779.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(346)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 307</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Quảng Nam
-                                                            </div>
-                                                            </div>
-                                                            
-                                                            <div class="product flashnext1">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-37%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">300.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">755.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(116)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 171</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Đà Nẵng
-                                                            </div>
-                                                            </div>
-                                                            <div class="product flashnext1">
-                                                            <div class="imgbox">
-                                                                      <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
-                                                            <div class="groupcart">
-                                                                               <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i class="fas fa-heart"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="So sánh"><i class="fas fa-exchange-alt"></i></button></a>
-                                                                               <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
-                                                                      </div>
-                                                            </div>
-                                                            <div class="salespercent">-36%</div>
-                                                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                                                            <div class="product_price">
-                                                                      <span class="newprice">118.000 <sup>đ</sup></span>
-                                                                      <span class="oldprice">605.000 <sup>đ</sup></span>
-                                                            </div>
-                                                            <div class="rating">
-                                                                                <p><i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <i class="fas fa-star" id="star"></i>
-                                                                                          <span id="review_count">(277)</span>
-                                                                                </p>
-                                                            <span class="selled"><i class="fas fa-check-double"></i> 235</span>
-                                                            </div>
-                                                            <div class="supaddress">
-                                                                      Bình Dương
-                                                            </div>
-                                                            </div> 
-                                                  </div>
-                                                  <div class="btnloadmore">
-                                                  <button class="loadmore"><span ><i class="fas fa-spinner loadingicon"></i></span><span id="loadmoretext">Tải thêm <i class="fas fa-chevron-circle-down"></i></span></button>
-                                                  </div>
-                                        </div>
-                                        <!-- endflashsales -->
-                                        <!-- categoriesforyou -->
-                                        
-                                        <!-- endsearchtrending -->
-                                        
-                              </div>
-                              <!-- endbodycenter -->
-                              
+
+
+                </div>
+                <!-- endboxtopmain -->
+
+
+            </div>
+            <!-- endboxtop -->
+
+        </div>
+
+        <!-- endheader -->
+        <!-- body -->
+        <div class="body">
+
+            <!-- bodycenter -->
+            <div class="bodycenter">
+                <div class="mobilecats">
+                    <p>DANH MỤC SẢN PHẨM</p>
+                    <div class="mcats">
+                        <div class="boxcat">
+                            <img src="assets/img/dodadung.png" alt="">
+                            <a href="#viewcat">
+                                <p>Đồ da dụng</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/hon.png" alt="">
+                            <a href="#viewcat">
+                                <p>Văn phòng phẩm</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/denwa.png" alt="">
+                            <a href="#viewcat">
+                                <p>Điện thoại</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/fuku.png" alt="">
+                            <a href="#viewcat">
+                                <p>Thời trang<br>Phụ kiện</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/kireinishi.png" alt="">
+                            <a href="#viewcat">
+                                <p>Sức khỏe<br>làm đẹp</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/oto.jpg" alt="">
+                            <a href="#viewcat">
+                                <p>Xe máy, Ô tô</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/headphone.png" alt="">
+                            <a href="#viewcat">
+                                <p>Phụ Kiện<br>Thiết Bị Số</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/microwave.jpg" alt="">
+                            <a href="#viewcat">
+                                <p>Điện Gia Dụng</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/fan.png" alt="">
+                            <a href="#viewcat">
+                                <p>Nhà Cửa<br> Đời Sống</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/food.jpg" alt="">
+                            <a href="#viewcat">
+                                <p>Hàng Tiêu Dùng<br>Thực Phẩm</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/camera.png" alt="">
+                            <a href="#viewcat">
+                                <p>Máy Ảnh<br>Quay Phim</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/toy.png" alt="">
+                            <a href="#viewcat">
+                                <p>Đồ chơi<br>Mẹ & Bé</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/tent.jpg" alt="">
+                            <a href="#viewcat">
+                                <p>Thể Thao - Dã Ngoại</p>
+                            </a>
+                        </div>
+                        <div class="boxcat">
+                            <img src="assets/img/fridge.png" alt="">
+                            <a href="#viewcat">
+                                <p>Điện Tử - Điện Lạnh</p>
+                            </a>
+                        </div>
                     </div>
-                    <!-- endbody -->
-                    <!-- footer -->
-                    
-                    <div class="footer">
-                              <div class="fhead">
-                                        <div class="information">
-                                                  <ul><span class="infotitle"><i class="far fa-question-circle"></i> HỖ TRỢ KHÁCH HÀNG</span>
-                                                            <li><a href="#viewoptionfooter">Thứ 2 đến CN: 9h - 18h (Hotline), 7h - 22h (chat trực tuyến)</a></li>
-                                                            <li><a href="#viewoptionfooter">Hotline: <font color="red" style="font-weight:bold!important">1900-6035</font>
-                                                                                (1000đ/phút , 8-21h kể cả T7, CN)</a></li>
-                                                            <li><a href="#viewoptionfooter">yêu cầu hỗ trợ</a></li>
-                                                            <li><a href="#viewoptionfooter">Câu hỏi thường gặp</a></li>
-                                                            <li><a href="#viewoptionfooter">chính sách đổi trả</a></li>
-                                                            <li><a href="#viewoptionfooter">hướng dẫn mua hàng</a></li>
-                                                  </ul>
-                                                  <ul><span class="infotitle"><i class="fas fa-cart-arrow-down"></i><font color="red" style="font-weight:bold!important;background: linear-gradient(90deg,#ff512f,#dd2476);
+                </div>
+                <div class="centerbanner" id="mobliebanner">
+                    <a href="#centerbanner"><img src="assets/img/topbanner.png"></a>
+                </div>
+                <!-- breadcrumb -->
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="{{url('/')}}"><i class="fas fa-home"></i><span> Trang chủ</span></a></li>
+                        <i class="fas fa-chevron-right breadarrow"></i>
+                        <li><a href="{{url('/search')}}"><i class="fas fa-store"></i><span> Cửa hàng</span></a></li>
+                        <i class="fas fa-chevron-right breadarrow"></i>
+                        <li class="active"><a href="#cart"><i class="fas fa-shopping-cart"></i> Giỏ hàng
+                                <small>({{$myCart->getQuantityAll()}} Sản
+                                    phẩm)</small></a></li>
+
+                    </ul>
+                </div>
+                <!-- endbreadcrumb -->
+                <div class="cartlist">
+                    <div class="groupcarts">
+                        <div class="listproducts">
+                            @if ($myCart->getTotal()>0)
+                            <table>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                                @foreach ($myCart->getCart() as $myProduct)
+                                <tr>
+                                    <td class="productcart">
+                                        <img src="{{url($myProduct['avatar'])}}" alt="">
+                                        <a
+                                            href="{{url('/products/'.App\Product::where('id',$myProduct['id'])->first()->slug)}}">
+                                            <p>{{$myProduct['name']}}</p>
+                                        </a>
+                                    </td>
+                                    <td class="pricecart">{{number_format($myProduct['price'])}}<sup>VND</sup></td>
+                                    <td>
+                                        <div class="quantitycart"><button>-</button><input type="text"
+                                                value="1"><button>+</button>
+                                        </div>
+                                    </td>
+                                    <td><a href="#delete"><button class="delproduct"><i
+                                                    class="fas fa-trash"></i></button></a></td>
+                                </tr>
+                                @endforeach
+                                <tr>
+                                    <td colspan="4" id="freeship">
+                                        <img src="assets/img/shipped.png" alt="">
+                                        <p>miễn phí vận chuyển cho đơn hàng từ ₫200.000 (giảm tối đa ₫40.000) </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="updatecart">
+                                <a href="filter.html">
+                                    <button class="backtobuy"><i class="fas fa-arrow-left"></i> Tiếp tục mua
+                                        hàng</button>
+                                </a>
+                                <a href="">
+                                    <button class="updatecartbtn">Cập nhật</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="paynow">
+                            <div class="ptitle">
+                                Tạm tính
+                            </div>
+                            <div class="eachprice">
+                                <li>Tổng cộng: <span>{{number_format($myCart->getTotal())}} <sup>đ</sup></span></li>
+                                <li>Mã giảm giá:<span>600.000 <sup>đ</sup></span></li>
+                                <li>Thành tiền:<span>{{number_format($myCart->getTotal())}}<sup>đ</sup></span></li>
+                                <li><a href="{{url('/payment')}}"><button class="paynowbtn">THANH TOÁN NGAY</button></a>
+                                </li>
+                            </div>
+                            <div class="coupon">
+                                <p class="cptitle"><i class="fas fa-tags"></i> Mã khuyến mãi</p>
+                                <div class="coupongroup">
+                                    <input type="text"><button>Áp dụng</button>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+
+                </div>
+                @if($myCart->getTotal()<=0) <h3 style="padding:50px 0px;text-align:center">Chưa có sản phẩm nào trong
+                    giỏ hàng của bạn.</h3>
+                    @endif
+                    <!-- flashsales -->
+                    <div class="flashsales" id="foryou">
+                        <div class="salestitle">
+                            CÓ THỂ BẠN CŨNG THÍCH
+                        </div>
+                        <div class="salesproducts">
+
+
+                            <div class="product">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+
+                                <div class="salespercent">-30%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">449.000 <sup>đ</sup></span>
+                                    <span class="oldprice">563.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(458)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 427</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+
+                            </div>
+                            <div class="product">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                                </div>
+                                <div class="salespercent">-36%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">262.000 <sup>đ</sup></span>
+                                    <span class="oldprice">596.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(186)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 241</span>
+                                </div>
+                                <div class="supaddress">
+                                    Hà Nội
+                                </div>
+                            </div>
+                            <div class="product">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-25%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">235.000 <sup>đ</sup></span>
+                                    <span class="oldprice">504.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(493)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 402</span>
+                                </div>
+                                <div class="supaddress">
+                                    TP Hồ Chí Minh
+                                </div>
+                            </div>
+                            <div class="product">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product3.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                                </div>
+                                <div class="salespercent">-31%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">410.000 <sup>đ</sup></span>
+                                    <span class="oldprice">577.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(455)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 447</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+                            </div>
+
+                            <div class="product">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product5.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-18%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">431.000 <sup>đ</sup></span>
+                                    <span class="oldprice">502.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(425)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 427</span>
+                                </div>
+                                <div class="supaddress">
+                                    Hà Nội
+                                </div>
+                            </div>
+                            <div class="product ">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-15%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">425.000 <sup>đ</sup></span>
+                                    <span class="oldprice">754.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(461)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 369</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+                            </div>
+                            <div class="product ">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-20%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">195.000 <sup>đ</sup></span>
+                                    <span class="oldprice">686.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(440)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 356</span>
+                                </div>
+                                <div class="supaddress">
+                                    Hải Phòng
+                                </div>
+                            </div>
+                            <div class="product ">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product4.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                                </div>
+                                <div class="salespercent">-35%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">476.000 <sup>đ</sup></span>
+                                    <span class="oldprice">779.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(346)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 307</span>
+                                </div>
+                                <div class="supaddress">
+                                    Quảng Nam
+                                </div>
+                            </div>
+
+                            <div class="product">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-37%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">300.000 <sup>đ</sup></span>
+                                    <span class="oldprice">755.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(116)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 171</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+                            </div>
+                            <div class="product ">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                                </div>
+                                <div class="salespercent">-36%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">118.000 <sup>đ</sup></span>
+                                    <span class="oldprice">605.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(277)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 235</span>
+                                </div>
+                                <div class="supaddress">
+                                    Bình Dương
+                                </div>
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+
+                                <div class="salespercent">-30%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">449.000 <sup>đ</sup></span>
+                                    <span class="oldprice">563.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(458)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 427</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-36%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">262.000 <sup>đ</sup></span>
+                                    <span class="oldprice">596.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(186)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 241</span>
+                                </div>
+                                <div class="supaddress">
+                                    Hà Nội
+                                </div>
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                                </div>
+                                <div class="salespercent">-25%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">235.000 <sup>đ</sup></span>
+                                    <span class="oldprice">504.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(493)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 402</span>
+                                </div>
+                                <div class="supaddress">
+                                    TP Hồ Chí Minh
+                                </div>
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product3.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-31%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">410.000 <sup>đ</sup></span>
+                                    <span class="oldprice">577.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(455)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 447</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+                            </div>
+
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product5.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                                </div>
+                                <div class="salespercent">-18%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">431.000 <sup>đ</sup></span>
+                                    <span class="oldprice">502.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(425)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 427</span>
+                                </div>
+                                <div class="supaddress">
+                                    Hà Nội
+                                </div>
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-15%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">425.000 <sup>đ</sup></span>
+                                    <span class="oldprice">754.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(461)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 369</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product2.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                                </div>
+                                <div class="salespercent">-20%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">195.000 <sup>đ</sup></span>
+                                    <span class="oldprice">686.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(440)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 356</span>
+                                </div>
+                                <div class="supaddress">
+                                    Hải Phòng
+                                </div>
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product4.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-35%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">476.000 <sup>đ</sup></span>
+                                    <span class="oldprice">779.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(346)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 307</span>
+                                </div>
+                                <div class="supaddress">
+                                    Quảng Nam
+                                </div>
+                            </div>
+
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product1.png" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-37%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">300.000 <sup>đ</sup></span>
+                                    <span class="oldprice">755.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(116)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 171</span>
+                                </div>
+                                <div class="supaddress">
+                                    Đà Nẵng
+                                </div>
+                            </div>
+                            <div class="product flashnext1">
+                                <div class="imgbox">
+                                    <a href="#viewflash"><img src="assets/img/product.jpg" alt=""></a>
+                                    <div class="groupcart">
+                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                                    class="fas fa-heart"></i></button></a>
+                                        <a href="#cartoption"> <button title="So sánh"><i
+                                                    class="fas fa-exchange-alt"></i></button></a>
+                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                                    class="fas fa-cart-plus"></i></button></a>
+                                    </div>
+                                </div>
+                                <div class="salespercent">-36%</div>
+                                <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a>
+                                </div>
+                                <div class="product_price">
+                                    <span class="newprice">118.000 <sup>đ</sup></span>
+                                    <span class="oldprice">605.000 <sup>đ</sup></span>
+                                </div>
+                                <div class="rating">
+                                    <p><i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <span id="review_count">(277)</span>
+                                    </p>
+                                    <span class="selled"><i class="fas fa-check-double"></i> 235</span>
+                                </div>
+                                <div class="supaddress">
+                                    Bình Dương
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btnloadmore">
+                            <button class="loadmore"><span><i class="fas fa-spinner loadingicon"></i></span><span
+                                    id="loadmoretext">Tải thêm <i
+                                        class="fas fa-chevron-circle-down"></i></span></button>
+                        </div>
+                    </div>
+                    <!-- endflashsales -->
+                    <!-- categoriesforyou -->
+
+                    <!-- endsearchtrending -->
+
+            </div>
+            <!-- endbodycenter -->
+
+        </div>
+        <!-- endbody -->
+        <!-- footer -->
+
+        <div class="footer">
+            <div class="fhead">
+                <div class="information">
+                    <ul><span class="infotitle"><i class="far fa-question-circle"></i> HỖ TRỢ KHÁCH HÀNG</span>
+                        <li><a href="#viewoptionfooter">Thứ 2 đến CN: 9h - 18h (Hotline), 7h - 22h (chat trực tuyến)</a>
+                        </li>
+                        <li><a href="#viewoptionfooter">Hotline: <font color="red" style="font-weight:bold!important">
+                                    1900-6035</font>
+                                (1000đ/phút , 8-21h kể cả T7, CN)</a></li>
+                        <li><a href="#viewoptionfooter">yêu cầu hỗ trợ</a></li>
+                        <li><a href="#viewoptionfooter">Câu hỏi thường gặp</a></li>
+                        <li><a href="#viewoptionfooter">chính sách đổi trả</a></li>
+                        <li><a href="#viewoptionfooter">hướng dẫn mua hàng</a></li>
+                    </ul>
+                    <ul><span class="infotitle"><i class="fas fa-cart-arrow-down"></i>
+                            <font color="red" style="font-weight:bold!important;background: linear-gradient(90deg,#ff512f,#dd2476);
                                                             -webkit-background-clip: text;
-                                                            -webkit-text-fill-color: transparent;"> Rozy.</font> Việt Nam</span>
-                                                            <li><a href="#viewoptionfooter">Giới thiệu</a></li>
-                                                            <li><a href="#viewoptionfooter">Giấy phép kinh doanh</a></li>
-                                                            <li><a href="#viewoptionfooter">Qui trình hoạt động</a></li>
-                                                            <li><a href="#viewoptionfooter">Đội ngũ nhân viên</a></li>
-                                                            <li><a href="#viewoptionfooter">tuyển dụng</a></li>
-                                                            <li><a href="#viewoptionfooter">chính sách bảo mật</a></li>
-                                                            <li><a href="#viewoptionfooter">Điều khoản sử dụng</a></li>
-                                                            <li><a href="#viewoptionfooter">cam kết</a></li>
-                                                  </ul>
-                                                  <ul><span class="infotitle"><i class="fas fa-map-marked-alt"></i> Các chi nhánh</span>
-                                                                      
-                                                                      <li>- văn phòng đại diện đà nẵng
-                                                                                          <p><i class="fas fa-map-marker-alt"></i> địa chỉ : 123 nam kỳ khởi nghĩa đà nẵng</p>
-                                                                                          <p><i class="fas fa-phone-square"></i> Phone :  +84 766 730 945 </p>
-                                                                      </li>
-                                                                      
-                                                                      <li>- văn phòng đại diện hà nội
-                                                                                          <p><i class="fas fa-map-marker-alt"></i> địa chỉ : 123 nam kỳ khởi nghĩa đà nẵng</p>
-                                                                                          <p><i class="fas fa-phone-square"></i> Phone :  +84 766 730 945 </p>
-                                                                      </li>
-                                                                      
-                                                                      <li>- văn phòng đại diện tp hồ chí minh
-                                                                                          <p><i class="fas fa-map-marker-alt"></i> địa chỉ : 123 nam kỳ khởi nghĩa đà nẵng          </p>
-                                                                                          <p><i class="fas fa-phone-square"></i> Phone :  +84 766 730 945 </p>
-                                                                      </li>
-                                                                      
-                                                                      
-                                                            </ul>
-                                                  <ul><span class="infotitle"><i class="fas fa-bell"></i> Đăng kí nhận thông báo mới</span> <br> 
-                                                            <form action="" method="get" id="mailreg">
-                                                                      <input type="email" name="" id="" placeholder="Địa chỉ Email của bạn">
-                                                                      <button type="submit">Đăng ký</button>
-                                                            </form>
-                                                            <div class="mapnamegroup">
-                                                                      <div class="mapouter"><div class="gmap_canvas"><iframe width="300" height="180" id="gmap_canvas" src="https://maps.google.com/maps?q=Nam%20k%E1%BB%B3%20kh%E1%BB%9Fi%20ngh%C4%A9a%20&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.mapouter{position:relative;text-align:right;height:180px;width:100%!important;}.gmap_canvas {overflow:hidden;background:none!important;height:180px;width:100%;}</style></div>
-                                                                      <div class="maininfo">
-                                                                                <div class="logo">
-                                                                                          <i class="fas fa-cart-arrow-down"></i>
-                                                                                          <span class="logoname"> Rozy.</span>      
-                                                                                </div>
-                                                                                <div class="company">
-                                                                                          <p>Công ty TNHH Thương mại điện tử Rozy</p>
-                                                                                          <p>Trụ sở chính: 123 Nam kỳ khởi nghĩa, Đà Nẵng</p>
-                                                                                          <p>Số ĐKKD: FE23456987</p>
-                                                                                          <p>Email: support@rozyonline.vn</p>
-                                                                                </div>
-                                                                      </div>
-                                                            </div>
-                                                  </ul>
-                                        </div>
-                              </div>
-                              <div class="ffoot">
-                                        <div class="sups">
-                                                  <p class="suptitle">Các nhà cung cấp chính</p>
-                                                  <div class="supplier">
-                                                            
-                                                            <a href="#viewsupplier"><img src="assets/img/apple.jpg" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/toshiba.jpg" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/lips.jpg" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/adidas.jpg" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/fashion.jpg" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/hp.png" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/fpt.jpg" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/amzon.jpg" alt=""></a>
-                                                            <a href="#viewsupplier"><img src="assets/img/fashion_2.png" alt=""></a>
-                                                  </div>
-                                        </div>
-                                        <div class="sups" id="finaltop">
-                                                            <p class="suptitle">Đối tác vận chuyển</p>
-                                                            <div class="supplier">
-                                                                      
-                                                                      <a href="#viewsupplier"><img src="assets/img/fedex.png" alt=""></a>
-                                                                      <a href="#viewsupplier"><img src="assets/img/ghtk.jpg" alt=""></a>
-                                                                      <a href="#viewsupplier"><img src="assets/img/ghn.png" alt=""></a>
-                                                                      <a href="#viewsupplier"><img src="assets/img/gh247.png" alt=""></a>
-                                                                      <a href="#viewsupplier"><img src="assets/img/viettel.jpg" alt=""></a>
-                                                                      <a href="#viewsupplier"><img src="assets/img/grab.png" alt=""></a>
-                                                                    
-                                                            </div>
-                                                            <button id="gotop"><i class="fas fa-arrow-up"></i></button>
-                                        </div>
-                              </div>
+                                                            -webkit-text-fill-color: transparent;"> Rozy.</font> Việt
+                            Nam
+                        </span>
+                        <li><a href="#viewoptionfooter">Giới thiệu</a></li>
+                        <li><a href="#viewoptionfooter">Giấy phép kinh doanh</a></li>
+                        <li><a href="#viewoptionfooter">Qui trình hoạt động</a></li>
+                        <li><a href="#viewoptionfooter">Đội ngũ nhân viên</a></li>
+                        <li><a href="#viewoptionfooter">tuyển dụng</a></li>
+                        <li><a href="#viewoptionfooter">chính sách bảo mật</a></li>
+                        <li><a href="#viewoptionfooter">Điều khoản sử dụng</a></li>
+                        <li><a href="#viewoptionfooter">cam kết</a></li>
+                    </ul>
+                    <ul><span class="infotitle"><i class="fas fa-map-marked-alt"></i> Các chi nhánh</span>
+
+                        <li>- văn phòng đại diện đà nẵng
+                            <p><i class="fas fa-map-marker-alt"></i> địa chỉ : 123 nam kỳ khởi nghĩa đà nẵng</p>
+                            <p><i class="fas fa-phone-square"></i> Phone : +84 766 730 945 </p>
+                        </li>
+
+                        <li>- văn phòng đại diện hà nội
+                            <p><i class="fas fa-map-marker-alt"></i> địa chỉ : 123 nam kỳ khởi nghĩa đà nẵng</p>
+                            <p><i class="fas fa-phone-square"></i> Phone : +84 766 730 945 </p>
+                        </li>
+
+                        <li>- văn phòng đại diện tp hồ chí minh
+                            <p><i class="fas fa-map-marker-alt"></i> địa chỉ : 123 nam kỳ khởi nghĩa đà nẵng </p>
+                            <p><i class="fas fa-phone-square"></i> Phone : +84 766 730 945 </p>
+                        </li>
+
+
+                    </ul>
+                    <ul><span class="infotitle"><i class="fas fa-bell"></i> Đăng kí nhận thông báo mới</span> <br>
+                        <form action="" method="get" id="mailreg">
+                            <input type="email" name="" id="" placeholder="Địa chỉ Email của bạn">
+                            <button type="submit">Đăng ký</button>
+                        </form>
+                        <div class="mapnamegroup">
+                            <div class="mapouter">
+                                <div class="gmap_canvas"><iframe width="300" height="180" id="gmap_canvas"
+                                        src="https://maps.google.com/maps?q=Nam%20k%E1%BB%B3%20kh%E1%BB%9Fi%20ngh%C4%A9a%20&t=&z=11&ie=UTF8&iwloc=&output=embed"
+                                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+                                <style>
+                                    .mapouter {
+                                        position: relative;
+                                        text-align: right;
+                                        height: 180px;
+                                        width: 100% !important;
+                                    }
+
+                                    .gmap_canvas {
+                                        overflow: hidden;
+                                        background: none !important;
+                                        height: 180px;
+                                        width: 100%;
+                                    }
+                                </style>
+                            </div>
+                            <div class="maininfo">
+                                <div class="logo">
+                                    <i class="fas fa-cart-arrow-down"></i>
+                                    <span class="logoname"> Rozy.</span>
+                                </div>
+                                <div class="company">
+                                    <p>Công ty TNHH Thương mại điện tử Rozy</p>
+                                    <p>Trụ sở chính: 123 Nam kỳ khởi nghĩa, Đà Nẵng</p>
+                                    <p>Số ĐKKD: FE23456987</p>
+                                    <p>Email: support@rozyonline.vn</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="ffoot">
+                <div class="sups">
+                    <p class="suptitle">Các nhà cung cấp chính</p>
+                    <div class="supplier">
+
+                        <a href="#viewsupplier"><img src="assets/img/apple.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/toshiba.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/lips.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/adidas.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/fashion.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/hp.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/fpt.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/amzon.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/fashion_2.png" alt=""></a>
                     </div>
-                    <!-- endfooter -->
-          </div>
-          
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/slide.min.js"></script>
-<script src="assets/js/lazy.js"></script>
-<!-- <script src="assets/js/lazy.plugin.js"></script> -->
-<script src="assets/js/jquery-ui.js"></script>
-<script src="assets/js/cart.js"></script>
+                </div>
+                <div class="sups" id="finaltop">
+                    <p class="suptitle">Đối tác vận chuyển</p>
+                    <div class="supplier">
+
+                        <a href="#viewsupplier"><img src="assets/img/fedex.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/ghtk.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/ghn.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/gh247.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/viettel.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="assets/img/grab.png" alt=""></a>
+
+                    </div>
+                    <button id="gotop"><i class="fas fa-arrow-up"></i></button>
+                </div>
+            </div>
+        </div>
+        <!-- endfooter -->
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/slide.min.js"></script>
+    <script src="assets/js/lazy.js"></script>
+    <!-- <script src="assets/js/lazy.plugin.js"></script> -->
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/cart.js"></script>
 </body>
+
 </html>

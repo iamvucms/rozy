@@ -45,26 +45,25 @@
                         </div>
                         <!-- boxsearch -->
                         <div class="boxsearch">
-                        <form action="{{url('/search')}}">
-                            <input value="{{$filter['keyword'] ?? ''}}" autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..."
-                                    type="search" class="searchinput">
-                                    <button onclick=""
-                                    class="searchnow micnow"><span><i
+                            <form action="{{url('/search')}}">
+                                <input value="{{$filter['keyword'] ?? ''}}" autocomplete="off" name="keyword"
+                                    placeholder="Nhập từ khóa sản phẩm..." type="search" class="searchinput">
+                                <button onclick="" class="searchnow micnow"><span><i
                                             class="fas fa-microphone"></i></span>
-                                    </button>
-                                            <select name="cat" type="text" id="category_select">
-                                                    <option value="0">Tất cả danh mục</option>
-                                                    @foreach ($categories as $category)
-                                                       @if ($category->id==@$filter['cat'])
-                                                            <option selected=selected value="{{$category->id}}">{{$category->name}}</option>
-                                                       @else
-                                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                                       @endif
-                                                    @endforeach
-                                                 </select><button class="searchnow"><span><i
-                                            class="fas fa-search"></i><span id="search_none">Tìm
+                                </button>
+                                <select name="cat" type="text" id="category_select">
+                                    <option value="0">Tất cả danh mục</option>
+                                    @foreach ($categories as $category)
+                                    @if ($category->id==@$filter['cat'])
+                                    <option selected=selected value="{{$category->id}}">{{$category->name}}</option>
+                                    @else
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endif
+                                    @endforeach
+                                </select><button class="searchnow"><span><i class="fas fa-search"></i><span
+                                            id="search_none">Tìm
                                             kiếm</span></span></button>
-                                
+
                                 <div class="boxmic">
                                     <p><span id="gifload"><i class="fas fa-spinner"></i></span>
                                         <span id="micicon"><i class="fas fa-microphone-alt"></i><span>Hãy Nói Từ Khóa
@@ -157,8 +156,9 @@
                                 </li>
 
                                 <div class="groupcartbtn">
-                                    <button class="btnviewcart"><a href="cart.html">Xem giỏ hàng</a></button>
-                                    <button class="btncartpay"><a href="payment.html">Thanh toán ngay</a></button>
+                                    <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
+                                    <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán
+                                            ngay</a></button>
                                 </div>
                             </ul>
                         </div>
@@ -182,51 +182,33 @@
                         <div class="cartarea">
                             <li>
                                 <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                                <span class="carttitle">Giỏ hàng </span><b>2</b>
+                                <span class="carttitle">Giỏ hàng </span><b>{{$myCart->getQuantityAll()}}</b>
                                 <ul>
-                                    <span class="yourcart">Sản phẩm đã
-                                        chọn:</span>
+                                    @if ($myCart->getTotal()>0)
+                                    <span class="yourcart">Sản phẩm đã chọn:</span>
+                                    @foreach ($myCart->getCart() as $myProduct)
                                     <li>
-                                        <img src="assets/img/product1.png" alt="" class="cartimg">
-                                        <span class="cartname"><a href="javascript:void(0)">Galaxy
-                                                S6 32Gb
-                                                3Gb Ram
-                                                abc xyz
-                                            </a></span>
+                                        <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
+                                        <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
                                         <span class="cartinfo">
-                                            <span class="cartcost">10,000,000
-                                                <sup>VND</sup></span>
-                                            x
-                                            <span class="quantity">1</span>
+                                            <span class="cartcost">{{number_format($myProduct['price'])}}
+                                                <sup>VND</sup></span> x
+                                            <span class="quantity">{{$myProduct['quantity']}}</span>
                                         </span>
                                         <span class="closecart">×</span>
                                     </li>
-                                    <li>
-                                        <img src="assets/img/product2.jpg" alt="" class="cartimg">
-                                        <span class="cartname"><a href="javascript:void(0)">Iphone
-                                                X 64 GB
-                                                Ram
-                                                4Gb</a></span>
-                                        <span class="cartinfo">
-                                            <span class="cartcost">20,000,000
-                                                <sup>VND</sup></span>
-                                            x
-                                            <span class="quantity">1</span>
-                                        </span>
-                                        <span class="closecart">×</span>
-                                    </li>
+                                    @endforeach
+
                                     <li class="carttotal">
-                                        <span> Tổng cộng: 30,000,000
-                                            <sup>VND</sup></span>
+                                        <span> Tổng cộng: {{number_format($myCart->getTotal())}} <sup>VND</sup></span>
                                     </li>
                                     <div class="groupcartbtn">
-                                        <button class="btnviewcart"><a href="cart.html">Xem
-                                                giỏ
-                                                hàng</a></button>
-                                        <button class="btncartpay"><a href="payment.html">Thanh
-                                                toán
-                                                ngay</a></button>
+                                        <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
+                                        <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button>
                                     </div>
+                                    @else
+                                    <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                    @endif
 
 
 
@@ -234,6 +216,8 @@
                                 </ul>
                             </li>
                         </div>
+
+
                     </div>
 
 
@@ -567,48 +551,48 @@
                                     <input name=to type="number" class="highprice" value="{{$filter['to'] ?? ''}}">
                                     <button class="submitPrice">Submit</button>
                                 </form>
-                                
+
                             </div>
                             @php
-                                $clonefilter = $filter;
-                                $clonefilter['from'] = 0;
-                                $clonefilter['to'] = 95000;
+                            $clonefilter = $filter;
+                            $clonefilter['from'] = 0;
+                            $clonefilter['to'] = 95000;
                             @endphp
-                            <li @if ($clonefilter['from']== @$filter['from'] && $clonefilter['to'] == @$filter['to'])
-                                {{'class=active'}}
-                            @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> DƯỚI 95K</li>
+                            <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> DƯỚI
+                                    95K</li>
                             @php
-                                $clonefilter['from'] = 95000;
-                                $clonefilter['to'] = 200000;
+                            $clonefilter['from'] = 95000;
+                            $clonefilter['to'] = 200000;
                             @endphp
-                            <li @if ($clonefilter['from']== @$filter['from'] && $clonefilter['to'] == @$filter['to'])
-                                {{'class=active'}}
-                            @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 95K ~ 200K</a>
+                            <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 95K ~
+                                    200K</a>
                             </li>
                             @php
-                                $clonefilter['from'] = 200000;
-                                $clonefilter['to'] = 500000;
+                            $clonefilter['from'] = 200000;
+                            $clonefilter['to'] = 500000;
                             @endphp
-                          
-                            <li @if ($clonefilter['from']== @$filter['from'] && $clonefilter['to'] == @$filter['to'])
-                                {{'class=active'}}
-                            @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 200K ~ 500K</a>
+
+                            <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 200K
+                                    ~ 500K</a>
                             </li>
                             @php
-                                $clonefilter['from'] = 500000;
-                                $clonefilter['to'] = 1000000;
+                            $clonefilter['from'] = 500000;
+                            $clonefilter['to'] = 1000000;
                             @endphp
-                            <li @if ($clonefilter['from']== @$filter['from'] && $clonefilter['to'] == @$filter['to'])
-                                {{'class=active'}}
-                            @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 500K ~ 1000K</a>
+                            <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 500K
+                                    ~ 1000K</a>
                             </li>
                             @php
-                                $clonefilter['from'] = 1000000;
-                                $clonefilter['to'] = 3000000;
+                            $clonefilter['from'] = 1000000;
+                            $clonefilter['to'] = 3000000;
                             @endphp
-                            <li @if ($clonefilter['from']== @$filter['from'] && $clonefilter['to'] == @$filter['to'])
-                                {{'class=active'}}
-                            @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 1000K ~ 3000K</a>
+                            <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 1000K
+                                    ~ 3000K</a>
                             </li>
                         </div>
                         <div class="categories" id="shiptool">
@@ -623,8 +607,8 @@
                             <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
                                     Nhận trong 4h</a></li>
                         </div>
-                        
-                        
+
+
                     </div>
                     <!-- flashsales -->
                     <div class="flashsales" id="foryou">

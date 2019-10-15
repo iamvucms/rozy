@@ -20,9 +20,8 @@ class HomeController extends Controller
         $viewedList = json_decode(Cookie::get('viewedList'),true) ?? [];
         $alias = Alias::class;
         $products = Product::get();
-        $categories = Category::get();
         $flashsales = new Discount();
-        $flashsales =$flashsales->Flashsales();
-        return view('index',compact('products','categories','alias','flashsales','viewedList'));
+        $flashsales = $flashsales->Flashsales();
+        return view('index',compact('products','alias','flashsales','viewedList'));
     }
 }

@@ -169,26 +169,6 @@ $('#select_address').click((e) => {
     $('#select_address').prop('checked')
     $('#select_address').attr("placeholder", preSelectedAddress)
 })
-var preSelected = 'Tất cả danh mục'
-$('#category_select').mouseover((e) => {
-
-    if ($('#category_select').val() !== '') {
-        preSelected = $('#category_select').val()
-    }
-    $('#category_select').val('')
-    $('#category_select').prop('checked')
-    $('#category_select').attr("placeholder", preSelected)
-
-})
-$('#category').mouseout(() => {
-    preSelected = $('#category_select').val()
-})
-$('#category_select').click((e) => {
-    preSelected = $('#category_select').val()
-    $('#category_select').val('')
-    $('#category_select').prop('checked')
-    $('#category_select').attr("placeholder", preSelected)
-})
 var i = 5;
 
 setInterval(() => {

@@ -177,18 +177,7 @@ setInterval(()=>{
           $('#salepercent').text('-'+i+'%');
           i+=5;
 },400)
-var cartli = document.querySelectorAll('.closecart');
-for(let x of cartli){
-         x.onclick = ()=>{
-                    
-                    setTimeout(()=>{
-                              x.parentElement.style.display = "none";
-                    },300)
-                   
-                   
-                   
-         }
-}
+
 //fixed box top 
 var scrollHeight =  $(window).scrollTop();
 console.log(scrollHeight)

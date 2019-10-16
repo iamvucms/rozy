@@ -232,11 +232,12 @@
                         <div class="cartarea">
                                 <li>
                                     <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                                    <span class="carttitle">Giỏ hàng </span><b>{{$myCart->getQuantityAll()}}</b>
-                                    <ul>
+                                    <span class="carttitle">Giỏ hàng </span><b id="cartCount">{{$myCart->getQuantityAll()}}</b>
+                                    <ul id="myCart">
                                         @if ($myCart->getTotal()>0)
                                             <span class="yourcart">Sản phẩm đã chọn:</span>
-                                            @foreach ($myCart->getCart() as $myProduct)
+                                            <div id="cartProducts">
+                                                @foreach ($myCart->getCart() as $myProduct)
                                                 <li>
                                                     <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
                                                     <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
@@ -244,39 +245,31 @@
                                                         <span class="cartcost">{{number_format($myProduct['price'])}} <sup>VND</sup></span> x
                                                         <span class="quantity">{{$myProduct['quantity']}}</span>
                                                     </span>
-                                                    <span class="closecart">×</span>
+                                                    <span class="closecart" onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
                                                 </li>
-                                            @endforeach
-                                            
+                                                @endforeach
+                                            </div>
                                             <li class="carttotal">
-                                                <span> Tổng cộng: {{number_format($myCart->getTotal())}} <sup>VND</sup></span>
+                                                <span> Tổng cộng: <span id="totalCart">{{number_format($myCart->getTotal())}}</span> <sup>VND</sup></span>
                                             </li>
                                             <div class="groupcartbtn">
                                                 <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
                                                 <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button>
                                             </div>
                                         @else
-                                        <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                        <div id="cartProducts">
+                                            <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                        </div>
                                         @endif
-    
-    
-    
-    
                                     </ul>
                                 </li>
                             </div>
                     </div>
-
-
                 </div>
                 <!-- endboxtopmain -->
-
-
             </div>
             <!-- endboxtop -->
-
         </div>
-
         <!-- endheader -->
         <!-- body -->
         <div class="body">
@@ -492,27 +485,102 @@
                                     <li class="blue" style="background:#007ff0"></li>
                                 </ul>
                             </div>
-                            <div class="quantity" >
-                                <span class="qtitle">
-                                    SỐ LƯỢNG:
-                                </span>
-                                <div class="updowngroup" data-max={{$product->quantity}}>
-                                    <button>–</button>
-                                    <input type="text" value="1">
-                                    <button>+</button>
+                        <form action="{{url()->route('addCart')}}" method=POST onsubmit="return false;">
+                                <div class="quantity" >
+                                    <span class="qtitle">
+                                        SỐ LƯỢNG:
+                                    </span>
+                                    <div class="updowngroup" data-max={{$product->quantity}}>
+                                        <button>–</button>
+                                        <input id="quantity" name="quantity" type="text" value="1">
+                                        <button>+</button>
+                                    </div>
+                                    <span class="amout">
+                                        {{$product->quantity}} sản phẩm có sẵn
+                                    </span>
                                 </div>
-                                <span class="amout">
-                                    {{$product->quantity}} sản phẩm có sẵn
-                                </span>
-                            </div>
-                            <div class="orderbtn">
-                                <span><a href="#addlove"><i class="far fa-heart"></i> Thêm vào danh sách yêu
-                                        thích</a></span>
-                                <div style="margin-top:15px;">
-                                    <button><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                                    <button><i class="far fa-money-bill-alt"></i> Mua ngay</button>
+                                <div class="orderbtn">
+                                    <span ><a href="#addlove"><i class="far fa-heart"></i> Thêm vào danh sách yêu
+                                            thích</a></span>
+                                    <div  style="margin-top:15px;display:flex">
+                                        <button style="min-width:193px;margin-right:5px" id="btnAddCart" onclick="addCart()"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+                                        <button><i class="far fa-money-bill-alt"></i> Mua ngay</button>
+                                    </div>
+                               
                                 </div>
-                            </div>
+                            </form>
+                            <script>
+                                function addCart(){
+                                    let preCount = {{$myCart->getQuantityAll()}}
+                                    let btnAddCart = document.querySelector('#btnAddCart')
+                                    btnAddCart.innerHTML  = ' <img style="width:45px" src="{{asset('assets/img/loading.svg')}}" alt="">'
+                                    let quan = parseInt(document.querySelector('#quantity').value)
+                                    let id = {{$product->id}}
+                                    axios.post('{{url()->route('addCart')}}',{
+                                        id:id,
+                                        quantity:quan
+                                    }).then(data=>{
+                                        setTimeout(() => {
+                                            btnAddCart.innerHTML = '<i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng';
+                                            if(data.data.success){
+                                                let count =0;
+                                                let total = 0;
+                                                let stringLi = ''
+                                                data.data.dataCart.map(product=>{
+                                                    total+= product.quantity*product.price
+                                                    count+=product.quantity
+                                                    stringLi +='<li><img src="../'+product.avatar+'" alt="" class="cartimg"><span class="cartname"><a href="#">'+product.name+' </a></span><span class="cartinfo"><span class="cartcost">'+new Intl.NumberFormat('ja-JP').format(product.price)+' <sup>VND</sup></span> x<span class="quantity">'+product.quantity+'</span></span><span class="closecart" onclick="delCart('+product.id+');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
+                                                })
+                                                total = new Intl.NumberFormat('ja-JP').format(total)
+                                                let totalString= '<li class="carttotal"><span> Tổng cộng: '+total+' <sup>VND</sup></span></li><div class="groupcartbtn"><button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button><button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button></div>'
+                                                if(preCount==0){
+                                                    document.querySelector('#cartProducts').innerHTML = stringLi+totalString
+                                                }else{
+                                                    
+                                                    document.querySelector('#cartProducts').innerHTML = stringLi
+                                                }
+                                                document.querySelector('#cartCount').innerHTML = count
+                                                document.querySelector('#myCart').setAttribute('style','display:block')
+                                                document.querySelector('#totalCart').innerHTML = total
+                                                setTimeout(() => {
+                                                    document.querySelector('#myCart').removeAttribute('style')
+                                                }, 5000);
+                                            }   
+                                        }, 1000);
+                                    })
+                                }
+                                function delCart(id){
+                                axios.post('{{url()->route('deleteCart')}}/',{id:id}).then(data=>{
+                                    setTimeout(() => {
+                                        if(data.data.success){
+                                            let count = 0;
+                                            let stringLi = ''
+                                            let total= 0
+                                            data.data.dataCart.map(product=>{
+                                                count+=product.quantity
+                                                total +=product.quantity*product.price
+                                                stringLi +='<li><img src="../'+product.avatar+'" alt="" class="cartimg"><span class="cartname"><a href="#">'+product.name+' </a></span><span class="cartinfo"><span class="cartcost">'+new Intl.NumberFormat('ja-JP').format(product.price)+' <sup>VND</sup></span> x<span class="quantity">'+product.quantity+'</span></span><span class="closecart" onclick="delCart('+product.id+');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
+                                            })
+                                            total = new Intl.NumberFormat('ja-JP').format(total)
+                                            if(count==0){
+                                                window.location.reload()
+                                                return;
+                                            }else{
+                                                document.querySelector('#cartProducts').innerHTML = stringLi
+                                            }
+                                            document.querySelector('#myCart').setAttribute('style','display:block')
+                                            setTimeout(() => {
+                                                document.querySelector('#myCart').removeAttribute('style')
+                                            }, 5000);
+                                            document.querySelector('#cartCount').innerHTML =count
+                                            document.querySelector('#totalCart').innerHTML = total
+                                           
+                                            
+                                        }
+                                    }, 0);
+                                })
+                            }
+                            </script>
                             <div class="note">
 
                             </div>

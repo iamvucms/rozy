@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
-
+    <script src="../assets/js/axios.js"></script>
 </head>
 
 <body>
@@ -243,10 +243,11 @@
                         <div class="cartarea">
                             <li>
                                 <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                                <span class="carttitle">Giỏ hàng </span><b>{{$myCart->getQuantityAll()}}</b>
-                                <ul>
+                                <span class="carttitle">Giỏ hàng </span><b id="cartCount">{{$myCart->getQuantityAll()}}</b>
+                                <ul id="myCart">
                                     @if ($myCart->getTotal()>0)
-                                    <span class="yourcart">Sản phẩm đã chọn:</span>
+                                        <span class="yourcart">Sản phẩm đã chọn:</span>
+                                        <div id="cartProducts">
                                     @foreach ($myCart->getCart() as $myProduct)
                                     <li>
                                         <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
@@ -256,10 +257,10 @@
                                                 <sup>VND</sup></span> x
                                             <span class="quantity">{{$myProduct['quantity']}}</span>
                                         </span>
-                                        <span class="closecart">×</span>
+                                        <span class="closecart" onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
                                     </li>
                                     @endforeach
-
+                                        </div>
                                     <li class="carttotal">
                                         <span> Tổng cộng: {{number_format($myCart->getTotal())}} <sup>VND</sup></span>
                                     </li>
@@ -269,7 +270,9 @@
                                                 ngay</a></button>
                                     </div>
                                     @else
-                                    <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                    <div id="cartProducts">
+                                        <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                    </div>
                                     @endif
 
 
@@ -413,8 +416,11 @@
                                     <th>Số lượng</th>
                                     <th>Thao tác</th>
                                 </tr>
+                            <form id="meCart" action="{{url()->route('editCart')}}" onsubmit="return false" method="POST">
+                                @csrf
+                                
                                 @foreach ($myCart->getCart() as $myProduct)
-                                <tr>
+                            <tr data-id="{{$myProduct['id']}}">
                                     <td class="productcart">
                                         <img src="{{url($myProduct['avatar'])}}" alt="">
                                         <a
@@ -424,11 +430,11 @@
                                     </td>
                                     <td class="pricecart">{{number_format($myProduct['price'])}}<sup>VND</sup></td>
                                     <td>
-                                        <div class="quantitycart"><button>-</button><input type="text"
-                                                value="1"><button>+</button>
+                                        <div class="quantitycart"><button >-</button><input style="font-size:1em;" name="quantity[{{$myProduct['id']}}]" type="text"
+                                                value="{{$myProduct['quantity']}}"><button>+</button>
                                         </div>
                                     </td>
-                                    <td><a href="#delete"><button class="delproduct"><i
+                                    <td><a href="javascript:avoid(0)" onclick="delCart({{$myProduct['id']}});console.log(this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement))"><button class="delproduct"><i
                                                     class="fas fa-trash"></i></button></a></td>
                                 </tr>
                                 @endforeach
@@ -440,22 +446,60 @@
                                 </tr>
                             </table>
                             <div class="updatecart">
-                                <a href="filter.html">
-                                    <button class="backtobuy"><i class="fas fa-arrow-left"></i> Tiếp tục mua
-                                        hàng</button>
-                                </a>
+                                    <button class="backtobuy"> <a style="color:#25586b" href="{{url('/search')}}"><i class="fas fa-arrow-left"></i> Tiếp tục mua
+                                        hàng </a></button>
                                 <a href="">
-                                    <button class="updatecartbtn">Cập nhật</button>
+                                    <button class="updatecartbtn" onclick="document.querySelector('#meCart').submit()">Cập nhật</button>
                                 </a>
                             </div>
+                            </form>
+                            <script>
+                            function delCart(id){
+                                axios.post('{{url()->route('deleteCart')}}/',{id:id}).then(data=>{
+                                    setTimeout(() => {
+                                        if(data.data.success){
+                                            let count = 0;
+                                            let stringLi = ''
+                                            data.data.dataCart.map(product=>{
+                                                count+=product.quantity
+                                                stringLi +='<li><img src="../'+product.avatar+'" alt="" class="cartimg"><span class="cartname"><a href="#">'+product.name+' </a></span><span class="cartinfo"><span class="cartcost">'+new Intl.NumberFormat('ja-JP').format(product.price)+' <sup>VND</sup></span> x<span class="quantity">'+product.quantity+'</span></span><span class="closecart" onclick="delCart('+product.id+');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
+                                            })
+                                            if(count==0){
+                                                window.location.reload()
+                                                return;
+                                            }else{
+                                                document.querySelectorAll('table tr').forEach(e=>{
+                                                    if(e.dataset.id==id){
+                                                        console.log(document.querySelector('table'))
+                                                        document.querySelector('table tbody').removeChild(e)
+                                                    }
+                                                })
+                                                document.querySelector('#cartProducts').innerHTML = stringLi
+                                            }
+                                            document.querySelector('#myCart').setAttribute('style','display:block')
+                                            setTimeout(() => {
+                                                document.querySelector('#myCart').removeAttribute('style')
+                                            }, 5000);
+                                            document.querySelector('#cartCount').innerHTML =count
+                                           
+                                            
+                                        }
+                                    }, 0);
+                                })
+                            }
+                            </script>
                         </div>
                         <div class="paynow">
                             <div class="ptitle">
-                                Tạm tính
+                                Tổng tiền hàng 
                             </div>
                             <div class="eachprice">
-                                <li>Tổng cộng: <span>{{number_format($myCart->getTotal())}} <sup>đ</sup></span></li>
-                                <li>Mã giảm giá:<span>600.000 <sup>đ</sup></span></li>
+                                @foreach ($myCart->getCart() as $myProduct)
+                                    <li>{{$myProduct['name']}} x {{$myProduct['quantity']}}
+                                        <span>{{number_format($myProduct['quantity'] * $myProduct['price'])}}<sup>đ</sup>
+                                        </span>
+                                    </li>
+                                @endforeach
                                 <li>Thành tiền:<span>{{number_format($myCart->getTotal())}}<sup>đ</sup></span></li>
                                 <li><a href="{{url('/payment')}}"><button class="paynowbtn">THANH TOÁN NGAY</button></a>
                                 </li>

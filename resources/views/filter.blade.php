@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
-
+    <script src="../assets/js/axios.js"></script>
 </head>
 
 <body>
@@ -121,7 +121,7 @@
                                         <span class="cartcost">10,000,000 <sup>VND</sup></span> x
                                         <span class="quantity">1</span>
                                     </span>
-                                    <span class="closecart">×</span>
+                                    <span class="closecart" >×</span>
                                 </li>
                                 <li>
                                     <img src="assets/img/mega6.jpg" alt="" class="cartimg">
@@ -182,10 +182,11 @@
                         <div class="cartarea">
                             <li>
                                 <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                                <span class="carttitle">Giỏ hàng </span><b>{{$myCart->getQuantityAll()}}</b>
-                                <ul>
+                                <span class="carttitle">Giỏ hàng </span><b id="cartCount">{{$myCart->getQuantityAll()}}</b>
+                                <ul id="myCart">
                                     @if ($myCart->getTotal()>0)
                                     <span class="yourcart">Sản phẩm đã chọn:</span>
+                                    <div id="cartProducts">
                                     @foreach ($myCart->getCart() as $myProduct)
                                     <li>
                                         <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
@@ -195,12 +196,12 @@
                                                 <sup>VND</sup></span> x
                                             <span class="quantity">{{$myProduct['quantity']}}</span>
                                         </span>
-                                        <span class="closecart">×</span>
+                                        <span class="closecart" onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
                                     </li>
                                     @endforeach
-
+                                    </div>
                                     <li class="carttotal">
-                                        <span> Tổng cộng: {{number_format($myCart->getTotal())}} <sup>VND</sup></span>
+                                        <span> Tổng cộng: <span id="totalCart">{{number_format($myCart->getTotal())}}</span> <sup>VND</sup></span>
                                     </li>
                                     <div class="groupcartbtn">
                                         <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
@@ -209,14 +210,41 @@
                                     @else
                                     <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
                                     @endif
-
-
-
-
                                 </ul>
                             </li>
                         </div>
-
+                        <script>
+                        function delCart(id){
+                                axios.post('{{url()->route('deleteCart')}}/',{id:id}).then(data=>{
+                                    setTimeout(() => {
+                                        if(data.data.success){
+                                            let count = 0;
+                                            let stringLi = ''
+                                            let total= 0
+                                            data.data.dataCart.map(product=>{
+                                                count+=product.quantity
+                                                total +=product.quantity*product.price
+                                                stringLi +='<li><img src="../'+product.avatar+'" alt="" class="cartimg"><span class="cartname"><a href="#">'+product.name+' </a></span><span class="cartinfo"><span class="cartcost">'+new Intl.NumberFormat('ja-JP').format(product.price)+' <sup>VND</sup></span> x<span class="quantity">'+product.quantity+'</span></span><span class="closecart" onclick="delCart('+product.id+');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
+                                            })
+                                            total = new Intl.NumberFormat('ja-JP').format(total)
+                                            if(count==0){
+                                                window.location.reload()
+                                                return;
+                                            }else{
+                                                document.querySelector('#cartProducts').innerHTML = stringLi
+                                            }
+                                            document.querySelector('#myCart').setAttribute('style','display:block')
+                                            setTimeout(() => {
+                                                document.querySelector('#myCart').removeAttribute('style')
+                                            }, 5000);
+                                            document.querySelector('#cartCount').innerHTML =count
+                                            document.querySelector('#totalCart').innerHTML = total
+                                           
+                                            
+                                        }
+                                    }, 0);
+                                })
+                            }</script>
 
                     </div>
 

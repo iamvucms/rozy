@@ -17,4 +17,8 @@ Route::get('/categories/{slug}','CategoryController@Category');
 Route::get('/shop/{slug}','SellerController@Seller');
 Route::get('/user/me','UserController@Profile');
 Route::get('/search','FilterController@Search')->name('filter');
+//Cart Route
 Route::get('/cart','CartController@Cart');
+Route::post('/cart/add','CartController@addCart')->name('addCart');
+Route::post('/cart/edit','CartController@editCart')->name('editCart');
+Route::post('/cart/delete','CartController@deleteCart')->name('deleteCart');

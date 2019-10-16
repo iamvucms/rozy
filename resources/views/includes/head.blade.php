@@ -24,4 +24,5 @@
     <script src="../assets/js/jquery-ui.js"></script>
     <script src="../assets/js/slide.min.js"></script>
     <script src="../assets/js/detail.js"></script>
+    <script src="../assets/js/axios.js"></script>
 </head>

@@ -239,13 +239,10 @@
                                             }, 5000);
                                             document.querySelector('#cartCount').innerHTML =count
                                             document.querySelector('#totalCart').innerHTML = total
-                                           
-                                            
                                         }
                                     }, 0);
                                 })
                             }</script>
-
                     </div>
 
 

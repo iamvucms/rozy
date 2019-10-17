@@ -16,6 +16,7 @@
    <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
    <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
    <script src="../assets/js/axios.js"></script>
+   <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
@@ -303,6 +304,17 @@
                         Khuyến mãi <sup id="salepercent">-5%</sup>
                      </li>
                   </div>
+                  @if ($user)
+                     <div class="rightoptions">
+                        <li class="roption">
+                           <i class="fas fa-user-alt"></i>
+                        <span class="uptitle">{{$user->getName() ?? ''}}</span>
+                           <span class="downtitle">Tài khoản</span>
+
+                        </li>
+
+                  </div>
+                  @else
                   <div class="rightoptions">
                      <li class="roption">
                         <i class="fas fa-user-alt"></i>
@@ -365,12 +377,13 @@
                            <li id="clickregister"><i class="fas fa-user-plus"></i> Đăng ký</li>
                            <li style="background: #4166b2">&emsp;<i class="fab fa-facebook-f"></i>&emsp;| Đăng nhập với
                               facebook</li>
-                           <li style="background-color: #df4a32;"><i class="fab fa-google-plus-g"></i> | Đăng nhập với
+                           <li style="background-color: #df4a32;" onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i class="fab fa-google-plus-g"></i> | Đăng nhập với
                               Google</li>
                         </ul>
                      </li>
 
                   </div>
+                  @endif
                   <div class="cartarea">
                         <li>
                             <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
@@ -563,7 +576,7 @@
 
          </div>
          <!-- endboxtop -->
-
+         
       </div>
       <div class="fixedbanner" id="lbanner">
          <a href="#banner" target="__blank"><img src="assets/img/lbanner.jpg" alt=""></a>
@@ -1212,6 +1225,29 @@
    <!-- <script src="assets/js/lazy.plugin.js"></script> -->
    <script src="assets/js/jquery-ui.js"></script>
    <script src="assets/js/index.js"></script>
+
+<script>
+   window.fbAsyncInit = function() {
+     FB.init({
+       appId      : '412722532955986',
+       cookie     : true,
+       xfbml      : true,
+       version    : 'v4.0'
+     });
+       
+     FB.AppEvents.logPageView();   
+       
+   };
+ 
+   (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    
+ </script>
 </body>
 
 </html>

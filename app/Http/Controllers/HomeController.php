@@ -7,13 +7,12 @@ use App\Product;
 use App\Category;
 use App\Alias;
 use App\Discount;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 class HomeController extends Controller
 {
     public function Index(Request $req){
-        
         $viewedList = Cookie::get('viewedList');
-        
         if($viewedList===null){
             Cookie::queue('viewedList',json_encode([]),9999999999);
         }

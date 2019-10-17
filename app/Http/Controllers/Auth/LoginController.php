@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use Socialite;
+use App\User;
+use App\Customer;
 class LoginController extends Controller
 {
     /*
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -34,6 +37,31 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        Auth::logout();// DONT FORGET REMOVE THIS LINE
         $this->middleware('guest')->except('logout');
+    }
+    public function GoogleLoginRedirect(){
+        
+        return Socialite::driver('google')->redirect();
+    }
+    public function GoogleCallBackHandler(){
+        $google = Socialite::driver('google')->user();
+        if($google->id ===null) return redirect(url('/'));
+        $user =User::where('email',$google->email);
+        if($user->count()>0){
+            Auth::loginUsingId($user->first()->id);
+            if($user->first()->Avatar()->count()==0){
+                $user->first()->Avatar()->create(['id_avt_user'=>$user->first()->id,'src'=>$google->avatar]);
+            }   
+        }else{
+            $user = new User;
+            $user->email = $google->email;
+            $user->google_id=$google->id;
+            $user->save();
+            $user->Avatar()->create(['id_avt_user'=>$user->id,'src'=>$google->avatar]);
+            Customer::insert(['user_id'=>$user->id,'name'=>$google->name]);
+            Auth::loginUsingId($user->id);
+        }
+        return redirect($this->redirectTo);
     }
 }

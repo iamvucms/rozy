@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Category;
 use App\Cart;
+use Illuminate\Support\Facades\Auth;
 class ComposerServiceProvider extends ServiceProvider
 {
     /**
@@ -27,6 +28,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('*',function($view){
             $view->with('categories',Category::get());
             $view->with('myCart',new Cart);
+            $view->with('user',Auth::user());
         });
         
     }

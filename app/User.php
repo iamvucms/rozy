@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id','email','password','google_id'
     ];
 
     /**
@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function Avatar(){
+        return $this->hasOne('App\Image','id_avt_user','id');
+    }
+    public function Customer(){
+        return $this->hasOne('App\Customer','user_id','id');
+    }
+    public function getName(){
+        return $this->Customer()->first()->name;
+    }
 }

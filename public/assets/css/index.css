@@ -274,6 +274,7 @@ li {
      margin-left: 10px;
      display: inline-block;
      height: 45px;
+     
 }
 
 .roption {
@@ -285,6 +286,7 @@ li {
      font-size: 1.7em;
      position: relative;
      cursor: pointer;
+     text-align: left;
 }
 
 .roption:hover ul {

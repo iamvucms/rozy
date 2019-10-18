@@ -37,15 +37,16 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        Auth::logout();// DONT FORGET REMOVE THIS LINE
         $this->middleware('guest')->except('logout');
     }
+    public function Login(){
+        return 'hello';
+    }
     public function GoogleLoginRedirect(){
-        
         return Socialite::driver('google')->redirect();
     }
     public function GoogleCallBackHandler(){
-        $google = Socialite::driver('google')->user();
+        $google = Socialite::driver('google')->stateless()->user();
         if($google->id ===null) return redirect(url('/'));
         $user =User::where('email',$google->email);
         if($user->count()>0){

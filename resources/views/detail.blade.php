@@ -138,22 +138,21 @@
                         </div>
                         <!-- boxsearch -->
                         <div class="boxsearch">
-                        <form action="{{url('/search')}}">
+                            <form action="{{url('/search')}}">
                                 <input autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..."
                                     type="search" class="searchinput">
-                                <button onclick=""
-                                    class="searchnow micnow"><span><i
+                                <button onclick="" class="searchnow micnow"><span><i
                                             class="fas fa-microphone"></i></span>
                                 </button>
                                 <select name="cat" type="text" id="category_select">
-                                        <option value="0" selected=selected>Tất cả danh mục</option>
-                                        @foreach($categories as $category)
-                                           <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                     </select><button class="searchnow"><span><i
-                                            class="fas fa-search"></i><span id="search_none">Tìm
+                                    <option value="0" selected=selected>Tất cả danh mục</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select><button class="searchnow"><span><i class="fas fa-search"></i><span
+                                            id="search_none">Tìm
                                             kiếm</span></span></button>
-                            
+
                                 <div class="boxmic">
                                     <p><span id="gifload"><i class="fas fa-spinner"></i></span>
                                         <span id="micicon"><i class="fas fa-microphone-alt"></i><span>Hãy Nói Từ Khóa
@@ -220,50 +219,142 @@
                                 Khuyến mãi <sup id="salepercent">-5%</sup>
                             </li>
                         </div>
+                        @if ($user)
                         <div class="rightoptions">
                             <li class="roption">
                                 <i class="fas fa-user-alt"></i>
-                                <span class="uptitle">VuCms0202</span>
+                                <span class="uptitle">{{$user->getName() ?? ''}}</span>
                                 <span class="downtitle">Tài khoản</span>
-
+                                <ul>
+                                    <li onclick="window.location.href='{{url()->route('myAccount')}}'"><i
+                                            class="fas fa-tasks"></i> Quản lí tài khoản</li>
+                                    <li style="background-color: #df4a32;"
+                                        onclick="window.location.href='{{url()->route('logout')}}'"><i
+                                            class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+                                </ul>
                             </li>
 
                         </div>
+                        @else
+                        <div class="rightoptions">
+                            <li class="roption">
+                                <i class="fas fa-user-alt"></i>
+                                <span class="uptitle">Đăng nhập</span>
+                                <span class="downtitle">Tài khoản</span>
+                                <ul>
+                                    <div class="sendform" id="login">
+                                        <p class="logintitle">Đăng nhập</p>
+                                        <form action="">
+                                            <div class="inputgroup">
+
+                                                <input type="text" name="email" placeholder="Email đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
+
+                                                <input type="text" name="email" placeholder="Mật khẩu đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <a id="clickforgot" class="forget" href="#forgot"><span>Quên mật khẩu
+                                                    ?</span></a><br>
+                                            <button class="sendnow"><span>Đăng nhập ngay</span></button>
+                                        </form>
+                                    </div>
+                                    <div class="sendform" id="register">
+                                        <p class="logintitle">Đăng ký</p>
+                                        <form action="">
+                                            <div class="inputgroup">
+                                                <input type="text" name="name" placeholder="Tên đầy đủ"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
+                                                <input type="text" name="phone" placeholder="Số điện thoại"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
+
+                                                <input type="text" name="email" placeholder="Email đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
+
+                                                <input type="text" name="password" placeholder="Mật khẩu đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <button class="sendnow"><span>Đăng ký ngay</span></button>
+                                        </form>
+                                    </div>
+                                    <div class="sendform" id="forgot" style="position: relative;">
+
+
+                                        </span>
+                                        <p class="logintitle"> Khôi phục tài khoản</p>
+                                        <form action="">
+
+                                            <div class="inputgroup">
+
+                                                <input type="text" name="phoneormail"
+                                                    placeholder="Email hoặc số điện thoại" autocomplete="off">
+                                            </div>
+                                            <button class="sendnow" id="backlogin"><span>Trở lại</span></button>
+                                            <button class="sendnow" id="recbutton"><span>Khôi phục</span></button>
+                                        </form>
+                                    </div>
+                                    <li id="clicklogin"><i class="fas fa-sign-in-alt"></i> Đăng nhập</li>
+                                    <li id="clickregister"><i class="fas fa-user-plus"></i> Đăng ký</li>
+                                    <li style="background: #4166b2">&emsp;<i class="fab fa-facebook-f"></i>&emsp;| Đăng
+                                        nhập với
+                                        facebook</li>
+                                    <li style="background-color: #df4a32;"
+                                        onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i
+                                            class="fab fa-google-plus-g"></i> | Đăng nhập với
+                                        Google</li>
+                                </ul>
+                            </li>
+
+                        </div>
+                        @endif
                         <div class="cartarea">
-                                <li>
-                                    <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                                    <span class="carttitle">Giỏ hàng </span><b id="cartCount">{{$myCart->getQuantityAll()}}</b>
-                                    <ul id="myCart">
-                                        @if ($myCart->getTotal()>0)
-                                            <span class="yourcart">Sản phẩm đã chọn:</span>
-                                            <div id="cartProducts">
-                                                @foreach ($myCart->getCart() as $myProduct)
-                                                <li>
-                                                    <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
-                                                    <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
-                                                    <span class="cartinfo">
-                                                        <span class="cartcost">{{number_format($myProduct['price'])}} <sup>VND</sup></span> x
-                                                        <span class="quantity">{{$myProduct['quantity']}}</span>
-                                                    </span>
-                                                    <span class="closecart" onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
-                                                </li>
-                                                @endforeach
-                                            </div>
-                                            <li class="carttotal">
-                                                <span> Tổng cộng: <span id="totalCart">{{number_format($myCart->getTotal())}}</span> <sup>VND</sup></span>
-                                            </li>
-                                            <div class="groupcartbtn">
-                                                <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
-                                                <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button>
-                                            </div>
-                                        @else
-                                        <div id="cartProducts">
-                                            <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
-                                        </div>
-                                        @endif
-                                    </ul>
-                                </li>
-                            </div>
+                            <li>
+                                <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
+                                <span class="carttitle">Giỏ hàng </span><b
+                                    id="cartCount">{{$myCart->getQuantityAll()}}</b>
+                                <ul id="myCart">
+                                    @if ($myCart->getTotal()>0)
+                                    <span class="yourcart">Sản phẩm đã chọn:</span>
+                                    <div id="cartProducts">
+                                        @foreach ($myCart->getCart() as $myProduct)
+                                        <li>
+                                            <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
+                                            <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
+                                            <span class="cartinfo">
+                                                <span class="cartcost">{{number_format($myProduct['price'])}}
+                                                    <sup>VND</sup></span> x
+                                                <span class="quantity">{{$myProduct['quantity']}}</span>
+                                            </span>
+                                            <span class="closecart"
+                                                onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
+                                        </li>
+                                        @endforeach
+                                    </div>
+                                    <li class="carttotal">
+                                        <span> Tổng cộng: <span
+                                                id="totalCart">{{number_format($myCart->getTotal())}}</span>
+                                            <sup>VND</sup></span>
+                                    </li>
+                                    <div class="groupcartbtn">
+                                        <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
+                                        <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán
+                                                ngay</a></button>
+                                    </div>
+                                    @else
+                                    <div id="cartProducts">
+                                        <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                    </div>
+                                    @endif
+                                </ul>
+                            </li>
+                        </div>
                     </div>
                 </div>
                 <!-- endboxtopmain -->
@@ -373,10 +464,9 @@
                     <ul>
                         <li><a href="{{url('')}}"><i class="fas fa-home"></i><span> Trang chủ</span></a></li>
                         <i class="fas fa-chevron-right breadarrow"></i>
-                        <li><a href="filter.html"><i class="fas fa-list"></i><span> Danh
-                                    Mục</span></a></li>
-                        <i class="fas fa-chevron-right breadarrow"></i>
-                        <li><a href="filter.html"><i class="fas fa-mobile-alt"></i><span> Điện thoại</span></a></li>
+                        <li><a href="{{url('/search?cat='.$product->getCategory()->id)}}"><i
+                                    class="fas fa-mobile-alt"></i><span> {{$product->getCategory()->name}}</span></a>
+                        </li>
                         <i class="fas fa-chevron-right breadarrow"></i>
                         <li class="active"><a href=""><i class="fas fa-shopping-cart"></i> {{$product->name}}</a>
                         </li>
@@ -388,21 +478,23 @@
                 <div class="productmain">
                     <div class="gallery">
                         <div class="mainphoto">
-                            <a href="#"><img id="mainimg" src="{{isset($product->Avatar()->src) ? url($product->Avatar()->src) : '../assets/img/product5.jpg'}}" alt=""></a>
+                            <a href="#"><img id="mainimg"
+                                    src="{{isset($product->Avatar()->src) ? url($product->Avatar()->src) : '../assets/img/product5.jpg'}}"
+                                    alt=""></a>
                         </div>
                         <div class="photolist">
                             <button class="left"><i class="fas fa-chevron-left"></i></button>
                             <button class="right"><i class="fas fa-chevron-right"></i></button>
                             <div class="owl-carousel owl-theme" id="keyslider">
                                 @php
-                                    $Images = $product->Images();
-                                    $Images->push($product->Avatar());
-                                    $Images =$Images->reverse()
+                                $Images = $product->Images();
+                                $Images->push($product->Avatar());
+                                $Images =$Images->reverse()
                                 @endphp
                                 @foreach ($Images as $Img)
-                                    <div class="item">
+                                <div class="item">
                                     <li class="active"><img src="{{url($Img->src ?? '')}}" alt=""></li>
-                                    </div>
+                                </div>
                                 @endforeach
                                 <div class="item">
                                     <li><img src="../assets/img/product.jpg" alt=""></li>
@@ -444,13 +536,15 @@
                             <p>
                                 @for ($i = 1; $i <= $product->getAvgReview(); $i++)
                                     <i class="fas fa-star" style="color:orange" id="star"></i>
-                                 @endfor
-                                 @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
-                                    <i class="fas fa-star" id="star"></i>
-                                 @endfor
-                                <span id="review_count"><a href="#viewvotes" id="scroll2review">{{$product->getCountReview()}} Đánh giá</a></span>
+                                    @endfor
+                                    @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
+                                        <i class="fas fa-star" id="star"></i>
+                                        @endfor
+                                        <span id="review_count"><a href="#viewvotes"
+                                                id="scroll2review">{{$product->getCountReview()}} Đánh giá</a></span>
                             </p>
-                        <span id="salecount"><i class="fas fa-tags"></i> (<b>{{$product->getTotalQuantitySelled()}}</b>) đã bán</span>
+                            <span id="salecount"><i class="fas fa-tags"></i>
+                                (<b>{{$product->getTotalQuantitySelled()}}</b>) đã bán</span>
                         </div>
                         <div class="ordertool">
                             <div class="pprice">
@@ -459,7 +553,8 @@
                                 @endphp
                                 @if (count($discount)>0)
                                 <span class="newp">
-                                    {{number_format($product->price-$discount[0]->percent/100*$product->price)}} <sup>đ</sup>
+                                    {{number_format($product->price-$discount[0]->percent/100*$product->price)}}
+                                    <sup>đ</sup>
                                 </span>
                                 <span class="oldp">
                                     {{number_format($product->price)}} <sup>đ</sup>
@@ -468,8 +563,8 @@
                                 @else
                                 <span class="newp">{{number_format($product->price)}} <sup>đ</sup></span>
                                 @endif
-                                
-                                
+
+
                             </div>
                             <div class="traninfo">
                                 <span><i class="fas fa-history"></i></span>
@@ -485,8 +580,8 @@
                                     <li class="blue" style="background:#007ff0"></li>
                                 </ul>
                             </div>
-                        <form action="{{url()->route('addCart')}}" method=POST onsubmit="return false;">
-                                <div class="quantity" >
+                            <form action="{{url()->route('addCart')}}" method=POST onsubmit="return false;">
+                                <div class="quantity">
                                     <span class="qtitle">
                                         SỐ LƯỢNG:
                                     </span>
@@ -500,86 +595,89 @@
                                     </span>
                                 </div>
                                 <div class="orderbtn">
-                                    <span ><a href="#addlove"><i class="far fa-heart"></i> Thêm vào danh sách yêu
+                                    <span><a href="#addlove"><i class="far fa-heart"></i> Thêm vào danh sách yêu
                                             thích</a></span>
-                                    <div  style="margin-top:15px;display:flex">
-                                        <button style="min-width:193px;margin-right:5px" id="btnAddCart" onclick="addCart()"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+                                    <div style="margin-top:15px;display:flex">
+                                        <button style="min-width:193px;margin-right:5px" id="btnAddCart"
+                                            onclick="addCart()"><i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                                            hàng</button>
                                         <button><i class="far fa-money-bill-alt"></i> Mua ngay</button>
                                     </div>
-                               
+
                                 </div>
                             </form>
                             <script>
-                                function addCart(){
-                                    let preCount = {{$myCart->getQuantityAll()}}
-                                    let btnAddCart = document.querySelector('#btnAddCart')
-                                    btnAddCart.innerHTML  = ' <img style="width:45px" src="{{asset('assets/img/loading.svg')}}" alt="">'
-                                    let quan = parseInt(document.querySelector('#quantity').value)
-                                    let id = {{$product->id}}
-                                    axios.post('{{url()->route('addCart')}}',{
-                                        id:id,
-                                        quantity:quan
-                                    }).then(data=>{
-                                        setTimeout(() => {
-                                            btnAddCart.innerHTML = '<i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng';
-                                            if(data.data.success){
-                                                let count =0;
-                                                let total = 0;
-                                                let stringLi = ''
-                                                data.data.dataCart.map(product=>{
-                                                    total+= product.quantity*product.price
-                                                    count+=product.quantity
-                                                    stringLi +='<li><img src="../'+product.avatar+'" alt="" class="cartimg"><span class="cartname"><a href="#">'+product.name+' </a></span><span class="cartinfo"><span class="cartcost">'+new Intl.NumberFormat('ja-JP').format(product.price)+' <sup>VND</sup></span> x<span class="quantity">'+product.quantity+'</span></span><span class="closecart" onclick="delCart('+product.id+');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
-                                                })
-                                                total = new Intl.NumberFormat('ja-JP').format(total)
-                                                let totalString= '<li class="carttotal"><span> Tổng cộng: '+total+' <sup>VND</sup></span></li><div class="groupcartbtn"><button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button><button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button></div>'
-                                                if(preCount==0){
-                                                    document.querySelector('#cartProducts').innerHTML = stringLi+totalString
-                                                }else{
-                                                    
-                                                    document.querySelector('#cartProducts').innerHTML = stringLi
-                                                }
-                                                document.querySelector('#cartCount').innerHTML = count
-                                                document.querySelector('#myCart').setAttribute('style','display:block')
-                                                document.querySelector('#totalCart').innerHTML = total
-                                                setTimeout(() => {
-                                                    document.querySelector('#myCart').removeAttribute('style')
-                                                }, 5000);
-                                            }   
-                                        }, 1000);
-                                    })
-                                }
-                                function delCart(id){
-                                axios.post('{{url()->route('deleteCart')}}/',{id:id}).then(data=>{
+                                function addCart() {
+                                    let preCount = {{ $myCart-> getQuantityAll()
+                                }}
+                                let btnAddCart = document.querySelector('#btnAddCart')
+                                btnAddCart.innerHTML = ' <img style="width:45px" src="{{asset('assets / img / loading.svg')}}" alt="">'
+                                let quan = parseInt(document.querySelector('#quantity').value)
+                                let id = {{ $product-> id}}
+                                axios.post('{{url()->route('addCart')}}', {
+                                    id: id,
+                                    quantity: quan
+                                }).then(data => {
                                     setTimeout(() => {
-                                        if(data.data.success){
+                                        btnAddCart.innerHTML = '<i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng';
+                                        if (data.data.success) {
                                             let count = 0;
+                                            let total = 0;
                                             let stringLi = ''
-                                            let total= 0
-                                            data.data.dataCart.map(product=>{
-                                                count+=product.quantity
-                                                total +=product.quantity*product.price
-                                                stringLi +='<li><img src="../'+product.avatar+'" alt="" class="cartimg"><span class="cartname"><a href="#">'+product.name+' </a></span><span class="cartinfo"><span class="cartcost">'+new Intl.NumberFormat('ja-JP').format(product.price)+' <sup>VND</sup></span> x<span class="quantity">'+product.quantity+'</span></span><span class="closecart" onclick="delCart('+product.id+');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
+                                            data.data.dataCart.map(product => {
+                                                total += product.quantity * product.price
+                                                count += product.quantity
+                                                stringLi += '<li><img src="../' + product.avatar + '" alt="" class="cartimg"><span class="cartname"><a href="#">' + product.name + ' </a></span><span class="cartinfo"><span class="cartcost">' + new Intl.NumberFormat('ja-JP').format(product.price) + ' <sup>VND</sup></span> x<span class="quantity">' + product.quantity + '</span></span><span class="closecart" onclick="delCart(' + product.id + ');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
                                             })
                                             total = new Intl.NumberFormat('ja-JP').format(total)
-                                            if(count==0){
-                                                window.location.reload()
-                                                return;
-                                            }else{
+                                            let totalString = '<li class="carttotal"><span> Tổng cộng: ' + total + ' <sup>VND</sup></span></li><div class="groupcartbtn"><button class="btnviewcart"><a href="{{url(' / cart')}}">Xem giỏ hàng</a></button><button class="btncartpay"><a href="{{url(' / payment')}}">Thanh toán ngay</a></button></div>'
+                                            if (preCount == 0) {
+                                                document.querySelector('#cartProducts').innerHTML = stringLi + totalString
+                                            } else {
+
                                                 document.querySelector('#cartProducts').innerHTML = stringLi
                                             }
-                                            document.querySelector('#myCart').setAttribute('style','display:block')
+                                            document.querySelector('#cartCount').innerHTML = count
+                                            document.querySelector('#myCart').setAttribute('style', 'display:block')
+                                            document.querySelector('#totalCart').innerHTML = total
                                             setTimeout(() => {
                                                 document.querySelector('#myCart').removeAttribute('style')
                                             }, 5000);
-                                            document.querySelector('#cartCount').innerHTML =count
-                                            document.querySelector('#totalCart').innerHTML = total
-                                           
-                                            
                                         }
-                                    }, 0);
+                                    }, 1000);
                                 })
-                            }
+                                }
+                                function delCart(id) {
+                                    axios.post('{{url()->route('deleteCart')}}/', { id: id }).then(data => {
+                                        setTimeout(() => {
+                                            if (data.data.success) {
+                                                let count = 0;
+                                                let stringLi = ''
+                                                let total = 0
+                                                data.data.dataCart.map(product => {
+                                                    count += product.quantity
+                                                    total += product.quantity * product.price
+                                                    stringLi += '<li><img src="../' + product.avatar + '" alt="" class="cartimg"><span class="cartname"><a href="#">' + product.name + ' </a></span><span class="cartinfo"><span class="cartcost">' + new Intl.NumberFormat('ja-JP').format(product.price) + ' <sup>VND</sup></span> x<span class="quantity">' + product.quantity + '</span></span><span class="closecart" onclick="delCart(' + product.id + ');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
+                                                })
+                                                total = new Intl.NumberFormat('ja-JP').format(total)
+                                                if (count == 0) {
+                                                    window.location.reload()
+                                                    return;
+                                                } else {
+                                                    document.querySelector('#cartProducts').innerHTML = stringLi
+                                                }
+                                                document.querySelector('#myCart').setAttribute('style', 'display:block')
+                                                setTimeout(() => {
+                                                    document.querySelector('#myCart').removeAttribute('style')
+                                                }, 5000);
+                                                document.querySelector('#cartCount').innerHTML = count
+                                                document.querySelector('#totalCart').innerHTML = total
+
+
+                                            }
+                                        }, 0);
+                                    })
+                                }
                             </script>
                             <div class="note">
 
@@ -633,7 +731,7 @@
                                 <li><i class="fas fa-vote-yea"></i>
                                     <span>
                                         @php
-                                            $countReview = $product->Seller()->getTotalReviewsThan(3)
+                                        $countReview = $product->Seller()->getTotalReviewsThan(3)
                                         @endphp
                                         <b>{{$countReview<1000 ?$countReview : $countReview/1000 ."k"}}</b><br>
                                         <small>Đánh giá > 3 <i class="fas fa-star"></i> </small>
@@ -688,10 +786,10 @@
                         <div class="tableinfo">
                             <table>
                                 @foreach ($product->getProps() as $name => $prop)
-                                    <tr>
-                                        <td>{{App\Property::getPropKey($name)}}</td>
-                                        <td>{{$prop}}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{App\Property::getPropKey($name)}}</td>
+                                    <td>{{$prop}}</td>
+                                </tr>
                                 @endforeach
                             </table>
                         </div>
@@ -866,29 +964,30 @@
                                     <ul>
                                         @for ($i = 1; $i <= $product->getAvgReview(); $i++)
                                             <li><i class="fas fa-star" style="color:orange"></i></li>
-                                        @endfor
-                                        @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
-                                            <li><i class="fas fa-star" style="color:#acacac"></i></li>
-                                        @endfor
+                                            @endfor
+                                            @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
+                                                <li><i class="fas fa-star" style="color:#acacac"></i></li>
+                                                @endfor
                                     </ul>
                                 </div>
-                                <span class="ratecount" style="color:#acacac">({{$product->getCountReview()}} Đánh giá)</span>
+                                <span class="ratecount" style="color:#acacac">({{$product->getCountReview()}} Đánh
+                                    giá)</span>
                             </div>
-                            
+
                             <div class="statis">
                                 <div class="liststatis">
                                     <ul>
                                         @php
-                                            $i = 5;
+                                        $i = 5;
                                         @endphp
                                         @foreach ($product->getPercentReview() as $percent)
-                                            <li>
-                                                <span>{{$i--}} <i class="fas fa-star" style="color:orange"></i></span>
-                                                <div class="ratebar">
+                                        <li>
+                                            <span>{{$i--}} <i class="fas fa-star" style="color:orange"></i></span>
+                                            <div class="ratebar">
                                                 <p style=" width:{{100-$percent}}%;"></p>
-                                                </div>
+                                            </div>
                                             <span>{{$percent}}%</span>
-                                            </li>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -907,38 +1006,40 @@
                             <div class="rvlist">
                                 @foreach ($product->getReviews() as $review)
                                 <div class="rv">
-                                        <div class="rvauthor">
-                                            <img src="{{url($review->avatar ?? '')}}" alt="">
-                                            <div>
+                                    <div class="rvauthor">
+                                        <img src="{{url($review->avatar ?? '')}}" alt="">
+                                        <div>
                                             <p>{{$review->whoWrite()}}</p>
-                                                <p>
-                                                    @for ($i = 1; $i <= $review->star; $i++)
-                                                        <span><i class="fas fa-star" style="color:orange" id="star"></i></span>
-                                                     @endfor
-                                                     @for ($i = 1; $i <= 5-$review->star; $i++)
+                                            <p>
+                                                @for ($i = 1; $i <= $review->star; $i++)
+                                                    <span><i class="fas fa-star" style="color:orange"
+                                                            id="star"></i></span>
+                                                    @endfor
+                                                    @for ($i = 1; $i <= 5-$review->star; $i++)
                                                         <span><i class="fas fa-star" id="star"></i></span>
-                                                     @endfor
-                                                </p>
+                                                        @endfor
+                                            </p>
                                             <p class="rvcontent">{{$review->message ?? ''}}</p>
-                                            
-                                                <p class="rvgallery">
-                                                    @foreach ($review->getImages() as $rvimg)
-                                                        <img src="{{url($rvimg->src ?? '')}}" alt="{{$product->name}}">
-                                                    @endforeach
-                                                </p>
-                                                <p class="rvat">
-                                                    <i class="far fa-clock"> </i> {{date_format(date_create($review->create_at),"H:i:s d-m-Y")}}
-                                                </p>
-                                            </div>
-                                            <a href="javascript:void(0)"><button><i class="far fa-thumbs-up"></i> <span>Hữu
-                                                        ích</span></button></a>
+
+                                            <p class="rvgallery">
+                                                @foreach ($review->getImages() as $rvimg)
+                                                <img src="{{url($rvimg->src ?? '')}}" alt="{{$product->name}}">
+                                                @endforeach
+                                            </p>
+                                            <p class="rvat">
+                                                <i class="far fa-clock"> </i>
+                                                {{date_format(date_create($review->create_at),"H:i:s d-m-Y")}}
+                                            </p>
                                         </div>
-                                    </div> 
+                                        <a href="javascript:void(0)"><button><i class="far fa-thumbs-up"></i> <span>Hữu
+                                                    ích</span></button></a>
+                                    </div>
+                                </div>
                                 @endforeach
-                                
+
                             </div>
                         </div>
-                        
+
                         <div class="btnloadmore" id="pagination">
                             {{$product->getReviews()->links()}}
                         </div>

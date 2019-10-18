@@ -19,7 +19,12 @@ class FilterController extends Controller
             $req->address,
             $req->star,
             $req->orderBy)->appends($req->except('page'));
-        
-        return view('filter',compact('products','filter'));
+        $countAfterFilter = $product->getCountAfterFilter($req->cat,
+            $req->keyword,
+            $req->from,
+            $req->to,
+            $req->address,
+            $req->star);
+        return view('filter',compact('products','filter','countAfterFilter'));
     }
 }

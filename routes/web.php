@@ -15,7 +15,7 @@ Route::get('/','HomeController@Index');
 Route::get('/products/{slug}','ProductController@Product');
 Route::get('/categories/{slug}','CategoryController@Category');
 Route::get('/shop/{slug}','SellerController@Seller');
-Route::get('/user/me','UserController@Profile');
+Route::get('/user/me','UserController@Profile')->name('myAccount')->middleware('auth');
 Route::get('/search','FilterController@Search')->name('filter');
 //Cart Route
 Route::get('/cart','CartController@Cart');
@@ -25,3 +25,6 @@ Route::post('/cart/delete','CartController@deleteCart')->name('deleteCart');
 //GOOGLE API 
 Route::get('/GoogleRedirect', 'Auth\LoginController@GoogleLoginRedirect')->name("GoogleRedirect");
 Route::get('/GoogleCallback', 'Auth\LoginController@GoogleCallBackHandler');
+//Authetication
+Route::get('/logout','Auth\LogoutController@Logout')->name('logout')->middleware('auth');
+Route::get('/login','Auth\LoginController@Login')->name('login')->middleware('Account');

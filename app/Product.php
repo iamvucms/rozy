@@ -72,8 +72,14 @@ class Product extends Model
         return $this->hasOne('App\Property','id','id');
     }
     public function getProps(){
-        $props = json_decode($this->Property()->select('json')->first()->json,true);
+        $props = json_decode($this->Property()->select('json')->first()->json ?? "[]",true);
         return $props;
+    }
+    public function Category(){
+        return $this->hasOne('App\Category','id','idcat');
+    }
+    public function getCategory(){
+        return $this->Category()->first();
     }
     //Product For Filter
     public function search($cat,$keyword){
@@ -101,6 +107,10 @@ class Product extends Model
         if($order===null) $order = 'ASC';
         return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)
         ->orderBy('price',$order);
+    }
+    public function getCountAfterFilter($cat,$keyword,$from,$to,$address,$star){
+        return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)
+        ->count();
     }
     public function ProductFilter($cat,$keyword,$from,$to,$address,$star,$order){
         return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star,$order)

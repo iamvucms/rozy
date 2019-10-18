@@ -192,20 +192,19 @@
                      </ul>
                   </div>
                   <!-- boxsearch -->
-                  <div class="boxsearch"> 
-                  <form action="{{url('/search')}}">
+                  <div class="boxsearch">
+                     <form action="{{url('/search')}}">
                         <input autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..." type="search"
                            class="searchinput">
-                           <button onclick="" class="searchnow micnow"><span><i
+                        <button onclick="" class="searchnow micnow"><span><i
                                  class="fas fa-microphone"></i></span></button>
-                           <select name="cat" type="text" id="category_select">
-                              <option value="0" selected=selected>Tất cả danh mục</option>
-                              @foreach ($categories as $category)
-                                 <option value="{{$category->id}}">{{$category->name}}</option>
-                              @endforeach
-                           </select>
-                           <button
-                           class="searchnow"><span><i class="fas fa-search"></i><span id="search_none">Tìm
+                        <select name="cat" type="text" id="category_select">
+                           <option value="0" selected=selected>Tất cả danh mục</option>
+                           @foreach ($categories as $category)
+                           <option value="{{$category->id}}">{{$category->name}}</option>
+                           @endforeach
+                        </select>
+                        <button class="searchnow"><span><i class="fas fa-search"></i><span id="search_none">Tìm
                                  kiếm</span></span></button>
                         <div class="boxmic">
                            <p><span id="gifload"><i class="fas fa-spinner"></i></span>
@@ -305,13 +304,19 @@
                      </li>
                   </div>
                   @if ($user)
-                     <div class="rightoptions">
-                        <li class="roption">
-                           <i class="fas fa-user-alt"></i>
+                  <div class="rightoptions">
+                     <li class="roption">
+                        <i class="fas fa-user-alt"></i>
                         <span class="uptitle">{{$user->getName() ?? ''}}</span>
-                           <span class="downtitle">Tài khoản</span>
-
-                        </li>
+                        <span class="downtitle">Tài khoản</span>
+                        <ul>
+                           <li onclick="window.location.href='{{url()->route('myAccount')}}'"><i
+                                 class="fas fa-tasks"></i> Quản lí tài khoản</li>
+                           <li style="background-color: #df4a32;"
+                              onclick="window.location.href='{{url()->route('logout')}}'"><i
+                                 class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+                        </ul>
+                     </li>
 
                   </div>
                   @else
@@ -377,7 +382,9 @@
                            <li id="clickregister"><i class="fas fa-user-plus"></i> Đăng ký</li>
                            <li style="background: #4166b2">&emsp;<i class="fab fa-facebook-f"></i>&emsp;| Đăng nhập với
                               facebook</li>
-                           <li style="background-color: #df4a32;" onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i class="fab fa-google-plus-g"></i> | Đăng nhập với
+                           <li style="background-color: #df4a32;"
+                              onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i
+                                 class="fab fa-google-plus-g"></i> | Đăng nhập với
                               Google</li>
                         </ul>
                      </li>
@@ -385,69 +392,71 @@
                   </div>
                   @endif
                   <div class="cartarea">
-                        <li>
-                            <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                            <span class="carttitle">Giỏ hàng </span><b id="cartCount">{{$myCart->getQuantityAll()}}</b>
-                            <ul id="myCart">
-                                @if ($myCart->getTotal()>0)
-                                <span class="yourcart">Sản phẩm đã chọn:</span>
-                                <div id="cartProducts">
-                                @foreach ($myCart->getCart() as $myProduct)
-                                <li>
-                                    <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
-                                    <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
-                                    <span class="cartinfo">
-                                        <span class="cartcost">{{number_format($myProduct['price'])}}
-                                            <sup>VND</sup></span> x
-                                        <span class="quantity">{{$myProduct['quantity']}}</span>
-                                    </span>
-                                    <span class="closecart" onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
-                                </li>
-                                @endforeach
-                                </div>
-                                <li class="carttotal">
-                                    <span> Tổng cộng: <span id="totalCart">{{number_format($myCart->getTotal())}}</span> <sup>VND</sup></span>
-                                </li>
-                                <div class="groupcartbtn">
-                                    <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
-                                    <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button>
-                                </div>
-                                @else
-                                <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
-                                @endif
-                            </ul>
-                        </li>
-                    </div>
-                    <script>
-                    function delCart(id){
-                            axios.post('{{url()->route('deleteCart')}}/',{id:id}).then(data=>{
-                                setTimeout(() => {
-                                    if(data.data.success){
-                                        let count = 0;
-                                        let stringLi = ''
-                                        let total= 0
-                                        data.data.dataCart.map(product=>{
-                                            count+=product.quantity
-                                            total +=product.quantity*product.price
-                                            stringLi +='<li><img src="../'+product.avatar+'" alt="" class="cartimg"><span class="cartname"><a href="#">'+product.name+' </a></span><span class="cartinfo"><span class="cartcost">'+new Intl.NumberFormat('ja-JP').format(product.price)+' <sup>VND</sup></span> x<span class="quantity">'+product.quantity+'</span></span><span class="closecart" onclick="delCart('+product.id+');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
-                                        })
-                                        total = new Intl.NumberFormat('ja-JP').format(total)
-                                        if(count==0){
-                                            window.location.reload()
-                                            return;
-                                        }else{
-                                            document.querySelector('#cartProducts').innerHTML = stringLi
-                                        }
-                                        document.querySelector('#myCart').setAttribute('style','display:block')
-                                        setTimeout(() => {
-                                            document.querySelector('#myCart').removeAttribute('style')
-                                        }, 5000);
-                                        document.querySelector('#cartCount').innerHTML =count
-                                        document.querySelector('#totalCart').innerHTML = total
-                                    }
-                                }, 0);
-                            })
-                        }</script><!-- endrightoption -->
+                     <li>
+                        <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
+                        <span class="carttitle">Giỏ hàng </span><b id="cartCount">{{$myCart->getQuantityAll()}}</b>
+                        <ul id="myCart">
+                           @if ($myCart->getTotal()>0)
+                           <span class="yourcart">Sản phẩm đã chọn:</span>
+                           <div id="cartProducts">
+                              @foreach ($myCart->getCart() as $myProduct)
+                              <li>
+                                 <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
+                                 <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
+                                 <span class="cartinfo">
+                                    <span class="cartcost">{{number_format($myProduct['price'])}}
+                                       <sup>VND</sup></span> x
+                                    <span class="quantity">{{$myProduct['quantity']}}</span>
+                                 </span>
+                                 <span class="closecart"
+                                    onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
+                              </li>
+                              @endforeach
+                           </div>
+                           <li class="carttotal">
+                              <span> Tổng cộng: <span id="totalCart">{{number_format($myCart->getTotal())}}</span>
+                                 <sup>VND</sup></span>
+                           </li>
+                           <div class="groupcartbtn">
+                              <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
+                              <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button>
+                           </div>
+                           @else
+                           <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                           @endif
+                        </ul>
+                     </li>
+                  </div>
+                  <script>
+                     function delCart(id) {
+                        axios.post('{{url()->route('deleteCart')}}/', { id: id }).then(data => {
+                           setTimeout(() => {
+                              if (data.data.success) {
+                                 let count = 0;
+                                 let stringLi = ''
+                                 let total = 0
+                                 data.data.dataCart.map(product => {
+                                    count += product.quantity
+                                    total += product.quantity * product.price
+                                    stringLi += '<li><img src="../' + product.avatar + '" alt="" class="cartimg"><span class="cartname"><a href="#">' + product.name + ' </a></span><span class="cartinfo"><span class="cartcost">' + new Intl.NumberFormat('ja-JP').format(product.price) + ' <sup>VND</sup></span> x<span class="quantity">' + product.quantity + '</span></span><span class="closecart" onclick="delCart(' + product.id + ');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
+                                 })
+                                 total = new Intl.NumberFormat('ja-JP').format(total)
+                                 if (count == 0) {
+                                    window.location.reload()
+                                    return;
+                                 } else {
+                                    document.querySelector('#cartProducts').innerHTML = stringLi
+                                 }
+                                 document.querySelector('#myCart').setAttribute('style', 'display:block')
+                                 setTimeout(() => {
+                                    document.querySelector('#myCart').removeAttribute('style')
+                                 }, 5000);
+                                 document.querySelector('#cartCount').innerHTML = count
+                                 document.querySelector('#totalCart').innerHTML = total
+                              }
+                           }, 0);
+                        })
+                     }</script><!-- endrightoption -->
                </div>
                <div class="introbottom">
                   <li style="font-weight: 500" id="megahovertop"><i class="fas fa-stream"></i> DANH MỤC SẢN PHẨM
@@ -502,10 +511,11 @@
                </div>
                <div class="justviewlist">
                   @foreach ($viewedList ?? [] as $viewedProduct)
-                     <div>
-                        <a href="{{url('/products/'.$viewedProduct['slug'])}} " class="iconsearch"><i class="fas fa-search"></i></a> <img
-                        class="smallboxproduct" src="{{url($viewedProduct['avt'])}}">
-                     </div>
+                  <div>
+                     <a href="{{url('/products/'.$viewedProduct['slug'])}} " class="iconsearch"><i
+                           class="fas fa-search"></i></a> <img class="smallboxproduct"
+                        src="{{url($viewedProduct['avt'])}}">
+                  </div>
                   @endforeach
                </div>
                <div class="megamenu" id="megaheader">
@@ -516,7 +526,7 @@
                            <div class="colmenu">
                               <div class="megafilter"><i class="fab fa-hotjar" style="color:red"></i> Nổi bật</div>
                               @foreach ($category->getTrendProducts() as $TrendProduct)
-                                 <li><a href="{{url('products/'.$TrendProduct->slug)}}">{{$TrendProduct->name}}</a> </li>
+                              <li><a href="{{url('products/'.$TrendProduct->slug)}}">{{$TrendProduct->name}}</a> </li>
                               @endforeach
 
                            </div>
@@ -524,21 +534,30 @@
                               <div class="megafilter"><i class="fas fa-file-signature"
                                     style="color:rgb(0, 238, 255)"></i> Thương hiệu</div>
                               @foreach ($alias::GetTradeMarks($category->id) as $brand)
-                              <li><a href="{{url('categories/'.$category->slug.'?thuonghieu='.trim($brand->name,'"'))}}">{{trim($brand->name,'"')}}</a></li>
+                              <li><a
+                                    href="{{url('categories/'.$category->slug.'?thuonghieu='.trim($brand->name,'"'))}}">{{trim($brand->name,'"')}}</a>
+                              </li>
                               @endforeach
 
                            </div>
                            <div class="colmenu">
                               <div class="megafilter"><i class="fas fa-dollar-sign" style="color:greenyellow"></i> Mức
                                  giá</div>
-                              <li><a href="filter.html">Dưới 500k</a></li>
-                              <li><a href="filter.html">500k đến 1 triệu</a></li>
-                              <li><a href="filter.html">Dưới 2 triệu</a></li>
-                              <li><a href="filter.html">2 triệu đến 3 triệu</a></li>
-                              <li><a href="filter.html">Dưới 5 triệu</a></li>
-                              <li><a href="filter.html">Dưới 7 triệu</a></li>
-                              <li><a href="filter.html">Dưới 10 triệu</a></li>
-                              <li><a href="filter.html">Trên 10 triệu</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=0&to=100000')}}">Dưới 100k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=100000&to=300000')}}">100k đến
+                                    300k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=300000&to=500000')}}">300k đến
+                                    500k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=500000&to=700000')}}">500k đến
+                                    700k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=0&to=1000000')}}">Dưới 1 triệu</a>
+                              </li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=1000000&to=3000000')}}">1 triệu đến
+                                    3 triệu</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=3000000&to=5000000')}}">3 triệu đến
+                                    5 triệu</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=5000000&to=10000000')}}">Dưới 10
+                                    triệu</a></li>
                               <div class="megafilter"><i class="fas fa-angle-double-down" style="color:#25586b"></i>
                                  Khuyến mãi</div>
                               <div class="megasale">
@@ -576,7 +595,7 @@
 
          </div>
          <!-- endboxtop -->
-         
+
       </div>
       <div class="fixedbanner" id="lbanner">
          <a href="#banner" target="__blank"><img src="assets/img/lbanner.jpg" alt=""></a>
@@ -595,14 +614,14 @@
                <p>DANH MỤC SẢN PHẨM</p>
                <div class="mcats">
                   @foreach ($categories as $category)
-                     <div class="boxcat">
-                        <img src="{{$category->img}}" alt="">
-                        <a href="{{url('categories/'.$category->slug)}}">
-                           <p>{{$category->name}}</p>
-                        </a>
-                     </div>
+                  <div class="boxcat">
+                     <img src="{{$category->img}}" alt="">
+                     <a href="{{url('categories/'.$category->slug)}}">
+                        <p>{{$category->name}}</p>
+                     </a>
+                  </div>
                   @endforeach
-                  
+
                </div>
             </div>
             <div class="centerbanner" id="mobliebanner">
@@ -611,7 +630,7 @@
 
             <!-- bodyheader -->
             <div class="bodyheader">
-               
+
                <!-- megamenu -->
                <div class="megamenu">
                   <ul>
@@ -621,28 +640,37 @@
                            <div class="colmenu">
                               <div class="megafilter"><i class="fab fa-hotjar" style="color:red"></i> Nổi bật</div>
                               @foreach ($category->getTrendProducts() as $TrendProduct)
-                                 <li><a href="{{url('products/'.$TrendProduct->slug)}}">{{$TrendProduct->name}}</a> </li>
+                              <li><a href="{{url('products/'.$TrendProduct->slug)}}">{{$TrendProduct->name}}</a> </li>
                               @endforeach
                            </div>
                            <div class="colmenu">
                               <div class="megafilter"><i class="fas fa-file-signature"
                                     style="color:rgb(0, 238, 255)"></i> Thương hiệu</div>
-                                 @foreach ($alias::GetTradeMarks($category->id) as $brand)
-                                    <li><a href="{{url('categories/'.$category->slug.'?thuonghieu='.trim($brand->name,'"'))}}">{{trim($brand->name,'"')}}</a></li>
-                                 @endforeach
+                              @foreach ($alias::GetTradeMarks($category->id) as $brand)
+                              <li><a
+                                    href="{{url('categories/'.$category->slug.'?thuonghieu='.trim($brand->name,'"'))}}">{{trim($brand->name,'"')}}</a>
+                              </li>
+                              @endforeach
 
                            </div>
                            <div class="colmenu">
                               <div class="megafilter"><i class="fas fa-dollar-sign" style="color:greenyellow"></i> Mức
                                  giá</div>
-                              <li><a href="filter.html">Dưới 500k</a></li>
-                              <li><a href="filter.html">500k đến 1 triệu</a></li>
-                              <li><a href="filter.html">Dưới 2 triệu</a></li>
-                              <li><a href="filter.html">2 triệu đến 3 triệu</a></li>
-                              <li><a href="filter.html">Dưới 5 triệu</a></li>
-                              <li><a href="filter.html">Dưới 7 triệu</a></li>
-                              <li><a href="filter.html">Dưới 10 triệu</a></li>
-                              <li><a href="filter.html">Trên 10 triệu</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=0&to=100000')}}">Dưới 100k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=100000&to=300000')}}">100k đến
+                                    300k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=300000&to=500000')}}">300k đến
+                                    500k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=500000&to=700000')}}">500k đến
+                                    700k</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=0&to=1000000')}}">Dưới 1 triệu</a>
+                              </li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=1000000&to=3000000')}}">1 triệu đến
+                                    3 triệu</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=3000000&to=5000000')}}">3 triệu đến
+                                    5 triệu</a></li>
+                              <li><a href="{{url('search?cat='.$category->id.'&from=5000000&to=10000000')}}">Dưới 10
+                                    triệu</a></li>
                               <div class="megafilter"><i class="fas fa-angle-double-down" style="color:#25586b"></i>
                                  Khuyến mãi</div>
                               <div class="megasale">
@@ -729,7 +757,7 @@
                   @foreach ($flashsales as $flash)
                   <div class="product">
                      <div class="imgbox">
-                     <a href="#viewflash"><img src="{{url($flash->Product()->Avatar()->src ?? '')}}" alt=""></a>
+                        <a href="#viewflash"><img src="{{url($flash->Product()->Avatar()->src ?? '')}}" alt=""></a>
                      </div>
 
                      <div class="salespercent">-30%</div>
@@ -737,10 +765,10 @@
                         <a href="{{url('products/'.$flash->Product()->slug)}}">{{$flash->Product()->name}}</a>
                      </div>
                      @php
-                        $discount = $flash->Product()->AvailableDiscount()->get();
+                     $discount = $flash->Product()->AvailableDiscount()->get();
                      @endphp
                      @if (count($discount)>0)
-                        <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
+                     <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
                      @endif
                      <div class="product_price">
                         @if (count($discount)>0)
@@ -756,7 +784,7 @@
                         <p class="rbar">&emsp;
                            <p class="rebar" style="width: {{round($flash->selled/$flash->total*100)}}%"></p>
                         </p>
-                     <p class="rtitle">Đã bán {{$flash->selled}}</p>
+                        <p class="rtitle">Đã bán {{$flash->selled}}</p>
                      </div>
                   </div>
                   @endforeach
@@ -1226,28 +1254,28 @@
    <script src="assets/js/jquery-ui.js"></script>
    <script src="assets/js/index.js"></script>
 
-<script>
-   window.fbAsyncInit = function() {
-     FB.init({
-       appId      : '412722532955986',
-       cookie     : true,
-       xfbml      : true,
-       version    : 'v4.0'
-     });
-       
-     FB.AppEvents.logPageView();   
-       
-   };
- 
-   (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    
- </script>
+   <script>
+      window.fbAsyncInit = function () {
+         FB.init({
+            appId: '412722532955986',
+            cookie: true,
+            xfbml: true,
+            version: 'v4.0'
+         });
+
+         FB.AppEvents.logPageView();
+
+      };
+
+      (function (d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) { return; }
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+   </script>
 </body>
 
 </html>

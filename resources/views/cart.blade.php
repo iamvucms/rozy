@@ -249,82 +249,171 @@
                         </div>
                         @else
                         <div class="rightoptions">
-                            <li class="roption">
-                                <i class="fas fa-user-alt"></i>
-                                <span class="uptitle">Đăng nhập</span>
-                                <span class="downtitle">Tài khoản</span>
-                                <ul>
-                                    <div class="sendform" id="login">
-                                        <p class="logintitle">Đăng nhập</p>
-                                        <form action="">
-                                            <div class="inputgroup">
+                     <li class="roption">
+                        <i class="fas fa-user-alt"></i>
+                        <span class="uptitle">Đăng nhập</span>
+                        <span class="downtitle">Tài khoản</span>
+                        <ul>
+                           <div class="sendform" id="login">
+                              <p class="logintitle">Đăng nhập</p>
+                           <form action="{{url()->route('login')}}" method="post" >
+                                 @csrf
+                                 <div class="inputgroup">
+                                    <input type="text" name="email" placeholder="Email đăng nhập" autocomplete="off">
+                                 </div>
+                                 <div class="inputgroup">
 
-                                                <input type="text" name="email" placeholder="Email đăng nhập"
-                                                    autocomplete="off">
-                                            </div>
-                                            <div class="inputgroup">
+                                    <input type="password" name="password" placeholder="Mật khẩu đăng nhập" autocomplete="off">
+                                 </div>
+                                 <a id="clickforgot" class="forget" href="#forgot"><span>Quên mật khẩu ?</span></a><br>
+                                 <button class="sendnow" type="submit"><span>Đăng nhập ngay</span></button>
+                              </form>
+                           </div>
+                           <div class="sendform" id="register">
+                              
+                              <p class="logintitle">Đăng ký</p>
+                           <form action="{{url()->route('postRegister')}}" method="post">
+                                 @csrf
+                                 <div class="inputgroup">
+                                    <input type="text" name="name" placeholder="Tên đầy đủ" autocomplete="off">
+                                 </div>
+                                 <div class="inputgroup">
+                                    <input type="text" name="phone" placeholder="Số điện thoại" autocomplete="off">
+                                 </div>
+                                 <div class="inputgroup">
 
-                                                <input type="text" name="email" placeholder="Mật khẩu đăng nhập"
-                                                    autocomplete="off">
-                                            </div>
-                                            <a id="clickforgot" class="forget" href="#forgot"><span>Quên mật khẩu
-                                                    ?</span></a><br>
-                                            <button class="sendnow"><span>Đăng nhập ngay</span></button>
-                                        </form>
-                                    </div>
-                                    <div class="sendform" id="register">
-                                        <p class="logintitle">Đăng ký</p>
-                                        <form action="">
-                                            <div class="inputgroup">
-                                                <input type="text" name="name" placeholder="Tên đầy đủ"
-                                                    autocomplete="off">
-                                            </div>
-                                            <div class="inputgroup">
-                                                <input type="text" name="phone" placeholder="Số điện thoại"
-                                                    autocomplete="off">
-                                            </div>
-                                            <div class="inputgroup">
+                                    <input type="text" name="email" placeholder="Email đăng nhập" autocomplete="off">
+                                 </div>
+                                 <div class="inputgroup">
 
-                                                <input type="text" name="email" placeholder="Email đăng nhập"
-                                                    autocomplete="off">
-                                            </div>
-                                            <div class="inputgroup">
+                                    <input type="password" name="password" placeholder="Mật khẩu đăng nhập"
+                                       autocomplete="off">
+                                 </div>
+                                 <button class="sendnow"><span>Đăng ký ngay</span></button>
+                              </form>
+                           </div>
+                           <div class="sendform" id="forgot" style="position: relative;">
 
-                                                <input type="text" name="password" placeholder="Mật khẩu đăng nhập"
-                                                    autocomplete="off">
-                                            </div>
-                                            <button class="sendnow"><span>Đăng ký ngay</span></button>
-                                        </form>
-                                    </div>
-                                    <div class="sendform" id="forgot" style="position: relative;">
+                              <p class="logintitle" > Khôi phục tài khoản</p>
+                              <span style="margin-top:10px;width:100px;display:none;font-size:0.8em;" id="RecoveryMessage"></span>
+                              <form onsubmit="return false;">
+                                 <div class="inputgroup" id="recoveryGroup">
+                                    <input id="recoveryEmail" type="text" name="email" placeholder="Email"
+                                       autocomplete="off"> <br>
+                                 </div>
+                                 <p id="recoveryError" style="color:red;display:none;margin-top:5px;font-size:0.8em;"></p>
+                                 <button class="sendnow" id="backlogin"><span>Trở lại</span></button>
+                                 <button class="sendnow" id="recbutton" onclick="recovery()"><span>Khôi phục</span></button>
+                              </form>
+                           </div>
+                           <script>
+                              var globalEmail = '';
+                                 function recovery(){
+                                    pRecoveryMessage = document.querySelector('#RecoveryMessage')
+                                    pError = document.querySelector('#recoveryError')
+                                    recoveryEmail = document.querySelector('#recoveryEmail')
+                                    recbutton = document.querySelector('#recbutton');
+                                    globalEmail = recoveryEmail.value;
+                                    let email = recoveryEmail.value
+                                    axios.post('{{url()->route('recovery')}}',{
+                                       email:email,
+                                       _token: '{{ csrf_token() }}'
+                                    }).then(data=>{
+                                       data = data.data
+                                       if(data.success){
+                                          pError.style.display = 'none'
+                                          pRecoveryMessage.style.display = 'inline-block'
+                                          pRecoveryMessage.innerHTML = data.message
+                                          recoveryEmail.setAttribute('placeholder','Nhập mã số');
+                                          recoveryEmail.value = ''
+                                          recbutton.innerHTML = '<span>Xác Minh</span>'
+                                          recbutton.setAttribute('onclick','sendRecoveryCode()');
 
+                                       }else{
+                                          recbutton.innerHTML = '<span>Khôi phục</span>'
+                                          recbutton.setAttribute('onclick','recovery()');
+                                          pError.style.display = 'block'
+                                          pError.innerHTML = data.message
+                                          pRecoveryMessage.style.display = 'none'
+                                       }
+                                    })
+                                 }
+                                 function sendRecoveryCode(){
+                                    pRecoveryMessage = document.querySelector('#RecoveryMessage')
+                                    pError = document.querySelector('#recoveryError')
+                                    recoveryEmail = document.querySelector('#recoveryEmail')
+                                    recbutton = document.querySelector('#recbutton');
+                                    formGroup = document.querySelector('#recoveryGroup')
+                                    axios.post('{{url()->route('postReset')}}',{
+                                       _token:'{{csrf_token()}}',
+                                       code:recoveryEmail.value,
+                                       email:globalEmail
+                                    }).then(data=>{
+                                       data = data.data
+                                       if(data.canRecovery){
+                                          pError.style.display = 'none'
+                                          recbutton.setAttribute('onclick','sendRecoveryInfo()');
+                                          recbutton.innerHTML = '<span>Cập Nhật</span>'
+                                          recoveryEmail.setAttribute('placeholder','Nhập mật khẩu mới')
+                                          recoveryEmail.setAttribute('type','password')
+                                          recoveryEmail.value = ''
+                                          input = document.createElement('input');
+                                          input.setAttribute('id','confirmPassword')
+                                          input.setAttribute('type','password')
+                                          input.setAttribute('placeholder','Xác nhận mật khẩu')
+                                          formGroup.appendChild(input)
+                                       }else{
+                                          pError.style.display = 'block'
+                                          pError.innerHTML = data.message
+                                       }
+                                    })
+                                    
+                                    
+                                 }
+                                 function sendRecoveryInfo(){
+                                    pRecoveryMessage = document.querySelector('#RecoveryMessage')
+                                    pError = document.querySelector('#recoveryError')
+                                    recoveryPass1 = document.querySelector('#recoveryEmail')
+                                    recoveryPass2 = document.querySelector('#confirmPassword')
+                                    recbutton = document.querySelector('#recbutton');
+                                    formGroup = document.querySelector('#recoveryGroup')
+                                    if(recoveryPass1.value!= recoveryPass2.value){
+                                       pError.style.display = 'block'
+                                       pError.innerHTML = 'Vui lòng nhập đúng mật khẩu'
+                                    }else{
+                                       axios.post('{{url()->route('postRecovery')}}',{
+                                          _token:'{{csrf_token()}}',
+                                          email:globalEmail,
+                                          password:recoveryPass1.value
+                                       }).then(data=>{
+                                          data = data.data
+                                          if(data.success){
+                                             document.querySelector('#forgot').innerHTML = '<center style="font-size:1.2em;color:green">Cập nhật mật khẩu thành công</center>'
+                                             setTimeout(() => {
+                                                $('#forgot').hide();
+                                                $('#register').fadeOut(0);
+                                                $('#login').fadeIn(500);
+                                                $('#clickregister').show();
+                                                $('#clicklogin').hide();
+                                                document.querySelector('#forgot').innerHTML = '<p class="logintitle" > Khôi phục tài khoản</p><span style="margin-top:10px;width:100px;display:none;" id="RecoveryMessage"></span><form onsubmit="return false;"><div class="inputgroup" id="recoveryGroup"><input id="recoveryEmail" type="text" name="email" placeholder="Email"autocomplete="off"> <br></div><p id="recoveryError" style="color:red;display:none;margin-top:5px"></p><button class="sendnow" id="backlogin"><span>Trở lại</span></button><button class="sendnow" id="recbutton" onclick="recovery()"><span>Khôi phục</span></button></form>'
+                                             }, 1500);
+                                          }
+                                       })
+                                    }
+                                 }
+                              </script>
+                           <li id="clicklogin"><i class="fas fa-sign-in-alt"></i> Đăng nhập</li>
+                           <li id="clickregister"><i class="fas fa-user-plus"></i> Đăng ký</li>
+                           <li style="background: #4166b2">&emsp;<i class="fab fa-facebook-f"></i>&emsp;| Đăng nhập với
+                              facebook</li>
+                           <li style="background-color: #df4a32;"
+                              onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i
+                                 class="fab fa-google-plus-g"></i> | Đăng nhập với
+                              Google</li>
+                        </ul>
+                     </li>
 
-                                        </span>
-                                        <p class="logintitle"> Khôi phục tài khoản</p>
-                                        <form action="">
-
-                                            <div class="inputgroup">
-
-                                                <input type="text" name="phoneormail"
-                                                    placeholder="Email hoặc số điện thoại" autocomplete="off">
-                                            </div>
-                                            <button class="sendnow" id="backlogin"><span>Trở lại</span></button>
-                                            <button class="sendnow" id="recbutton"><span>Khôi phục</span></button>
-                                        </form>
-                                    </div>
-                                    <li id="clicklogin"><i class="fas fa-sign-in-alt"></i> Đăng nhập</li>
-                                    <li id="clickregister"><i class="fas fa-user-plus"></i> Đăng ký</li>
-                                    <li style="background: #4166b2">&emsp;<i class="fab fa-facebook-f"></i>&emsp;| Đăng
-                                        nhập với
-                                        facebook</li>
-                                    <li style="background-color: #df4a32;"
-                                        onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i
-                                            class="fab fa-google-plus-g"></i> | Đăng nhập với
-                                        Google</li>
-                                </ul>
-                            </li>
-
-                        </div>
+                  </div>
                         @endif
                         <div class="cartarea">
                             <li>

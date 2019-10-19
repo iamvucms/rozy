@@ -37,10 +37,32 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        
         $this->middleware('guest')->except('logout');
+       
     }
-    public function Login(){
-        return 'hello';
+    public function Login(Request $req){
+        $credentials = $req->only('email', 'password');
+        if(Auth::attempt($credentials)){
+            return redirect(url()->route('myAccount'));
+        }
+        return redirect(url()->route('home'));
+    }
+    public function Register(Request $req){
+        $validatedData = $req->validate([
+            'name' =>'required|min:3',
+            'email'=>'required|unique:users,email|email:rfc,dns',
+            'password'=>'required|min:6',
+            'phone' =>'required|digits:10'
+        ]);
+        $user = new User;
+        $user->email = $validatedData['email'];
+        $user->password = bcrypt($validatedData['password']);
+        $user->save();
+        Customer::insert(['user_id'=>$user->id,'name'=>$validatedData['name'],'phone'=>$validatedData['phone']]);
+        Auth::loginUsingId($user->id);
+        return redirect(url()->route('home'));
+
     }
     public function GoogleLoginRedirect(){
         return Socialite::driver('google')->redirect();

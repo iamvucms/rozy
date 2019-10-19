@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','HomeController@Index');
+Route::get('/','HomeController@Index')->name('home');
 Route::get('/products/{slug}','ProductController@Product');
 Route::get('/categories/{slug}','CategoryController@Category');
 Route::get('/shop/{slug}','SellerController@Seller');
@@ -27,4 +27,10 @@ Route::get('/GoogleRedirect', 'Auth\LoginController@GoogleLoginRedirect')->name(
 Route::get('/GoogleCallback', 'Auth\LoginController@GoogleCallBackHandler');
 //Authetication
 Route::get('/logout','Auth\LogoutController@Logout')->name('logout')->middleware('auth');
-Route::get('/login','Auth\LoginController@Login')->name('login')->middleware('Account');
+Route::post('/login','Auth\LoginController@Login')->name('login')->middleware('guest');
+//Password Reset
+Route::post('/reset-password', 'ResetPasswordController@sendMail')->name('recovery');
+Route::post('/reset-password-code', 'ResetPasswordController@postReset')->name('postReset');
+Route::post('/reset-recovery-info', 'ResetPasswordController@postRecovery')->name('postRecovery');
+//Register
+Route::post('/register','Auth\LoginController@Register')->name('postRegister')->middleware('guest');

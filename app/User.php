@@ -43,6 +43,6 @@ class User extends Authenticatable
         return $this->hasOne('App\Customer','user_id','id');
     }
     public function getName(){
-        return $this->Customer()->first()->name;
+        return $this->Customer()->first()->name ?? 'Unknown';
     }
 }

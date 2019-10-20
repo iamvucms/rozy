@@ -304,6 +304,7 @@
                         Khuyến mãi <sup id="salepercent">-5%</sup>
                      </li>
                   </div>
+                  
                   @if ($user)
                   <div class="rightoptions">
                      <li class="roption">
@@ -892,6 +893,7 @@
                         id="loadmoretext">Tải thêm <i class="fas fa-chevron-circle-down"></i></span></button>
                </div>
             </div>
+            
             <!-- endflashsales -->
             <!-- categoriesforyou -->
             <div class="catsforyou" id="catsforyou">
@@ -902,175 +904,20 @@
                <button class="catbtn leftarrow"><i class="fas fa-chevron-left"></i></button>
                <button class="catbtn rightarrow"><i class="fas fa-chevron-right"></i></button>
                <div id="cats_slider" class="owl-carousel ">
-
+                  @foreach ($recommandCats as $cat)
                   <div class="item">
                      <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/denwa.png')" class="catimg">
+                     <a href="{{url('/search?cat='.$cat->id)}}">
+                     <p style="background-image:url('{{url($cat->img)}}')" class="catimg">
                               <p></p>
                         </a>
-                        <a href="filter.html">
-                           <p class="catname">Điện thoại</p>
+                        <a href="{{url('/search?cat='.$cat->id)}}">
+                           <p class="catname">{{$cat->name}}</p>
                         </a>
 
                      </div>
                   </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/fuku.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Thời trang</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/dodadung.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Đồ da dụng</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/hon.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Sách</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/kireinishi.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Sức khỏe và làm đẹp</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/bike.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Xe máy</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/kutsu.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Giày dép nam</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/denwa.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Điện thoại</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/fuku.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Thời trang</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/dodadung.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Đồ da dụng</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/hon.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Sách</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/kireinishi.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Sức khỏe và làm đẹp</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/bike.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Xe máy</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="filter.html">
-                           <p style="background-image:url('assets/img/kutsu.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="filter.html">
-                           <p class="catname">Giày dép nam</p>
-                        </a>
-
-                     </div>
-                  </div>
+                  @endforeach
                </div>
             </div>
             <!-- endcategoriesforyou -->
@@ -1083,175 +930,22 @@
                <button class="catbtn leftarrow"><i class="fas fa-chevron-left"></i></button>
                <button class="catbtn rightarrow"><i class="fas fa-chevron-right"></i></button>
                <div id="keys_slider" class="owl-carousel">
-
+                  @foreach ($mostedKeyword[0] as $index => $key)
                   <div class="item">
                      <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/s8.jpg')" class="catimg">
+                        <a href="{{url('/search?cat='.$key['idcat'].'&keyword='.$key['keyword'])}}">
+                           <p style="background-image:url('{{url($mostedKeyword[1][$index]->Avatar()->src ?? '')}}')" class="catimg">
                               <p></p>
                         </a>
-                        <a href="result.html">
-                           <p class="catname">Galaxy S8 2019</p>
+                        <a href="{{url('/search?cat='.$key['idcat'].'&keyword='.$key['keyword'])}}">
+                           <p class="catname">{{$key['keyword']}}</p>
                         </a>
 
                      </div>
                   </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/jean.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Áo khoát jean</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/sieutoc.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Ấm đun siêu tốc</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/ttdgbn.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Tuổi Trẻ Đáng Giá Bao Nhiêu</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/son.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Son Kem Lì Mini Dupe Fenty</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/yamaha.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Yamaha RC 2019 </p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/newkutsu.jpeg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Giày Sneaker Nam</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/s8.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Galaxy S8 2019</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/jean.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Áo khoát jean</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/sieutoc.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Ấm đun siêu tốc</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/ttdgbn.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Tuổi Trẻ Đáng Giá Bao Nhiêu</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/son.jpg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Son Kem Lì Mini Dupe Fenty</p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/yamaha.png')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Yamaha RC 2019 </p>
-                        </a>
-
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="catbox">
-                        <a href="result.html">
-                           <p style="background-image:url('assets/img/newkutsu.jpeg')" class="catimg">
-                              <p></p>
-                        </a>
-                        <a href="result.html">
-                           <p class="catname">Giày Sneaker Nam</p>
-                        </a>
-
-                     </div>
-                  </div>
+                  @endforeach
+                  
+                  
                </div>
             </div>
             <!-- endsearchtrending -->
@@ -1267,7 +961,7 @@
                   <p>DÀNH RIÊNG CHO BẠN</p>
                </div>
                <div class="salesproducts" id="foryou">
-                  @foreach ($products as $product)
+                  @foreach ($recommandProducts as $product)
                   <div class="product">
                      <div class="imgbox">
                         <a href="#viewflash">
@@ -1326,10 +1020,6 @@
                   @endforeach
 
                </div>
-               <div class="btnloadmore">
-                  <button class="loadmore"><span><i class="fas fa-spinner loadingicon"></i></span><span
-                        id="loadmoretext">Tải thêm <i class="fas fa-chevron-circle-down"></i></span></button>
-               </div>
             </div>
             <!-- endforyou -->
             <div class="centerbanner">
@@ -1338,7 +1028,7 @@
             </div>
          </div>
          <!-- endbodycenter -->
-
+        
       </div>
       <!-- endbody -->
       <!-- footer -->

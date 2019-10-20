@@ -4,9 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Category;
 class Product extends Model
 {
     protected $table = 'products';
+    
+    //RecommandProduct
+    public function ProductForYou($limit){
+        $category = new Category();
+        $cats = $category->recommandCategories(1);
+        $equalCat =[];
+        foreach($cats as $cat){
+            $equalCat[] = $cat->id;
+        }
+        $products = $this->whereIn('idcat',$equalCat)->limit($limit)->get();
+        return $products;        
+    }
     //Discount Relationship
     public function Discount()
     {

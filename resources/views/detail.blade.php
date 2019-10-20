@@ -700,7 +700,7 @@
                                     let preCount = {{ $myCart-> getQuantityAll()
                                 }}
                                 let btnAddCart = document.querySelector('#btnAddCart')
-                                btnAddCart.innerHTML = ' <img style="width:45px" src="{{asset('assets / img / loading.svg')}}" alt="">'
+                                btnAddCart.innerHTML = ' <img style="width:45px" src="{{asset('assets/img/loading.svg')}}" alt="">'
                                 let quan = parseInt(document.querySelector('#quantity').value)
                                 let id = {{ $product-> id}}
                                 axios.post('{{url()->route('addCart')}}', {

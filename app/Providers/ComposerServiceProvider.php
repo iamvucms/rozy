@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Category;
 use App\Cart;
+use App\Product;
+use App\Keyword;
 use Illuminate\Support\Facades\Auth;
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,11 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('categories',Category::get());
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());
+        });
+        view()->composer('index', function ($view) {
+            $view->with('recommandCats',(new Category)->recommandCategories());
+            $view->with('recommandProducts',(new Product())->ProductForYou(60));
+            $view->with('mostedKeyword',(new Keyword)->MostSearchKeyword());
         });
         
     }

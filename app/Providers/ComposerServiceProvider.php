@@ -32,10 +32,13 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());
         });
-        view()->composer('index', function ($view) {
+        View::composer('index', function ($view) {
             $view->with('recommandCats',(new Category)->recommandCategories());
             $view->with('recommandProducts',(new Product())->ProductForYou(60));
             $view->with('mostedKeyword',(new Keyword)->MostSearchKeyword());
+        });
+        View::composer(['account','cart','detail'], function ($view) {
+            $view->with('recommandProducts',(new Product())->ProductForYou(20));
         });
         
     }

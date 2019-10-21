@@ -39,8 +39,14 @@ class User extends Authenticatable
     public function Avatar(){
         return $this->hasOne('App\Image','id_avt_user','id');
     }
+    public function getAvatar(){
+        return $this->Avatar()->first()->src ?? null;
+    }
     public function Customer(){
         return $this->hasOne('App\Customer','user_id','id');
+    }
+    public function getInfo(){
+        return $this->Customer()->first();
     }
     public function getName(){
         return $this->Customer()->first()->name ?? 'Unknown';

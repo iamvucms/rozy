@@ -15,7 +15,7 @@ Route::get('/','HomeController@Index')->name('home');
 Route::get('/products/{slug}','ProductController@Product');
 Route::get('/categories/{slug}','CategoryController@Category');
 Route::get('/shop/{slug}','SellerController@Seller');
-Route::get('/user/me','UserController@Profile')->name('myAccount')->middleware('auth');
+
 Route::get('/search','FilterController@Search')->name('filter');
 //Cart Route
 Route::get('/cart','CartController@Cart');
@@ -28,6 +28,12 @@ Route::get('/GoogleCallback', 'Auth\LoginController@GoogleCallBackHandler');
 //Authetication
 Route::get('/logout','Auth\LogoutController@Logout')->name('logout')->middleware('auth');
 Route::post('/login','Auth\LoginController@Login')->name('login')->middleware('guest');
+Route::get('/user/me','UserController@Profile')->name('myAccount')->middleware('auth');
+Route::post('/user/me','UserController@postProfile')->name('updateAccount')->middleware('auth');
+Route::get('/user/orders','UserController@Order')->name('myOrders')->middleware('auth');
+Route::post('/user/orders','UserController@postOrder')->name('updateOrders')->middleware('auth');
+Route::get('/user/notify','UserController@Notify')->name('myNotify')->middleware('auth');
+Route::post('/user/notify','UserController@postNotify')->name('updateNotify')->middleware('auth');
 //Password Reset
 Route::post('/reset-password', 'ResetPasswordController@sendMail')->name('recovery');
 Route::post('/reset-password-code', 'ResetPasswordController@postReset')->name('postReset');

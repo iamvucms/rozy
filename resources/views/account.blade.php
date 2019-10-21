@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Giỏ Hàng Của Bạn</title>
+    <title>{{$title ?? 'Tài khoản của bạn'}}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/cart.css">
-    <link rel="stylesheet" href="assets/css/slide.min.css">
-    <link rel="stylesheet" href="assets/css/slide.theme.min.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+	<link rel="stylesheet" href="../assets/css/cart.css">
+	<link rel="stylesheet" href="../assets/css/account.css">
+    <link rel="stylesheet" href="../assets/css/slide.min.css">
+    <link rel="stylesheet" href="../assets/css/slide.theme.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../assets/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="../assets/css/jquery-ui.theme.min.css">
     <script src="../assets/js/axios.js"></script>
 </head>
 
@@ -178,23 +179,23 @@
                                     Gợi Ý Cho Bạn:
                                 </p>
                                 <ul id="idealist">
-                                    <li><a href="result.html"><img src="assets/img/denwa.png"><span>SamSung Galaxy
+                                    <li><a href="result.html"><img src="../assets/img/denwa.png"><span>SamSung Galaxy
                                                 A30</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product1.png"><span>iPhone
+                                    <li><a href="result.html"><img src="../assets/img/product1.png"><span>iPhone
                                                 X</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product.jpg"><span>Móc
+                                    <li><a href="result.html"><img src="../assets/img/product.jpg"><span>Móc
                                                 Khóa</span></a></li>
                                     <li><a href="result.html"><img
-                                                src="assets/img/product2.jpg"><span>SmartPhone</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product4.jpg"><span>Chuột Máy
+                                                src="../assets/img/product2.jpg"><span>SmartPhone</span></a></li>
+                                    <li><a href="result.html"><img src="../assets/img/product4.jpg"><span>Chuột Máy
                                                 Tính</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product5.jpg"><span>Đồng
+                                    <li><a href="result.html"><img src="../assets/img/product5.jpg"><span>Đồng
                                                 Hồ</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/mega14.jpg"><span>Sách Hay</span></a>
+                                    <li><a href="result.html"><img src="../assets/img/mega14.jpg"><span>Sách Hay</span></a>
                                     </li>
-                                    <li><a href="result.html"><img src="assets/img/denwa.png"><span>Điện
+                                    <li><a href="result.html"><img src="../assets/img/denwa.png"><span>Điện
                                                 Thoại</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/bike.png"><span>Xe máy
+                                    <li><a href="result.html"><img src="../assets/img/bike.png"><span>Xe máy
                                                 Sirius</span></a></li>
                                 </ul>
                                 <p class="ideatitle">
@@ -486,304 +487,236 @@
 
             <!-- bodycenter -->
             <div class="bodycenter">
-                <div class="mobilecats">
-                    <p>DANH MỤC SẢN PHẨM</p>
-                    <div class="mcats">
-                        <div class="boxcat">
-                            <img src="assets/img/dodadung.png" alt="">
-                            <a href="#viewcat">
-                                <p>Đồ da dụng</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/hon.png" alt="">
-                            <a href="#viewcat">
-                                <p>Văn phòng phẩm</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/denwa.png" alt="">
-                            <a href="#viewcat">
-                                <p>Điện thoại</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/fuku.png" alt="">
-                            <a href="#viewcat">
-                                <p>Thời trang<br>Phụ kiện</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/kireinishi.png" alt="">
-                            <a href="#viewcat">
-                                <p>Sức khỏe<br>làm đẹp</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/oto.jpg" alt="">
-                            <a href="#viewcat">
-                                <p>Xe máy, Ô tô</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/headphone.png" alt="">
-                            <a href="#viewcat">
-                                <p>Phụ Kiện<br>Thiết Bị Số</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/microwave.jpg" alt="">
-                            <a href="#viewcat">
-                                <p>Điện Gia Dụng</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/fan.png" alt="">
-                            <a href="#viewcat">
-                                <p>Nhà Cửa<br> Đời Sống</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/food.jpg" alt="">
-                            <a href="#viewcat">
-                                <p>Hàng Tiêu Dùng<br>Thực Phẩm</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/camera.png" alt="">
-                            <a href="#viewcat">
-                                <p>Máy Ảnh<br>Quay Phim</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/toy.png" alt="">
-                            <a href="#viewcat">
-                                <p>Đồ chơi<br>Mẹ & Bé</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/tent.jpg" alt="">
-                            <a href="#viewcat">
-                                <p>Thể Thao - Dã Ngoại</p>
-                            </a>
-                        </div>
-                        <div class="boxcat">
-                            <img src="assets/img/fridge.png" alt="">
-                            <a href="#viewcat">
-                                <p>Điện Tử - Điện Lạnh</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <div class="centerbanner" id="mobliebanner">
-                    <a href="#centerbanner"><img src="assets/img/topbanner.png"></a>
+                    <a href="#centerbanner"><img src="../assets/img/topbanner.png"></a>
                 </div>
                 <!-- breadcrumb -->
                 <div class="breadcrumb">
                     <ul>
                         <li><a href="{{url('/')}}"><i class="fas fa-home"></i><span> Trang chủ</span></a></li>
                         <i class="fas fa-chevron-right breadarrow"></i>
-                        <li><a href="{{url('/search')}}"><i class="fas fa-store"></i><span> Cửa hàng</span></a></li>
+                        <li><a href="{{url()->route('myAccount')}}"><i class="fas fa-user"></i><span> Tài khoản
+                                </span></a></li>
                         <i class="fas fa-chevron-right breadarrow"></i>
-                        <li class="active"><a href="#cart"><i class="fas fa-shopping-cart"></i> Giỏ hàng
-                                <small>({{$myCart->getQuantityAll()}} Sản
-                                    phẩm)</small></a></li>
+                        <li class="active"><a href="#cart"><i class="fas fa-info-circle"></i> Thông tin cá nhân
+                            </a></li>
 
                     </ul>
                 </div>
-                <!-- endbreadcrumb -->
-                <div class="cartlist">
-                    <div class="groupcarts">
-                        <div class="listproducts">
-                            @if ($myCart->getTotal()>0)
-                            <table>
-                                <tr>
-                                    <th>Sản phẩm</th>
-                                    <th>Đơn giá</th>
-                                    <th>Số lượng</th>
-                                    <th>Thao tác</th>
-                                </tr>
-                                <form id="meCart" action="{{url()->route('editCart')}}" onsubmit="return false"
-                                    method="POST">
-                                    @csrf
-
-                                    @foreach ($myCart->getCart() as $myProduct)
-                                    <tr data-id="{{$myProduct['id']}}">
-                                        <td class="productcart">
-                                            <img src="{{url($myProduct['avatar'])}}" alt="">
-                                            <a
-                                                href="{{url('/products/'.App\Product::where('id',$myProduct['id'])->first()->slug)}}">
-                                                <p>{{$myProduct['name']}}</p>
-                                            </a>
-                                        </td>
-                                        <td class="pricecart">{{number_format($myProduct['price'])}}<sup>VND</sup></td>
-                                        <td>
-                                            <div class="quantitycart"><button>-</button><input style="font-size:1em;"
-                                                    name="quantity[{{$myProduct['id']}}]" type="text"
-                                                    value="{{$myProduct['quantity']}}"><button>+</button>
+				<!-- endbreadcrumb -->
+				<div class="myAccount">
+					<div class="rbar">
+						<div class="boxAvt">
+							<img src="{{url($user->getAvatar() ??'https://png.pngtree.com/svg/20160601/unknown_avatar_182562.png') }}" alt="" class="userAvt"> <br>
+							<span class="uName"><b>{{$user->getName()}}</b> </span>
+						</div>
+						<ul id="menubar">
+							<li @if ($branch=="account")
+								class=active
+							@endif><a href="{{url()->route('myAccount')}}"><i class="fas fa-users-cog"></i> Tài khoản của tôi</a></li>
+							<li @if ($branch=="order")
+                            class=active
+                        @endif><a href="{{url()->route('myOrders')}}"><i class="fas fa-clipboard"></i> Đơn hàng</a></li>
+							<li @if ($branch=="notify")
+                            class=active
+                        @endif><a href="{{url()->route('myNotify')}}"><i class="fas fa-bell"></i> Thông báo</a></li>
+							<li><a href="{{url()->route('logout')}}"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a></li>
+							<li><a href=""></a></li>
+						</ul>
+					</div>
+					<div class="manageBox">
+						<div class="mAccount" @if ($branch=="account")
+                        style="display:block"
+                        @endif >
+							<div class="mtitle">
+								<h3>Hồ sơ của tôi</h3>
+								<small style="color:#333">Quản lý thông tin hồ sơ để bảo mật tài khoản</small>
+                            </div>
+                            @php
+                                $errors = $errors->toArray();
+                            @endphp
+							<div class="mflex">
+								<div class="mTable">
+									
+								<form enctype="multipart/form-data" action="{{url()->route('updateAccount')}}" method="POST">
+									@csrf
+										<table >
+										<tr>
+                                            <td>Tên</td>
+                                            <td><input @if (isset($errors['name']))
+                                                class=error
+                                            @endif type="text" name="name" value="{{$user->getInfo()->name}}">
+                                            </td>
+										</tr>
+										<tr>
+											<td>Số Điện Thoại</td>
+											<td><input  @if (isset($errors['phone']))
+                                                class=error
+                                            @endif type="text" name="phone" value="{{$user->getInfo()->phone}}"></td>
+										</tr>
+										<tr>
+											<td>Địa Chỉ</td>
+											<td><input @if (isset($errors['address']))
+                                                class=error
+                                            @endif type="text" name="address" value="{{$user->getInfo()->address}}"></td>
+										</tr>
+										<tr>	
+											<td>Giới Tính</td>
+											<td><input type="radio" name="gender" value="1" @if ($user->getInfo()->gender==1)
+												checked=checked
+											@endif> Nam
+												<input type="radio" name="gender" value="2" @if ($user->getInfo()->gender==2)
+												checked=checked
+											@endif> Nữ</td>
+										</tr>
+										<tr>
+											<td>Mật Khẩu Mới</td>
+											<td><input @if (isset($errors['pass']) || isset($errors['cpass']))
+                                                class=error
+                                            @endif type="password" name="pass""></td>
+										</tr>
+										<tr>
+											<td>Nhập Lại Mật Khẩu</td>
+											<td><input @if (isset($errors['pass']) || isset($errors['cpass']))
+                                                class=error
+                                            @endif type="password" name="cpass""></td>
+										<tr>
+											<td></td>
+											<td><button type="submit">Cập Nhật</button></td>
+										</tr>
+									</table>
+								
+							</div>
+							<div class="avtArea">
+							<img id="currentAvt" class="userAvt" src="{{url($user->getAvatar() ??'https://png.pngtree.com/svg/20160601/unknown_avatar_182562.png') }}" alt=""><br>
+								<label for="avatar" id="btnAvatar">Chọn Ảnh</label>
+								<input onchange="readURL(this)" accept="image/gif, image/jpeg, image/png" style="display:none" type="file" name="avatar" id="avatar"><br>
+								<small class="updatenote" >
+									Định dạng:.JPEG, .PNG
+								</small>
+							</div>
+							<script>
+								function readURL(input) {
+									if (input.files && input.files[0]) {
+										var reader = new FileReader();
+										reader.onload = function (e) {
+											document.querySelector('#currentAvt').setAttribute('src',e.target.result)
+										};
+										reader.readAsDataURL(input.files[0]);
+									}
+								}
+							</script>
+							</div>
+						</form>
+                        </div>
+                        <div class="mOrder" @if ($branch=="order")
+                            style="display:block"
+                            @endif>
+                            <div class="mFlex">
+								<ul id="mTab">
+                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" class="active" data-tab="0">Tất cả</li>
+                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="1">Chờ thanh toán</li>
+                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="2">Chờ lấy hàng</li>
+                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="3">Đang giao</li>
+                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="4">Đã giao</li>
+                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="5">Đã huỷ</li>
+                                </ul>
+                               
+                                <div class="trline" style="height:3px;background:#ddd;margin-top:25px"></div>
+                                <div class="orderBox">
+                                    <div class="order" data-tab="1">
+                                        <div class="shopLine">
+                                            <div class="shopInfo">
+                                                <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" alt="" class="shopavt">
+                                                <span class="shopName">VMOBILE</span>
+                                                <button><a href=""><i class="fas fa-store"></i> Xem shop</a></button>
                                             </div>
-                                        </td>
-                                        <td><a href="javascript:avoid(0)"
-                                                onclick="delCart({{$myProduct['id']}});console.log(this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement))"><button
-                                                    class="delproduct"><i class="fas fa-trash"></i></button></a></td>
-                                    </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td colspan="4" id="freeship">
-                                            <img src="assets/img/shipped.png" alt="">
-                                            <p>miễn phí vận chuyển cho đơn hàng từ ₫200.000 (giảm tối đa ₫40.000) </p>
-                                        </td>
-                                    </tr>
-                            </table>
-                            <div class="updatecart">
-                                <button class="backtobuy"> <a style="color:#25586b" href="{{url('/search')}}"><i
-                                            class="fas fa-arrow-left"></i> Tiếp tục mua
-                                        hàng </a></button>
-                                <a href="">
-                                    <button class="updatecartbtn"
-                                        onclick="document.querySelector('#meCart').submit()">Cập nhật</button>
-                                </a>
-                            </div>
-                            </form>
-                            <script>
-                                function delCart(id) {
-                                    axios.post('{{url()->route('deleteCart')}}/', { id: id }).then(data => {
-                                        setTimeout(() => {
-                                            if (data.data.success) {
-                                                let count = 0;
-                                                let stringLi = ''
-                                                data.data.dataCart.map(product => {
-                                                    count += product.quantity
-                                                    stringLi += '<li><img src="../' + product.avatar + '" alt="" class="cartimg"><span class="cartname"><a href="#">' + product.name + ' </a></span><span class="cartinfo"><span class="cartcost">' + new Intl.NumberFormat('ja-JP').format(product.price) + ' <sup>VND</sup></span> x<span class="quantity">' + product.quantity + '</span></span><span class="closecart" onclick="delCart(' + product.id + ');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
-                                                })
-                                                if (count == 0) {
-                                                    window.location.reload()
-                                                    return;
-                                                } else {
-                                                    document.querySelectorAll('table tr').forEach(e => {
-                                                        if (e.dataset.id == id) {
-                                                            console.log(document.querySelector('table'))
-                                                            document.querySelector('table tbody').removeChild(e)
-                                                        }
-                                                    })
-                                                    document.querySelector('#cartProducts').innerHTML = stringLi
-                                                }
-                                                document.querySelector('#myCart').setAttribute('style', 'display:block')
-                                                setTimeout(() => {
-                                                    document.querySelector('#myCart').removeAttribute('style')
-                                                }, 5000);
-                                                document.querySelector('#cartCount').innerHTML = count
-
-
-                                            }
-                                        }, 0);
-                                    })
-                                }
-                            </script>
-                        </div>
-                        <div class="paynow">
-                            <div class="ptitle">
-                                Tổng tiền hàng
-                            </div>
-                            <div class="eachprice">
-                                @foreach ($myCart->getCart() as $myProduct)
-                                <li>{{$myProduct['name']}} x {{$myProduct['quantity']}}
-                                    <span>{{number_format($myProduct['quantity'] * $myProduct['price'])}}<sup>đ</sup>
-                                    </span>
-                                </li>
-                                @endforeach
-                                <li>Thành tiền:<span>{{number_format($myCart->getTotal())}}<sup>đ</sup></span></li>
-                                <li><a href="{{url('/payment')}}"><button class="paynowbtn">THANH TOÁN NGAY</button></a>
-                                </li>
-                            </div>
-                            <div class="coupon">
-                                <p class="cptitle"><i class="fas fa-tags"></i> Mã khuyến mãi</p>
-                                <div class="coupongroup">
-                                    <input type="text"><button>Áp dụng</button>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-
-                </div>
-                @if($myCart->getTotal()<=0) <h3 style="padding:50px 0px;text-align:center">Chưa có sản phẩm nào trong
-                    giỏ hàng của bạn.</h3>
-                    @endif
-                    <!-- flashsales -->
-                    <div class="flashsales" id="foryou">
-                        <div class="salestitle">
-                            CÓ THỂ BẠN CŨNG THÍCH
-                        </div>
-                        <div class="salesproducts">
-                            @foreach ($recommandProducts as $product)
-                            <div class="product">
-                                <div class="imgbox">
-                                    <a href="#viewflash">
-                                        <img src="{{isset($product->Avatar()->src) ? url($product->Avatar()->src) : 'assets/img/product5.jpg'}}"
-                                            alt="">
-                                    </a>
-                                    <div class="groupcart">
-                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                    class="fas fa-heart"></i></button></a>
-                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                    class="fas fa-cart-plus"></i></button></a>
+                                            <div class="ostt">
+                                                <span>ĐÃ GIAO</span>
+                                            </div>
+                                        </div>
+                                        <div class="productLine">
+                                            <div class="oProduct">
+                                                <div class="imgPro">
+                                                    <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" alt="">
+                                                </div>
+                                                <div class="namePro">
+                                                    <p>lipsum10 </p>
+                                                    <p>Số lượng: 1 </p>
+                                                </div>
+                                                <div class="pricePro">
+                                                    <span>500.000đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="optionLine">
+                                            <div class="total">
+                                                <span>Tổng số tiền: <span class="bigPrice">
+                                                        5 tỷ đ</span></span>
+                                            </div>
+                                            <div class="groupBtn">
+                                                <button onclick="console.log(this.parentElement.parentElement.childNodes[5].style.display='flex')">Chi Tiết</button>
+                                                <button onclick="CancelOrder(id)">Huỷ Đơn Hàng</button>
+                                            </div>
+                                            <div class="oDetail">
+                                                <div class="oAddress">
+                                                    <h2>Thông tin người nhận</h2>
+                                                    <p class="oName">Nguyễn Hoàng Vũ</p>
+                                                    <p>84766730945</p>
+                                                    <p>Tổ 2, thôn An Tân, Xã Hòa Phong, Huyện Hòa Vang, Đà Nẵng
+                                                    </p>
+                                                    
+                                                </div>
+                                                <div class="oPrice">
+                                                    <h2>Chi tiết thanh toán</h2>
+                                                    <table>
+                                                        <tr>
+                                                            <td>Tổng tiền hàng</td>
+                                                            <td>₫78.000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Vận chuyển-Standard Express</td>
+                                                            <td>₫78.000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Miễn Phí Vận Chuyển</td>
+                                                            <td>₫78.000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tổng cộng</td>
+                                                            <td>₫78.000</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-
                                 </div>
-                                @php
-                                $discount = $product->AvailableDiscount()->get();
-                                @endphp
-                                @if (count($discount)>0)
-                                <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
-                                @endif
-
-                                <div class="product_name"><a
-                                        href="{{url('./products/'.$product->slug)}}">{{$product->name}}</a>
-                                </div>
-                                <div class="product_price">
-                                    @if (count($discount)>0)
-                                    <span
-                                        class="newprice">{{number_format($product->price-$discount[0]->percent/100*$product->price)}}
-                                        <sup>đ</sup></span>
-                                    <span class="oldprice">{{number_format($product->price)}} <sup>đ</sup></span>
-                                    @else
-                                    <span class="newprice">{{number_format($product->price)}} <sup>đ</sup></span>
-                                    @endif
-
-                                </div>
-                                <div class="rating">
-                                    <p>
-                                        @for ($i = 1; $i <= $product->getAvgReview(); $i++)
-                                            <i class="fas fa-star" style="color:orange" id="star"></i>
-                                            @endfor
-                                            @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
-                                                <i class="fas fa-star" id="star"></i>
-                                                @endfor
-                                                <span id="review_count">({{$product->getCountReview()}})</span>
-                                    </p>
-                                    <span class="selled"><i class="fas fa-check-double"></i>
-                                        {{$product->getTotalQuantitySelled()}}</span>
-                                </div>
-                                <div class="supaddress">
-
-                                    {{$product->city_address}}
-                                </div>
-
+                                <script>
+                                    function switchTab(type){
+                                        
+                                    }
+                                    function CancelOrder(id){
+                                        axios.post()
+                                    }
+                                </script>
                             </div>
-                            @endforeach
                         </div>
-                        <div class="btnloadmore">
-                            <button class="loadmore"><span><i class="fas fa-spinner loadingicon"></i></span><span
-                                    id="loadmoretext">Tải thêm <i
-                                        class="fas fa-chevron-circle-down"></i></span></button>
+                        <div class="mNotify" @if ($branch=="notify")
+                            style="display:block"
+                            @endif>
+                            <div class="mtitle">
+								<h3>Hồ sơ của tôi</h3>
+								<small style="color:#333">Quản lý thông tin hồ sơ để bảo mật tài khoản</small>
+                            </div>
                         </div>
-                    </div>
-                    <!-- endflashsales -->
-                    <!-- categoriesforyou -->
+					</div>
+				</div>
+                <!-- flashsales -->
+                <!-- endflashsales -->
+                <!-- categoriesforyou -->
 
-                    <!-- endsearchtrending -->
+                <!-- endsearchtrending -->
 
             </div>
             <!-- endbodycenter -->
@@ -887,27 +820,27 @@
                     <p class="suptitle">Các nhà cung cấp chính</p>
                     <div class="supplier">
 
-                        <a href="#viewsupplier"><img src="assets/img/apple.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/toshiba.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/lips.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/adidas.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/fashion.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/hp.png" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/fpt.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/amzon.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/fashion_2.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/apple.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/toshiba.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/lips.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/adidas.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/fashion.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/hp.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/fpt.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/amzon.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/fashion_2.png" alt=""></a>
                     </div>
                 </div>
                 <div class="sups" id="finaltop">
                     <p class="suptitle">Đối tác vận chuyển</p>
                     <div class="supplier">
 
-                        <a href="#viewsupplier"><img src="assets/img/fedex.png" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/ghtk.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/ghn.png" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/gh247.png" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/viettel.jpg" alt=""></a>
-                        <a href="#viewsupplier"><img src="assets/img/grab.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/fedex.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/ghtk.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/ghn.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/gh247.png" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/viettel.jpg" alt=""></a>
+                        <a href="#viewsupplier"><img src="../assets/img/grab.png" alt=""></a>
 
                     </div>
                     <button id="gotop"><i class="fas fa-arrow-up"></i></button>
@@ -917,12 +850,11 @@
         <!-- endfooter -->
     </div>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/slide.min.js"></script>
-    <script src="assets/js/lazy.js"></script>
-    <!-- <script src="assets/js/lazy.plugin.js"></script> -->
-    <script src="assets/js/jquery-ui.js"></script>
-    <script src="assets/js/cart.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/slide.min.js"></script>
+    <script src="../assets/js/lazy.js"></script>
+    <!-- <script src="../assets/js/lazy.plugin.js"></script> -->
+    <script src="../assets/js/jquery-ui.js"></script>
+    <script src="../assets/js/cart.js"></script>
 </body>
-
 </html>

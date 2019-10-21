@@ -80,6 +80,10 @@ class Product extends Model
     public function Seller(){
         return $this->hasOne('App\Seller','id','idsell')->first();
     }
+    public function isNew($datediff=15){
+        $products = $this->whereRaw("DATEDIFF(now(),create_at) >0 AND DATEDIFF(now(),create_at) < $datediff")->where('id',$this->id);
+        return $products->count()>0;
+    }
     //Property Relationships
     public function Property(){
         return $this->hasOne('App\Property','id','id');

@@ -1,0 +1,279 @@
+.myAccount{
+    margin-top: 10px;
+    display: flex;
+}
+.myAccount .rbar{
+    width:200px;
+    overflow: hidden;
+    padding-right: 20px;
+}
+.mOrder,.mNotify,.mAccount{
+    display: none;
+}
+#menubar a{
+    white-space: nowrap;
+    text-transform: capitalize;
+    color:#081929;
+    transition: all ease 0.2s;
+}
+#menubar a:hover{
+    color:tomato;
+    margin-left:5px;
+}
+#menubar a i{
+    width:20px;
+}
+#menubar li.active a{
+    color:tomato;
+}
+#menubar li{
+    
+    height:35px;
+    line-height: 35px;
+}
+.boxAvt{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.userAvt{
+    width:80px;
+    height:80px;
+    border-radius: 50%;
+    padding:5px;
+    border:2px dashed tomato;
+}
+.myAccount .manageBox{
+    width:calc(100% - 20px);
+    background:white;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25)
+}
+.mflex{
+    display: flex;
+    margin-top: 20px;
+}
+
+.mAccount{
+    padding: 20px 30px;
+
+}
+.mtitle{
+    text-transform: capitalize;
+    padding-bottom:10px;
+    border-bottom: 1px solid #ddd;
+}
+.mTable{
+    width: calc(100% - 300px);
+}
+.mTable table{
+    width:100%;
+}
+.mTable table tr td{
+    height:45px;
+    line-height: 45px;
+}
+.mTable table tr td input[type=text].error,.mTable table tr td input[type=password].error{
+    border:1px solid red;
+}
+.mTable table tr td input[type=text],.mTable table tr td input[type=password]{
+    display: block;
+    height:35px;
+    width:100%;
+    border:none;
+    border:0.5px solid #ddd;
+    border-radius: 4px;
+    padding-left: 15px;
+    font-size: 0.9em;;
+}
+.mTable table tr td input[type=radio]{
+    margin-right: 5px;
+}
+.mTable table tr td button{
+    height:40px;
+    padding:0px 15px;
+    border:none;
+    border:0.5px solid #ddd;
+    border-radius: 4px;
+    background: #ee4d2d;
+    cursor: pointer;
+    color:white;
+    outline: none;
+    font-size: 1em;;
+}
+.mTable table tr td:first-child{
+    width:150px;
+    font-size: 0.9em;
+    color:rgba(85,85,85,.8);
+    text-align: right;
+    padding-right:15px;
+}
+.avtArea{
+    width:280px;
+    padding-left: 20px;
+    text-align: center;
+}
+#btnAvatar{
+    display: inline-block;
+    height:40px;
+    line-height: 40px;
+    width:100px;
+    text-align: center;
+    border:none;
+    border:0.5px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    font-size: 0.9em;;
+}
+.updatenote{
+    color:rgba(85,85,85,.8)
+}
+#mTab{
+    columns: 6;    
+}
+#mTab li{
+    text-align: center;
+    height:50px;
+    line-height: 50px;
+    cursor: pointer;
+}
+#mTab li.active{
+    border-bottom: 2px solid #ee4d2d;
+    color:#ee4d2d;
+}
+.shopLine{
+    display: flex;
+    height:50px;
+    line-height: 50px;
+    border-bottom:1px solid #ddd;
+}
+.ostt{
+    width:100px;
+    padding-right: 15px;
+    text-align: right;
+    color:#ee4d2d;
+}
+.shopInfo{
+    padding-left: 10px;
+    width:calc(100% - 100px);
+}
+.shopInfo button{
+    padding:5px 5px;
+    border:none;
+    border-radius: 2px;
+    background:#00bfa5
+}
+.shopInfo button a{
+    color:white
+}
+.shopavt{
+    height: 20px;
+    width:20px;
+    border-radius: 50%;
+    vertical-align: text-top;
+}
+.oProduct{
+    display: flex;
+    padding:15px;
+    border-bottom: 1px solid #ddd;
+}
+.imgPro{
+    width:80px;
+}
+.imgPro img{
+    width:80px;
+    height: 80px;
+}
+.pricePro{
+    text-align: right;
+    width:150px;
+    color:#ee4d2d
+}
+.namePro{
+    width:calc(100% - 230px);
+    padding:0px 10px;
+
+}
+.optionLine{
+    margin-top: 40px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.total{
+    padding-right: 15px;
+    text-align: right;
+    padding-bottom: 15px;
+}
+.bigPrice{
+    font-size: 1.5em;
+    color:#ee4d2d
+}
+.groupBtn{
+    padding-right: 15px;
+    text-align: right;
+    margin-bottom: 20px;
+}
+.groupBtn button{
+    height: 40px;
+    padding:0px 20px;
+    border:none;
+    border:1px solid #ddd;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.groupBtn button:first-child{
+    background: #ee4d2d;
+    color:white;
+}
+.oDetail{
+    transition: all ease 0.2s;
+    display: none;
+    padding:15px;
+    border-top: 2px solid #ddd;
+}
+.oAddress{
+    width:250px;
+    font-size: 0.9em;
+    line-height: 30px;
+    color:rgba(0,0,0,.54);
+    padding-right: 30px;
+    border-right: 1px solid #ddd;
+}
+.oAddress h2{
+    color:black;
+    font-weight: bold;
+}
+.oName{
+    color:black
+}
+.oPrice{
+    width:calc(100% - 250px);
+    padding-left:30px;
+}
+.oPrice table{
+    width: 100%;
+    
+}
+.oPrice table td{
+    border:1px solid #ddd;
+    height:35px;
+    line-height: 35px;
+    font-size: 0.9em;
+}
+.oPrice table td:first-child{
+    width:calc(100% - 150px);
+    color:rgba(0,0,0,.54);
+    text-align: right;
+    padding-right: 20px;
+}
+.oPrice table td:last-child{
+    width:150px;
+    text-align: right;
+    padding-right: 10px;
+}
+.oPrice table tr:last-child td:last-child{
+    color:#ee4d2d;
+    font-size: 1.3em;
+}

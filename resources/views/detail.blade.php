@@ -1096,7 +1096,7 @@
                                 @foreach ($product->getReviews() as $review)
                                 <div class="rv">
                                     <div class="rvauthor">
-                                        <img src="{{url($review->avatar ?? '')}}" alt="">
+                                        <img  src="{{url($review->Customer()->first()->getAvatar() ?? '')}}" alt="">
                                         <div>
                                             <p>{{$review->whoWrite()}}</p>
                                             <p>
@@ -1141,669 +1141,67 @@
                     <div class="salestitle">
                         CÓ THỂ BẠN CŨNG THÍCH
                     </div>
-                    <div class="salesproducts">
+                    <div class="salesproducts" id="foryou">
+                  @foreach ($recommandProducts as $product)
+                  <div class="product">
+                     <div class="imgbox">
+                        <a href="#viewflash">
+                           <img
+                              src="{{isset($product->Avatar()->src) ? url($product->Avatar()->src) : 'assets/img/product5.jpg'}}"
+                              alt="">
+                        </a>
+                        <div class="groupcart">
+                           <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
+                                    class="fas fa-heart"></i></button></a>
+                           <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                                    class="fas fa-cart-plus"></i></button></a>
+                        </div>
+                        @if ($product->isNew())
+                           <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
+                        @endif
+                     </div>
+                     @php
+                     $discount = $product->AvailableDiscount()->get();
+                     @endphp
+                     @if (count($discount)>0)
+                     <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
+                     @endif
 
+                     <div class="product_name"><a href="{{url('./products/'.$product->slug)}}">{{$product->name}}</a>
+                     </div>
+                     <div class="product_price">
+                        @if (count($discount)>0)
+                        <span
+                           class="newprice">{{number_format($product->price-$discount[0]->percent/100*$product->price)}}
+                           <sup>đ</sup></span>
+                        <span class="oldprice">{{number_format($product->price)}} <sup>đ</sup></span>
+                        @else
+                        <span class="newprice">{{number_format($product->price)}} <sup>đ</sup></span>
+                        @endif
 
-                        <div class="product">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product1.png" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
+                     </div>
+                     <div class="rating">
+                        <p>
+                           @for ($i = 1; $i <= $product->getAvgReview(); $i++)
+                              <i class="fas fa-star" style="color:orange" id="star"></i>
+                              @endfor
+                              @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
+                                 <i class="fas fa-star" id="star"></i>
+                                 @endfor
+                                 <span id="review_count">({{$product->getCountReview()}})</span>
+                        </p>
+                        <span class="selled"><i class="fas fa-check-double"></i>
+                           {{$product->getTotalQuantitySelled()}}</span>
+                     </div>
+                     <div class="supaddress">
 
-                            <div class="salespercent">-30%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">449.000 <sup>đ</sup></span>
-                                <span class="oldprice">563.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(458)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
+                        {{$product->city_address}}
+                     </div>
 
-                        </div>
-                        <div class="product">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                                <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                            </div>
-                            <div class="salespercent">-36%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">262.000 <sup>đ</sup></span>
-                                <span class="oldprice">596.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(186)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 241</span>
-                            </div>
-                            <div class="supaddress">
-                                Hà Nội
-                            </div>
-                        </div>
-                        <div class="product">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product2.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-25%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">235.000 <sup>đ</sup></span>
-                                <span class="oldprice">504.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(493)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 402</span>
-                            </div>
-                            <div class="supaddress">
-                                TP Hồ Chí Minh
-                            </div>
-                        </div>
-                        <div class="product">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product3.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                                <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                            </div>
-                            <div class="salespercent">-31%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">410.000 <sup>đ</sup></span>
-                                <span class="oldprice">577.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(455)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 447</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
-                        </div>
+                  </div>
+                  @endforeach
 
-                        <div class="product">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product5.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-18%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">431.000 <sup>đ</sup></span>
-                                <span class="oldprice">502.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(425)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                            </div>
-                            <div class="supaddress">
-                                Hà Nội
-                            </div>
-                        </div>
-                        <div class="product ">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product1.png" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-15%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">425.000 <sup>đ</sup></span>
-                                <span class="oldprice">754.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(461)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 369</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
-                        </div>
-                        <div class="product ">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product2.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-20%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">195.000 <sup>đ</sup></span>
-                                <span class="oldprice">686.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(440)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 356</span>
-                            </div>
-                            <div class="supaddress">
-                                Hải Phòng
-                            </div>
-                        </div>
-                        <div class="product ">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product4.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                                <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                            </div>
-                            <div class="salespercent">-35%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">476.000 <sup>đ</sup></span>
-                                <span class="oldprice">779.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(346)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 307</span>
-                            </div>
-                            <div class="supaddress">
-                                Quảng Nam
-                            </div>
-                        </div>
-
-                        <div class="product">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product1.png" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-37%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">300.000 <sup>đ</sup></span>
-                                <span class="oldprice">755.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(116)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 171</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
-                        </div>
-                        <div class="product ">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                                <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                            </div>
-                            <div class="salespercent">-36%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">118.000 <sup>đ</sup></span>
-                                <span class="oldprice">605.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(277)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 235</span>
-                            </div>
-                            <div class="supaddress">
-                                Bình Dương
-                            </div>
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product1.png" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-
-                            <div class="salespercent">-30%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">449.000 <sup>đ</sup></span>
-                                <span class="oldprice">563.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(458)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
-
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-36%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">262.000 <sup>đ</sup></span>
-                                <span class="oldprice">596.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(186)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 241</span>
-                            </div>
-                            <div class="supaddress">
-                                Hà Nội
-                            </div>
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product2.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                                <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                            </div>
-                            <div class="salespercent">-25%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">235.000 <sup>đ</sup></span>
-                                <span class="oldprice">504.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(493)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 402</span>
-                            </div>
-                            <div class="supaddress">
-                                TP Hồ Chí Minh
-                            </div>
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product3.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-31%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">410.000 <sup>đ</sup></span>
-                                <span class="oldprice">577.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(455)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 447</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
-                        </div>
-
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product5.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                                <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                            </div>
-                            <div class="salespercent">-18%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">431.000 <sup>đ</sup></span>
-                                <span class="oldprice">502.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(425)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 427</span>
-                            </div>
-                            <div class="supaddress">
-                                Hà Nội
-                            </div>
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product1.png" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-15%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">425.000 <sup>đ</sup></span>
-                                <span class="oldprice">754.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(461)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 369</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product2.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                                <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                            </div>
-                            <div class="salespercent">-20%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">195.000 <sup>đ</sup></span>
-                                <span class="oldprice">686.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(440)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 356</span>
-                            </div>
-                            <div class="supaddress">
-                                Hải Phòng
-                            </div>
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product4.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-35%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">476.000 <sup>đ</sup></span>
-                                <span class="oldprice">779.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(346)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 307</span>
-                            </div>
-                            <div class="supaddress">
-                                Quảng Nam
-                            </div>
-                        </div>
-
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product1.png" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-37%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">300.000 <sup>đ</sup></span>
-                                <span class="oldprice">755.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(116)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 171</span>
-                            </div>
-                            <div class="supaddress">
-                                Đà Nẵng
-                            </div>
-                        </div>
-                        <div class="product flashnext1">
-                            <div class="imgbox">
-                                <a href="#viewflash"><img src="../assets/img/product.jpg" alt=""></a>
-                                <div class="groupcart">
-                                    <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                class="fas fa-heart"></i></button></a>
-                                    <a href="#cartoption"> <button title="So sánh"><i
-                                                class="fas fa-exchange-alt"></i></button></a>
-                                    <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                class="fas fa-cart-plus"></i></button></a>
-                                </div>
-                            </div>
-                            <div class="salespercent">-36%</div>
-                            <div class="product_name"><a href="detail.html">Samsung Galaxy S8 64Gb, 4Gb Ram</a></div>
-                            <div class="product_price">
-                                <span class="newprice">118.000 <sup>đ</sup></span>
-                                <span class="oldprice">605.000 <sup>đ</sup></span>
-                            </div>
-                            <div class="rating">
-                                <p><i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <i class="fas fa-star" id="star"></i>
-                                    <span id="review_count">(277)</span>
-                                </p>
-                                <span class="selled"><i class="fas fa-check-double"></i> 235</span>
-                            </div>
-                            <div class="supaddress">
-                                Bình Dương
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btnloadmore">
-                        <button class="loadmore"><span><i class="fas fa-spinner loadingicon"></i></span><span
-                                id="loadmoretext">Tải thêm <i class="fas fa-chevron-circle-down"></i></span></button>
-                    </div>
+               </div>
                 </div>
             </div>
             <!-- endbodycenter -->

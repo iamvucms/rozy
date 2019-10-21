@@ -975,8 +975,9 @@
                            <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
                                     class="fas fa-cart-plus"></i></button></a>
                         </div>
-                        <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-
+                        @if ($product->isNew())
+                           <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
+                        @endif
                      </div>
                      @php
                      $discount = $product->AvailableDiscount()->get();

@@ -694,7 +694,16 @@
                                 </div>
                                 <script>
                                     function switchTab(type){
-                                        
+                                        let orders = document.querySelectorAll('.order')
+                                        orders.forEach(order=>{
+                                            console.log(order)
+                                            if(type=="0"){
+                                                order.style.display = 'block'
+                                            }else{
+                                                if(order.dataset.tab==type) order.style.display = 'block'
+                                                else order.style.display = 'none'
+                                            }
+                                        })
                                     }
                                     function CancelOrder(id){
                                         axios.post()

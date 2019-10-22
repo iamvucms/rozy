@@ -277,3 +277,43 @@
     color:#ee4d2d;
     font-size: 1.3em;
 }
+.notifyBox{
+
+}
+.notify{
+    display: flex;
+    padding:15px;
+    border-bottom: 1px solid #ddd;
+}
+.notifyMsg{
+    width:calc(100% - 280px);
+    padding: 0px 20px;
+}
+.notifyMsg h3{
+    color:rgba(0,0,0,.8);
+    margin-bottom: 10px;
+}
+.notifyMsg .msg,.notifyMsg .created_at{
+    color:rgba(0,0,0,.6)
+}
+.btnViewed{
+    width:200px;
+    text-align: center;
+    display: flex;
+    align-items:center;
+}
+.btnViewed button{
+    width:100%; 
+    height: 40px;
+    padding:0px 15px;
+    border:none;
+    font-weight: 100;
+    border:1px solid #ddd;
+    font-size: 0.8em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btnViewed button:hover{
+    border:1px solid #ee4d2d;
+    color:#ee4d2d;
+}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Image;
 use App\Order;
+use App\Notification;
 
 class UserController extends Controller
 {
@@ -48,13 +49,11 @@ class UserController extends Controller
         $branch = "order";
         return view('account',compact("user","branch","orders"));
     }
-    public function postOrder(Request $req){
-
-    }
     public function Notify(){
         $user = Auth::user();
+        $notifications = Notification::where([['to','=',$user->id],['is_hidden','=','0']])->orWhere('is_all',1)->get();
         $branch = "notify";
-        return view('account',compact("user","branch"));
+        return view('account',compact("user","branch",'notifications'));
     }
     public function postNotify(Request $req){
 

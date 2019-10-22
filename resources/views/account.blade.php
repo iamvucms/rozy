@@ -681,6 +681,7 @@
                                                 </div>
                                                 <div class="oDetail">
                                                     <div class="oAddress">
+                                                        <h3>ID ĐƠN HÀNG: <span style="color:#ee4d2d">{{strtoupper($order->slug)}}</span></h3>
                                                         <h2>Thông tin người nhận</h2>
                                                         <p class="oName">{{$order->name}}</p>
                                                         <p>{{$order->phone}}</p>
@@ -704,6 +705,8 @@
                                                                 <td>-{{number_format($order->Coupon()->value)}} đ</td>
                                                             </tr>
                                                             @endif
+                                                           
+
                                                             <tr>
                                                                 <td>Tổng cộng</td>
                                                                 <td>{{number_format($order->total)}} đ</td>
@@ -739,12 +742,39 @@
                                 </script>
                             </div>
                         </div>
+                        
                         <div class="mNotify" @if ($branch=="notify")
                             style="display:block"
                             @endif>
-                            <div class="mtitle">
-								<h3>Hồ sơ của tôi</h3>
-								<small style="color:#333">Quản lý thông tin hồ sơ để bảo mật tài khoản</small>
+                            <div class="mtitle" style="padding:15px">
+								<h3>Thông báo của bạn</h3>
+								<small style="color:#333">Kiểm tra các thông báo của bạn.</small> 
+                            </div>
+                            <div class="notifyBox"> 
+                                @foreach ($notifications ?? [] as $notify)
+                                    <div class="notify">
+                                        <div class="notifyImg imgPro">
+                                            <img src="{{url($notify->Image()->src ?? '')}}" alt="">
+                                        </div>
+                                        <div class="notifyMsg">
+                                            <h3 class="title">{{$notify->title}}</h3>
+                                            <p class="msg">{{$notify->message}}</p>
+                                            <p class="created_at">{{$notify->created_at}}</p>
+                                        </div>
+                                        <div class="btnViewed">
+                                            <button onclick="NofityViewed({{$notify->id}})">ĐÁNH DẤU LÀ ĐÃ ĐỌC</button>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <script>
+                                    function NofityViewed(id){
+                                        axios.put('{{url()->route('viewNotify')}}',{
+                                            id:id
+                                        }).then(data=>{
+                                            window.location.href = '{{url()->route('myAccount')}}';
+                                        })
+                                    }
+                                </script>
                             </div>
                         </div>
 					</div>

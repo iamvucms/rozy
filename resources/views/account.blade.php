@@ -685,31 +685,35 @@
                                                         <p class="oName">{{$order->name}}</p>
                                                         <p>{{$order->phone}}</p>
                                                         <p>{{$order->address}}</p>
+                                                        <p>{{$order->city}}</p>
                                                     </div>
                                                     <div class="oPrice">
                                                         <h2>Chi tiết thanh toán</h2>
                                                         <table>
                                                             <tr>
                                                                 <td>Tổng tiền hàng</td>
-                                                                <td>₫78.000</td>
+                                                            <td>{{number_format($order->getProductsPrice())}} đ</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Vận chuyển-Standard Express</td>
-                                                                <td>₫78.000</td>
+                                                                <td>Vận chuyển-{{$order->getShipper()->name}}</td>
+                                                                <td>{{number_format($order->ship_price)}} đ</td>
                                                             </tr>
+                                                            @if ($order->Coupon())
                                                             <tr>
-                                                                <td>Miễn Phí Vận Chuyển</td>
-                                                                <td>₫78.000</td>
+                                                                <td>{{$order->Coupon()->name}}</td>
+                                                                <td>-{{number_format($order->Coupon()->value)}} đ</td>
                                                             </tr>
+                                                            @endif
                                                             <tr>
                                                                 <td>Tổng cộng</td>
-                                                                <td>₫78.000</td>
+                                                                <td>{{number_format($order->total)}} đ</td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     @endforeach
                                 </div>
                                 <script>

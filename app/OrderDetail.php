@@ -13,4 +13,7 @@ class OrderDetail extends Model
     public function getProduct(){
         return $this->Product()->first();
     }
+    public function getProductPrice(){
+        return $this->getProduct()->first()->sale_price * $this->quantity;
+    }
 }

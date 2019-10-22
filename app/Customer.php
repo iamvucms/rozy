@@ -15,4 +15,14 @@ class Customer extends Model
     public function getAvatar(){
         return $this->Image()->first()->src ?? null;
     }
+    public function Orders(){
+        return $this->hasMany('App\Order','idcus','id');
+    }
+    public function allOrder($status=0){
+        if($status==0){
+            return $this->Orders()->get();
+        }else{
+            return $this->Orders()->where('status',$status)->get();
+        }
+    }
 }

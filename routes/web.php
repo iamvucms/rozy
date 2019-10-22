@@ -40,3 +40,7 @@ Route::post('/reset-password-code', 'ResetPasswordController@postReset')->name('
 Route::post('/reset-recovery-info', 'ResetPasswordController@postRecovery')->name('postRecovery');
 //Register
 Route::post('/register','Auth\LoginController@Register')->name('postRegister')->middleware('guest');
+
+//OrderController
+Route::put('/orders/{id}','OrderController@OrderStatus')->middleware('auth');
+

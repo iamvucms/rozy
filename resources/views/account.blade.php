@@ -624,73 +624,93 @@
                                
                                 <div class="trline" style="height:3px;background:#ddd;margin-top:25px"></div>
                                 <div class="orderBox">
-                                    <div class="order" data-tab="1">
-                                        <div class="shopLine">
-                                            <div class="shopInfo">
-                                                <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" alt="" class="shopavt">
-                                                <span class="shopName">VMOBILE</span>
-                                                <button><a href=""><i class="fas fa-store"></i> Xem shop</a></button>
+                                    @foreach ($orders ?? [] as $order)
+                                <div class="order" data-tab="{{$order->status}}">
+                                            <div class="shopLine">
+                                                <div class="shopInfo">
+                                                    <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" alt="" class="shopavt">
+                                                    <span class="shopName">VMOBILE</span>
+                                                    <button><a href=""><i class="fas fa-store"></i> Xem shop</a></button>
+                                                </div>
+                                                <div class="ostt">
+                                                    <span>@switch($order->status)
+                                                        @case('1')
+                                                            CHỜ THANH TOÁN
+                                                            @break
+                                                        @case('2')
+                                                            CHỜ LẤY HÀNG
+                                                            @break
+                                                        @case('3')
+                                                            ĐANG GIAO
+                                                            @break 
+                                                        @case('4')
+                                                            ĐÃ GIAO
+                                                            @break 
+                                                        @case('5')
+                                                            ĐÃ HỦY
+                                                            @break 
+                                                        @default
+                                                            
+                                                    @endswitch</span>
+                                                </div>
                                             </div>
-                                            <div class="ostt">
-                                                <span>ĐÃ GIAO</span>
+                                            <div class="productLine">
+                                                @foreach ($order->getOrderDetails() ?? [] as $detail)
+                                                <div class="oProduct">
+                                                    <div class="imgPro">
+                                                    <img src="{{url($detail->getProduct()->Avatar()->src ?? '')}}" alt="">
+                                                    </div>
+                                                    <div class="namePro">
+                                                    <p><a href="{{url('/products/'.$detail->getProduct()->slug)}}" style="color:#4166b2">{{$detail->getProduct()->name}}</a></p>
+                                                        <p>Số lượng: {{$detail->quantity}} </p>
+                                                    </div>
+                                                    <div class="pricePro">
+                                                    <span>{{number_format($detail->quantity*$detail->getProduct()->sale_price)}} đ</span>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="optionLine">
+                                                <div class="total">
+                                                    <span>Tổng số tiền: <span class="bigPrice">
+                                                            {{number_format($order->total)}} đ</span></span>
+                                                </div>
+                                                <div class="groupBtn">
+                                                    <button onclick="console.log(this.parentElement.parentElement.childNodes[5].style.display='flex')">Chi Tiết</button>
+                                                    <button onclick="CancelOrder({{$order->id}})">Huỷ Đơn Hàng</button>
+                                                </div>
+                                                <div class="oDetail">
+                                                    <div class="oAddress">
+                                                        <h2>Thông tin người nhận</h2>
+                                                        <p class="oName">{{$order->name}}</p>
+                                                        <p>{{$order->phone}}</p>
+                                                        <p>{{$order->address}}</p>
+                                                    </div>
+                                                    <div class="oPrice">
+                                                        <h2>Chi tiết thanh toán</h2>
+                                                        <table>
+                                                            <tr>
+                                                                <td>Tổng tiền hàng</td>
+                                                                <td>₫78.000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Vận chuyển-Standard Express</td>
+                                                                <td>₫78.000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Miễn Phí Vận Chuyển</td>
+                                                                <td>₫78.000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tổng cộng</td>
+                                                                <td>₫78.000</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="productLine">
-                                            <div class="oProduct">
-                                                <div class="imgPro">
-                                                    <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" alt="">
-                                                </div>
-                                                <div class="namePro">
-                                                    <p>lipsum10 </p>
-                                                    <p>Số lượng: 1 </p>
-                                                </div>
-                                                <div class="pricePro">
-                                                    <span>500.000đ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="optionLine">
-                                            <div class="total">
-                                                <span>Tổng số tiền: <span class="bigPrice">
-                                                        5 tỷ đ</span></span>
-                                            </div>
-                                            <div class="groupBtn">
-                                                <button onclick="console.log(this.parentElement.parentElement.childNodes[5].style.display='flex')">Chi Tiết</button>
-                                                <button onclick="CancelOrder(id)">Huỷ Đơn Hàng</button>
-                                            </div>
-                                            <div class="oDetail">
-                                                <div class="oAddress">
-                                                    <h2>Thông tin người nhận</h2>
-                                                    <p class="oName">Nguyễn Hoàng Vũ</p>
-                                                    <p>84766730945</p>
-                                                    <p>Tổ 2, thôn An Tân, Xã Hòa Phong, Huyện Hòa Vang, Đà Nẵng
-                                                    </p>
-                                                    
-                                                </div>
-                                                <div class="oPrice">
-                                                    <h2>Chi tiết thanh toán</h2>
-                                                    <table>
-                                                        <tr>
-                                                            <td>Tổng tiền hàng</td>
-                                                            <td>₫78.000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Vận chuyển-Standard Express</td>
-                                                            <td>₫78.000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Miễn Phí Vận Chuyển</td>
-                                                            <td>₫78.000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Tổng cộng</td>
-                                                            <td>₫78.000</td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                                 <script>
                                     function switchTab(type){
@@ -706,7 +726,11 @@
                                         })
                                     }
                                     function CancelOrder(id){
-                                        axios.post()
+                                        axios.put('{{url('/orders')}}/'+id,{
+                                            status:5
+                                        }).then((data)=>{
+                                            window.location.reload()
+                                        })
                                     }
                                 </script>
                             </div>

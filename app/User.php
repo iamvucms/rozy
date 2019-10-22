@@ -51,4 +51,7 @@ class User extends Authenticatable
     public function getName(){
         return $this->Customer()->first()->name ?? 'Unknown';
     }
+    public function getOrders($status=0){
+        return $this->getInfo()->allOrder($status);
+    }
 }

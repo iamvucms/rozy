@@ -149,14 +149,14 @@
     border-bottom:1px solid #ddd;
 }
 .ostt{
-    width:100px;
+    width:200px;
     padding-right: 15px;
     text-align: right;
     color:#ee4d2d;
 }
 .shopInfo{
     padding-left: 10px;
-    width:calc(100% - 100px);
+    width:calc(100% - 200px);
 }
 .shopInfo button{
     padding:5px 5px;

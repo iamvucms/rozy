@@ -44,8 +44,9 @@ class UserController extends Controller
     }
     public function Order(){
         $user = Auth::user();
+        $orders = $user->getOrders();
         $branch = "order";
-        return view('account',compact("user","branch"));
+        return view('account',compact("user","branch","orders"));
     }
     public function postOrder(Request $req){
 

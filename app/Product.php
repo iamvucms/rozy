@@ -74,7 +74,7 @@ class Product extends Model
         return $this->hasMany('App\Image','id_product','id')->select('src')->whereNull('id_avt_product')->get();
     }
     public function Avatar(){
-        return $this->hasOne('App\Image','id_avt_product','id')->select('src')->first();
+        return $this->hasOne('App\Image','id_avt_product','id')->select('src')->first() ?? null;
     }
     //Seller Relationships
     public function Seller(){

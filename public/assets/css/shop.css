@@ -120,6 +120,7 @@
 .inforText{
     width:50%;
     padding-left: 15px;
+    color:rgba(0,0,0,.8);
 }
 .shopName{
     font-size: 1.2em;

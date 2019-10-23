@@ -18,6 +18,15 @@ class Product extends Model
             $equalCat[] = $cat->id;
         }
         $products = $this->whereIn('idcat',$equalCat)->limit($limit)->get();
+        if($products->count()<$limit){
+            $diff = $limit-$products->count();
+            $ids = [];
+            foreach($products as $product){
+                $ids[] = $product->id;
+            }
+            $extraProduct = Product::whereNotIn('id',$ids)->limit($diff)->get();
+            $products = $products->merge($extraProduct);
+        }
         return $products;        
     }
     //Discount Relationship

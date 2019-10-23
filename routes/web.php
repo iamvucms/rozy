@@ -45,3 +45,6 @@ Route::put('/orders/{id}','OrderController@OrderStatus')->middleware('auth');
 Route::put('/notifications','NotifyController@Viewed')->name('viewNotify')->middleware('auth');
 //SellerController
 Route::get('/shop/{slug}','SellerController@Shop')->name('shop');
+//EnjoyController
+Route::post('/enjoy/add','EnjoyController@addEnjoy')->name('addEnjoy');
+Route::post('/enjoy/delete','EnjoyController@delEnjoy')->name('delEnjoy');

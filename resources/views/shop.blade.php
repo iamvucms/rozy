@@ -362,60 +362,46 @@
                   </div>
                         @endif
                         <div class="cartarea">
-                            <li>
-                                <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
-                                <span class="carttitle">Giỏ hàng </span><b>2</b>
-                                <ul>
-                                    <span class="yourcart">Sản phẩm đã
-                                        chọn:</span>
-                                    <li>
-                                        <img src="../assets/img/product1.png" alt="" class="cartimg">
-                                        <span class="cartname"><a href="javascript:void(0)">Galaxy
-                                                S6 32Gb
-                                                3Gb Ram
-                                                abc xyz
-                                            </a></span>
-                                        <span class="cartinfo">
-                                            <span class="cartcost">10,000,000
+                                <li>
+                                    <i style="font-size: 1.8em" class="fas fa-shopping-cart"></i>
+                                    <span class="carttitle">Giỏ hàng </span><b
+                                        id="cartCount">{{$myCart->getQuantityAll()}}</b>
+                                    <ul id="myCart">
+                                        @if ($myCart->getTotal()>0)
+                                        <span class="yourcart">Sản phẩm đã chọn:</span>
+                                        <div id="cartProducts">
+                                            @foreach ($myCart->getCart() as $myProduct)
+                                            <li>
+                                                <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
+                                                <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
+                                                <span class="cartinfo">
+                                                    <span class="cartcost">{{number_format($myProduct['price'])}}
+                                                        <sup>VND</sup></span> x
+                                                    <span class="quantity">{{$myProduct['quantity']}}</span>
+                                                </span>
+                                                <span class="closecart"
+                                                    onclick="delCart({{$myProduct['id']}});this.parentElement.parentElement.removeChild(this.parentElement)">×</span>
+                                            </li>
+                                            @endforeach
+                                        </div>
+                                        <li class="carttotal">
+                                            <span> Tổng cộng: <span
+                                                    id="totalCart">{{number_format($myCart->getTotal())}}</span>
                                                 <sup>VND</sup></span>
-                                            x
-                                            <span class="quantity">1</span>
-                                        </span>
-                                        <span class="closecart">×</span>
-                                    </li>
-                                    <li>
-                                        <img src="../assets/img/product2.jpg" alt="" class="cartimg">
-                                        <span class="cartname"><a href="javascript:void(0)">Iphone
-                                                X 64 GB
-                                                Ram
-                                                4Gb</a></span>
-                                        <span class="cartinfo">
-                                            <span class="cartcost">20,000,000
-                                                <sup>VND</sup></span>
-                                            x
-                                            <span class="quantity">1</span>
-                                        </span>
-                                        <span class="closecart">×</span>
-                                    </li>
-                                    <li class="carttotal">
-                                        <span> Tổng cộng: 30,000,000
-                                            <sup>VND</sup></span>
-                                    </li>
-                                    <div class="groupcartbtn">
-                                        <button class="btnviewcart"><a href="cart.html">Xem
-                                                giỏ
-                                                hàng</a></button>
-                                        <button class="btncartpay"><a href="payment.html">Thanh
-                                                toán
-                                                ngay</a></button>
-                                    </div>
-
-
-
-
-                                </ul>
-                            </li>
-                        </div>
+                                        </li>
+                                        <div class="groupcartbtn">
+                                            <button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button>
+                                            <button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán
+                                                    ngay</a></button>
+                                        </div>
+                                        @else
+                                        <div id="cartProducts">
+                                            <span class="yourcart">Chưa có sản phẩm nào trong giỏ hàng</span>
+                                        </div>
+                                        @endif
+                                    </ul>
+                                </li>
+                            </div>
                     </div>
 
                 </div>
@@ -674,7 +660,7 @@
                         </div>
                         <div class="inforText">
                         <p class="shopName">{{$seller->name}}</p>
-                            {{nl2br($seller->description)}}
+                            {!!nl2br($seller->description)!!} <br>
                         </div>
                     </div>
                 </div>

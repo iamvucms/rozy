@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Cart;
 use App\Products;
+use App\Enjoy;
 use Illuminate\Support\Facades\Cookie;
 
 class Category extends Model
@@ -23,8 +24,8 @@ class Category extends Model
         ->groupBy('products.id')->orderByRaw('SUM(orderdetails.quantity) DESC')->limit($limit)->get();
     }
     public function recommandCategories($getArray=null){
-        $cart = new Cart();
         $cats = collect();
+        $cart = new Cart();
         foreach($cart->getCart() as $product){
             $pro = Product::find($product['id']);
             $cat = $pro->getCategory();
@@ -45,6 +46,17 @@ class Category extends Model
             }
             $cats->push($cat);
             SKIP2:
+        }
+        $enjoy = new Enjoy();
+        foreach($enjoy->getEnjoy() as $product){
+            if($product['type']==2) continue;
+            $pro = Product::find($product['id']);
+            $cat = $pro->getCategory();
+            foreach($cats as $myEnjoy){
+                if($cat->id==$myEnjoy->id) goto SKIP3;
+            }
+            $cats->push($cat);
+            SKIP3:
         }
         if($getArray!==null){
             return $cats;

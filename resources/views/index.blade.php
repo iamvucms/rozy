@@ -527,6 +527,18 @@
                      </li>
                   </div>
                   <script>
+                     function addCart(id) {
+                        let preCount = {{ $myCart-> getQuantityAll()}}
+                        let quan = 1
+                        axios.post('{{url()->route('addCart')}}', {
+                           id: id,
+                           quantity: quan
+                        }).then(data => {
+                           if (data.data.success) {
+                                 window.location.reload()    
+                           }
+                        })
+                     }
                      function delCart(id) {
                         axios.post('{{url()->route('deleteCart')}}/', { id: id }).then(data => {
                            setTimeout(() => {
@@ -555,7 +567,8 @@
                               }
                            }, 0);
                         })
-                     }</script><!-- endrightoption -->
+                     }
+                     </script><!-- endrightoption -->
                </div>
                <div class="introbottom">
                   <li style="font-weight: 500" id="megahovertop"><i class="fas fa-stream"></i> DANH MỤC SẢN PHẨM
@@ -845,7 +858,7 @@
             </div>
             <!-- endbodyheader -->
             <!-- flashsales -->
-
+            
             <div class="flashsales" id="flashsales">
                <div class="salestitle">
                   <i class="fab fa-hotjar"></i>
@@ -888,10 +901,7 @@
                   </div>
                   @endforeach
                </div>
-               <div class="btnloadmore">
-                  <button class="loadmore"><span><i class="fas fa-spinner loadingicon"></i></span><span
-                        id="loadmoretext">Tải thêm <i class="fas fa-chevron-circle-down"></i></span></button>
-               </div>
+               
             </div>
             
             <!-- endflashsales -->
@@ -961,7 +971,7 @@
                   <p>DÀNH RIÊNG CHO BẠN</p>
                </div>
                <div class="salesproducts" id="foryou">
-                  @foreach ($recommandProducts as $product)
+                  @foreach($recommandProducts as $product)
                   <div class="product">
                      <div class="imgbox">
                         <a href="#viewflash">
@@ -970,9 +980,13 @@
                               alt="">
                         </a>
                         <div class="groupcart">
-                           <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                    class="fas fa-heart"></i></button></a>
-                           <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
+                           <a href="#cartoption"> <button  title="Thêm vào danh sách yêu thích"><i onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
+                                    class="@if($enjoy->is_exists($product->id))
+                                       fas fa-heart
+                                    @else
+                                       far fa-heart
+                                    @endif"></i></button></a>
+                           <a href="#cartoption"> <button onclick="addCart({{$product->id}})" title="Thêm vào giỏ hàng"><i
                                     class="fas fa-cart-plus"></i></button></a>
                         </div>
                         @if ($product->isNew())
@@ -1019,7 +1033,26 @@
 
                   </div>
                   @endforeach
-
+                  <script>
+                     function addLove(id){   
+                        axios.post('{{url()->route('addEnjoy')}}',{
+                           id:id,
+                           type:1
+                        }).then(data=>{
+                           data = data.data
+                           if(data.success){
+                              
+                           }
+                        })
+                     }
+                     function delLove(id){
+                        axios.post('{{url()->route('delEnjoy')}}',{
+                           id:id,
+                        }).then(data=>{
+                        })
+                     }
+                     
+                  </script>
                </div>
             </div>
             <!-- endforyou -->

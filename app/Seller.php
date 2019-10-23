@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Seller extends Model
 {
@@ -11,8 +12,14 @@ class Seller extends Model
     public function Products(){
         return $this->hasMany('App\Product','idsell','id');
     }
+    public function getAvatar(){
+        return $this->hasOne('App\Image','id_avt_seller','id')->first()->src ?? '';
+    }
+    public function getCover(){
+        return $this->hasOne('App\Image','id_cover_seller','id')->first()->src ?? '';
+    }
     public function getTotalProducts(){
-        return $this->Products()->count();
+        return $this->Products()->count() ?? 0;
     }
     public function Orders(){
         return $this->hasMany('App\Order','idsell','id');
@@ -25,6 +32,14 @@ class Seller extends Model
         }
         return $total;
     }
+    public function getTotalProductsViewed(){
+        $total = 0;
+        $Products = $this->Products()->get();
+        foreach($Products as $product){
+            $total +=$product->viewe_count;
+        }
+        return $total;
+    }
     public function getTotalReviewsThan($star=0){
         $total = 0;
         $products = $this->Products()->get();
@@ -32,6 +47,11 @@ class Seller extends Model
             $total +=$product->getCountReview($star);
         }
         return $total;
+    }
+    public function JoinTime(){
+        $datejoin = new Carbon($this->join_at);
+        $now = Carbon::now();
+        return $datejoin->diffInDays($now);
     }
 }
  

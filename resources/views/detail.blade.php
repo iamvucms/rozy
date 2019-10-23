@@ -696,9 +696,10 @@
                                 </div>
                             </form>
                             <script>
+                                
                                 function addCart() {
-                                    let preCount = {{ $myCart-> getQuantityAll()
-                                }}
+                                    let preCount = {{ $myCart-> getQuantityAll()}}
+                                
                                 let btnAddCart = document.querySelector('#btnAddCart')
                                 btnAddCart.innerHTML = ' <img style="width:45px" src="{{asset('assets/img/loading.svg')}}" alt="">'
                                 let quan = parseInt(document.querySelector('#quantity').value)
@@ -719,7 +720,7 @@
                                                 stringLi += '<li><img src="../' + product.avatar + '" alt="" class="cartimg"><span class="cartname"><a href="#">' + product.name + ' </a></span><span class="cartinfo"><span class="cartcost">' + new Intl.NumberFormat('ja-JP').format(product.price) + ' <sup>VND</sup></span> x<span class="quantity">' + product.quantity + '</span></span><span class="closecart" onclick="delCart(' + product.id + ');this.parentElement.parentElement.removeChild(this.parentElement)">×</span></li>'
                                             })
                                             total = new Intl.NumberFormat('ja-JP').format(total)
-                                            let totalString = '<li class="carttotal"><span> Tổng cộng: ' + total + ' <sup>VND</sup></span></li><div class="groupcartbtn"><button class="btnviewcart"><a href="{{url(' / cart')}}">Xem giỏ hàng</a></button><button class="btncartpay"><a href="{{url(' / payment')}}">Thanh toán ngay</a></button></div>'
+                                            let totalString = '<li class="carttotal"><span> Tổng cộng: ' + total + ' <sup>VND</sup></span></li><div class="groupcartbtn"><button class="btnviewcart"><a href="{{url('/cart')}}">Xem giỏ hàng</a></button><button class="btncartpay"><a href="{{url('/payment')}}">Thanh toán ngay</a></button></div>'
                                             if (preCount == 0) {
                                                 document.querySelector('#cartProducts').innerHTML = stringLi + totalString
                                             } else {
@@ -790,7 +791,7 @@
                         <div class="shopname">
                             <i class="fas fa-store-alt"></i>
                             <span>
-                                <a href="#viewshop">VMOBILE</a> <br>
+                                <a href="{{url('/shop/'.$product->Seller()->slug)}}">{{$product->Seller()->name}}</a> <br>
                                 <small>Cam kết chính hiệu 100%</small>
                             </span>
                             <a href="#viewshop" id="viewshop" class="tabfade">
@@ -799,15 +800,17 @@
                                 </button>
                             </a>
                         </div>
+                        @if ($product->Seller()->is_verify==1)
                         <div class="cefi">
                             <i class="fas fa-user-check"></i>
                             <small>Shop đã được xác minh đạt tiêu chuẩn bán hàng tại Rozy</small>
                         </div>
+                        @endif
                         <div class="award">
                             <ul><span></span>
                                 <li><i class="fas fa-tshirt"></i>
                                     <span>
-                                        <b>{{$product->Seller()->getTotalProducts()< 1000 ?$product->Seller()->getTotalProducts() : $product->Seller()->getTotalProducts()/1000 ."k"}}</b><br>
+                                        <b>{{$product->Seller()->getTotalProducts()< 1000 ? $product->Seller()->getTotalProducts() : $product->Seller()->getTotalProducts()/1000 ."k"}}</b><br>
                                         <small>Sản phẩm</small>
                                     </span>
                                 </li>

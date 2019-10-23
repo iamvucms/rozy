@@ -43,4 +43,5 @@ Route::post('/register','Auth\LoginController@Register')->name('postRegister')->
 Route::put('/orders/{id}','OrderController@OrderStatus')->middleware('auth');
 //NotifyController
 Route::put('/notifications','NotifyController@Viewed')->name('viewNotify')->middleware('auth');
-
+//SellerController
+Route::get('/shop/{slug}','SellerController@Shop')->name('shop');

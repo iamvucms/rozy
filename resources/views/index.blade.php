@@ -747,7 +747,7 @@
                                     style="color:rgb(0, 238, 255)"></i> Thương hiệu</div>
                               @foreach ($alias::GetTradeMarks($category->id) as $brand)
                               <li><a
-                                    href="{{url('categories/'.$category->slug.'?thuonghieu='.trim($brand->name,'"'))}}">{{trim($brand->name,'"')}}</a>
+                                    href="{{url('search?cat='.$category->id.'&thuonghieu='.trim($brand->name,'"'))}}">{{trim($brand->name,'"')}}</a>
                               </li>
                               @endforeach
 

@@ -27,7 +27,7 @@ class Enjoy extends Model
             $object =Seller::where('id',$id)->first();
         }else return false;
         if($object->count()==0) return false;
-        $exists = $this->is_exists($id);
+        $exists = $this->is_exists($id,$type);
         if(!$exists){
             
             $this->enjoy[]=[
@@ -41,9 +41,9 @@ class Enjoy extends Model
         
         return true;
     }
-    public function delItem($id){
+    public function delItem($id,$type=1){
         foreach ($this->enjoy as $key => $item) {
-            if($item['id']==$id){
+            if($item['id']==$id && $item['type']==$type){
                 array_splice($this->enjoy,$key,1);
                 $this->saveEnjoy();
                 return true;
@@ -63,10 +63,10 @@ class Enjoy extends Model
         }
         return 0;
     }
-    public function is_exists($id){
+    public function is_exists($id,$type=1){
         $check = false;
         foreach($this->enjoy as $obj){
-            if($obj['id']==$id){
+            if($obj['id']==$id && $obj['type']==$type){
                 $check = true;
                 break;
             }

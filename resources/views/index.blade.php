@@ -980,7 +980,7 @@
                               alt="">
                         </a>
                         <div class="groupcart">
-                           <a href="#cartoption"> <button  title="Thêm vào danh sách yêu thích"><i onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
+                           <a href="javascript:void(0)"> <button  title="Thêm vào danh sách yêu thích"><i onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
                                     class="@if($enjoy->is_exists($product->id))
                                        fas fa-heart
                                     @else

@@ -26,7 +26,7 @@ class FilterController extends Controller
             urldecode($req->keyword),
             $req->from,
             $req->to,
-            $req->address,
+            $req->address,  
             $req->star);
         if($req->keyword!==null && $products->count()>0){
             $keyword = Keyword::where('keyword','like',urldecode($req->keyword).'%')->where('idcat',$req->cat ?? 0);

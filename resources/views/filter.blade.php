@@ -857,11 +857,16 @@
                                             alt="">
                                     </a>
                                     <div class="groupcart">
-                                        <a href="#cartoption"> <button title="Thêm vào danh sách yêu thích"><i
-                                                    class="fas fa-heart"></i></button></a>
-                                        <a href="#cartoption"> <button title="Thêm vào giỏ hàng"><i
-                                                    class="fas fa-cart-plus"></i></button></a>
-                                    </div>
+                                        <a href="javascript:void(0)"> <button  title="Thêm vào danh sách yêu thích"><i onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
+                                                 class="@if($enjoy->is_exists($product->id))
+                                                    fas fa-heart
+                                                 @else
+                                                    far fa-heart
+                                                 @endif"></i></button></a>
+                                        <a href="#cartoption"> <button onclick="addCartX({{$product->id}})" title="Thêm vào giỏ hàng"><i
+                                                 class="fas fa-cart-plus"></i></button></a>
+                                     </div>
+                                    
                                     <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
 
                                 </div>
@@ -906,6 +911,37 @@
 
                             </div>
                             @endforeach
+                            <script>
+                                function addCartX(id) {
+                                   let preCount = {{ $myCart-> getQuantityAll()}}
+                                   let quan = 1
+                                   axios.post('{{url()->route('addCart')}}', {
+                                      id: id,
+                                      quantity: quan
+                                   }).then(data => {
+                                      if (data.data.success) {
+                                            window.location.reload()    
+                                      }
+                                   })
+                                }
+                                function addLove(id){   
+                                    axios.post('{{url()->route('addEnjoy')}}',{
+                                       id:id,
+                                       type:1
+                                    }).then(data=>{
+                                       data = data.data
+                                       if(data.success){
+                                          
+                                       }
+                                    })
+                                 }
+                                 function delLove(id){
+                                    axios.post('{{url()->route('delEnjoy')}}',{
+                                       id:id,
+                                    }).then(data=>{
+                                    })
+                                 }
+                                </script>
                         </div>
                         <div class="btnloadmore" id="pagination">
                             {{$products->links()}}

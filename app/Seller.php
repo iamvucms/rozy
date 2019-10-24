@@ -12,6 +12,9 @@ class Seller extends Model
     public function Products(){
         return $this->hasMany('App\Product','idsell','id');
     }
+    public function getProducts($pagination=20){
+        return $this->Products()->orderBy('id','DESC')->paginate($pagination);
+    }
     public function getAvatar(){
         return $this->hasOne('App\Image','id_avt_seller','id')->first()->src ?? '';
     }

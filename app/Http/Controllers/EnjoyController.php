@@ -14,7 +14,8 @@ class EnjoyController extends Controller
     }
     public function delEnjoy(Request $req){
         $enjoy = new Enjoy();
-        $result = $enjoy->delItem($req->id);
+        if($req->type==null) $result = $enjoy->delItem($req->id);
+        else $result = $enjoy->delItem($req->id,$req->type);
         return response()->json(['success'=>$result], 200, []);
     }
 }

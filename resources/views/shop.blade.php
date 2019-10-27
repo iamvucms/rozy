@@ -671,55 +671,46 @@
                     </div>
                 </div>
                 <div class="filter">
-                    <div class="optioncol">
-                        <div class="categories" id="allcats">
-                            <p><i class="fas fa-list-ul"></i> TẤT CẢ DANH MỤC
-                            </p>
-                            <p class="parentcat"><i class="fas fa-caret-right"></i>
-                                Thời trang nam</p>
-                            <li><a href="javascript:void(0)">Áo thun</a></li>
-                            <li><a href="javascript:void(0)">Áo sơ mi</a></li>
-                            <li><a href="javascript:void(0)">Quần jean</a>
-                            </li>
-                            <li><a href="javascript:void(0)">Áo vest</a></li>
-                            <li><a href="javascript:void(0)">Quần shorts</a>
-                            </li>
-                            <ul class="hidecats">
-                                <li><a href="javascript:void(0)">Áo
-                                        thun</a></li>
-                                <li><a href="javascript:void(0)">Áo sơ
-                                        mi</a></li>
-                                <li><a href="javascript:void(0)">Quần
-                                        jean</a></li>
-                                <li><a href="javascript:void(0)">Áo
-                                        vest</a></li>
-                                <li><a href="javascript:void(0)">Quần
-                                        shorts</a></li>
-                            </ul>
-                            <li class="viewmorecat">Xem thêm <i class="fas fa-sort-down"></i>
-
-                            </li>
-                        </div>
-                    </div>
                     <!-- flashsales -->
-                    <div class="flashsales" id="foryou">
-
+                    <div class="flashsales" id="foryou" style="max-width:100%;margin-left:0">
                         <div class="stitle">
                             <span><i class="fas fa-sort"></i> Sắp xếp theo</span>
                             <div class="groupsort">
-                                <button data-sort="popular"><i class="fas fa-industry"></i> Phổ biến</button>
-                                <button data-sort="sales" class="active"><i class="fab fa-hotjar"></i> Bán chạy</button>
-                                <button data-sort="date"><i class="fas fa-history"></i> Ngày ra mắt</button>
-                                <button data-sort="vote"><i class="fas fa-vote-yea"></i> Đánh giá</button>
+                                <a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'ALL','ordType'=>'DESC'])}}"><button data-sort="popular" 
+                                    @if (request()->ordProp=='ALL' || request()->ordProp===null)
+                                    class=active
+                                @endif><i class="fas fa-industry"></i> Tất cả </button></a>
+                                <a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'HOTSELL','ordType'=>'DESC'])}}"><button data-sort="sales" 
+                                    @if (request()->ordProp=='HOTSELL')
+                                    class=active
+                                @endif><i class="fab fa-hotjar"></i> Bán chạy</button></a>
+                                <a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'CREATE','ordType'=>'DESC'])}}"><button data-sort="date" 
+                                    @if (request()->ordProp=='CREATE')
+                                    class=active
+                                @endif><i class="fas fa-history" ></i> Ngày ra mắt</button></a>
+                                <a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'RATE','ordType'=>'DESC'])}}"><button data-sort="vote" 
+                                    @if (request()->ordProp=='RATE')
+                                    class=active
+                                @endif><i class="fas fa-vote-yea"></i> Đánh giá</button></a>
                             </div>
-                            <div class="groupsortby">
+                            <div class="groupsortby" >
                                 <button class="sortby">Sắp xếp theo <i class="fas fa-chevron-down"></i>
                                     <ul>
-                                        <li><i class="fas fa-sort-numeric-up"></i> Giá cao</li>
-                                        <li><i class="fas fa-sort-numeric-down"></i> Giá thấp</li>
-                                        <li><i class="fas fa-sort-alpha-down"></i> Từ A-Z</li>
-                                        <li><i class="fas fa-sort-alpha-up"></i> Từ Z-A</li>
-                                        <li><i class="fas fa-eye"></i> Lượt xem</li>
+                                        <li @if (request()->ordProp=='PRICE' && request()->ordType=='DESC')
+                                            class=active
+                                        @endif><a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'PRICE','ordType'=>'DESC'])}}"><i class="fas fa-sort-numeric-up"></i> Giá cao</a></li>
+                                        <li @if (request()->ordProp=='PRICE' && request()->ordType=='ASC')
+                                            class=active
+                                        @endif><a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'PRICE','ordType'=>'ASC'])}}"><i class="fas fa-sort-numeric-down"></i> Giá thấp</a></li>
+                                        <li @if (request()->ordProp=='NAME' && request()->ordType=='ASC')
+                                            class=active
+                                        @endif><a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'NAME','ordType'=>'ASC'])}}"><i class="fas fa-sort-alpha-down"></i> Từ A-Z</a></li>
+                                        <li @if (request()->ordProp=='NAME' && request()->ordType=='DESC')
+                                            class=active
+                                        @endif><a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'PRICE','ordType'=>'DESC'])}}"><i class="fas fa-sort-alpha-up"></i> Từ Z-A</a></li>
+                                        <li @if (request()->ordProp=='VIEW')
+                                            class=active
+                                        @endif><a href="{{route('shop',['slug'=>$seller->slug,'ordProp'=>'VIEW','ordType'=>'DESC'])}}"><i class="fas fa-eye"></i> Lượt xem</a></li>
                                     </ul>
                                 </button>
                             </div>

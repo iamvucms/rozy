@@ -831,19 +831,41 @@
                         <div class="stitle">
                             <span><i class="fas fa-sort"></i> Sắp xếp theo</span>
                             <div class="groupsort">
-                                <button data-sort="popular"><i class="fas fa-industry"></i> Phổ biến</button>
-                                <button data-sort="sales" class="active"><i class="fab fa-hotjar"></i> Bán chạy</button>
-                                <button data-sort="date"><i class="fas fa-history"></i> Ngày ra mắt</button>
-                                <button data-sort="vote"><i class="fas fa-vote-yea"></i> Đánh giá</button>
+                                <a href="{{route('filter',array_merge(['ordProp'=>'ALL','ordType'=>'DESC'],$filter))}}"><button data-sort="popular" 
+                                    @if (request()->ordProp=='ALL' || request()->ordProp===null)
+                                    class=active
+                                @endif><i class="fas fa-industry"></i> Tất cả </button></a>
+                                <a href="{{route('filter',array_merge(['ordProp'=>'HOTSELL','ordType'=>'DESC'],$filter))}}"><button data-sort="sales" 
+                                    @if (request()->ordProp=='HOTSELL')
+                                    class=active
+                                @endif><i class="fab fa-hotjar"></i> Bán chạy</button></a>
+                                <a href="{{route('filter',array_merge(['ordProp'=>'CREATE','ordType'=>'DESC'],$filter))}}"><button data-sort="date" 
+                                    @if (request()->ordProp=='CREATE')
+                                    class=active
+                                @endif><i class="fas fa-history" ></i> Ngày ra mắt</button></a>
+                                <a href="{{route('filter',array_merge(['ordProp'=>'RATE','ordType'=>'DESC'],$filter))}}"><button data-sort="vote" 
+                                    @if (request()->ordProp=='RATE')
+                                    class=active
+                                @endif><i class="fas fa-vote-yea"></i> Đánh giá</button></a>
                             </div>
-                            <div class="groupsortby">
+                            <div class="groupsortby" >
                                 <button class="sortby">Sắp xếp theo <i class="fas fa-chevron-down"></i>
-                                    <ul>
-                                        <li><i class="fas fa-sort-numeric-up"></i> Giá cao</li>
-                                        <li><i class="fas fa-sort-numeric-down"></i> Giá thấp</li>
-                                        <li><i class="fas fa-sort-alpha-down"></i> Từ A-Z</li>
-                                        <li><i class="fas fa-sort-alpha-up"></i> Từ Z-A</li>
-                                        <li><i class="fas fa-eye"></i> Lượt xem</li>
+                                    <ul> 
+                                        <li @if (request()->ordProp=='PRICE' && request()->ordType=='DESC')
+                                            class=active
+                                        @endif><a href="{{route('filter',array_merge(['ordProp'=>'PRICE','ordType'=>'DESC'],$filter))}}"><i class="fas fa-sort-numeric-up"></i> Giá cao</a></li>
+                                        <li @if (request()->ordProp=='PRICE' && request()->ordType=='ASC')
+                                            class=active
+                                        @endif><a href="{{route('filter',array_merge(['ordProp'=>'PRICE','ordType'=>'ASC'],$filter))}}"><i class="fas fa-sort-numeric-down"></i> Giá thấp</a></li>
+                                        <li @if (request()->ordProp=='NAME' && request()->ordType=='ASC')
+                                            class=active
+                                        @endif><a href="{{route('filter',array_merge(['ordProp'=>'NAME','ordType'=>'ASC'],$filter))}}"><i class="fas fa-sort-alpha-down"></i> Từ A-Z</a></li>
+                                        <li @if (request()->ordProp=='NAME' && request()->ordType=='DESC')
+                                            class=active
+                                        @endif><a href="{{route('filter',array_merge(['ordProp'=>'NAME','ordType'=>'DESC'],$filter))}}"><i class="fas fa-sort-alpha-up"></i> Từ Z-A</a></li>
+                                        <li @if (request()->ordProp=='VIEW')
+                                            class=active
+                                        @endif><a href="{{route('filter',array_merge(['ordProp'=>'VIEW','ordType'=>'DESC'],$filter))}}"><i class="fas fa-eye"></i> Lượt xem</a></li>
                                     </ul>
                                 </button>
                             </div>

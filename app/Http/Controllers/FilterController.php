@@ -14,6 +14,10 @@ class FilterController extends Controller
         $product  = new Product;
         $filter = $req->toArray();
         $products = null;
+        $dataOrder = $req->validate([
+            'ordProp' =>'in:ALL,HOTSELL,CREATE,RATE,PRICE,PRICE,VIEW,NAME',
+            'ordType' =>'in:DESC,ASC'
+        ]);
         $products = $product->ProductFilter(
             $req->cat,
             urldecode($req->keyword),
@@ -21,7 +25,7 @@ class FilterController extends Controller
             $req->to,
             $req->address,
             $req->star,
-            $req->orderBy)->appends($req->except('page'));
+            $dataOrder)->appends($req->except('page'));
         $countAfterFilter = $product->getCountAfterFilter($req->cat,
             urldecode($req->keyword),
             $req->from,
@@ -37,6 +41,8 @@ class FilterController extends Controller
                 Keyword::insert(['keyword'=>urldecode($req->keyword),'idcat'=>$req->cat ?? 0]);
             }
         }
+        unset($filter['ordProp']);
+        unset($filter['ordType']);
         return view('filter',compact('products','filter','countAfterFilter'));
     }
 }

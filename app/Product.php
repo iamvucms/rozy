@@ -8,7 +8,8 @@ use App\Category;
 class Product extends Model
 {
     protected $table = 'products';
-    
+    protected $fillable = ['view_count'];
+    public $timestamps = false;
     //RecommandProduct
     public function ProductForYou($limit){
         $category = new Category();
@@ -131,15 +132,46 @@ class Product extends Model
     } 
     public function withPriceAddressReviewOrder($cat,$keyword,$from,$to,$address,$star,$order){
         if($order===null) $order = 'ASC';
-        return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)
-        ->orderBy('price',$order);
+       
+        $products = null;
+        switch(@$order['ordProp']){
+            case 'ALL':
+                $products =  $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('create_at','DESC');
+            break;
+            case 'HOTSELL':
+                $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->selectRaw('products.*')
+                ->join('orderdetails','products.id','=','orderdetails.idpro')
+                ->groupBy('products.id')->orderByRaw('SUM(orderdetails.quantity) DESC');
+            break;
+            case 'CREATE':
+                $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('id',$order['ordType'] ?? 'ASC');
+            break;
+            case 'RATE':
+                $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->join('reviews','reviews.idpro','=','products.id')
+                ->selectRaw("products.*")->groupBy('idpro')->orderByRaw('AVG(star) '.($order['ordType'] ?? 'ASC'))
+                ;
+            break;
+            case 'PRICE':
+                $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('sale_price',$order['ordType'] ?? 'ASC');
+            break;
+            case 'NAME':
+                $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('name',$order['ordType'] ?? 'ASC');
+            break;
+            case 'VIEW':
+                $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('view_count',$order['ordType'] ?? 'ASC');
+            break;
+            default:
+                $products =  $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('create_at','DESC');
+            break;
+        }
+        return $products;
     }
     public function getCountAfterFilter($cat,$keyword,$from,$to,$address,$star){
         return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)
         ->count();
     }
     public function ProductFilter($cat,$keyword,$from,$to,$address,$star,$order){
-        return $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star,$order)
+        return $this->withPriceAddressReviewOrder($cat,$keyword,$from,$to,$address,$star,$order)
         ->paginate(20);
     }
 }

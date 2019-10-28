@@ -359,14 +359,6 @@ document.querySelectorAll('img').forEach((val)=>{
           
 })
 $("img").lazyload();//exec
-document.querySelectorAll('.rating p').forEach((val)=>{
-          var rand = Math.floor(Math.random() * 5)+1;
-          for(let i=0;i<rand*2;i+=2){
-                    val.childNodes[i].style.color = 'rgb(255, 217, 0)';
-          }
-          // console.log(val.childNodes);
-})
-
 $("#gotop").click(()=>{
           if($(window).width()>768){
                     $('html,body').animate({
@@ -378,46 +370,8 @@ $("#gotop").click(()=>{
                           }, 'slow');
           }
 })
-$('#filtertool .viewmorecat').click(()=>{
-          if($('#filtertool .viewmorecat').html().indexOf('fa-sort-down')>-1){
-                    $('#filtertool .hidecats').css('display','block')
-                    $('#filtertool .viewmorecat').html('Ẩn bớt <i class="fas fa-caret-up"></i>')
-          }else{
-                    $('#filtertool .hidecats').css('display','none')
-                    $('#filtertool .viewmorecat').html('Xem thêm <i class="fas fa-sort-down"></i>')
-          }
-          fixheightfilter()
-})
-$('#allcats .viewmorecat').click(()=>{
-          if($('#allcats .viewmorecat').html().indexOf('fa-sort-down')>-1){
-                    $('#allcats .hidecats').css('display','block')
-                    $('#allcats .viewmorecat').html('Ẩn bớt <i class="fas fa-caret-up"></i>')
-          }else{
-                    $('#allcats .hidecats').css('display','none')
-                    $('#allcats .viewmorecat').html('Xem thêm <i class="fas fa-sort-down"></i>')
-          }
-          fixheightfilter()
-})
-$('#chatlieutool .viewmorecat').click(()=>{
-          if($('#chatlieutool .viewmorecat').html().indexOf('fa-sort-down')>-1){
-                    $('#chatlieutool .hidecats').css('display','block')
-                    $('#chatlieutool .viewmorecat').html('Ẩn bớt <i class="fas fa-caret-up"></i>')
-          }else{
-                    $('#chatlieutool .hidecats').css('display','none')
-                    $('#chatlieutool .viewmorecat').html('Xem thêm <i class="fas fa-sort-down"></i>')
-          }
-          fixheightfilter()
-})
-$('#shirtype .viewmorecat').click(()=>{
-          if($('#shirtype .viewmorecat').html().indexOf('fa-sort-down')>-1){
-                    $('#shirtype .hidecats').css('display','block')
-                    $('#shirtype .viewmorecat').html('Ẩn bớt <i class="fas fa-caret-up"></i>')
-          }else{
-                    $('#shirtype .hidecats').css('display','none')
-                    $('#shirtype .viewmorecat').html('Xem thêm <i class="fas fa-sort-down"></i>')
-          }
-          fixheightfilter()
-})
+
+
 fixheightfilter()
 function fixheightfilter(){
           let filterheight = 0;

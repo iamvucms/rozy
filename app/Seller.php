@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\City;
 
 class Seller extends Model
 {
@@ -35,6 +37,16 @@ class Seller extends Model
         }
         return $total;
     }
+    public function City()
+    {
+        return $this->hasOne('App\City', 'id', 'city_id');
+    }
+    public function getCity(){
+        $cityName = $this->City()->first()->name;
+        $cityName = str_replace("Tỉnh",'',$cityName);
+        $cityName = str_replace("Thành phố",'',$cityName);
+        return $cityName;
+    }
     public function getTotalProductsViewed(){
         $total = 0;
         $Products = $this->Products()->get();
@@ -55,6 +67,16 @@ class Seller extends Model
         $datejoin = new Carbon($this->join_at);
         $now = Carbon::now();
         return $datejoin->diffInDays($now);
+    }
+    public static function filterAddress(){
+        $ids = DB::table('sellers')->select('city_id')->distinct()->get();
+        $temp = [];
+        
+        foreach($ids as $id){
+            $temp[]= $id->city_id;
+        }
+        $addrs = City::whereIn('id',$temp)->get();
+        return $addrs;
     }
 }
  

@@ -773,7 +773,7 @@
                                 </div>
                                 <div class="supaddress">
 
-                                    {{$product->city_address}}
+                                    {{$product->getAddress()}}
                                 </div>
 
                             </div>

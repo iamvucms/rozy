@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Product;
 use App\Keyword;
+use App\Seller;
 
 class FilterController extends Controller
 {
     public function Search(Request $req){
-        
+        $addresses = Seller::filterAddress();
         $product  = new Product;
         $filter = $req->toArray();
         $products = null;
@@ -43,6 +44,6 @@ class FilterController extends Controller
         }
         unset($filter['ordProp']);
         unset($filter['ordType']);
-        return view('filter',compact('products','filter','countAfterFilter'));
+        return view('filter',compact('products','filter','countAfterFilter','addresses'));
     }
 }

@@ -5,11 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Category;
+
 class Product extends Model
 {
     protected $table = 'products';
     protected $fillable = ['view_count'];
     public $timestamps = false;
+    public $city = '';
+    public function __construct(){
+        
+    }
     //RecommandProduct
     public function ProductForYou($limit){
         $category = new Category();
@@ -102,6 +107,9 @@ class Product extends Model
         $props = json_decode($this->Property()->select('json')->first()->json ?? "[]",true);
         return $props;
     }
+    public function getAddress(){
+        return $this->Seller()->getCity();
+    }
     public function Category(){
         return $this->hasOne('App\Category','id','idcat');
     }
@@ -111,24 +119,26 @@ class Product extends Model
     //Product For Filter
     public function search($cat,$keyword){
         $temp = $this;
-        if($keyword!==null) $temp = $temp->where('name','like',"%$keyword%");
+        if($keyword!==null) $temp = $temp->where('products.name','like',"%$keyword%");
         if(!($cat==0 || $cat===null)) $temp = $temp->where('idcat',$cat);
         return $temp;
     }   
     public function withPrice($cat,$keyword,$from,$to){
         if($from===null) $from = 0;
         if($to===null) $to = PHP_INT_MAX;
+        
         return $this->search($cat,$keyword)->where([['sale_price','>=',$from],['sale_price','<=',$to]]);
     }
     public function withPriceAddress($cat,$keyword,$from,$to,$address){
-        if($address===null) $address = '';
-        return $this->withPrice($cat,$keyword,$from,$to)->where('city_address','like',"%$address%");
+        if($address===null) return $this->withPrice($cat,$keyword,$from,$to);
+        else return $this->withPrice($cat,$keyword,$from,$to)->selectRaw('products.*')->join('sellers','sellers.id','=','products.idsell')->where('city_id',$address);
+        
     }
     public function withPriceAddressReview($cat,$keyword,$from,$to,$address,$star){
         if($star===null) return $this->withPriceAddress($cat,$keyword,$from,$to,$address);
         return $this->withPriceAddress($cat,$keyword,$from,$to,$address)
-        ->select('products.*')->join('reviews','reviews.idpro','=','products.id')
-        ->groupBy('reviews.idpro')->havingRaw('avg(star) >= '.$star);
+        ->selectRaw('products.*')->join('reviews','reviews.idpro','=','products.id')
+        ->groupBy('reviews.idpro')->havingRaw('CEIL(avg(star)) >= '.$star);
     } 
     public function withPriceAddressReviewOrder($cat,$keyword,$from,$to,$address,$star,$order){
         if($order===null) $order = 'ASC';

@@ -794,7 +794,7 @@
                                 <a href="{{url('/shop/'.$product->Seller()->slug)}}">{{$product->Seller()->name}}</a> <br>
                                 <small>Cam kết chính hiệu 100%</small>
                             </span>
-                            <a href="#viewshop" id="viewshop" class="tabfade">
+                            <a href="{{url('/shop/'.$product->Seller()->slug)}}" id="viewshop" class="tabfade">
                                 <button class="viewshop">
                                     <small>Xem shop</small>
                                 </button>
@@ -1202,7 +1202,7 @@
                      </div>
                      <div class="supaddress">
 
-                        {{$product->city_address}}
+                        {{$product->getAddress()}}
                      </div>
 
                   </div>

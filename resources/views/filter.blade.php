@@ -443,169 +443,170 @@
                         class="fas fa-angle-double-right" id="mobliehiden"></i>
                     <div class="leftpoll">
                         <div class="allfilter">
-                            <div class="categories" id="allcats">
-                                <p><i class="fas fa-list-ul"></i> TẤT CẢ DANH MỤC
-                                </p>
-                                <p class="parentcat"><i class="fas fa-caret-right"></i>
-                                    Thời trang nam</p>
-                                <li><a href="javascript:void(0)">Áo thun</a></li>
-                                <li><a href="javascript:void(0)">Áo sơ mi</a></li>
-                                <li><a href="javascript:void(0)">Quần jean</a>
-                                </li>
-                                <li><a href="javascript:void(0)">Áo vest</a></li>
-                                <li><a href="javascript:void(0)">Quần shorts</a>
-                                </li>
-                                <ul class="hidecats">
-                                    <li><a href="javascript:void(0)">Áo
-                                            thun</a></li>
-                                    <li><a href="javascript:void(0)">Áo sơ
-                                            mi</a></li>
-                                    <li><a href="javascript:void(0)">Quần
-                                            jean</a></li>
-                                    <li><a href="javascript:void(0)">Áo
-                                            vest</a></li>
-                                    <li><a href="javascript:void(0)">Quần
-                                            shorts</a></li>
-                                </ul>
-                                <li class="viewmorecat">Xem thêm <i class="fas fa-sort-down"></i>
-
-                                </li>
-                            </div>
                             <div class="categories" id="filtertool">
                                 <p><i class="fas fa-filter"></i></i> BỘ LỌC</p>
                                 <p class="parentcat"><i class="fas fa-caret-right"></i>
                                     Địa điểm bán</p>
-                                <li><a href="javascript:void(0)"><input type="checkbox"> Đà
-                                        Nẵng</li>
-                                <li><a href="javascript:void(0)"><input type="checkbox"> Hải
-                                        Phòng</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox"> Hà
-                                        Nội</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Quảng Nam</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        TP.Hồ Chí Minh</a></li>
-                                <ul class="hidecats">
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Đà Nẵng</li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Hải Phòng</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Hà Nội</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Quảng Nam</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            TP.Hồ Chí Minh</a>
-                                    </li>
-                                </ul>
-                                <li class="viewmorecat">Xem thêm <i class="fas fa-sort-down"></i>
-
+                                @php
+                                    $filterWithOutAddress = $filter;
+                                    unset($filterWithOutAddress['address']);
+                                @endphp
+                               @foreach ($addresses as $addr)
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}"><input @if (request()->address==$addr->id)
+                                    checked=true
+                                @endif onchange="if(this.checked) window.location.href = '{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}'; else window.location.href ='{{route('filter',$filterWithOutAddress)}}'" type="checkbox"></a>
+                                {{$addr->name}}
                                 </li>
+                               @endforeach
+                                <ul class="hidecats">
+                                   a
+                                </ul>
+                                <li class="viewmorecat" onclick="console.log(document.querySelector('.hidecats'))">Xem thêm <i class="fas fa-sort-down"></i></li>
                             </div>
-
+    
                             <div class="categories" id="costtool">
                                 <p class="parentcat"><i class="fas fa-caret-right"></i>
                                     Khoảng giá</p>
                                 <div class="groupprice">
-                                    <input type="number" class="lowprice" value="100000">
-                                    <i class="fas fa-chevron-right breadarrow"></i>
-                                    <input type="number" class="highprice" value="200000">
+                                    <form action="{{request()->fullUrlWithQuery($filter)}}">
+                                        <input name=from type="number" class="lowprice" value="{{$filter['from'] ?? ''}}">
+                                        <i class="fas fa-chevron-right breadarrow"></i>
+                                        <input name=to type="number" class="highprice" value="{{$filter['to'] ?? ''}}">
+                                        <button class="submitPrice">Submit</button>
+                                    </form>
+    
                                 </div>
-                                <li><a href=""> DƯỚI 95K</li>
-                                <li><a href="javascript:void(0)"> 95K ~ 100K</a>
+                                @php
+                                $clonefilter = $filter;
+                                $clonefilter['from'] = 0;
+                                $clonefilter['to'] = 95000;
+                                @endphp
+                                <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                    {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> DƯỚI
+                                        95K</li>
+                                @php
+                                $clonefilter['from'] = 95000;
+                                $clonefilter['to'] = 200000;
+                                @endphp
+                                <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                    {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 95K ~
+                                        200K</a>
                                 </li>
-                                <li class="active"><a href="javascript:void(0)">
-                                        100K ~ 200K</a></li>
-                                <li><a href="javascript:void(0)"> 200K ~ 250K</a>
+                                @php
+                                $clonefilter['from'] = 200000;
+                                $clonefilter['to'] = 500000;
+                                @endphp
+    
+                                <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                    {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 200K
+                                        ~ 500K</a>
                                 </li>
-                                <li><a href="javascript:void(0)"> 250K ~ 400K</a>
+                                @php
+                                $clonefilter['from'] = 500000;
+                                $clonefilter['to'] = 1000000;
+                                @endphp
+                                <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                    {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 500K
+                                        ~ 1000K</a>
                                 </li>
-                                <li><a href="javascript:void(0)"> 400K ~ 500K</a>
+                                @php
+                                $clonefilter['from'] = 1000000;
+                                $clonefilter['to'] = 3000000;
+                                @endphp
+                                <li @if ($clonefilter['from']==@$filter['from'] && $clonefilter['to']==@$filter['to'])
+                                    {{'class=active'}} @endif><a href="{{request()->fullUrlWithQuery($clonefilter)}}"> 1000K
+                                        ~ 3000K</a>
                                 </li>
                             </div>
                             <div class="categories" id="shiptool">
                                 <p class="parentcat"><i class="fas fa-caret-right"></i>
-                                    Phương thức vận chuyển</p>
-                                <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                        Chuyển phát hỏa tốc</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                        Miễn phí vận chuyển</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                        Nhận trong 24h</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                        Nhận trong 4h</a></li>
-                            </div>
-                            <div class="categories" id="chatlieutool">
-                                <p class="parentcat"><i class="fas fa-caret-right"></i>
-                                    Chất liệu</p>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Cotton 100%</li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Cotton 200%</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Nỉ</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Kaki</a></li>
-                                <ul class="hidecats">
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Cotton 100%</li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Cotton 200%</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Nỉ</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Kaki</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Jean</a></li>
-                                </ul>
-                                <li class="viewmorecat">Xem thêm <i class="fas fa-sort-down"></i>
-
+                                    Đánh giá</p>
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>5]))}}">
+                                    <p @if (request()->star==5)
+                                        class=active
+                                    @endif>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    </p>
+                                    </a>
+                                </li>
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>4]))}}">
+                                    <p @if (request()->star==4)
+                                        class=active
+                                    @endif>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                    </p>
+                                    </a>
+                                </li>
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>3]))}}">
+                                    <p @if (request()->star==3)
+                                        class=active
+                                    @endif>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                    </p>
+                                    </a>
+                                </li>
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>2]))}}">
+                                    <p @if (request()->star==2)
+                                        class=active
+                                    @endif>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                    </p>
+                                    </a>
+                                </li>
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>1]))}}">
+                                    <p @if (request()->star==1)
+                                        class=active
+                                    @endif>
+                                        <i class="fas fa-star" style="color:orange" id="star"></i>
+                                        <i class="fas fa-star"  id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                        <i class="fas fa-star" id="star"></i>
+                                    </p>
+                                    </a>
                                 </li>
                             </div>
-                            <div class="categories" id="shirtype">
-                                <p class="parentcat"><i class="fas fa-caret-right"></i>
-                                    Kiểu</p>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Trơn</li>
-                                <li><a href="javascript:void(0)"><input type="checkbox"> Hoa
-                                        lá</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox"> Tay
-                                        ngắn</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Rộng chân</a></li>
-                                <ul class="hidecats">
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Trơn</li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Hoa lá</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Tay ngắn</a></li>
-                                    <li><a href="javascript:void(0)"><input type="checkbox">
-                                            Rộng chân</a></li>
-                                </ul>
-                                <li class="viewmorecat">Xem thêm <i class="fas fa-sort-down"></i>
-
-                                </li>
-                            </div>
-                            <div class="categories" id="groupfilter">
-                                <button>ÁP DỤNG</button>
-                                <button>XÓA TẤT CẢ </button>
-                            </div>
+    
+    
                         </div>
                     </div>
                 </span>
                 <span><i class="fas fa-sort-amount-up"></i> Sắp xếp
                     <div class="sortpanel">
                         <form action="" method="get">
-
-                            <li><input type="radio" name="sortbyrole"> <i class="fas fa-sort-numeric-up"></i> Giá cao
-                            </li>
-                            <li><input type="radio" name="sortbyrole"> <i class="fas fa-sort-numeric-down"></i> Giá thấp
-                            </li>
-                            <li><input type="radio" name="sortbyrole"> <i class="fas fa-sort-alpha-down"></i> Từ A-Z
-                            </li>
-                            <li><input type="radio" name="sortbyrole"> <i class="fas fa-sort-alpha-up"></i> Từ Z-A</li>
-                            <li><input type="radio" name="sortbyrole"> <i class="fas fa-eye"></i> Lượt xem</li>
+                            <ul> 
+                                <li @if (request()->ordProp=='PRICE' && request()->ordType=='DESC')
+                                    class=active
+                                @endif><a href="{{route('filter',array_merge(['ordProp'=>'PRICE','ordType'=>'DESC'],$filter))}}"><i class="fas fa-sort-numeric-up"></i> Giá cao</a></li>
+                                <li @if (request()->ordProp=='PRICE' && request()->ordType=='ASC')
+                                    class=active
+                                @endif><a href="{{route('filter',array_merge(['ordProp'=>'PRICE','ordType'=>'ASC'],$filter))}}"><i class="fas fa-sort-numeric-down"></i> Giá thấp</a></li>
+                                <li @if (request()->ordProp=='NAME' && request()->ordType=='ASC')
+                                    class=active
+                                @endif><a href="{{route('filter',array_merge(['ordProp'=>'NAME','ordType'=>'ASC'],$filter))}}"><i class="fas fa-sort-alpha-down"></i> Từ A-Z</a></li>
+                                <li @if (request()->ordProp=='NAME' && request()->ordType=='DESC')
+                                    class=active
+                                @endif><a href="{{route('filter',array_merge(['ordProp'=>'NAME','ordType'=>'DESC'],$filter))}}"><i class="fas fa-sort-alpha-up"></i> Từ Z-A</a></li>
+                                <li @if (request()->ordProp=='VIEW')
+                                    class=active
+                                @endif><a href="{{route('filter',array_merge(['ordProp'=>'VIEW','ordType'=>'DESC'],$filter))}}"><i class="fas fa-eye"></i> Lượt xem</a></li>
+                            </ul>
                         </form>
                     </div>
                 </span>
@@ -646,6 +647,7 @@
                         </div>
                         <div class="timereaming">
                             <span>
+                                    
                                 <li><a id="daydeal" href="javascript:void(0)">1</a> <sub>NGÀY</sub></li>
                                 <li><a id="hourdeal" href="javascript:void(0)">3</a> <sub>Giờ</sub></li>
                                 <li><a id="minutedeal" href="javascript:void(0)">50</a> <sub>Phút</sub></li>
@@ -696,64 +698,47 @@
                 </div>
                 <div class="filter">
                     <div class="optioncol">
-                        <div class="categories" id="allcats">
-                            <p><i class="fas fa-list-ul"></i> TẤT CẢ DANH MỤC
-                            </p>
-                            <p class="parentcat"><i class="fas fa-caret-right"></i>
-                                Thời trang nam</p>
-                            <li><a href="javascript:void(0)">Áo thun</a></li>
-                            <li><a href="javascript:void(0)">Áo sơ mi</a></li>
-                            <li><a href="javascript:void(0)">Quần jean</a>
-                            </li>
-                            <li><a href="javascript:void(0)">Áo vest</a></li>
-                            <li><a href="javascript:void(0)">Quần shorts</a>
-                            </li>
-                            <ul class="hidecats">
-                                <li><a href="javascript:void(0)">Áo
-                                        thun</a></li>
-                                <li><a href="javascript:void(0)">Áo sơ
-                                        mi</a></li>
-                                <li><a href="javascript:void(0)">Quần
-                                        jean</a></li>
-                                <li><a href="javascript:void(0)">Áo
-                                        vest</a></li>
-                                <li><a href="javascript:void(0)">Quần
-                                        shorts</a></li>
-                            </ul>
-                            <li class="viewmorecat">Xem thêm <i class="fas fa-sort-down"></i>
-
-                            </li>
-                        </div>
                         <div class="categories" id="filtertool">
                             <p><i class="fas fa-filter"></i></i> BỘ LỌC</p>
                             <p class="parentcat"><i class="fas fa-caret-right"></i>
                                 Địa điểm bán</p>
-                            <li><a href="javascript:void(0)"><input type="checkbox"> Đà
-                                    Nẵng</li>
-                            <li><a href="javascript:void(0)"><input type="checkbox"> Hải
-                                    Phòng</a></li>
-                            <li><a href="javascript:void(0)"><input type="checkbox"> Hà
-                                    Nội</a></li>
-                            <li><a href="javascript:void(0)"><input type="checkbox">
-                                    Quảng Nam</a></li>
-                            <li><a href="javascript:void(0)"><input type="checkbox">
-                                    TP.Hồ Chí Minh</a></li>
-                            <ul class="hidecats">
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Đà Nẵng</li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Hải Phòng</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Hà Nội</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        Quảng Nam</a></li>
-                                <li><a href="javascript:void(0)"><input type="checkbox">
-                                        TP.Hồ Chí Minh</a>
+                            @php
+                                $filterWithOutAddress = $filter;
+                                unset($filterWithOutAddress['address']);
+                            @endphp
+                            @if ($addresses->count()>5)
+                                @for ($i = 0; $i < 5; $i++)
+                                @php
+                                    $addr = $addresses->slice($i,1)->first();
+                                @endphp
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}"><input 
+                                    @if (request()->address==$addr->id)
+                                    checked=true
+                                    @endif onchange="if(this.checked) window.location.href = '{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}'; else window.location.href ='{{route('filter',$filterWithOutAddress)}}'" type="checkbox">{{$addr->name}}</a>
+                                @endfor
+                                <ul class="hidecats" id="hdcat">
+                                        @for ($i = 5; $i < count($addresses); $i++)
+                                @php
+                                    $addr = $addresses[$i];
+                                @endphp
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}"><input 
+                                    @if (request()->address==$addr->id)
+                                    checked=true
+                                    @endif onchange="if(this.checked) window.location.href = '{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}'; else window.location.href ='{{route('filter',$filterWithOutAddress)}}'" type="checkbox">{{$addr->name}}</a>
+                                @endfor
+                                </ul>
+                                <li class="viewmorecat" onclick="document.querySelector('#hdcat').style.display = 'block';this.style.display= 'none'">Xem thêm <i class="fas fa-sort-down"></i></li>
+                            @else
+                            @foreach ($addresses as $addr)
+                                <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}"><input 
+                                    @if (request()->address==$addr->id)
+                                    checked=true
+                                @endif onchange="if(this.checked) window.location.href = '{{request()->fullUrlWithQuery(array_merge($filter,['address'=>$addr->id]))}}'; else window.location.href ='{{route('filter',$filterWithOutAddress)}}'" type="checkbox"></a>
+                                
+                                {{$addr->name}}
                                 </li>
-                            </ul>
-                            <li class="viewmorecat">Xem thêm <i class="fas fa-sort-down"></i>
-
-                            </li>
+                           @endforeach
+                           @endif
                         </div>
 
                         <div class="categories" id="costtool">
@@ -812,15 +797,67 @@
                         </div>
                         <div class="categories" id="shiptool">
                             <p class="parentcat"><i class="fas fa-caret-right"></i>
-                                Phương thức vận chuyển</p>
-                            <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                    Chuyển phát hỏa tốc</a></li>
-                            <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                    Miễn phí vận chuyển</a></li>
-                            <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                    Nhận trong 24h</a></li>
-                            <li><a href="javascript:void(0)"><input type="checkbox" name="shiptype">
-                                    Nhận trong 4h</a></li>
+                                Đánh giá</p>
+                            <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>5]))}}">
+                                <p @if (request()->star==5)
+                                    class=active
+                                @endif>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                </p>
+                                </a>
+                            </li>
+                            <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>4]))}}">
+                                <p @if (request()->star==4)
+                                    class=active
+                                @endif>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                </p>
+                                </a>
+                            </li>
+                            <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>3]))}}">
+                                <p @if (request()->star==3)
+                                    class=active
+                                @endif>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                </p>
+                                </a>
+                            </li>
+                            <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>2]))}}">
+                                <p @if (request()->star==2)
+                                    class=active
+                                @endif>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                </p>
+                                </a>
+                            </li>
+                            <li><a href="{{request()->fullUrlWithQuery(array_merge($filter,['star'=>1]))}}">
+                                <p @if (request()->star==1)
+                                    class=active
+                                @endif>
+                                    <i class="fas fa-star" style="color:orange" id="star"></i>
+                                    <i class="fas fa-star"  id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                    <i class="fas fa-star" id="star"></i>
+                                </p>
+                                </a>
+                            </li>
                         </div>
 
 
@@ -848,7 +885,9 @@
                                     class=active
                                 @endif><i class="fas fa-vote-yea"></i> Đánh giá</button></a>
                             </div>
-                            <div class="groupsortby" >
+                            <div class="groupsortby @if (request()->ordProp=='PRICE' || request()->ordProp=='NAME' || request()->ordProp=='VIEW' )
+                                active
+                            @endif" >
                                 <button class="sortby">Sắp xếp theo <i class="fas fa-chevron-down"></i>
                                     <ul> 
                                         <li @if (request()->ordProp=='PRICE' && request()->ordType=='DESC')
@@ -928,7 +967,7 @@
                                 </div>
                                 <div class="supaddress">
 
-                                    {{$product->city_address}}
+                                    {{$product->getAddress()}}
                                 </div>
 
                             </div>

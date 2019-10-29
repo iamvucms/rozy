@@ -155,7 +155,7 @@
                         </div>
                         <!-- boxsearch -->
                         <div class="boxsearch">
-                            <form action="result.html">
+                            <form action="{{url('/search')}}">
                                 <input autocomplete="off" name="keyword" placeholder="Nhập từ khóa sản phẩm..."
                                     type="search" class="searchinput"><button onclick=""
                                     class="searchnow micnow"><span><i class="fas fa-microphone"></i></span></button>

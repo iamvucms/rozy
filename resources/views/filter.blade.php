@@ -868,7 +868,7 @@
                         <div class="stitle">
                             <span><i class="fas fa-sort"></i> Sắp xếp theo</span>
                             <div class="groupsort">
-                                <a href="{{route('filter',array_merge(['ordProp'=>'ALL','ordType'=>'DESC'],$filter))}}"><button data-sort="popular" 
+                                <a href="{{route('filter',['keyword'=>@$filter['keyword'],'idcat'=>@$filter['keyword']])}}"><button data-sort="popular" 
                                     @if (request()->ordProp=='ALL' || request()->ordProp===null)
                                     class=active
                                 @endif><i class="fas fa-industry"></i> Tất cả </button></a>

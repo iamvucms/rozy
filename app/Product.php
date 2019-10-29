@@ -45,7 +45,7 @@ class Product extends Model
         $current = date("Y-m-d");
         return $this->Discount()->select("percent")
         ->where([['from','<',$current],['to','>',$current]])
-        ->whereRaw('(discount.total - discount.selled >0 OR (total IS NULL AND selled IS NULL))')
+        ->whereRaw('(discount.total - discount.selled > 0 OR (total IS NULL AND selled IS NULL))')
         ->orderBy('percent','DESC')->limit(1);
     }
     //Review Relationship
@@ -157,9 +157,13 @@ class Product extends Model
                 $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('id',$order['ordType'] ?? 'ASC');
             break;
             case 'RATE':
-                $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->join('reviews','reviews.idpro','=','products.id')
-                ->selectRaw("products.*")->groupBy('idpro')->orderByRaw('AVG(star) '.($order['ordType'] ?? 'ASC'))
-                ;
+                if($star==null){
+                    $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->join('reviews','reviews.idpro','=','products.id')
+                    ->selectRaw("products.*")->groupBy('idpro')->orderByRaw('AVG(star) '.($order['ordType'] ?? 'ASC'));
+                }else{
+                    $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)
+                    ->selectRaw("products.*")->groupBy('idpro')->orderByRaw('AVG(star) '.($order['ordType'] ?? 'ASC'));
+                }
             break;
             case 'PRICE':
                 $products = $this->withPriceAddressReview($cat,$keyword,$from,$to,$address,$star)->orderBy('sale_price',$order['ordType'] ?? 'ASC');

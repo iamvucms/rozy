@@ -867,6 +867,7 @@
                </div>
                <div class="salesproducts">
                   @foreach ($flashsales as $flash)
+                  
                   <div class="product">
                      <div class="imgbox">
                         <a href="#viewflash"><img src="{{url($flash->Product()->Avatar()->src ?? '')}}" alt=""></a>
@@ -898,12 +899,50 @@
                         </p>
                         <p class="rtitle">Đã bán {{$flash->selled}}</p>
                      </div>
+                     <div class="rmTime">
+                        <p>Kết Thúc Trong <br>
+                           <span class="rmHour" data-hour="{{$flash->DiffTime()['rmHours']}}">00</span>
+                           <span class="rmMin" data-min="{{$flash->DiffTime()['rmMins']}}">00</span>
+                           <span class="rmSecond" data-second="{{$flash->DiffTime()['rmSeconds']}}">00</span>
+                        </p>
+                     </div>
                   </div>
                   @endforeach
                </div>
                
             </div>
-            
+            <script>
+              
+            setInterval(() => {
+               document.querySelectorAll('.rmTime').forEach(rmT=>{
+                  let h = rmT.childNodes[1].childNodes[3];
+                  let m = rmT.childNodes[1].childNodes[5];
+                  let s = rmT.childNodes[1].childNodes[7];
+                  if(s.dataset.second>0){
+                     s.setAttribute('data-second',s.dataset.second-1) ;
+                  }else{
+                     if(m.dataset.min>0){
+                        s.setAttribute('data-second',59);
+                        m.setAttribute('data-min',m.dataset.min-1);
+                     }else{
+                        if(h.dataset.hour>0){
+                           s.setAttribute('data-second',59);
+                           m.setAttribute('data-min',59);
+                           h.setAttribute('data-hour',h.dataset.hour-1);
+                        }else{
+                           // window.location.reload();
+                        }
+                     }
+                  }
+                  if(h.dataset.hour<10) h.innerHTML = "0"+h.dataset.hour
+                  else h.innerHTML = h.dataset.hour
+                  if(m.dataset.min<10) m.innerHTML = "0"+ m.dataset.min
+                  else  m.innerHTML = m.dataset.min
+                  if(s.dataset.second<10) s.innerHTML = "0"+ s.dataset.second
+                  else  s.innerHTML = s.dataset.second
+               })
+            }, 1000);
+            </script>
             <!-- endflashsales -->
             <!-- categoriesforyou -->
             <div class="catsforyou" id="catsforyou">

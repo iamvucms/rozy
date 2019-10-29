@@ -20,9 +20,9 @@ class Customer extends Model
     }
     public function allOrder($status=0){
         if($status==0){
-            return $this->Orders()->get();
+            return $this->Orders()->orderBy('id','DESC')->get();
         }else{
-            return $this->Orders()->where('status',$status)->get();
+            return $this->Orders()->orderBy('id','DESC')->where('status',$status)->get();
         }
     }
 }

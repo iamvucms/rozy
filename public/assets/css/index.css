@@ -1523,14 +1523,15 @@ li {
      background: white;
      margin-top: 20px;
      /* margin-left:150px; */
-     padding: 10px;
+     padding: 15px 10px;
      /* max-width: 1350px; */
      border-radius: 4px;
      -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
      -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
 }
-
+.flashsales .product{
+}
 .salestitle {
      position: relative;
      padding-bottom: 10px;
@@ -1588,7 +1589,7 @@ li {
      flex-grow: 1;
      /*border:1px solid red;*/
      display: inline-block;
-     height: 260px;
+     height: 320px;
      position: relative;
      max-width: calc( (100% - 50px) / 6);
      margin-right: 10px;
@@ -1599,14 +1600,26 @@ li {
      -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
      box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
 }
-
+.rmTime{
+     padding:15px 0px;
+     margin-top: 5px;
+     overflow: hidden;
+     text-align: center;
+}
+.rmTime span{
+     color:white;
+     background:black;
+     font-weight: bold;
+     padding:3px 5px;
+     border-radius: 2px;
+}
 .flashnext1 {
      display: none!important;
 }
 
 .product .imgbox {
      display: flex;
-     height: 150px;
+     height: 170px;
      width: 80%;
      /*position: absolute;*/
      overflow: hidden;

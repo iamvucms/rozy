@@ -362,14 +362,6 @@ document.querySelectorAll('img').forEach((val)=>{
           
 })
 $("img").lazyload();//exec
-document.querySelectorAll('.rating p').forEach((val)=>{
-          var rand = Math.floor(Math.random() * 5)+1;
-          for(let i=0;i<rand*2;i+=2){
-                    val.childNodes[i].style.color = 'rgb(255, 217, 0)';
-          }
-          // console.log(val.childNodes);
-})
-
 $("#gotop").click(()=>{
           if($(window).width()>768){
                     $('html,body').animate({

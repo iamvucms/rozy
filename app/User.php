@@ -39,6 +39,10 @@ class User extends Authenticatable
     public function Avatar(){
         return $this->hasOne('App\Image','id_avt_user','id');
     }
+    public function role()
+    {
+        return $this->hasOne('App\Role', 'id', 'role_id')->first();
+    }
     public function getAvatar(){
         return $this->Avatar()->first()->src ?? null;
     }

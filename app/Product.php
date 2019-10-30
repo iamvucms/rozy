@@ -42,7 +42,7 @@ class Product extends Model
     }
     public function AvailableDiscount()
     {
-        $current = date("Y-m-d");
+        $current = date("Y-m-d H:i:s");
         return $this->Discount()->select("percent")
         ->where([['from','<',$current],['to','>',$current]])
         ->whereRaw('(discount.total - discount.selled > 0 OR (total IS NULL AND selled IS NULL))')

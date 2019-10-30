@@ -354,13 +354,6 @@ document.querySelectorAll('img').forEach((val) => {
 
 })
 $("img").lazyload();//exec
-document.querySelectorAll('.rating p').forEach((val) => {
-    var rand = Math.floor(Math.random() * 5) + 1;
-    for (let i = 0; i < rand * 2; i += 2) {
-        val.childNodes[i].style.color = 'rgb(255, 217, 0)';
-    }
-    // console.log(val.childNodes);
-})
 
 $("#gotop").click(() => {
     if ($(window).width() > 768) {
@@ -392,6 +385,7 @@ document.querySelectorAll('.colorpick .listcolors li').forEach(item => {
 })
 let btnquantity = document.querySelectorAll('.updowngroup button');
 btnquantity[0].onclick = () => {
+    
     if (parseInt(document.querySelector('.updowngroup input').value) - 1 > 0) document.querySelector('.updowngroup input').value = parseInt(document.querySelector('.updowngroup input').value) - 1
 }
 btnquantity[1].onclick = () => {

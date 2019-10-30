@@ -47,4 +47,10 @@ Route::put('/notifications','NotifyController@Viewed')->name('viewNotify')->midd
 Route::get('/shop/{slug}','SellerController@Shop')->name('shop');
 //EnjoyController
 Route::post('/enjoy/add','EnjoyController@addEnjoy')->name('addEnjoy');
-Route::post('/enjoy/delete','EnjoyController@delEnjoy')->name('delEnjoy');
+Route::post('/enjoy/delete','EnjoyController@delEnjoy')->name('delEnjoy'); 
+
+
+//Manager Area
+Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], function(){
+    Route::get('login', 'Manager\LoginController@Login');
+});

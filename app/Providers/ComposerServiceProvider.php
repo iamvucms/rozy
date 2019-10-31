@@ -8,6 +8,8 @@ use App\Cart;
 use App\Product;
 use App\Keyword;
 use App\Enjoy;
+use App\Order;
+use App\Review;
 use Illuminate\Support\Facades\Auth;
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,10 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());
             $view->with('enjoy',new Enjoy);
+        });
+        View::composer('Admin.index', function ($view) {
+            $view->with('order',new Order);
+            $view->with('review',new Review);
         });
         View::composer('index', function ($view) {
             $view->with('recommandCats',(new Category)->recommandCategories());

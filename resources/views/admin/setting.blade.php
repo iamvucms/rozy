@@ -5,16 +5,16 @@
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <link rel="stylesheet" href="assets/css/bootstrap-reboot.min.css">
-          <link rel="stylesheet" href="assets/css/index.css">
-          <link rel="stylesheet" href="assets/css/cat.css">
-          <link rel="stylesheet" href="assets/css/order.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/bootstrap-reboot.min.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/index.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/cat.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/order.css">
           <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-          <link rel="stylesheet" href="assets/css/chart.min.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
                     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
                     crossorigin="anonymous">
-          <script src="assets/ckeditor/ckeditor.js"></script>
+          <script src="../../assetsAdmin/ckeditor/ckeditor.js"></script>
           <title>Admin::Setting</title>
 </head>
 
@@ -29,7 +29,7 @@
                               <div class="options">
                                         <div class="top">
                                                   <div class="me">
-                                                            <img src="assets/img/avt.jpg" alt="">
+                                                            <img src="../../assetsAdmin/img/avt.jpg" alt="">
                                                             <div class="meme">
                                                                       <p class="online"><span
                                                                                           class="pointonline"></span>
@@ -127,7 +127,7 @@
                                                   <li><i class="far fa-envelope"></i> <span class="toptext">Tin
                                                                       nhắn</span></li>
                                                   <li class="topprofile">
-                                                            <img src="assets/img/avt.jpg" alt="">
+                                                            <img src="../../assetsAdmin/img/avt.jpg" alt="">
                                                             <span class="nameprofile"><span class="toptext">VuCms</span>
                                                                       <i class="fas fa-angle-down"></i>
 
@@ -212,7 +212,7 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td></td>
-                                                                                <td><img height="300" style="border:5px solid tomato;padding:2.5px" src="assets/img/dftheme.png" alt=""></td>
+                                                                                <td><img height="300" style="border:5px solid tomato;padding:2.5px" src="../../assetsAdmin/img/dftheme.png" alt=""></td>
                                                                       </tr>
                                                                       
                                                                       <tr>
@@ -252,7 +252,7 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td>logo</td>
-                                                                                <td><img height="100" width="100" style="border:5px solid tomato;padding:2.5px" src="assets/img/logocart.png" alt=""></td>
+                                                                                <td><img height="100" width="100" style="border:5px solid tomato;padding:2.5px" src="../../assetsAdmin/img/logocart.png" alt=""></td>
                                                                       </tr>
                                                                       <tr>
                                                                                 <td>Giờ làm việc</td>
@@ -803,9 +803,9 @@
                               </div>
                     </div>
           </div>
-<script src="../assets/js/jquery.min.js"></script>
-<script src="assets/js/chart.min.js"></script>
-<script src="assets/js/cat.js"></script>
+<script src="../../../assetsAdmin/js/jquery.min.js"></script>
+<script src="../../assetsAdmin/js/chart.min.js"></script>
+<script src="../../assetsAdmin/js/cat.js"></script>
 
 </body>
 

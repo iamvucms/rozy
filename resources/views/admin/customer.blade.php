@@ -5,16 +5,16 @@
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <link rel="stylesheet" href="assets/css/bootstrap-reboot.min.css">
-          <link rel="stylesheet" href="assets/css/index.css">
-          <link rel="stylesheet" href="assets/css/cat.css">
-          <link rel="stylesheet" href="assets/css/order.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/bootstrap-reboot.min.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/index.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/cat.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/order.css">
           <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-          <link rel="stylesheet" href="assets/css/chart.min.css">
+          <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
                     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
                     crossorigin="anonymous">
-          <title>Admin::Orders</title>
+          <title>Admin::Customers</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                               <div class="options">
                                         <div class="top">
                                                   <div class="me">
-                                                            <img src="assets/img/avt.jpg" alt="">
+                                                            <img src="../../assetsAdmin/img/avt.jpg" alt="">
                                                             <div class="meme">
                                                                       <p class="online"><span
                                                                                           class="pointonline"></span>
@@ -126,7 +126,7 @@
                                                   <li><i class="far fa-envelope"></i> <span class="toptext">Tin
                                                                       nhắn</span></li>
                                                   <li class="topprofile">
-                                                            <img src="assets/img/avt.jpg" alt="">
+                                                            <img src="../../assetsAdmin/img/avt.jpg" alt="">
                                                             <span class="nameprofile"><span class="toptext">VuCms</span>
                                                                       <i class="fas fa-angle-down"></i>
 
@@ -151,12 +151,12 @@
                               </div>
                               <div class="bottom">
                                         <div class="headtitle">
-                                                  <p>ĐƠN HÀNG</p>
+                                                  <p style="max-width:200px;">KHÁCH HÀNG</p>
                                                   <div class="breadcrumb">
                                                             <ul>
                                                                       <li><span class="sub">Quản lí</span></li>
                                                                       <li><span class="aright"><i class="fas fa-angle-right"></i></span></li>
-                                                                      <li><span class="main"><a href="">Đơn Hàng</a></span></li>
+                                                                      <li><span class="main"><a href="">Khách Hàng</a></span></li>
                                                                       
                                                             </ul>
                                                   </div>
@@ -169,7 +169,7 @@
                                                                                 550
                                                                       </p>
                                                                       <p class="dest">
-                                                                                Tổng Đơn Hàng
+                                                                                Tổng khách hàng
                                                                       </p>
                                                             </div>
                                                             <span class="toprightt">
@@ -184,7 +184,7 @@
                                                                                 15
                                                                       </p>
                                                                       <p class="dest">
-                                                                                Đơn Hàng hôm nay
+                                                                                Khách Hàng Mới
                                                                       </p>
                                                             </div>
                                                             <span class="toprightt">
@@ -199,7 +199,7 @@
                                                                                 45
                                                                       </p>
                                                                       <p class="dest">
-                                                                                Đơn Hàng Thành Công
+                                                                                Khách Hàng Tích Cực
                                                                       </p>
                                                             </div>
                                                             <span class="toprightt">
@@ -214,7 +214,7 @@
                                                                                 12
                                                                       </p>
                                                                       <p class="dest">
-                                                                                Đơn Hàng Trả Lại
+                                                                                          Khách hàng Thân thiết
                                                                       </p>
                                                             </div>
                                                             <span class="toprightt">
@@ -230,7 +230,7 @@
                                                                                 100
                                                                       </p>
                                                                       <p class="dest">
-                                                                                Đơn hàng đã hủy
+                                                                                          Khách Hàng Tiềm Năng
                                                                       </p>
                                                             </div>
                                                             <span class="toprightt">
@@ -245,7 +245,7 @@
                                                                                 5
                                                                       </p>
                                                                       <p class="dest">
-                                                                                Đơn hàng đang chờ
+                                                                                Khách Hàng Bị Cấm
                                                                       </p>
                                                             </div>
                                                             <span class="toprightt">
@@ -260,13 +260,13 @@
                                                             <span><i class="fas fa-list-ul"></i> Tất Cả Đơn Hàng</span>
                                                             <ul class="catright">
                                                                       <li><i class="fas fa-filter"></i> Tất Cả <i class="fas fa-angle-down"></i>
-                                                                                <ul>
-                                                                                          <li>hôm nay</li>
-                                                                                          <li>hôm qua</li>
-                                                                                          <li>đã xử lí</li>
-                                                                                          <li>đang chờ</li>
-                                                                                          <li>đã hủy</li>
-                                                                                          <li>bị trả lại</li>
+                                                                                <ul style="width:auto;">
+                                                                                          <li>Tất Cả </li>
+                                                                                          <li>Khách Hàng Mới</li>
+                                                                                          <li>Khách Hàng Tích Cực</li>
+                                                                                          <li>Khách hàng Thân thiết</li>
+                                                                                          <li>Khách Hàng Tiềm Năng</li>
+                                                                                          <li>Khách Hàng Bị Cấm</li>
                                                                                 </ul></li>
                                                                       <li><i class="fas fa-sort-amount-up"></i> Sắp Xếp <i class="fas fa-angle-down"></i>
                                                                                 <ul>
@@ -277,9 +277,9 @@
                                                                                 </ul></li>
                                                                       <li><i class="fas fa-radiation"></i> Thao Tác <i class="fas fa-angle-down"></i>
                                                                                 <ul>
-                                                                                          <li><a href="addorder.html" style="color:#555"><i class="fas fa-plus-circle"></i> Thêm mới</a></li>
+                                                                                          <li><a href="addcustomer.html" style="color:#555"><i class="fas fa-plus-circle"></i> Thêm mới</a></li>
                                                                                           <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                          <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
+                                                                                          <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                 </ul>
                                                                       </li>
                                                             </ul>
@@ -288,35 +288,37 @@
                                                             <table border="1">
                                                                       <tr>
                                                                                 <th><input type="checkbox" id="checkall"></th>
-                                                                                <th>STT</th>
-                                                                                <th>Tên khách hàng</th>
-                                                                                <th>Mã số VAT</th>
-                                                                                <th>Giá trị</th>
-                                                                                <th>Trạng thái</th>
-                                                                                <th>Thời Gian khởi tạo</th>
-                                                                                <th>Thời Gian cập nhật </th>
+                                                                                <th>MKH</th>
+                                                                                <th>Tên Khách Hàng</th>
+                                                                                <th>Email</th>
+                                                                                <th>Nhóm Khách Hàng</th>
+                                                                                <th>Trạng Thái</th>
+                                                                                <th>Tổng Đơn Hàng</th>
+                                                                                <th>Tông Tiêu Dùng</th>
+                                                                                <th>IP</th>
+                                                                                <th>Ngày Tham Gia</th>
                                                                                 <th>Thao tác</th>
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>10277</td>
-                                                                                <td><a href="#customer">Cecilia Hicks</a></td>
-                                                                                <td>VAT17489</td>
-                                                                                <td>3,800,000 VND</td>
+                                                                                <td>R14904</td>
+                                                                                <td><a href="#customer">Minnie Sparks</a></td>
+                                                                                <td>re@gogupto.pt</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>6/21/2058</td>
-                                                                                <td>1/18/2045</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>19</td>
+                                                                                <td>19,000,000 VND</td>
+                                                                                <td>39.81.97.157</td>
+                                                                                          <td>11/9/2078</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                               <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                               <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -324,24 +326,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>17999</td>
-                                                                                <td><a href="#customer">Mitchell Garza</a></td>
-                                                                                <td>VAT13251</td>
-                                                                                <td>15,600,000 VND</td>
+                                                                                <td>R19573</td>
+                                                                                <td><a href="#customer">David Morgan</a></td>
+                                                                                <td>sikha@bagumito.tw</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>6/29/2081</td>
-                                                                                <td>9/21/2031</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>98</td>
+                                                                                <td>27,000,000 VND</td>
+                                                                                <td>132.25.231.18</td>
+                                                                                          <td>3/12/2041</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -349,25 +351,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>16237</td>
-                                                                                <td><a href="#customer">Larry Frazier</a></td>
-                                                                                <td>VAT13288</td>
-                                                                                <td>14,600,000 VND</td>
+                                                                                <td>R14378</td>
+                                                                                <td><a href="#customer">Clifford Hicks</a></td>
+                                                                                <td>keupacu@reniju.bh</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div>
-                                                                                </td>
-                                                                                <td>10/21/2031</td>
-                                                                                <td>9/16/2079</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>28</td>
+                                                                                <td>10,000,000 VND</td>
+                                                                                <td>144.176.161.212</td>
+                                                                                <td>12/10/2070</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -375,24 +376,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>16763</td>
-                                                                                <td><a href="#customer">Flora Cortez</a></td>
-                                                                                <td>VAT13307</td>
-                                                                                <td>1,800,000 VND</td>
+                                                                                <td>R18513</td>
+                                                                                <td><a href="#customer">Annie Page</a></td>
+                                                                                <td>wokaci@ocerupgu.ne</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>3/30/2104</td>
-                                                                                <td>5/28/2042</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>75</td>
+                                                                                <td>7,000,000 VND</td>
+                                                                                <td>52.129.101.160</td>
+                                                                                          <td>10/18/2053</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -400,24 +401,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>12928</td>
-                                                                                <td><a href="#customer">Emma Wilkins</a></td>
-                                                                                <td>VAT10169</td>
-                                                                                <td>6,100,000 VND</td>
+                                                                                <td>R13579</td>
+                                                                                <td><a href="#customer">Eula Medina</a></td>
+                                                                                <td>wu@kehju.sj</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>3/18/2084</td>
-                                                                                <td>9/10/2095</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>33</td>
+                                                                                <td>6,000,000 VND</td>
+                                                                                <td>207.223.37.242</td>
+                                                                                          <td>1/7/2117</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -425,24 +426,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>12066</td>
-                                                                                <td><a href="#customer">Danny Bush</a></td>
-                                                                                <td>VAT15887</td>
-                                                                                <td>14,200,000 VND</td>
+                                                                                <td>R18766</td>
+                                                                                <td><a href="#customer">Erik Delgado</a></td>
+                                                                                <td>ewa@co.td</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>3/29/2043</td>
-                                                                                <td>8/7/2026</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>34</td>
+                                                                                <td>22,000,000 VND</td>
+                                                                                <td>176.192.231.225</td>
+                                                                                          <td>10/20/2040</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -450,24 +451,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>15992</td>
-                                                                                <td><a href="#customer">Helena Reese</a></td>
-                                                                                <td>VAT16977</td>
-                                                                                <td>14,100,000 VND</td>
+                                                                                <td>R15886</td>
+                                                                                <td><a href="#customer">Roy Ray</a></td>
+                                                                                <td>dapdunuc@daopgar.bw</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>11/6/2099</td>
-                                                                                <td>2/7/2093</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>72</td>
+                                                                                <td>35,000,000 VND</td>
+                                                                                <td>217.1.194.140</td>
+                                                                                          <td>5/4/2059</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -475,24 +476,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>12620</td>
-                                                                                <td><a href="#customer">George Moreno</a></td>
-                                                                                <td>VAT12640</td>
-                                                                                <td>4,300,000 VND</td>
+                                                                                <td>R11375</td>
+                                                                                <td><a href="#customer">Jeffery Taylor</a></td>
+                                                                                <td>bosoferi@obougoni.gg</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>1/13/2102</td>
-                                                                                <td>7/23/2094</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>26</td>
+                                                                                <td>19,000,000 VND</td>
+                                                                                <td>25.164.155.39</td>
+                                                                                          <td>11/4/2038</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -500,24 +501,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>14334</td>
-                                                                                <td><a href="#customer">Lois Weaver</a></td>
-                                                                                <td>VAT11836</td>
-                                                                                <td>1,600,000 VND</td>
+                                                                                <td>R10717</td>
+                                                                                <td><a href="#customer">Zachary Jordan</a></td>
+                                                                                <td>iw@lu.er</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>4/16/2085</td>
-                                                                                <td>10/16/2062</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>17</td>
+                                                                                <td>35,000,000 VND</td>
+                                                                                <td>2.222.140.64</td>
+                                                                                          <td>3/24/2073</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -525,24 +526,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>19254</td>
-                                                                                <td><a href="#customer">Jeffrey Harper</a></td>
-                                                                                <td>VAT12639</td>
-                                                                                <td>12,300,000 VND</td>
+                                                                                <td>R10372</td>
+                                                                                <td><a href="#customer">Kevin Hayes</a></td>
+                                                                                <td>ronfora@metiosu.tc</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
                                                                                                     <span class="point" id="com"></span>
-                                                                                                    <span class="stttext">Hoàn Thành</span>
-                                                                                          </div></td>
-                                                                                <td>8/13/2101</td>
-                                                                                <td>9/2/2024</td>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>32</td>
+                                                                                <td>16,000,000 VND</td>
+                                                                                <td>56.169.79.17</td>
+                                                                                          <td>10/14/2095</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -550,24 +551,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>15200</td>
-                                                                                <td><a href="#customer">Floyd Stevenson</a></td>
-                                                                                <td>VAT13792</td>
-                                                                                <td>4,400,000 VND</td>
+                                                                                <td>R11032</td>
+                                                                                <td><a href="#customer">Teresa Joseph</a></td>
+                                                                                <td>nobti@zib.fr</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
-                                                                                                    <span class="point" id="pen"></span>
-                                                                                                    <span class="stttext">Chờ xử lý</span>
-                                                                                          </div></td>
-                                                                                <td>8/5/2058</td>
-                                                                                <td>12/11/2031</td>
+                                                                                                    <span class="point" id="com"></span>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>11</td>
+                                                                                <td>48,000,000 VND</td>
+                                                                                <td>105.4.72.98</td>
+                                                                                          <td>5/20/2080</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -575,24 +576,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>15768</td>
-                                                                                <td><a href="#customer">Jimmy Figueroa</a></td>
-                                                                                <td>VAT11280</td>
-                                                                                <td>10,600,000 VND</td>
+                                                                                <td>R16941</td>
+                                                                                <td><a href="#customer">Leon Curtis</a></td>
+                                                                                <td>fevulne@orupejor.do</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
-                                                                                                    <span class="point" id="pen"></span>
-                                                                                                    <span class="stttext">Chờ xử lý</span>
-                                                                                          </div></td>
-                                                                                <td>10/7/2070</td>
-                                                                                <td>10/21/2119</td>
+                                                                                                    <span class="point" id="com"></span>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>1</td>
+                                                                                <td>25,000,000 VND</td>
+                                                                                <td>145.183.88.63</td>
+                                                                                          <td>6/21/2064</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -600,24 +601,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>10679</td>
-                                                                                <td><a href="#customer">William Dawson</a></td>
-                                                                                <td>VAT18719</td>
-                                                                                <td>8,600,000 VND</td>
+                                                                                <td>R18579</td>
+                                                                                <td><a href="#customer">Madge Santiago</a></td>
+                                                                                <td>dalli@doba.es</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
-                                                                                                    <span class="point" id="pen"></span>
-                                                                                                    <span class="stttext">Chờ xử lý</span>
-                                                                                          </div></td>
-                                                                                <td>3/19/2048</td>
-                                                                                <td>5/7/2083</td>
+                                                                                                    <span class="point" id="com"></span>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>52</td>
+                                                                                <td>20,000,000 VND</td>
+                                                                                <td>144.147.106.89</td>
+                                                                                          <td>2/12/2032</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -625,24 +626,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>19237</td>
-                                                                                <td><a href="#customer">Jose Fuller</a></td>
-                                                                                <td>VAT16828</td>
-                                                                                <td>8,500,000 VND</td>
+                                                                                <td>R16643</td>
+                                                                                <td><a href="#customer">Cody McBride</a></td>
+                                                                                <td>il@kaije.so</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
-                                                                                                    <span class="point" id="pen"></span>
-                                                                                                    <span class="stttext">Chờ xử lý</span>
-                                                                                          </div></td>
-                                                                                <td>7/7/2067</td>
-                                                                                <td>2/13/2093</td>
+                                                                                                    <span class="point" id="com"></span>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>15</td>
+                                                                                <td>44,000,000 VND</td>
+                                                                                <td>61.26.67.219</td>
+                                                                                          <td>9/6/2053</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -650,24 +651,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>13661</td>
-                                                                                <td><a href="#customer">Lillie Baker</a></td>
-                                                                                <td>VAT10007</td>
-                                                                                <td>7,900,000 VND</td>
+                                                                                <td>R12608</td>
+                                                                                <td><a href="#customer">Edith Walker</a></td>
+                                                                                <td>fabho@tugiv.bi</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
-                                                                                                    <span class="point" id="pen"></span>
-                                                                                                    <span class="stttext">Chờ xử lý</span>
-                                                                                          </div></td>
-                                                                                <td>3/19/2106</td>
-                                                                                <td>7/22/2097</td>
+                                                                                                    <span class="point" id="com"></span>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>88</td>
+                                                                                <td>15,000,000 VND</td>
+                                                                                <td>43.47.19.216</td>
+                                                                                          <td>11/2/2061</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -675,24 +676,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>10086</td>
-                                                                                <td><a href="#customer">Mathilda Chavez</a></td>
-                                                                                <td>VAT19090</td>
-                                                                                <td>13,800,000 VND</td>
+                                                                                <td>R17346</td>
+                                                                                <td><a href="#customer">Mable Lindsey</a></td>
+                                                                                <td>muher@ken.pn</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
-                                                                                                    <span class="point" id="not"></span>
-                                                                                                    <span class="stttext">Đã hủy</span>
-                                                                                          </div></td>
-                                                                                <td>4/23/2097</td>
-                                                                                <td>7/12/2073</td>
+                                                                                                    <span class="point" id="com"></span>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>20</td>
+                                                                                <td>16,000,000 VND</td>
+                                                                                <td>15.172.97.35</td>
+                                                                                          <td>4/21/2116</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -700,24 +701,24 @@
                                                                       </tr>
                                                                       <tr>
                                                                                 <td><input type="checkbox" id="check"></td>
-                                                                                <td>16161</td>
-                                                                                <td><a href="#customer">Leo Mathis</a></td>
-                                                                                <td>VAT19884</td>
-                                                                                <td>15,600,000 VND</td>
+                                                                                <td>R18712</td>
+                                                                                <td><a href="#customer">Joseph Edwards</a></td>
+                                                                                <td>biraba@rinwev.so</td>
+                                                                                <td>Mặc Định</td>
                                                                                 <td><div class="tabstt">
-                                                                                                    <span class="point" id="not"></span>
-                                                                                                    <span class="stttext">Đã hủy</span>
-                                                                                          </div></td>
-                                                                                <td>3/9/2043</td>
-                                                                                <td>12/8/2097</td>
+                                                                                                    <span class="point" id="com"></span>
+                                                                                                    <span class="stttext">Hoạt Động</span>
+                                                                                          </div></td>         
+                                                                                <td>30</td>
+                                                                                <td>12,000,000 VND</td>
+                                                                                <td>103.187.227.187</td>
+                                                                                          <td>3/9/2051</td>
                                                                                 <td><div class="lasttd">
                                                                                           <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                                                                           <li id="showoption"><i class="fas fa-angle-down"></i>
                                                                                                     <ul>
                                                                                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                                                                              <li><a href="editorder.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="fas fa-print"></i> In đơn hàng</a></li>
-                                                                                                              <li><a href="print.html" style="color:#555" target="__blank"><i class="far fa-file-powerpoint"></i> In đơn vận chuyển</a></li>
+                                                                                                              <li><a href="editcustomer.html" style="color:#555"><i class="far fa-edit"></i> Cập Nhật</a></li>
                                                                                                     </ul>
                                                                                           </li>
                                                                                 </div>
@@ -739,9 +740,9 @@
                               </div>
                     </div>
           </div>
-<script src="../assets/js/jquery.min.js"></script>
-<script src="assets/js/chart.min.js"></script>
-<script src="assets/js/cat.js"></script>
+<script src="../../../assetsAdmin/js/jquery.min.js"></script>
+<script src="../../assetsAdmin/js/chart.min.js"></script>
+<script src="../../assetsAdmin/js/cat.js"></script>
 <script>
 </script>
 </body>

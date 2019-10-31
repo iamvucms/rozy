@@ -71,7 +71,6 @@ class Seller extends Model
     public static function filterAddress(){
         $ids = DB::table('sellers')->select('city_id')->distinct()->get();
         $temp = [];
-        
         foreach($ids as $id){
             $temp[]= $id->city_id;
         }

@@ -23,4 +23,9 @@ class Review extends Model
     {
         return $this->belongsTo('App\Product', 'id', 'idpro');
     }
+    public function getNewReviewCount(){
+        $count =$this->whereRaw("DAY(NOW()) - DAY(create_at) <=5 AND MONTH(NOW())= MONTH(create_at) AND YEAR(NOW())= YEAR(create_at)")->count();
+        $precount =$this->whereRaw("DAY(NOW()) - DAY(create_at) >=5 AND DAY(NOW()) - DAY(create_at) <=10 AND MONTH(NOW())= MONTH(create_at) AND YEAR(NOW())= YEAR(create_at)")->count();
+        return ['count'=>$count,'percent'=>$precount!=0 ?ceil($count/$precount*100) : 100 ];;
+    }
 }

@@ -48,9 +48,12 @@ Route::get('/shop/{slug}','SellerController@Shop')->name('shop');
 //EnjoyController
 Route::post('/enjoy/add','EnjoyController@addEnjoy')->name('addEnjoy');
 Route::post('/enjoy/delete','EnjoyController@delEnjoy')->name('delEnjoy'); 
-
-
-//Manager Area
+//Manager Area not Login
+Route::group(['prefix' => '/panel/manager',  'middleware' => 'guest'], function(){
+    Route::get('dashboard-login', 'Manager\LoginController@Login')->name('superLogin');
+    Route::post('dashboard-login', 'Manager\LoginController@postLogin')->name('superPostLogin');
+});
+//Manager Area Logined 
 Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], function(){
-    Route::get('login', 'Manager\LoginController@Login');
+    Route::get('/','Manager\DashboardController@Index')->name('dashboard');
 });

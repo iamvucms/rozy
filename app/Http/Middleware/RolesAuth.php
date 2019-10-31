@@ -20,7 +20,8 @@ class RolesAuth
     {
         // get user role permissions
         $user = Auth::user();
-        if( $user===null || $user->role_id > 3) return redirect()->back();
+        if( $user===null) return redirect(route('superLogin'));
+        if($user->role_id > 3) return redirect(route('home'));
         $role = Role::findOrFail($user->role_id);
         $permissions = $role->permissions;
         // get requested action

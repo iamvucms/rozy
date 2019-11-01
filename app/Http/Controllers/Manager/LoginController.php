@@ -21,4 +21,8 @@ class LoginController extends Controller
         }
         return redirect(url()->route('superLogin'));
     }
+    public function Logout(){
+        Auth::logout();
+        return redirect(route('superLogin'));
+    }
 }

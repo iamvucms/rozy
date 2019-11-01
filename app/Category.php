@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Cookie;
 
 class Category extends Model
 {
+    public $fillable = ['name','description','seo_keys','order','seo_description','slug'];
+    public $timestamps = false;
     protected $table = 'categories';
-
     public function Products(){
         return $this->hasMany('App\Product','idcat','id');
     }
@@ -31,7 +32,6 @@ class Category extends Model
             $cat = $pro->getCategory();
             foreach($cats as $myCat){
                 if($cat->id==$myCat->id) goto SKIP;
-                
             }
             $cats->push($cat);
             SKIP:

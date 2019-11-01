@@ -49,11 +49,29 @@ Route::get('/shop/{slug}','SellerController@Shop')->name('shop');
 Route::post('/enjoy/add','EnjoyController@addEnjoy')->name('addEnjoy');
 Route::post('/enjoy/delete','EnjoyController@delEnjoy')->name('delEnjoy'); 
 //Manager Area not Login
-Route::group(['prefix' => '/panel/manager',  'middleware' => 'guest'], function(){
+Route::group(['prefix' => '/panel/manager','middleware' => 'guest'], function(){
     Route::get('dashboard-login', 'Manager\LoginController@Login')->name('superLogin');
     Route::post('dashboard-login', 'Manager\LoginController@postLogin')->name('superPostLogin');
 });
+
 //Manager Area Logined 
 Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], function(){
     Route::get('/','Manager\DashboardController@Index')->name('dashboard');
+    Route::get('/logout','Manager\LoginController@Logout')->name('superLogout');
+
+    Route::get('/categories','Manager\CategoryController@show')->name('superCategory');
+    Route::get('/categories.{slug}','Manager\CategoryController@editCategory')->name('superEditCategory');
+    Route::post('/categories.{slug}','Manager\CategoryController@postEditCategory')->name('superPostEditCategory');
+    
+    Route::get('/products','Manager\ProductController@show')->name('superProduct');
+
+    Route::get('/reviews','Manager\ReviewController@show')->name('superReview');
+
+    Route::get('/sellers','Manager\SellerController@show')->name('superSeller');
+
+    Route::get('/shipper','Manager\ShipperController@show')->name('superShipper');
+
+    Route::get('/files','Manager\CategoryController@show')->name('superFile');
+
+    Route::get('/customers','Manager\CustomerController@show')->name('superCustomer');
 });

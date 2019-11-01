@@ -39,22 +39,23 @@
                         </form>
                     </div>
                 </div>
+                
                 <div class="navigation">
                     <div class="navtitle">
                         Khu vực chính
                     </div>
                     <div class="navitems">
                         <ul class="items">
-                            <li class="lv1"><a href="index.html"> <i class="fas fa-tachometer-alt"></i> <span
+                            <li class="lv1"><a href="{{url()->route('dashboard')}}"> <i class="fas fa-tachometer-alt"></i> <span
                                         class="navtext">Bảng điều khiển</span> </a> </li>
                             <li class="lv1"><i class="fas fa-chart-bar"></i>
                                 <span class="navtext">Quản lí</span><i class="fas fa-angle-right"></i>
                                 <ul class="lv2items">
-                                    <li class="lv2"><a href="categories.html">Danh mục</a></li>
-                                    <li class="lv2"><a href="product.html">Sản phẩm</a></li>
-                                    <li class="lv2"><a href="vote.html">Đánh giá</a></li>
-                                    <li class="lv2"><a href="supplier.html">Nhà cung cấp</a></li>
-                                    <li class="lv2"><a href="file.html">Files</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superCategory')}}">Danh mục</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superProduct')}}">Sản phẩm</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superReview')}}">Đánh giá</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superSeller')}}">Nhà cung cấp</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superFile')}}">Files</a></li>
                                 </ul>
                             </li>
 
@@ -163,148 +164,28 @@
                     <div class="tabcat" id="listbox">
                         <table border="1">
                             <tr>
-                                <th><input type="checkbox" id="checkall"></th>
+                                <th></th>
+                                <th>Ảnh Danh Mục</th>
                                 <th>Tên Danh Mục</th>
-                                <th>Danh Mục Cha</th>
                                 <th>Thứ tự</th>
                                 <th>Thao tác</th>
                             </tr>
+                            @foreach ($categories as $cat)
                             <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>month</td>
-                                <td>--</td>
-                                <td>7</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
+                            <td><input data-idcat="{{$cat->id}}" type="checkbox" id="checkCat"></td>
+                                <td><img src="{{url($cat->img)}}" alt="" style="height:70px;width:70px;border:1px solid #ddd;padding:5px;margin:5px"></td>
+                                <td>{{$cat->name}}</td>
+                                <td>{{$cat->order}}</td>
+                                <td><a href="{{url()->route('superEditCategory',['slug'=>$cat->slug])}}"><button><i class="far fa-edit"></i></button></a></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>coat</td>
-                                <td>load</td>
-                                <td>4</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>strong</td>
-                                <td>take</td>
-                                <td>0</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>highest</td>
-                                <td>--</td>
-                                <td>5</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>order</td>
-                                <td>--</td>
-                                <td>2</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>life</td>
-                                <td>--</td>
-                                <td>10</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>hang</td>
-                                <td>easy</td>
-                                <td>1</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>level</td>
-                                <td>card</td>
-                                <td>3</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>past</td>
-                                <td>--</td>
-                                <td>7</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>leaving</td>
-                                <td>--</td>
-                                <td>9</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>hand</td>
-                                <td>bark</td>
-                                <td>7</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>movement</td>
-                                <td>--</td>
-                                <td>0</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>belong</td>
-                                <td>--</td>
-                                <td>3</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>dangerous</td>
-                                <td>breathe</td>
-                                <td>7</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>important</td>
-                                <td>meat</td>
-                                <td>1</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>hardly</td>
-                                <td>service</td>
-                                <td>6</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>some</td>
-                                <td>flame</td>
-                                <td>8</td>
-                                <td><a href="editcat.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
+                            @endforeach
                         </table>
-                        <div class="pagination">
-                            <ul>
-                                <li class="active"><a href="javascript:void(0)">1</a></li>
-                                <li><a href="javascript:void(0)">2</a></li>
-                                <li><a href="javascript:void(0)">3</a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-angle-right"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-step-forward"></i></a></li>
-                            </ul>
-                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    <script src="../../../assetsAdmin/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>

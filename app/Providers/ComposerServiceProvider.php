@@ -31,7 +31,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*',function($view){
-            $view->with('categories',Category::get());
+            $view->with('categories',Category::orderBy('order','ASC')->get());
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());
             $view->with('enjoy',new Enjoy);

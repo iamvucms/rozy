@@ -52,11 +52,11 @@
                             <li class="lv1"><i class="fas fa-chart-bar"></i>
                                 <span class="navtext">Quản lí</span><i class="fas fa-angle-right"></i>
                                 <ul class="lv2items">
-                                    <li class="lv2"><a href="categories.html">Danh mục</a></li>
-                                    <li class="lv2"><a href="product.html">Sản phẩm</a></li>
-                                    <li class="lv2"><a href="vote.html">Đánh giá</a></li>
-                                    <li class="lv2"><a href="supplier.html">Nhà cung cấp</a></li>
-                                    <li class="lv2"><a href="file.html">Files</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superCategory')}}">Danh mục</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superProduct')}}">Sản phẩm</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superReview')}}">Đánh giá</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superSeller')}}">Nhà cung cấp</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superFile')}}">Files</a></li>
                                 </ul>
                             </li>
 
@@ -134,7 +134,7 @@
                                     bạn</a></li>
                             <li><i class="far fa-bell"></i> <a href="#">&nbsp;
                                     Tất cả thông bá</a>o</li>
-                            <li><i class="fas fa-sign-out-alt"></i> <a href="#">&nbsp; Đăng xuất</a>
+                            <li><i class="fas fa-sign-out-alt"></i> <a href="{{url()->route('superLogout')}}">&nbsp; Đăng xuất</a>
                             </li>
                         </ul>
                     </li>

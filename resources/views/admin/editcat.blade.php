@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <title>Admin::Categories::Add</title>
+    <title>Admin::Categories::Edit</title>
 </head>
 
 <body>
@@ -156,81 +156,81 @@
                         <i class="fas fa-pen-nib"> </i> Thêm Danh Mục
                     </p>
                     <div class="tabcat">
+                        
+                    <form enctype="multipart/form-data" action="{{url()->route('superPostEditCategory',['slug'=>$cat->slug])}}" method=POST>
+                        @csrf
                         <table>
-
                             <tr>
                                 <td>Tên danh mục</td>
-                                <td><input type="text" value="Điện tử điện lạnh"></td>
+                                <td><input @if (@$errors->toArray()['name'])
+                                    style="border:1px solid red"
+                                    @endif name="name" type="text" value="{{$cat->name}}"></td>
                             </tr>
                             <tr>
-                                <td>Mô tả danh mục</td>
-                                <td><textarea name="" id=""
-                                        style="width:100%">breathing worry blew condition have west reason lower deer race air company edge surface daughter someone graph help music led alphabet pleasure frighten without</textarea>
+                                <td>Ảnh Danh Mục</td>
+                                <td><img id="curImg" style="height:80px;width:80px;padding:5px" src="{{url($cat->img)}}" alt="">
+                                    <label for="img" style="border:1px solid #ddd;padding:5px;cursor:pointer;height:40px;line-height:30px;margin-bottom:0px;">Chọn ảnh</label>
+                                    <input accept="image/gif, image/jpeg, image/png"  onchange="readURL(this)" style="display:none" name="img" id="img" type="file" value="{{$cat->name}}">
                                 </td>
                             </tr>
+                            
+                            <script>
+                                    
+                                     
+                                    function readURL(input) {
+                                        if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+                                            reader.onload = function (e) {
+                                                document.querySelector('#curImg').setAttribute('src',e.target.result)
+                                            };
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+                                </script>
                             <tr>
-                                <td>Thẻ meta title</td>
-                                <td><input type="text" value="Điện tử điện lạnh"></td>
+                                <td>Icon Danh Mục(Fontawesome)</td>
+                                <td><input @if (@$errors->toArray()['icon'])
+                                    style="border:1px solid red"
+                                    @endif name="icon" type="text" value="{{$cat->icon}}"></td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả danh mục </td>
+                                <td><input name="description" type="text" value="{{$cat->description}}"></td>
                             </tr>
                             <tr>
                                 <td>SEO Từ khóa</td>
-                                <td><input type="text" value="Điện tử, Ti vi, Tủ lanh, Điều Hòa"></td>
+                                <td><input name="seo_keys" type="text" value="{{$cat->seo_keys}}"></td>
                             </tr>
                             <tr>
                                 <td>SEO Mô tả</td>
-                                <td><textarea name="" id=""
-                                        style="width:100%">plant south can syllable office worker must load halfway build knowledge though write teacher new sell try protection skin dirty wheat lot motion uncle</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Danh mục cha</td>
-                                <td>
-                                    <select name="aa" id="">
-                                        <option value="--">--</option>
-                                        <option value="like">block</option>
-                                        <option value="president">concerned</option>
-                                        <option value="example">was</option>
-                                        <option value="why">laid</option>
-                                        <option value="ability">call</option>
-                                        <option value="noise">certain</option>
-                                        <option value="front">electricity</option>
-                                        <option value="fighting">supply</option>
-                                        <option value="potatoes">greatly</option>
-                                        <option value="running">loss</option>
-                                    </select>
+                                <td><textarea name="seo_description" id=""
+                                style="width:100%">{{$cat->seo_description}}</textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Thứ tự</td>
-                                <td><input type="number" value="0"></td>
+                                <td><input @if (@$errors->toArray()['order'])
+                                    style="border:1px solid red"
+                                    @endif name="order" type="number" value="{{$cat->order}}"></td>
                             </tr>
                             <tr>
                                 <td>SEO URL</td>
-                                <td><input type="text" value="dien-lanh-dien-tu"></td>
-                            </tr>
-
-                            <tr>
-                                <td>Trạng thái</td>
-                                <td>
-                                    <select name="aa" id="">
-                                        <option value="potatoes">Hiện</option>
-                                        <option value="running">Ẩn</option>
-                                    </select>
-                                </td>
+                                <td><input @if (@$errors->toArray()['slug'])
+                                    style="border:1px solid red"
+                                    @endif name="slug" type="text" value="{{$cat->slug}}"></td>
                             </tr>
                             <tr>
-                                <td><button class="cancelcat">Hủy</button></td>
+                            <td><button onclick="window.location.href='{{url()->route('superCategory')}}';return false;" class="cancelcat">Hủy</button></td>
                                 <td><button class="addcat">Lưu Lại</button></td>
                             </tr>
-
-
                         </table>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../../../assetsAdmin/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>

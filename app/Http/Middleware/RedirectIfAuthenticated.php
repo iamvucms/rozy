@@ -17,8 +17,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        
+        
         if (Auth::guard($guard)->check()) {
-            if(Auth::user()->role_id <= 3) return redirect(url()->route('dashboard'));
+            if(Auth::user() && Auth::user()->role_id <= 3) return redirect(url()->route('dashboard'));
             return redirect(url()->route('myAccount'));
         }
         return $next($request);

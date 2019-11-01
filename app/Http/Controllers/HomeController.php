@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cookie;
 class HomeController extends Controller
 {
     public function Index(Request $req){
+        
         $viewedList = Cookie::get('viewedList');
         if($viewedList===null){
             Cookie::queue('viewedList',json_encode([]),9999999999);

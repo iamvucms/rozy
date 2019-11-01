@@ -222,7 +222,7 @@
                     <div class="totalitem">
                         <div class="centeritemt">
                             <p class="numt">
-                                10M
+                                {{$traffic->getViewerMonth()['count']>1000000 ?round($traffic->getViewerMonth()['count']/1000000)."M":$traffic->getViewerMonth()['count']}}
                             </p>
                             <p class="dest">
                                 Lượt truy cập <br>
@@ -231,7 +231,7 @@
                         </div>
                         <span class="toprightt">
                             <span class="up">
-                                <span class="percentt">35%</span> <i class="fas fa-angle-up"></i>
+                                <span class="percentt">{{$traffic->getViewerMonth()['percent']}}%</span> <i class="fas fa-angle-up"></i>
                             </span>
                         </span>
                     </div>

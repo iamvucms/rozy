@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Socialite;
 use App\User;
 use App\Customer;
+use App\Traffic;
+
 class LoginController extends Controller
 {
     /*
@@ -45,6 +47,7 @@ class LoginController extends Controller
             $user = Auth::user();
             $user->last_login = date('Y-m-d H:i:s');
             $user->save();
+            $this->resetTraffic();
             return redirect(url()->route('myAccount'));
         }
         return redirect(url()->route('home'));
@@ -59,7 +62,9 @@ class LoginController extends Controller
         $user = new User;
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
+        $user->last_login = date('Y-m-d H:i:s');
         $user->save();
+        $this->resetTraffic();
         Customer::insert(['user_id'=>$user->id,'name'=>$validatedData['name'],'phone'=>$validatedData['phone']]);
         Auth::loginUsingId($user->id);
         return redirect(url()->route('home'));
@@ -71,8 +76,11 @@ class LoginController extends Controller
     public function GoogleCallBackHandler(){
         $google = Socialite::driver('google')->stateless()->user();
         if($google->id ===null) return redirect(url('/'));
-        $user =User::where('email',$google->email);
+        $user = User::where('email',$google->email);
         if($user->count()>0){
+            $preUser = $user->first();
+            $preUser->last_login = date('Y-m-d H:i:s');
+            $preUser->save();
             Auth::loginUsingId($user->first()->id);
             if($user->first()->Avatar()->count()==0){
                 $user->first()->Avatar()->create(['id_avt_user'=>$user->first()->id,'src'=>$google->avatar]);
@@ -81,11 +89,22 @@ class LoginController extends Controller
             $user = new User;
             $user->email = $google->email;
             $user->google_id=$google->id;
+            $user->last_login = date('Y-m-d H:i:s');
             $user->save();
             $user->Avatar()->create(['id_avt_user'=>$user->id,'src'=>$google->avatar]);
             Customer::insert(['user_id'=>$user->id,'name'=>$google->name]);
             Auth::loginUsingId($user->id);
         }
+        $this->resetTraffic();
         return redirect($this->redirectTo);
+    }
+    public function resetTraffic(){
+        $traffic = Traffic::whereRaw("DAY(NOW())=DAY(updated_at) AND MONTH(NOW())=MONTH(updated_at) AND YEAR(NOW())=YEAR(updated_at)")->first();
+        if($traffic===null){
+            Traffic::insert(['login_count'=>1]);
+        }else{
+            $traffic->login_count = $traffic->login_count+1;
+            $traffic->save();
+        }
     }
 }

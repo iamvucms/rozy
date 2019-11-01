@@ -13,8 +13,10 @@ class OrderController extends Controller
         $order = Order::where('id',$id)->first();
         if($order->count()==0) return response()->json(['success'=>false], 200, []);
         if(Auth::user()->getInfo()->id != $order->idcus) return response()->json(['success'=>false], 200, []);
-        $order->status = $orderData['status'];
-        $order->save();
+        if($order->status<3){
+            $order->status = $orderData['status'];
+            $order->save();
+        }
         return response()->json(['success'=>true], 200, []);
     }
 }

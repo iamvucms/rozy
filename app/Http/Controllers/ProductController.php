@@ -9,9 +9,13 @@ class ProductController extends Controller
 {
     public function Product(Request $req){
         $product = Product::where('slug',$req->slug)->first();
+        $slug = $req->slug;
         if($product==null) return abort(404);
-        $product->view_count = $product->view_count+1;
-        $product->save();
+        if(empty(Cookie::get('is_view'.$slug))){
+            Cookie::queue('is_view'.$slug,true,900);
+            $product->view_count = $product->view_count+1;
+            $product->save();
+        }
         $viewedList = Cookie::get('viewedList');
         if($viewedList===null){
             Cookie::queue('viewedList',json_encode([]),9999999999); 

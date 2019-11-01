@@ -10,7 +10,9 @@ use App\Keyword;
 use App\Enjoy;
 use App\Order;
 use App\Review;
+use App\Traffic;    
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 class ComposerServiceProvider extends ServiceProvider
 {
     /**
@@ -30,7 +32,23 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if(empty(Cookie::get('is_view'))){
+            Cookie::queue('is_view',true,900);
+            $traffic = Traffic::whereRaw("DAY(NOW())=DAY(updated_at) AND MONTH(NOW())=MONTH(updated_at) AND YEAR(NOW())=YEAR(updated_at)")->first();
+            if($traffic===null){
+                Traffic::insert(['view_count'=>1]);
+            }else{
+                $traffic->view_count = $traffic->view_count+1;
+                $traffic->save();
+            }
+        }
         View::composer('*',function($view){
+            if(Auth::user()){
+                $user = Auth::user();
+                $user->last_action = date('Y-m-d H:i:s');
+                $user->save();
+            }
+            
             $view->with('categories',Category::orderBy('order','ASC')->get());
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());
@@ -39,6 +57,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('Admin.index', function ($view) {
             $view->with('order',new Order);
             $view->with('review',new Review);
+            $view->with('traffic',new Traffic);
         });
         View::composer('index', function ($view) {
             $view->with('recommandCats',(new Category)->recommandCategories());

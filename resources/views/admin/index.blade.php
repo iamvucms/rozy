@@ -120,8 +120,8 @@
                     <li><i class="far fa-envelope"></i> <span class="toptext">Tin
                             nhắn</span></li>
                     <li class="topprofile">
-                        <img src="../../assetsAdmin/img/avt.jpg" alt="">
-                        <span class="nameprofile"><span class="toptext">VuCms</span>
+                        <img src="{{url($user->getAvatar())}}" alt="">
+                        <span class="nameprofile"><span class="toptext">{{$user->getInfo()->name}}</span>
                             <i class="fas fa-angle-down"></i>
 
                         </span>
@@ -327,68 +327,48 @@
                     <div class="totalitem">
                         <div class="centeritemt">
                             <p class="numt">
-                                985
+                                {{$user->getCountOnline()}}
                             </p>
                             <p class="dest">
-                                Đang Online
+                                Người dùng Online
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">6%</span> <i class="fas fa-angle-up"></i>
-                            </span>
-                        </span>
                     </div>
                     <div class="totalitem" style="background-image: linear-gradient(to right, #0ac282, #0df3a3);">
                         <div class="centeritemt">
                             <p class="numt">
-                                32,55%
+                                {{$traffic->getTotalView()}}
                             </p>
                             <p class="dest">
-                                Tỷ Lệ Thoát
+                                Tổng lượt xem
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">20%</span> <i class="fas fa-angle-up"></i>
-                            </span>
-                        </span>
                     </div>
                     <div class="totalitem" style="background-image:linear-gradient(to right, #fe5d70, #fe909d);">
                         <div class="centeritemt">
                             <p class="numt">
-                                4550
+                                {{$traffic->getSessionLoginCount()}}
                             </p>
                             <p class="dest">
                                 Phiên Đăng Nhập
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="down">
-                                <span class="percentt">2%</span> <i class="fas fa-angle-down"></i>
-                            </span>
-                        </span>
                     </div>
                     <div class="totalitem" style="background-image:linear-gradient(to right, #01a9ac, #60e2e4);">
                         <div class="centeritemt">
                             <p class="numt">
-                                3,5 phút
+                                {{$traffic->getAvgTimeSession() > 60 ? round($traffic->getAvgTimeSession()/60).' Phút': $traffic->getAvgTimeSession().' Giây'}}
                             </p>
                             <p class="dest">
-                                Thời gian trung bình
+                                Thời gian trung bình của phiên
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">10%</span> <i class="fas fa-angle-up"></i>
-                            </span>
-                        </span>
                     </div>
 
                     <div class="totalitem" style="background-image:linear-gradient(to right, #9857b4, #c8a7d6);">
                         <div class="centeritemt">
                             <p class="numt">
-                                102
+                                {{$traffic->getNewSessionLoginCount()['count']}}
                             </p>
                             <p class="dest">
                                 Phiên Đăng Nhập Mới
@@ -396,24 +376,19 @@
                         </div>
                         <span class="toprightt">
                             <span class="down">
-                                <span class="percentt">10%</span> <i class="fas fa-angle-down"></i>
+                                <span class="percentt">{{$traffic->getNewSessionLoginCount()['percent']}}%</span> <i class="fas fa-angle-down"></i>
                             </span>
                         </span>
                     </div>
                     <div class="totalitem" style="background-image:linear-gradient(to right, #ffcc02, #ffdf5f);">
                         <div class="centeritemt">
                             <p class="numt">
-                                80
+                                {{$traffic->getCountLogout()}}
                             </p>
                             <p class="dest">
-                                Online/Trang
+                                Lượt Đăng Xuất
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">35%</span> <i class="fas fa-angle-up"></i>
-                            </span>
-                        </span>
                     </div>
                 </div>
                 <div class="extrabox">

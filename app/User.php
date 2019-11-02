@@ -58,4 +58,7 @@ class User extends Authenticatable
     public function getOrders($status=0){
         return $this->getInfo()->allOrder($status);
     }
+    public function getCountOnline(){
+        return $this->whereRaw('now() - last_action < 300')->count();
+    }
 }

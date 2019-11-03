@@ -48,7 +48,6 @@ class ComposerServiceProvider extends ServiceProvider
                 $user->last_action = date('Y-m-d H:i:s');
                 $user->save();
             }
-            
             $view->with('categories',Category::orderBy('order','ASC')->get());
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());
@@ -58,6 +57,7 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('order',new Order);
             $view->with('review',new Review);
             $view->with('traffic',new Traffic);
+            $view->with('category',new Category);
         });
         View::composer('index', function ($view) {
             $view->with('recommandCats',(new Category)->recommandCategories());

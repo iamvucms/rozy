@@ -61,4 +61,7 @@ class User extends Authenticatable
     public function getCountOnline(){
         return $this->whereRaw('now() - last_action < 300')->count();
     }
+    public function History(){
+        return $this->hasMany('App\History','user_id','id');
+    }
 }

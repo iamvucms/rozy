@@ -71,4 +71,10 @@ class Category extends Model
         }
         return $cats;
     }
+    public function getCountEachCategory(){
+        $cats = $this->selectRaw('count(products.id) as count,categories.name as name')
+        ->leftjoin('products','products.idcat','=','categories.id')
+        ->groupBy("categories.id")->get();
+        return $cats->toJson();
+    }
 }

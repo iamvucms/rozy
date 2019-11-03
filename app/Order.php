@@ -93,4 +93,25 @@ class Order extends Model
         $precount = $this->where('status','4')->whereRaw("DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) = DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->count();
         return ['count'=>$count,'percent'=>$precount!=0 ?ceil($count/$precount*100) : 100];
     }
+    public function getMoneyEachDay($month=1){
+        $moneyChart = collect();
+        $days = cal_days_in_month(CAL_GREGORIAN,date($month),date('Y'));
+        $moneys = $this->selectRaw('SUM(total) as money,DAY(updated_at) as day')->whereRaw('MONTH(updated_at) ='.$month.' AND status=4')->groupBy('day')->get();
+        for($i=1;$i<=$days;$i++){
+            $check = true;
+            foreach($moneys as $money){
+                if($money->day == $i){
+                    $check = false;
+                    $moneyChart->push(['money'=>$money->money,'day'=>$money->day]);
+                    goto out;
+                }
+            }
+            out:
+            if($check){
+                $moneyChart->push(['money'=>0,'day'=>$i]);
+            }
+            
+        }
+        return $moneyChart->toJson(JSON_HEX_APOS);
+    }
 }

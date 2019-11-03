@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <title>Admin::VuCms</title>
+    <script src="../../assets/js/axios.js"></script>
 </head>
+
 <body>
     <div class="vucms">
         <div class="menubar">
@@ -24,7 +26,8 @@
             <div class="options">
                 <div class="top">
                     <div class="me">
-                        <img src="{{url($user->getAvatar() ??'https://png.pngtree.com/svg/20160601/unknown_avatar_182562.png') }}" alt="">
+                        <img src="{{url($user->getAvatar() ??'https://png.pngtree.com/svg/20160601/unknown_avatar_182562.png') }}"
+                            alt="">
                         <div class="meme">
                             <p class="online"><span class="pointonline"></span>
                                 Online</p>
@@ -134,7 +137,8 @@
                                     bạn</a></li>
                             <li><i class="far fa-bell"></i> <a href="#">&nbsp;
                                     Tất cả thông bá</a>o</li>
-                            <li><i class="fas fa-sign-out-alt"></i> <a href="{{url()->route('superLogout')}}">&nbsp; Đăng xuất</a>
+                            <li><i class="fas fa-sign-out-alt"></i> <a href="{{url()->route('superLogout')}}">&nbsp;
+                                    Đăng xuất</a>
                             </li>
                         </ul>
                     </li>
@@ -167,8 +171,9 @@
                             </p>
                         </div>
                         <span class="toprightt">
-                            <span class="up">
-                            <span class="percentt">{{$order->getTotalPriceToday()['percent']}}%</span> <i class="fas fa-angle-up"></i>
+                            <span class="{{$order->getTotalPriceToday()['percent']>=100 ? 'up':'down'}}">
+                                <span class="percentt">{{$order->getTotalPriceToday()['percent']}}%</span> <i
+                                    class="fas fa-angle-{{$order->getTotalPriceToday()['percent']>=100 ? 'up':'down'}}"></i>
                             </span>
                         </span>
                     </div>
@@ -182,8 +187,9 @@
                             </p>
                         </div>
                         <span class="toprightt">
-                            <span class="down">
-                                <span class="percentt">{{$order->getNewOrderCount()['percent']}}%</span> <i class="fas fa-angle-down"></i>
+                            <span class="{{$order->getNewOrderCount()['percent']>=100 ? 'up':'down'}}">
+                                <span class="percentt">{{$order->getNewOrderCount()['percent']}}%</span> <i
+                                    class="fas fa-angle-{{$order->getNewOrderCount()['percent']>=100 ? 'up':'down'}}"></i>
                             </span>
                         </span>
                     </div>
@@ -198,8 +204,9 @@
                             </p>
                         </div>
                         <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">{{$order->getCompletedOrderCountToday()['percent']}}%</span> <i class="fas fa-angle-up"></i>
+                        <span class="{{$order->getCompletedOrderCountToday()['percent']>=100 ? 'up':'down'}}">
+                                <span class="percentt">{{$order->getCompletedOrderCountToday()['percent']}}%</span> <i
+                                    class="fas fa-angle-{{$order->getCompletedOrderCountToday()['percent']>=100 ? 'up':'down'}}"></i>
                             </span>
                         </span>
                     </div>
@@ -214,8 +221,9 @@
                             </p>
                         </div>
                         <span class="toprightt">
-                            <span class="down">
-                                <span class="percentt">{{$review->getNewReviewCount()['percent']}}%</span> <i class="fas fa-angle-down"></i>
+                            <span class="{{$review->getNewReviewCount()['percent']>=100 ? 'up':'down'}}">
+                                <span class="percentt">{{$review->getNewReviewCount()['percent']}}%</span> <i
+                                    class="fas fa-angle-{{$review->getNewReviewCount()['percent']>=100 ? 'up':'down'}}"></i>
                             </span>
                         </span>
                     </div>
@@ -230,19 +238,21 @@
                             </p>
                         </div>
                         <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">{{$traffic->getViewerMonth()['percent']}}%</span> <i class="fas fa-angle-up"></i>
+                            <span class="{{$traffic->getViewerMonth()['percent']>=100 ? 'up':'down'}}">
+                                <span class="percentt">{{$traffic->getViewerMonth()['percent']}}%</span> <i
+                                    class="fas fa-angle-{{$traffic->getViewerMonth()['percent']>=100 ? 'up':'down'}}"></i>
                             </span>
                         </span>
                     </div>
                 </div>
+
                 <div class="chart_number">
                     <div class="chart">
                         <div class="charttitle">
                             <span class="chartext">Biểu Đồ Thống Kê</span>
                             <div class="monthcontrol">
                                 <button id="prev"><i class="fas fa-angle-left"></i></button>
-                                Tháng <span class="cmonth">1</span>
+                                Tháng <span class="cmonth">{{date('m')}}</span>
                                 <button id="next"><i class="fas fa-angle-right"></i></button>
                             </div>
                         </div>
@@ -282,42 +292,18 @@
                                         <th>Ngày tham gia</th>
                                         <th></th>
                                     </tr>
+                                    @foreach ($lastCustomers as $customer)
                                     <tr>
-                                        <td><img src="../../assetsAdmin/img/avt.jpg" alt="" class="avtuser"></td>
-                                        <td>Minnie</td>
-                                        <td>rawofwi@zonikvo.cv</td>
-                                        <td>5/12/2040</td>
-                                        <td><a href="#viewuser"></a><button
+                                        <td><img src="{{url($customer->getAvatar())}}" alt="" class="avtuser"></td>
+                                        <td>{{$customer->name}}</td>
+                                        <td>{{$customer->User()->email}}</td>
+                                        <td>{{$customer->create_at}}</td>
+                                        <td><a href="{{url()->route('superEditCustomer',['id'=>$customer->id])}}"><button
                                                 style="background:transparent;border:none;outline:none"><i
                                                     class="far fa-eye" style="color:#9aa0ac"></i></button></a></td>
                                     </tr>
-                                    <tr>
-                                        <td><img src="../../assetsAdmin/img/avt.jpg" alt="" class="avtuser"></td>
-                                        <td>Minnie</td>
-                                        <td>rawofwi@zonikvo.cv</td>
-                                        <td>5/12/2040</td>
-                                        <td><a href="#viewuser"></a><button
-                                                style="background:transparent;border:none;outline:none"><i
-                                                    class="far fa-eye" style="color:#9aa0ac"></i></button></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../assetsAdmin/img/avt.jpg" alt="" class="avtuser"></td>
-                                        <td>Minnie</td>
-                                        <td>rawofwi@zonikvo.cv</td>
-                                        <td>5/12/2040</td>
-                                        <td><a href="#viewuser"></a><button
-                                                style="background:transparent;border:none;outline:none"><i
-                                                    class="far fa-eye" style="color:#9aa0ac"></i></button></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../../assetsAdmin/img/avt.jpg" alt="" class="avtuser"></td>
-                                        <td>Minnie</td>
-                                        <td>rawofwi@zonikvo.cv</td>
-                                        <td>5/12/2040</td>
-                                        <td><a href="#viewuser"></a><button
-                                                style="background:transparent;border:none;outline:none"><i
-                                                    class="far fa-eye" style="color:#9aa0ac"></i></button></a></td>
-                                    </tr>
+                                    @endforeach
+                                    
                                 </table>
                             </div>
                         </div>
@@ -375,8 +361,9 @@
                             </p>
                         </div>
                         <span class="toprightt">
-                            <span class="down">
-                                <span class="percentt">{{$traffic->getNewSessionLoginCount()['percent']}}%</span> <i class="fas fa-angle-down"></i>
+                            <span class="{{$traffic->getNewSessionLoginCount()['percent']>=100 ? 'up':'down'}}">
+                                <span class="percentt">{{$traffic->getNewSessionLoginCount()['percent']}}%</span> <i
+                                    class="fas fa-angle-{{$traffic->getNewSessionLoginCount()['percent']>=100 ? 'up':'down'}}"></i>
                             </span>
                         </span>
                     </div>
@@ -391,55 +378,27 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="extrabox">
                     <div class="useractions">
                         <div class="extratitle">
                             <p class="extratext">Lịch sử hoạt động</p>
                         </div>
+                        
                         <div class="actionlist">
                             <ul class="actions">
+                                @foreach ($lastActions as $action)
                                 <li class="act">
-                                    <img src="../../assetsAdmin/img/avt.jpg" alt="" class="actavt">
-                                    <span class="acttext"><span class="actname"><a href="#VuCms">VuCms</a>:</span> Lorem
-                                        Ipsum is simply dummy text Lorem Ipsum is simply dummy text. <br>
-
+                                    <img src="{{url($action->User()->getAvatar())}}" alt="" class="actavt">
+                                    <span class="acttext"><span class="actname"><a href="{{url()->route('superEditCustomer',['id'=>$action->Customer()->id])}}">{{$action->Customer()->name}}</a>:</span> Lorem
+                                        {{$action->message}} <br>
                                     </span>
-                                    <span class="acttime"><i class="far fa-clock"></i> 1 phút trước</span>
-                                </li>
-                                <li class="act">
-                                    <img src="../../assetsAdmin/img/avt.jpg" alt="" class="actavt">
-                                    <span class="acttext"><span class="actname"><a href="#VuCms">VuCms</a>:</span> Lorem
-                                        Ipsum is simply dummy text Lorem Ipsum is simply dummy text. <br>
-
-                                    </span>
-                                    <span class="acttime"><i class="far fa-clock"></i> 1 phút trước</span>
-                                </li>
-                                <li class="act">
-                                    <img src="../../assetsAdmin/img/avt.jpg" alt="" class="actavt">
-                                    <span class="acttext"><span class="actname"><a href="#VuCms">VuCms</a>:</span> Lorem
-                                        Ipsum is simply dummy text Lorem Ipsum is simply dummy text. <br>
-
-                                    </span>
-                                    <span class="acttime"><i class="far fa-clock"></i> 1 phút trước</span>
-                                </li>
-                                <li class="act">
-                                    <img src="../../assetsAdmin/img/avt.jpg" alt="" class="actavt">
-                                    <span class="acttext"><span class="actname"><a href="#VuCms">VuCms</a>:</span> Lorem
-                                        Ipsum is simply dummy text Lorem Ipsum is simply dummy text. <br>
-
-                                    </span>
-                                    <span class="acttime"><i class="far fa-clock"></i> 1 phút trước</span>
-                                </li>
-                                <li class="act">
-                                    <img src="../../assetsAdmin/img/avt.jpg" alt="" class="actavt">
-                                    <span class="acttext"><span class="actname"><a href="#VuCms">VuCms</a>:</span> Lorem
-                                        Ipsum is simply dummy text Lorem Ipsum is simply dummy text. <br>
-
-                                    </span>
-                                    <span class="acttime"><i class="far fa-clock"></i> 1 phút trước</span>
-                                </li>
+                                    <span class="acttime"><i class="far fa-clock"></i> {{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh'))}} phút trước</span>
+                                </li> 
+                                @endforeach
+                                
                             </ul>
-                            <p class="viewmore"><a href="#viewmore">Xem tất cả hoạt động <i
+                            <p class="viewmore"><a href="{{url()->route('history')}}">Xem tất cả hoạt động <i
                                         class="fas fa-arrow-right"></i></a></p>
                         </div>
                     </div>
@@ -623,10 +582,156 @@
             </div>
         </div>
     </div>
+    <script>
+
+        var labels = [];
+        var datas = []
+        var dataview = [];
+        MoneyData = JSON.parse('{!!$order->getMoneyEachDay(date('m'))!!}');
+        ViewData = JSON.parse('{!!$traffic->getViewEachDay(date('m'))!!}');
+        MoneyData.forEach((money) => {
+            labels.push('Ngày ' + money.day)
+            datas.push(money.money / 1000000)
+        })
+        ViewData.forEach(view => {
+            dataview.push(view.view / 1000)
+        })
+    </script>
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/index.js"></script>
     <script>
+        $('.monthcontrol #prev').click(() => {
+            if (parseInt($('.cmonth').html()) > 1) {
+                chart.data.datasets[0].data = []
+                chart.data.datasets[1].data = []
+                chart.data.labels = []
+                let nextMonth = parseInt($('.cmonth').html()) - 1;
+                axios.post('{{url()->route('getMoneyEachDay')}}', {
+                    month: nextMonth
+                }).then(data => {
+                    MoneyData = data.data;
+                    MoneyData.forEach((money) => {
+                        chart.data.labels.push('Ngày ' + money.day)
+                        chart.data.datasets[0].data.push(money.money / 1000000)
+                    })
+                    chart.update()
+                })
+                axios.post('{{url()->route('getViewEachDay')}}', {
+                    month: nextMonth
+                }).then(data => {
+                    ViewData = data.data;
+                    ViewData.forEach((view) => {
+                        chart.data.datasets[1].data.push(view.view / 1000)
+                    })
+                    chart.update()
+                })
+
+                $('.cmonth').html(nextMonth)
+            }
+        })
+        $('.monthcontrol #next').click(() => {
+            if (parseInt($('.cmonth').html()) < 12) {
+                chart.data.datasets[0].data = []
+                chart.data.datasets[1].data = []
+                chart.data.labels = []
+                let nextMonth = parseInt($('.cmonth').html()) + 1;
+                axios.post('{{url()->route('getMoneyEachDay')}}', {
+                    month: nextMonth
+                }).then(data => {
+                    MoneyData = data.data;
+                    MoneyData.forEach((money) => {
+                        chart.data.labels.push('Ngày ' + money.day)
+                        chart.data.datasets[0].data.push(money.money / 1000000)
+                    })
+                    chart.update()
+                })
+                axios.post('{{url()->route('getViewEachDay')}}', {
+                    month: nextMonth
+                }).then(data => {
+                    ViewData = data.data;
+                    ViewData.forEach((view) => {
+                        chart.data.datasets[1].data.push(view.view / 1000)
+                    })
+                    chart.update()
+                })
+
+                $('.cmonth').html(nextMonth)
+            }
+        })
+
+
+        dataCategories = JSON.parse('{!!$category->getCountEachCategory()!!}')
+        labelsCat = dataCategories.map(cat=>cat.name)
+        dataCat = dataCategories.map(cat=>cat.count)
+        colorCat = dataCategories.map(cat=>'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')')
+        var myPieChart = new Chart(circlechart, {
+            type: 'doughnut',
+            data: {
+                labels: labelsCat,
+                datasets: [
+                    {
+                        label: "null",
+                        data: dataCat,
+                        backgroundColor: colorCat,
+                        borderColor: [
+                            "white"
+                        ],
+                        borderWidth: [0.5]
+                    }
+                ]
+            },
+
+            options: {
+                legend: {
+                    display: false
+                },
+                responsive: true
+            }
+        });
+        dataReview = JSON.parse('{!!$review->getCountEachStar()!!}')
+        dataRv = []
+        for(i=1;i<=5;i++){
+            let c = dataReview.filter((rv)=>rv.star==i)[0];
+            dataRv.push(c===undefined ? 0 : c.count);
+        }
+        var circlechart = document.getElementById("circlechart1");
+        var myPieChart = new Chart(circlechart, {
+            type: 'doughnut',
+            data: {
+                labels: [' Rất Tốt (5 sao)',
+                    ' Tốt (4 sao)',
+                    ' Được (3 sao)',
+                    ' Tệ (2 sao)',
+                    ' Rất Tệ (1 sao)'
+                ],
+                datasets: [
+                    {
+                        label: "null",
+                        data: dataRv,
+                        backgroundColor: [
+                            'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')',
+                            'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')',
+                            'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')',
+                            'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')',
+                            'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')'
+                        ],
+                        borderColor: [
+                            'white'
+                        ],
+                        borderWidth: [0.5]
+                    }
+                ]
+
+            },
+
+            options: {
+                legend: {
+                    display: false
+                }
+            }
+        });
+//chartcontrolmonth
     </script>
 </body>
 

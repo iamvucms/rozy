@@ -35,4 +35,24 @@ class Traffic extends Model
     public function getCountLogout(){
         return $this->sum('logout_count');
     }
+    public function getViewEachDay($month=1){
+        $viewChart = collect();
+        $days = cal_days_in_month(CAL_GREGORIAN,date($month),date('Y'));
+        $views = $this->selectRaw('view_count as view,DAY(updated_at) as day')->whereRaw('MONTH(updated_at) ='.$month)->get();
+        for($i=1;$i<=$days;$i++){
+            $check = true;
+            foreach($views as $view){
+                if($view->day == $i){
+                    $check = false;
+                    $viewChart->push(['view'=>$view->view,'day'=>$view->day]);
+                    goto out;
+                }
+            }
+            out:
+            if($check){
+                $viewChart->push(['view'=>0,'day'=>$i]);
+            }
+        }
+        return $viewChart->toJson(JSON_HEX_APOS);
+    }
 }

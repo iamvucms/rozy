@@ -74,4 +74,11 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::get('/files','Manager\CategoryController@show')->name('superFile');
 
     Route::get('/customers','Manager\CustomerController@show')->name('superCustomer');
+    Route::get('/customers.{id}','Manager\CustomerController@Customer')->name('superEditCustomer');
+
+    Route::get('/histories','Manager\HistoryController@show')->name('history');
+
+    Route::post('/traffic/moneys','Manager\TrafficController@getViewEachDay')->name('getViewEachDay');
+
+    Route::post('/orders/moneys','Manager\OrderController@getMoneyEachDay')->name('getMoneyEachDay');
 });

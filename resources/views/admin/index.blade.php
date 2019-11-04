@@ -288,7 +288,9 @@
                                     <tr>
                                         <th></th>
                                         <th>Tên</th>
+                                        @if ($user->role_id==1)
                                         <th>Email</th>
+                                        @endif
                                         <th>Ngày tham gia</th>
                                         <th></th>
                                     </tr>
@@ -296,7 +298,9 @@
                                     <tr>
                                         <td><img src="{{url($customer->getAvatar())}}" alt="" class="avtuser"></td>
                                         <td>{{$customer->name}}</td>
+                                        @if ($user->role_id==1)
                                         <td>{{$customer->User()->email}}</td>
+                                        @endif
                                         <td>{{$customer->create_at}}</td>
                                         <td><a href="{{url()->route('superEditCustomer',['id'=>$customer->id])}}"><button
                                                 style="background:transparent;border:none;outline:none"><i
@@ -309,6 +313,7 @@
                         </div>
                     </div>
                 </div>
+                @if ($user->role_id==1)
                 <div class="tongquan traffic">
                     <div class="totalitem">
                         <div class="centeritemt">
@@ -378,6 +383,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 
                 <div class="extrabox">
                     <div class="useractions">
@@ -393,7 +399,7 @@
                                     <span class="acttext"><span class="actname"><a href="{{url()->route('superEditCustomer',['id'=>$action->Customer()->id])}}">{{$action->Customer()->name}}</a>:</span> Lorem
                                         {{$action->message}} <br>
                                     </span>
-                                    <span class="acttime"><i class="far fa-clock"></i> {{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh'))}} phút trước</span>
+                                    <span class="acttime"><i class="far fa-clock"></i> {{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')) <60 ? Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')).' phút' : Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInHours(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')).' giờ'}}  trước</span>
                                 </li> 
                                 @endforeach
                                 
@@ -409,172 +415,59 @@
                         <div class="ordertab">
                             <table class="ordertabler">
                                 <tr>
-                                    <th>STT</th>
-                                    <th>SẢN PHẨM</th>
+                                    <th>MÃ ĐƠN HÀNG</th>
+                                    <th>THÀNH TIỀN</th>
                                     <th>KHÁCH HÀNG</th>
-                                    <th>MÃ SỐ VAT</th>
-                                    <th>THỜI GIAN</th>
+                                    <th>ĐƠN VỊ VẬN CHUYỂN</th>
+                                    <th>CẬP NHẬT LẦN CUỐI</th>
                                     <th>TRẠNG THÁI</th>
-                                    <th>GIÁ</th>
+                                    <th>THANH TOÁN</th>
                                     <th></th>
-                                    <th></th>
-
                                 </tr>
+                                @foreach ($lastOrders as $order)
+                                    
                                 <tr>
-                                    <td>12577</td>
-                                    <td><a href="#product" class="tabname">quick tribe likely vegetable wagon lower face
-                                            get whom to wheat dish art live off bad forty guess larger enter friend
-                                            breeze month combineIphone X 64GB</a></td>
-                                    <td><a href="#customer" class="tabcus">Nicholas Stanley</a></td>
-                                    <td>19163</td>
-                                    <td>9/22/2047</td>
+                                    <td><a href="{{url()->route('superEditOrder',['slug'=>$order->slug])}}" class="tabname">{{$order->slug}}</a></td>
+                                    <td>{{number_format($order->total)}} đ</td>
+                                    <td><a href="{{url()->route('superEditCustomer',['id'=>$order->Customer()->id])}}" class="tabcus">{{$order->Customer()->name}}</a></td>
+                                    <td><a href="{{url()->route('superEditShipper',['id'=>$order->getShipper()->id])}}" class="tabcus">{{$order->getShipper()->name}}</a></td>
+                                    <td>{{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($order->updated_at,'Asia/Ho_Chi_Minh')) <60 ? Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($order->updated_at,'Asia/Ho_Chi_Minh')).' phút' : Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInHours(Carbon\Carbon::parse($order->updated_at,'Asia/Ho_Chi_Minh')).' giờ'}}  trước</td>
                                     <td>
                                         <div class="tabstt">
-                                            <span class="point" id="not"></span>
-                                            <span class="stttext">Đã hủy</span>
-                                        </div>
-                                    </td>
-                                    <td>3M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
-                                </tr>
-                                <tr>
-                                    <td>12144</td>
-                                    <td><a href="#product" class="tabname">aboard shallow small most excited adventure
-                                            exchange comfortable fellow energy person easy hurried roll closer does
-                                            poetry gun made fix package combine constantly mark</a></td>
-                                    <td><a href="#customer" class="tabcus">Aiden Long</a></td>
-                                    <td>16623</td>
-                                    <td>11/30/2083</td>
-                                    <td>
-                                        <div class="tabstt">
-                                            <span class="point" id="com"></span>
-                                            <span class="stttext">Thành công</span>
-                                        </div>
-                                    </td>
-                                    <td>12M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
-                                </tr>
-                                <tr>
-                                    <td>12577</td>
-                                    <td><a href="#product" class="tabname">strength build star ran lot gone serious
-                                            softly rocket could last sweet highest crack unusual orange wool park end
-                                            month lake noise rubbed elementIphone X 64GB</a></td>
-                                    <td><a href="#customer" class="tabcus">Richard Meyer</a></td>
-                                    <td>19163</td>
-                                    <td>9/22/2047</td>
-                                    <td>
-                                        <div class="tabstt">
-                                            <span class="point" id="pen"></span>
-                                            <span class="stttext">Đang đợi</span>
-                                        </div>
-                                    </td>
-                                    <td>3M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
-                                </tr>
-                                <tr>
-                                    <td>12577</td>
-                                    <td><a href="#product" class="tabname">guard seed flower mission leader frog fellow
-                                            steam lay dream up free if sad night spell history worried claws factory
-                                            fairly thee escape stripIphone X 64GB</a></td>
-                                    <td><a href="#customer" class="tabcus">Gary Barnes</a></td>
-                                    <td>19163</td>
-                                    <td>9/22/2047</td>
-                                    <td>
-                                        <div class="tabstt">
-                                            <span class="point" id="not"></span>
-                                            <span class="stttext">Đã hủy</span>
-                                        </div>
-                                    </td>
-                                    <td>3M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
-                                </tr>
-                                <tr>
-                                    <td>12144</td>
-                                    <td><a href="#product" class="tabname">elephant mistake grow fruit fed tax snow
-                                            total everywhere tail more able young start plant his getting factor
-                                            becoming save easier knew belt year</a></td>
-                                    <td><a href="#customer" class="tabcus">Michael Townsend</a></td>
-                                    <td>16623</td>
-                                    <td>11/30/2083</td>
-                                    <td>
-                                        <div class="tabstt">
-                                            <span class="point" id="com"></span>
-                                            <span class="stttext">Thành công</span>
+                                            @switch($order->status)
+                                                @case(1)
+                                                    <span class="point" id="com"></span>
+                                                    <span class="stttext">Chờ xác nhận</span>
+                                                    @break
+                                                @case(2)
+                                                    <span class="point" id="pen"></span>
+                                                    <span class="stttext">Chờ lấy hàng</span>
+                                                    @break
+                                                @case(3)
+                                                    <span class="point" id="pen"></span>
+                                                    <span class="stttext">Đang giao</span>
+                                                    @break
+                                                @case(4)
+                                                    <span class="point" id="com"></span>
+                                                    <span class="stttext">Thành công</span>
+                                                    @break
+                                                @case(5)
+                                                    <span class="point" id="not"></span>
+                                                    <span class="stttext">Đã huỷ</span>
+                                                    @break
+                                                @default
+                                                    
+                                            @endswitch
                                         </div>
                                     </td>
                                     <td>12M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
+                                    <td><a href="{{url()->route('superEditOrder',['slug'=>$order->slug])}}" class="tabmanage"><button class="tabbtn"><i class="fas fa-edit"></i></button></a> </td>
                                 </tr>
-                                <tr>
-                                    <td>12577</td>
-                                    <td><a href="#product" class="tabname">morning our nor clay read produce brief
-                                            stretch saddle suggest people death sail several frame support claws nodded
-                                            separate tide mind solution angry driverIphone X 64GB</a></td>
-                                    <td><a href="#customer" class="tabcus">Kyle Washington</a></td>
-                                    <td>19163</td>
-                                    <td>9/22/2047</td>
-                                    <td>
-                                        <div class="tabstt">
-                                            <span class="point" id="pen"></span>
-                                            <span class="stttext">Đang đợi</span>
-                                        </div>
-                                    </td>
-                                    <td>3M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
-                                </tr>
-                                <tr>
-                                    <td>12577</td>
-                                    <td><a href="#product" class="tabname">supply native possible gravity drink told
-                                            sick pleasure firm event contrast immediately about very zoo wall pink
-                                            column finger wolf rope myself my ownerIphone X 64GB</a></td>
-                                    <td><a href="#customer" class="tabcus">Christopher Russell</a></td>
-                                    <td>19163</td>
-                                    <td>9/22/2047</td>
-                                    <td>
-                                        <div class="tabstt">
-                                            <span class="point" id="not"></span>
-                                            <span class="stttext">Đã hủy</span>
-                                        </div>
-                                    </td>
-                                    <td>3M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
-                                </tr>
-                                <tr>
-                                    <td>12144</td>
-                                    <td><a href="#product" class="tabname">age common offer image glad east dish
-                                            creature knowledge path by rice jump sent nuts gather success force region
-                                            would problem eager saddle birthday</a></td>
-                                    <td><a href="#customer" class="tabcus">Stella Cole</a></td>
-                                    <td>16623</td>
-                                    <td>11/30/2083</td>
-                                    <td>
-                                        <div class="tabstt">
-                                            <span class="point" id="com"></span>
-                                            <span class="stttext">Thành công</span>
-                                        </div>
-                                    </td>
-                                    <td>12M</td>
-                                    <td><a href="#manage" class="tabmanage">Quản lí</a> </td>
-                                    <td><button class="tabbtn"><i class="fas fa-edit"></i></button></td>
-
-                                </tr>
+                                @endforeach
+                                
                             </table>
                         </div>
-                        <p class="viewmore"><a href="#viewmore">Xem tất cả đơn hàng <i
+                        <p class="viewmore"><a href="{{url()->route('superOrder')}}">Xem tất cả đơn hàng <i
                                     class="fas fa-arrow-right"></i></a></p>
                     </div>
                 </div>
@@ -691,7 +584,7 @@
         });
         dataReview = JSON.parse('{!!$review->getCountEachStar()!!}')
         dataRv = []
-        for(i=1;i<=5;i++){
+        for(i=5;i>=1;i--){
             let c = dataReview.filter((rv)=>rv.star==i)[0];
             dataRv.push(c===undefined ? 0 : c.count);
         }

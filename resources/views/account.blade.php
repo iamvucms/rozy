@@ -615,7 +615,7 @@
                             <div class="mFlex">
 								<ul id="mTab">
                                     <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" class="active" data-tab="0">Tất cả</li>
-                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="1">Chờ thanh toán</li>
+                                    <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="1">Chờ xác nhận</li>
                                     <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="2">Chờ lấy hàng</li>
                                     <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="3">Đang giao</li>
                                     <li onclick="document.querySelector('#mTab li.active').removeAttribute('class'); this.setAttribute('class','active');switchTab(this.dataset.tab)" data-tab="4">Đã giao</li>
@@ -635,7 +635,7 @@
                                                 <div class="ostt">
                                                     <span>@switch($order->status)
                                                         @case('1')
-                                                            CHỜ THANH TOÁN
+                                                            Chờ xác nhận
                                                             @break
                                                         @case('2')
                                                             CHỜ LẤY HÀNG

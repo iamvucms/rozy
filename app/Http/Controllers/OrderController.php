@@ -11,7 +11,7 @@ class OrderController extends Controller
             'status' => 'required|min:1|max:5',
         ]);
         $order = Order::where('id',$id)->first();
-        if($order->count()==0) return response()->json(['success'=>false], 200, []);
+        if($order->count()==0 || $order->status==4) return response()->json(['success'=>false], 200, []);
         if(Auth::user()->getInfo()->id != $order->idcus) return response()->json(['success'=>false], 200, []);
         if($order->status<3){
             $order->status = $orderData['status'];

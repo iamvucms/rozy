@@ -7,6 +7,7 @@ use App\Cart;
 use App\Products;
 use App\Enjoy;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
 
 class Category extends Model
 {
@@ -72,8 +73,13 @@ class Category extends Model
         return $cats;
     }
     public function getCountEachCategory(){
-        $cats = $this->selectRaw('count(products.id) as count,categories.name as name')
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $cats = $this->selectRaw('count(products.id) as count,categories.name as name')
         ->leftjoin('products','products.idcat','=','categories.id')
+        ->groupBy("categories.id")->get();
+        elseif($role_id==3) $cats = $this->selectRaw('count(products.id) as count,categories.name as name')
+        ->leftjoin('products','products.idcat','=','categories.id')->whereRaw('products.idsell='.$user->Seller()->id)
         ->groupBy("categories.id")->get();
         return $cats->toJson();
     }

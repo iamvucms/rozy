@@ -36,6 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function Seller(){
+        return $this->hasOne('App\Seller','user_id','id')->first();
+    }
     public function Avatar(){
         return $this->hasOne('App\Image','id_avt_user','id');
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -10,6 +11,9 @@ class Order extends Model
     public $fillable = ['status','id','name','address','phone','city','total'];
     public function OrderDetails(){
         return $this->hasMany('App\OrderDetail','idorder','id');
+    }
+    public function Customer(){
+        return $this->hasOne('App\Customer','id','idcus')->first();
     }
     public function Coupon(){
         if($this->idcoupon===null){
@@ -73,30 +77,62 @@ class Order extends Model
         $d = $R * $c;
         return round($d/1000); // returns the distance in meter
     }
+    public function getLastCustomerOfSeller($seller_id){
+        $dataCustomers = collect();
+        $customers = $this->selectRaw('customers.id')
+        ->join('customers','customers.id','=','orders.idcus')
+        ->whereRaw('orders.idsell='.$seller_id)
+        ->groupBy('customers.id')
+        ->get();
+        foreach($customers as $cus){
+            $dataCustomers->push(Customer::where('id',$cus->id)->first());
+        }
+        return $dataCustomers;
+    }
     public function getTotalPrice(){
-        return ceil($this->where('status','4')->sum('total')/1000000);
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $total = $this->where('status','4')->sum('total');
+        elseif($role_id==3)$total = $this->where('status','4')
+        ->where('idsell',$user->Seller()->id)->sum('total');
+        return ceil($total/1000000);
     }
     public function getTotalPriceToday(){
-        $total=$this->where('status','4')->whereRaw("DAY(NOW())= DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
-        $totalYesterday = $this->where('status','4')->whereRaw("DAY(updated_at) = DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $total = $this->where('status','4')->whereRaw("DAY(NOW())= DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
+        elseif($role_id==3) $total = $this->where('status','4')->where('idsell',$user->Seller()->id)->whereRaw("DAY(NOW())= DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
+        if($role_id==1) $totalYesterday = $this->where('status','4')->whereRaw("DAY(updated_at) = DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
+        elseif($role_id==3) $totalYesterday = $this->where('status','4')->where('idsell',$user->Seller()->id)->whereRaw("DAY(updated_at) = DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
         return [ 'total'=>ceil($total/1000000),
         'percent' => $totalYesterday!=0 ?ceil($total/$totalYesterday*100) : 100
     ];
     }
     public function getNewOrderCount(){
-        $count =$this->whereRaw("DAY(NOW()) - DAY(created_at) <=5 AND MONTH(NOW())= MONTH(created_at) AND YEAR(NOW())= YEAR(created_at)")->count();
-        $precount = $count =$this->whereRaw("DAY(NOW()) - DAY(created_at) <=10 AND DAY(NOW()) - DAY(created_at) >=5 AND MONTH(NOW())= MONTH(created_at) AND YEAR(NOW())= YEAR(created_at)")->count();
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $count =$this->whereRaw("DAY(NOW()) - DAY(created_at) <=5 AND MONTH(NOW())= MONTH(created_at) AND YEAR(NOW())= YEAR(created_at)")->count();
+        elseif($role_id==3) $count =$this->where('idsell',$user->Seller()->id)->whereRaw("DAY(NOW()) - DAY(created_at) <=5 AND MONTH(NOW())= MONTH(created_at) AND YEAR(NOW())= YEAR(created_at)")->count();
+        if($role_id==1) $precount = $this->whereRaw("DAY(NOW()) - DAY(created_at) <=10 AND DAY(NOW()) - DAY(created_at) >=5 AND MONTH(NOW())= MONTH(created_at) AND YEAR(NOW())= YEAR(created_at)")->count();
+        elseif($role_id==3) $precount = $this->where('idsell',$user->Seller()->id)->whereRaw("DAY(NOW()) - DAY(created_at) <=10 AND DAY(NOW()) - DAY(created_at) >=5 AND MONTH(NOW())= MONTH(created_at) AND YEAR(NOW())= YEAR(created_at)")->count();
         return ['count'=>$count,'percent'=>$precount!=0 ?ceil($count/$precount*100) : 100];
     }
     public function getCompletedOrderCountToday(){
-        $count = $this->where('status','4')->whereRaw("DAY(NOW()) = DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->count();
-        $precount = $this->where('status','4')->whereRaw("DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) = DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->count();
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $count = $this->where('status','4')->whereRaw("DAY(NOW()) = DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->count();
+        elseif($role_id==3) $count = $this->where('idsell',$user->Seller()->id)->where('status','4')->whereRaw("DAY(NOW()) = DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->count();
+        if($role_id==1) $precount = $this->where('status','4')->whereRaw("DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) = DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->count();
+        elseif($role_id==3) $precount = $this->where('idsell',$user->Seller()->id)->where('status','4')->whereRaw("DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) = DAY(updated_at) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->count();
         return ['count'=>$count,'percent'=>$precount!=0 ?ceil($count/$precount*100) : 100];
     }
     public function getMoneyEachDay($month=1){
         $moneyChart = collect();
         $days = cal_days_in_month(CAL_GREGORIAN,date($month),date('Y'));
-        $moneys = $this->selectRaw('SUM(total) as money,DAY(updated_at) as day')->whereRaw('MONTH(updated_at) ='.$month.' AND status=4')->groupBy('day')->get();
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $moneys = $this->selectRaw('SUM(total) as money,DAY(updated_at) as day')->whereRaw('MONTH(updated_at) ='.$month.' AND status=4')->groupBy('day')->get();
+        elseif($role_id==3) $moneys = $this->selectRaw('SUM(total) as money,DAY(updated_at) as day')->where('idsell',$user->Seller()->id)->whereRaw('MONTH(updated_at) ='.$month.' AND status=4')->groupBy('day')->get();
         for($i=1;$i<=$days;$i++){
             $check = true;
             foreach($moneys as $money){

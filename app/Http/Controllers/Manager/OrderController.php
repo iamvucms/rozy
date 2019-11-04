@@ -15,4 +15,10 @@ class OrderController extends Controller
         $dataMoney = $order->getMoneyEachDay($validatedData['month']);
         return $dataMoney;
     }
+    public function show(){
+        dd('ok');
+    }
+    public function Order(Request $req,$slug){
+        dd($slug);
+    }
 }

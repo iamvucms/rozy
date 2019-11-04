@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Auth;
 class Review extends Model
 {
     protected $table = 'reviews';
@@ -29,7 +29,12 @@ class Review extends Model
         return ['count'=>$count,'percent'=>$precount!=0 ?ceil($count/$precount*100) : 100 ];;
     }
     public function getCountEachStar(){
-        $dataReview = $this->selectRaw('count(reviews.id) as count,star')
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $dataReview = $this->selectRaw('count(reviews.id) as count,star')
+        ->groupBy('star')->get();
+        elseif($role_id==3) $dataReview = $this->selectRaw('count(reviews.id) as count,star')
+        ->join('products','products.id','=','reviews.idpro')->whereRaw('products.idsell='.$user->Seller()->id)
         ->groupBy('star')->get();
         return $dataReview->toJson();
     }

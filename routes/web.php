@@ -69,7 +69,8 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
 
     Route::get('/sellers','Manager\SellerController@show')->name('superSeller');
 
-    Route::get('/shipper','Manager\ShipperController@show')->name('superShipper');
+    Route::get('/shippers','Manager\ShipperController@show')->name('superShipper');
+    Route::get('/shippers.{id}','Manager\ShipperController@Shipper')->name('superEditShipper');
 
     Route::get('/files','Manager\CategoryController@show')->name('superFile');
 
@@ -80,5 +81,7 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
 
     Route::post('/traffic/moneys','Manager\TrafficController@getViewEachDay')->name('getViewEachDay');
 
+    Route::get('/orders','Manager\OrderController@show')->name('superOrder');
+    Route::get('/orders.{slug}','Manager\OrderController@Order')->name('superEditOrder');
     Route::post('/orders/moneys','Manager\OrderController@getMoneyEachDay')->name('getMoneyEachDay');
 });

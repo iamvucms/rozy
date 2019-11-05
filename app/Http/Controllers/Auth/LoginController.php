@@ -42,22 +42,28 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     public function Login(Request $req){
+        
         $credentials = $req->only('email', 'password');
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             $user->last_login = date('Y-m-d H:i:s');
             $user->save();
             $this->resetTraffic();
-            return redirect(url()->route('myAccount'));
+            if($req->type=='PAYMENT'){
+                return response()->json(['success'=>true], 200, []);
+            }else return redirect()->back();
         }
-        return redirect(url()->route('home'));
+        if($req->type=='PAYMENT'){
+            return response()->json(['success'=>false], 200, []);
+        }else return redirect()->back();
     }
     public function Register(Request $req){
         $validatedData = $req->validate([
             'name' =>'required|min:3',
             'email'=>'required|unique:users,email|email:rfc,dns',
             'password'=>'required|min:6',
-            'phone' =>'required|digits:10'
+            'phone' =>'required|digits:10',
+            'address'=>''
         ]);
         $user = new User;
         $user->email = $validatedData['email'];
@@ -65,9 +71,17 @@ class LoginController extends Controller
         $user->last_login = date('Y-m-d H:i:s');
         $user->save();
         $this->resetTraffic();
-        Customer::insert(['user_id'=>$user->id,'name'=>$validatedData['name'],'phone'=>$validatedData['phone']]);
+        Customer::insert([
+            'user_id'=>$user->id,
+            'name'=>$validatedData['name'],
+            'phone'=>$validatedData['phone'],
+            'address'=>$validatedData['address'] ?? '',
+        ]);
         Auth::loginUsingId($user->id);
-        return redirect(url()->route('home'));
+        if($req->type=='PAYMENT'){
+            return response()->json(['success'=>true], 200, []);
+        }else return redirect()->back();
+        
 
     }
     public function GoogleLoginRedirect(){
@@ -96,7 +110,7 @@ class LoginController extends Controller
             Auth::loginUsingId($user->id);
         }
         $this->resetTraffic();
-        return redirect($this->redirectTo);
+        return redirect()->back();
     }
     public function resetTraffic(){
         $traffic = Traffic::whereRaw("DAY(NOW())=DAY(updated_at) AND MONTH(NOW())=MONTH(updated_at) AND YEAR(NOW())=YEAR(updated_at)")->first();

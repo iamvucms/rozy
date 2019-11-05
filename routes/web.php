@@ -22,6 +22,12 @@ Route::get('/cart','CartController@Cart');
 Route::post('/cart/add','CartController@addCart')->name('addCart');
 Route::post('/cart/edit','CartController@editCart')->name('editCart');
 Route::post('/cart/delete','CartController@deleteCart')->name('deleteCart');
+//PAYMENT Route
+Route::get('/payment','PayController@show')->name('payment');
+//Address Route
+Route::post('/address','AddressController@getMore')->name('address');
+//Shipping Route
+Route::post('/shipper/calculation','ShipperController@getShipPrice')->name('getShipPrice');
 //GOOGLE API 
 Route::get('/GoogleRedirect', 'Auth\LoginController@GoogleLoginRedirect')->name("GoogleRedirect");
 Route::get('/GoogleCallback', 'Auth\LoginController@GoogleCallBackHandler');

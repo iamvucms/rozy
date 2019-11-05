@@ -10,7 +10,9 @@ use App\Keyword;
 use App\Enjoy;
 use App\Order;
 use App\Review;
-use App\Traffic;    
+use App\Traffic;
+use App\City;
+use App\Shipper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 class ComposerServiceProvider extends ServiceProvider
@@ -52,6 +54,10 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());
             $view->with('enjoy',new Enjoy);
+        });
+        View::composer('payment', function ($view) {
+            $view->with('city',new City);
+            $view->with('shipers',new Shipper);
         });
         View::composer('Admin.index', function ($view) {
             $view->with('order',new Order);

@@ -1,677 +1,785 @@
-.payment{
-          color:rgba(0, 0, 0, 0.8);
-          background:transparent;
-          /* padding:10px; */
-          margin-top: 10px;
-          margin-bottom: 20px;
-          /* box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.8) */
-}
-.payment .process{
-          width:100%;
-          margin:0 auto;
-          display: block;
-          margin-top: 10px;
-          padding:25px 0px;
-          padding-bottom: 35px;
-          background:white;
-          border:2px dashed #007ff0
-}
-.payment .process ul{
-          width: 100%;  
-          display: flex;      
-}
-.payment .process ul li{
-          flex-grow: 1;
-          max-width:25%;
-          text-align: center;
-          position: relative;
-}
-.payment .process ul li p{
-          width: 90%;
-          height: 5px;
-          background:#efefef;
-          position: absolute;
-          top:calc((100% - 5px)/2);
-          left:55%;
-}
-.payment .process ul li:first-child a{
-          background:#e33551;
-}
-.payment .process ul li:first-child span{
-          font-weight: bold;
-}
-.payment .process ul li:last-child p{
-          width:0px;
-}
-.payment .process ul li a{
-          color:white;
-          font-weight: bold;
-          text-align: center;
-          height: 25px;
-          width: 25px;
-          line-height: 25px;
-          border-radius: 50%;
-          background:#acacac;
-          display: inline-block;
-          position: relative;
-}
-.payment .process ul li a:hover{
-          background:#e33551!important;
-}
-.payment .process ul li a:hover span{
-          font-weight: bold!important;
-}
-.payment .process ul li a span{
-          position: absolute;
-          color:#e33551;
-          font-weight: 100;
-          white-space: nowrap;
-          top:100%;
-          transform: translateX(-50%);
-          left:50%;
-}
-.step1{
-          display: flex;
-          margin-top: 20px;
-          
-}
-.log2buy{
-          flex-grow:7;
-          max-width: 70%;
-}
-.yourcartlist{
-          background:white!important;
-          max-height: 650px;
-          flex-grow:3;
-          max-width: 30%;
-          box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.8);
-}
-.ycltitle{
-          padding:10px;
-          font-size: 1.1em;
-          font-weight: bold;
-          background-image: linear-gradient(90deg,#0080f03a,white)
-}
-.log2buy{
-          display: flex;
-          flex-wrap: wrap;
-}
-.loginform{
-          box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.8);
-          border-radius: 5px;
-          width:calc(100% - 20px);
-          height: 450px;
-          display: flex;
-          flex-wrap: wrap;
-          background:white;
-
-}
-.checkout_info,.paymethod,.payfinish{
-          width:calc(100% - 20px);
-          background:white;
-}
-.payfinish{
-          padding-top: 15px;
-          height: 350px;
-          box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
-}
-.paymethod{
-          width:calc(100% - 20px);
-          background: transparent;
-}
-.checkout_info{
-}
-.loginform .log{
-          max-width: 70%;
-          flex-grow: 7;
-}
-.log p.ltitle{
-          text-align: center;
-          margin-top: 50px;
-          font-size: 1.6em;
-          text-transform: capitalize;
-}
-.log .logform{
-          display: block;
-          width:60%;
-          margin:15px auto;
-}
-.log .logform input{
-          margin-bottom: 10px;
-          width:100%;
-          display: inline-block;
-          outline: none;
-          border:none;
-          padding:0px 10px;
-          text-align: center; 
-          height:45px;
-          font-size: 1.1em;
-          border-bottom: 1px solid rgba(51, 51, 51, 0.294);
-          transition: all ease 0.5s;
+.payment {
+    color: rgba(0, 0, 0, 0.8);
+    background: transparent;
+    /* padding:10px; */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.8) */
 }
 
-.log .logform input:focus{
-          border-bottom: 3px solid #0080f0de
+.payment .process {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 10px;
+    padding: 25px 0px;
+    padding-bottom: 35px;
+    background: white;
+    border: 2px dashed #007ff0
 }
-.log .logform button{
-         transition: all ease 0.2s;
-          height: 40px;
-          border-radius: 48px;
-          border:none;
-          padding:0px 15px;
-          line-height: 40px;
-          display: block;
-          width:80%;
-          font-size: 1.1em;
-          margin: 20px auto;
-          color:white;
-          background: #007ff0;
-          font-weight: bold;
+
+.payment .process ul {
+    width: 100%;
+    display: flex;
 }
-.log .logform button:hover{
-          color:#007ff0;
-          border:2px solid #007ff0;
-          background: white;
+
+.payment .process ul li {
+    flex-grow: 1;
+    max-width: 25%;
+    text-align: center;
+    position: relative;
 }
-.loginform .reg{
-          max-width: 30%;
-          flex-grow: 3;
-          background-image: url('../img/regback.jpg');
-          background-position: center;
-          position: relative;
-          color:white;
-          border-radius: 0px 5px 5px 0px;
-          
+
+.payment .process ul li p {
+    width: 90%;
+    height: 5px;
+    background: #efefef;
+    position: absolute;
+    top: calc((100% - 5px)/2);
+    left: 55%;
 }
-.loginform .reg::after{
-          content: '';
-          position: absolute;
-          top:0;
-          left:0;
-          width:100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.3);
-          border-radius: 5px;
+
+.payment .process ul li:first-child a {
+    background: #e33551;
 }
-.loginform .reg .invitereg{
-          position: absolute;
-          top:0;
-          left:0;
-          width:100%;
-          height: 100%;
-          z-index: 5;
+
+.payment .process ul li:first-child span {
+    font-weight: bold;
 }
-.loginform .reg .topreg{
-          margin:70px auto;
-          text-align: center;
+
+.payment .process ul li:last-child p {
+    width: 0px;
 }
-.loginform .reg .topreg p:first-child{
-          font-size: 1.5em;
-          margin-bottom:10px; 
+
+.payment .process ul li a {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    border-radius: 50%;
+    background: #acacac;
+    display: inline-block;
+    position: relative;
 }
-.loginform .reg .topreg p:last-child{
-          font-size: 0.9em;
-          max-width: 80%;
-          margin:0 auto;
+
+.payment .process ul li a:hover {
+    background: #e33551!important;
 }
-.invitereg button{
-          border-radius: 48px 48px 48px 48px;
-          height:40px;
-          line-height: 40px;
-          padding:0px 10px;
-          border:none;
-          background:rgba(0, 0, 0, 0.5);
-          color:white;
-          font-size: 1.2em;
-          border:2px solid white;
-          cursor: pointer;
-          margin-top: 150px;
-          margin-left: calc((100% - 124px)/2);
-          font-weight: bold;
-          transition: all ease 0.2s
+
+.payment .process ul li a:hover span {
+    font-weight: bold!important;
 }
-.invitereg button:hover{
-          color:#007ff0;
-          background-color: white;
+
+.payment .process ul li a span {
+    position: absolute;
+    color: #e33551;
+    font-weight: 100;
+    white-space: nowrap;
+    top: 100%;
+    transform: translateX(-50%);
+    left: 50%;
 }
-.logtitle{
-          width:100%;
-          text-align: center;
-          font-size: 2em;
+
+.step1 {
+    display: flex;
+    margin-top: 20px;
 }
-.orsoc{
-          width: 60%;
-          margin: 15px auto;
+
+.log2buy {
+    flex-grow: 7;
+    max-width: 70%;
 }
-.ortitle{
-          font-size: 1.2em;
-          width:50px;
-          text-align: center;
+
+.yourcartlist {
+    background: white!important;
+    max-height: 650px;
+    flex-grow: 3;
+    max-width: 30%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.8);
 }
+
+.ycltitle {
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-image: linear-gradient(90deg, #0080f03a, white)
+}
+
+.log2buy {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.loginform {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+}
+
+.checkout_info, .paymethod, .payfinish {
+    width: calc(100% - 20px);
+    background: white;
+}
+
+.payfinish {
+    padding-top: 15px;
+    height: 350px;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.8);
+}
+
+.paymethod {
+    width: calc(100% - 20px);
+    background: transparent;
+}
+
+.checkout_info {}
+
+.loginform .log {
+    max-width: 70%;
+    flex-grow: 7;
+}
+
+.log p.ltitle {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.6em;
+    text-transform: capitalize;
+}
+
+.log .logform {
+    display: block;
+    width: 60%;
+    margin: 15px auto;
+}
+
+.log .logform input {
+    margin-bottom: 10px;
+    width: 100%;
+    display: inline-block;
+    outline: none;
+    border: none;
+    padding: 0px 10px;
+    text-align: center;
+    height: 45px;
+    font-size: 1.1em;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.294);
+    transition: all ease 0.5s;
+}
+
+.log .logform input:focus {
+    border-bottom: 3px solid #0080f0de
+}
+
+.log .logform button {
+    transition: all ease 0.2s;
+    height: 40px;
+    border-radius: 48px;
+    border: none;
+    padding: 0px 15px;
+    line-height: 40px;
+    display: block;
+    width: 80%;
+    font-size: 1.1em;
+    margin: 20px auto;
+    color: white;
+    background: #007ff0;
+    font-weight: bold;
+}
+
+.log .logform button:hover {
+    color: #007ff0;
+    border: 2px solid #007ff0;
+    background: white;
+}
+
+.loginform .reg {
+    max-width: 30%;
+    flex-grow: 3;
+    background-image: url('../img/regback.jpg');
+    background-position: center;
+    position: relative;
+    color: white;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.loginform .reg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.loginform .reg .invitereg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+.loginform .reg .topreg {
+    margin: 70px auto;
+    text-align: center;
+}
+
+.loginform .reg .topreg p:first-child {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.loginform .reg .topreg p:last-child {
+    font-size: 0.9em;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.invitereg button {
+    border-radius: 48px 48px 48px 48px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 10px;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1.2em;
+    border: 2px solid white;
+    cursor: pointer;
+    margin-top: 150px;
+    margin-left: calc((100% - 124px)/2);
+    font-weight: bold;
+    transition: all ease 0.2s
+}
+
+.invitereg button:hover {
+    color: #007ff0;
+    background-color: white;
+}
+
+.logtitle {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}
+
+.orsoc {
+    width: 60%;
+    margin: 15px auto;
+}
+
+.ortitle {
+    font-size: 1.2em;
+    width: 50px;
+    text-align: center;
+}
+
 .ortdiv p {
-          display: inline-block;
-}
-.ortdiv p:first-child{
-          width:calc(50% - 29px);
-          height: 1px;
-          background:rgba(51, 51, 51, 0.342);
-          line-height: 23px;
-}
-.ortdiv p:last-child{
-          width:calc(50% - 29px);
-          height: 1px;
-          background:rgba(51, 51, 51, 0.342);
-          line-height: 23px;
-}
-.logwith{
-          margin-top: 15px;
-}
-.logwith p:first-child{
-          font-size: 0.9em;
-          margin-bottom: 10px;          
-}
-.logwith a{
-          display: inline-block;
-          width: 32.5%;
-}
-.logwith a button{
-          cursor: pointer;
-          padding:5px 0px;
-          font-size: 1.5em;
-          color:white;
-          border:none;
-          width:100%;
-}
-.listitems ul{
-          padding:5px;
-}
-.listitems ul li{
-          margin-top: 5px;
-          display: flex;
-          padding-bottom: 10px;
-          border-bottom:1.2px solid rgba(51, 51, 51, 0.308);
-          position: relative;
-}
-.listitems ul li img{
-          max-width: 55px;
-          height: 55px;
-          transform: scale(0.9);
-          padding: 5px;
-          border: 1px solid rgba(51, 51, 51, 0.308);
-          margin-right: 5px;
-}
-.listitems ul li  .itemcart span:first-child{
-          color:#007ff0
-}
-.listitems ul li  .itemcart span:last-child{
-          font-size: 0.9em;
-          color:#334862b6;
-}
-.listitems .itemquan{
-          position: absolute;
-          top:0%;
-          right:10px;
-          font-weight: bold;
-          font-size: 0.9em;
-}
-.paynow{
-          padding-top: 10px;
-          max-width: 100%!important;
-          border:none;
-          padding-right: 10px;
-}
-.coupon{
-          padding-bottom: 10px;
-}
-.noteship{
-          margin: 5px;
-          padding:5px;
-          border: 0.5px solid #007ff0;
-          font-size: 0.9em;
-          background:#0080f038
-}
-.loghidden,.reghidden{
-          display: none;
-}
-.area1{
-          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
-          margin-bottom: 10px;
-}
-.area1 .formuser{
-          padding:20px;
-          color:rgba(0, 0, 0, 0.6)
-}
-.formuser div{
-          display: flex;
-          padding: 10px 0px;
-          font-size: 0.9em;
-          border-bottom:0.5px solid rgba(51, 51, 51, 0.281);
-}
-.formuser div:nth-child(2){
-          border-bottom:none!important;
-}
-.formuser div input{
-          height: 19px;
-          margin-right: 5px;
-          color:red;
-}
-span.namer{
-          font-weight: bold;
-          color:rgba(0, 0, 0, 0.8)
+    display: inline-block;
 }
 
-.area1 .pititle p{
-          color:rgba(0, 0, 0, 0.7);
-          padding: 10px;
-          font-size: 1.1em;
-          font-weight: bold;
-          background-image: linear-gradient(90deg,#0080f03a,white);
-          width:100%;
+.ortdiv p:first-child {
+    width: calc(50% - 29px);
+    height: 1px;
+    background: rgba(51, 51, 51, 0.342);
+    line-height: 23px;
 }
-form.infoform{
-          width:60%;
-          margin:0 auto;
-          color:rgba(0, 0, 0, 0.8);
-}
-.infoform table{
-          width:100%;
-}
-.infoform table tr{
-          width:100%;
-}
-.infoform table tr td{
-          padding-bottom: 5px;
-}
-.infoform table tr td:first-child{
-          max-width: 60px;
-          font-size: 0.7em;
-          font-weight: bold;
-}
-.infoform table tr td input{
-          padding-left: 10px;
-          margin-left: 10px;
-          height: 35px;
-          border:none;
-          border-radius: 4px;
-          width:100%;
-          border:1px solid #acacac4f;
-}
-.infoform table tr td input:focus{
-          border:1px solid #0080f06b;
-}
-.stepredirect{
-          margin-top: 20px;
-          max-height: 50px;
-}
-.stepredirect button{
-          padding:10px 25px;
-          border:none;
-          background:#e33551;
-          border-radius: 48px;
-          font-size: 1.2em;
-          font-weight: bold;
-          color:white;
-          cursor: pointer;
-          transition: all ease 0.2s;
-}
-.stepredirect button:hover{
-          transform: scale(1.1)
-}
-.stepredirect{
-          width:100%;
-}
-.stepredirect button:first-child{
-          border:3px solid #e33551;
-          background:white;
-          color:#e33551;
-          padding:8.5px 25px;
-          margin-left: 90px;
-}
-.stepredirect button:last-child{
-          float: right;
-          margin-right: 100px;          
-}
-.choose{
-          display: flex
-}
-.choose div{
-          flex-grow: 1;
-          flex-basis: 33%;
-          max-width: 33%;
-          text-align: center;
-          background: #acacaa2d;
-          border:1px solid #acacac25;
-          padding: 10px;
-          margin-right: 0.33%;
-          cursor: pointer;
-}
-.choose div.active{
-          border:1px solid #e33551;
-}
-.choose div input{
-          margin-top: 10px;
-          padding-bottom: 10px;
-}
-.choose div p{
-          display: flex;
-          align-items: center;
-          justify-content: center;
-}
-.choose div p img:first-child{
-          height: 23px;
-          margin-right: 10px;
-}
-.choose div p img:last-child{
-          height: 38px;
-}
-.formccv{
-          background:white;
-          margin-top: 40px;
-          padding:35px 10px;
-          border: 2px dashed #acacac;
-}
-.formccv form{
-          font-weight: 100;
-          display: flex;
-          flex-wrap: wrap;
-}
-.formccv label{
-          font-size: 1.1em;
-          color:rgba(0, 0, 0, 0.5);
-}
-.formccv .noteccv{
-          color:rgba(0, 0, 0, 0.5);
-          font-size: 0.9em;
-          padding-top: 20px;
-          padding-left: 0px;
-}
-.formccv input{
-          padding-left: 15px;
-          font-size: 1.1em;
-          display: inline-block;
-          width:100%;
-          border:none;
-          border-radius: 4px;
-          height: 40px;
-          border:0.5px solid #acacaa4b;
-}
-.formccv input:focus{
-          border:0.5px solid #007ff0
-}
-.formccv .form1_2{
-          position: relative;
-          padding:10px;
-          flex-basis: 50%;
-          flex-grow: 2;
-}
-.formccv .form1_4{
-          position: relative;
-          flex-basis: 25%;
-          flex-grow: 1;
-          padding:10px;
-}
-p.banktitle{
-          padding:20px;
-          text-align: center;
-          font-weight: bold;
-          font-size: 1.3em;
-          border-bottom: 1px solid #acacaa2d
-}
-.formbank{
-          border:1px solid #acacaa4b;
-          margin-top: 40px;
-          background:white;
-}
-.banktext{
-          padding:20px;
-}
-.formdirect{
-          background:white;
-          border:1px solid #acacaa4b;
-          margin-top: 40px;
-}
-.formdirect div{
-          padding:10px 0px;
-}
-p.successimg{
-          text-align: center;
-}
-p.successimg img{
-          width:70px;height: 70px;
-}
-.centertext{
-          width:50%;
-          margin:15px auto;
-}
-.centertext span{
-          font-weight: bold;
-          color:rgba(0, 0, 0, 0.7);
-          font-size: 1.1em;
-}
-.centertext p{
-          margin-top: 20px;
-}
-.centertext p button{
-          border-radius: 48px;
-          height:40px;
-          line-height: 40px;
-          padding:0px 20px;
-          border:none;
-          font-size: 1.2em;
-          color:white;
-          background:#2ecc71;
-          cursor: pointer;
-          transition: all ease 0.4s;
-}
-.centertext p button:hover{
-          transform: scale(1.1)
-}
-.mobliecartlist{
-          display: none;
-}
-@media only screen and (max-width:768px){
-          .payment{
-                    padding:10px;
-          }
-          .log2buy{
-                    font-size: 0.9em;
-                    max-width: 60%;
-          }
-          .paymethod{
-                    font-size: 0.8em!important;
-          }
 
-          .yourcartlist{
-                    font-size: 0.9em;
-                    max-height: 800px;
-                    max-width: 40%!important;
-                   
-          }
-          .reg{
-                    display: none;
-          }
-          .log{
-                    max-width:100%!important;
-          }
-          .payment .process ul li p{
-                    width: 85%;
-                    height: 5px;
-                    background:#efefef;
-                    position: absolute;
-                    top:calc((100% - 5px)/2);
-                    left:57.5%;
-          }
-          .centertext{
-                    width:70%
-          }
-          .logwith a{
-                    width:31.5%;
-          }
-          .choose p img{
-                    transform: scale(0.65);
-                    margin-right: 5px!important;
-          }
+.ortdiv p:last-child {
+    width: calc(50% - 29px);
+    height: 1px;
+    background: rgba(51, 51, 51, 0.342);
+    line-height: 23px;
 }
-@media only screen and (max-width:450px){
-          .payment{
-                    padding:5px;
-                    box-shadow: none;
-          }
-          .process{
-                    display: none!important;
-          }
-          .step1{
-                    max-width: 100%;
-                    flex-wrap: wrap;
-                    margin-top: 0px;
-          }
-          .log2buy{
-                    max-width: 100%!important;
-                    margin:0px;
-          }
-          .checkout_info{
-                    width:100%;
-          }
-          .payfinish{
-                    width:100%;
-          }
-          .paymethod{
-                    width:100%
-          }
-          .loginform{
-                    width: 100%;
-          }
-          .yourcartlist{
-                    max-width: 100%!important;
-                    margin:15px auto;
-                    
-          }
-          .paynow{
-                    padding:5px;
-          }
-          .stepredirect{
-                    margin-top: 10px;
-          }
-          .stepredirect button{
-                    margin:0!important;
-          }
-          .stepredirect button#back{
-                    margin-left: 10px!important;
-          }
-          .stepredirect button#next{
-                    margin-right: 10px!important;
-          }
-          .form1_2{
-                    flex-basis: 100%!important;
-          }
-          .choose p img{
-                    transform: scale(0.65);
-                    margin-right: 5px!important;
-          }
-          .mobliecartlist{
-                    display: block!important;
-          }
-          form.logform{
-                    width:80%!important;
-          }
+
+.logwith {
+    margin-top: 15px;
+}
+
+.logwith p:first-child {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.logwith a {
+    display: inline-block;
+    width: 32.5%;
+}
+
+.logwith a button {
+    cursor: pointer;
+    padding: 5px 0px;
+    font-size: 1.5em;
+    color: white;
+    border: none;
+    width: 100%;
+}
+
+.listitems ul {
+    padding: 5px;
+}
+
+.listitems ul li {
+    margin-top: 5px;
+    display: flex;
+    padding-bottom: 10px;
+    border-bottom: 1.2px solid rgba(51, 51, 51, 0.308);
+    position: relative;
+}
+
+.listitems ul li img {
+    max-width: 55px;
+    height: 55px;
+    transform: scale(0.9);
+    padding: 5px;
+    border: 1px solid rgba(51, 51, 51, 0.308);
+    margin-right: 5px;
+}
+
+.listitems ul li .itemcart span:first-child {
+    color: #007ff0
+}
+
+.listitems ul li .itemcart span:last-child {
+    font-size: 0.9em;
+    color: #334862b6;
+}
+
+.listitems .itemquan {
+    position: absolute;
+    top: 0%;
+    right: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.paynow {
+    padding-top: 10px;
+    max-width: 100%!important;
+    border: none;
+    padding-right: 10px;
+}
+
+.coupon {
+    padding-bottom: 10px;
+}
+
+.noteship {
+    margin: 5px;
+    padding: 5px;
+    border: 0.5px solid #007ff0;
+    font-size: 0.9em;
+    background: #0080f038
+}
+
+.loghidden, .reghidden {
+    display: none;
+}
+
+.area1 {
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
+}
+
+.area1 .formuser {
+    padding: 20px;
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.formuser div {
+    display: flex;
+    padding: 10px 0px;
+    font-size: 0.9em;
+    border-bottom: 0.5px solid rgba(51, 51, 51, 0.281);
+}
+
+.formuser div:nth-child(2) {
+    border-bottom: none!important;
+}
+
+.formuser div input {
+    height: 19px;
+    margin-right: 5px;
+    color: red;
+}
+
+span.namer {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8)
+}
+
+.area1 .pititle p {
+    color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-image: linear-gradient(90deg, #0080f03a, white);
+    width: 100%;
+}
+
+form.infoform {
+    width: 60%;
+    margin: 0 auto;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.infoform table {
+    width: 100%;
+}
+
+.infoform table tr {
+    width: 100%;
+}
+
+.infoform table tr td {
+    padding-bottom: 5px;
+}
+
+.infoform table tr td:first-child {
+    max-width: 60px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.infoform table tr td input {
+    padding-left: 10px;
+    margin-left: 10px;
+    height: 35px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid #acacac4f;
+}
+
+.infoform table tr td select {
+    padding-left: 10px;
+    margin-left: 10px;
+    height: 35px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid #acacac4f;
+}
+
+.infoform table tr td input:focus {
+    border: 1px solid #0080f06b;
+}
+
+.stepredirect {
+    margin-top: 20px;
+    max-height: 50px;
+}
+
+.stepredirect button {
+    padding: 10px 25px;
+    border: none;
+    background: #e33551;
+    border-radius: 48px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all ease 0.2s;
+}
+
+.stepredirect button:hover {
+    transform: scale(1.1)
+}
+
+.stepredirect {
+    width: 100%;
+}
+
+.stepredirect button:first-child {
+    border: 3px solid #e33551;
+    background: white;
+    color: #e33551;
+    padding: 8.5px 25px;
+    margin-left: 90px;
+}
+
+.stepredirect button:last-child {
+    float: right;
+    margin-right: 100px;
+}
+
+.choose {
+    display: flex
+}
+
+.choose div {
+    flex-grow: 1;
+    flex-basis: 33%;
+    max-width: 33%;
+    text-align: center;
+    background: #acacaa2d;
+    border: 1px solid #acacac25;
+    padding: 10px;
+    margin-right: 0.33%;
+    cursor: pointer;
+}
+
+.choose div.active {
+    border: 1px solid #e33551;
+}
+
+.choose div input {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.choose div p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choose div p img:first-child {
+    height: 23px;
+    margin-right: 10px;
+}
+
+.choose div p img:last-child {
+    height: 38px;
+}
+
+.formccv {
+    background: white;
+    margin-top: 40px;
+    padding: 35px 10px;
+    border: 2px dashed #acacac;
+}
+
+.formccv form {
+    font-weight: 100;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formccv label {
+    font-size: 1.1em;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.formccv .noteccv {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.9em;
+    padding-top: 20px;
+    padding-left: 0px;
+}
+
+.formccv input {
+    padding-left: 15px;
+    font-size: 1.1em;
+    display: inline-block;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    height: 40px;
+    border: 0.5px solid #acacaa4b;
+}
+
+.formccv input:focus {
+    border: 0.5px solid #007ff0
+}
+
+.formccv .form1_2 {
+    position: relative;
+    padding: 10px;
+    flex-basis: 50%;
+    flex-grow: 2;
+}
+
+.formccv .form1_4 {
+    position: relative;
+    flex-basis: 25%;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+p.banktitle {
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    border-bottom: 1px solid #acacaa2d
+}
+
+.formbank {
+    border: 1px solid #acacaa4b;
+    margin-top: 40px;
+    background: white;
+}
+
+.banktext {
+    padding: 20px;
+}
+
+.formdirect {
+    background: white;
+    border: 1px solid #acacaa4b;
+    margin-top: 40px;
+}
+
+.formdirect div {
+    padding: 10px 0px;
+}
+
+p.successimg {
+    text-align: center;
+}
+
+p.successimg img {
+    width: 70px;
+    height: 70px;
+}
+
+.centertext {
+    width: 50%;
+    margin: 15px auto;
+}
+
+.centertext span {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.1em;
+}
+
+.centertext p {
+    margin-top: 20px;
+}
+
+.centertext p button {
+    border-radius: 48px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 20px;
+    border: none;
+    font-size: 1.2em;
+    color: white;
+    background: #2ecc71;
+    cursor: pointer;
+    transition: all ease 0.4s;
+}
+
+.centertext p button:hover {
+    transform: scale(1.1)
+}
+
+.mobliecartlist {
+    display: none;
+}
+
+@media only screen and (max-width:768px) {
+    .payment {
+        padding: 10px;
+    }
+    .log2buy {
+        font-size: 0.9em;
+        max-width: 60%;
+    }
+    .paymethod {
+        font-size: 0.8em!important;
+    }
+    .yourcartlist {
+        font-size: 0.9em;
+        max-height: 800px;
+        max-width: 40%!important;
+    }
+    .reg {
+        display: none;
+    }
+    .log {
+        max-width: 100%!important;
+    }
+    .payment .process ul li p {
+        width: 85%;
+        height: 5px;
+        background: #efefef;
+        position: absolute;
+        top: calc((100% - 5px)/2);
+        left: 57.5%;
+    }
+    .centertext {
+        width: 70%
+    }
+    .logwith a {
+        width: 31.5%;
+    }
+    .choose p img {
+        transform: scale(0.65);
+        margin-right: 5px!important;
+    }
+}
+
+@media only screen and (max-width:450px) {
+    .payment {
+        padding: 5px;
+        box-shadow: none;
+    }
+    .process {
+        display: none!important;
+    }
+    .step1 {
+        max-width: 100%;
+        flex-wrap: wrap;
+        margin-top: 0px;
+    }
+    .log2buy {
+        max-width: 100%!important;
+        margin: 0px;
+    }
+    .checkout_info {
+        width: 100%;
+    }
+    .payfinish {
+        width: 100%;
+    }
+    .paymethod {
+        width: 100%
+    }
+    .loginform {
+        width: 100%;
+    }
+    .yourcartlist {
+        max-width: 100%!important;
+        margin: 15px auto;
+    }
+    .paynow {
+        padding: 5px;
+    }
+    .stepredirect {
+        margin-top: 10px;
+    }
+    .stepredirect button {
+        margin: 0!important;
+    }
+    .stepredirect button#back {
+        margin-left: 10px!important;
+    }
+    .stepredirect button#next {
+        margin-right: 10px!important;
+    }
+    .form1_2 {
+        flex-basis: 100%!important;
+    }
+    .choose p img {
+        transform: scale(0.65);
+        margin-right: 5px!important;
+    }
+    .mobliecartlist {
+        display: block!important;
+    }
+    form.logform {
+        width: 80%!important;
+    }
 }

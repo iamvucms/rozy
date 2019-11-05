@@ -13,7 +13,7 @@ class LogoutController extends Controller
     public function Logout(){
         $this->resetTraffic();
         Auth::logout();
-        return redirect($this->redirect);
+        return redirect()->back();
     }
     public function resetTraffic(){
         $user = Auth::user();

@@ -15,13 +15,11 @@ var iproduct = 0;
 var product_row_flash = 6;
 var iproduct_flash = 0;
 if ($(window).width() <= 768) {
-    console.log($(window).width())
     product_row = 3;
     product_row_flash = 3;
     hforfixedtop = 0;
 }
 if ($(window).width() <= 450) {
-    console.log($(window).width())
     product_row = 2;
     product_row_flash = 2;
     hforfixedtop = 0;
@@ -30,7 +28,6 @@ $('#megaheader').css('width', $('.bodyheader .megamenu').width() + 'px')
 $(window).resize(function () {
     $('#megaheader').css('width', $('.bodyheader .megamenu').width() + 'px');
     if ($(window).width() <= 768) {
-        console.log($(window).width())
         product_row = 3;
         product_row_flash = 3;
         document.querySelectorAll('#foryou .product').forEach((val) => {
@@ -38,7 +35,6 @@ $(window).resize(function () {
         })
     }
     if ($(window).width() <= 450) {
-        console.log($(window).width())
         product_row = 2;
         product_row_flash = 2;
         document.querySelectorAll('#foryou .product').forEach((val) => {
@@ -199,7 +195,6 @@ setInterval(() => {
 }, 400)
 //fixed box top 
 var scrollHeight = $(window).scrollTop();
-console.log(scrollHeight)
 if (scrollHeight >= hforfixedtop) {
     $('.boxtop').css('position', 'fixed');
     $('.boxtop').css('top', '0%');
@@ -217,7 +212,6 @@ else if (scrollHeight < hforfixedtop) {
 }
 $(window).on("scroll", function () {
     var scrollHeight = $(window).scrollTop();
-    console.log(scrollHeight)
     if (scrollHeight > hforfixedtop) {
         $('.boxtop').css('position', 'fixed');
         $('.boxtop').css('top', '0%');
@@ -418,10 +412,10 @@ function gotostep(x) {
     let selector = document.querySelectorAll('.payment .process ul li');
     selector.forEach(v => {
         if (i <= x) {
-            console.log(v.childNodes[0])
             v.childNodes[0].style.backgroundColor = '#e33551'
             v.childNodes[0].childNodes[1].style.fontWeight = 'bold'
         }
+        if(i+1<=x) v.childNodes[2].style.backgroundColor='#e33551'
         i++;
     })
     if (x == 1) {
@@ -471,7 +465,9 @@ $('.stepredirect #back').click(() => {
     gotostep(currentpage - 1 > 0 ? currentpage - 1 : 1)
 })
 $('.stepredirect #next').click(() => {
-    gotostep(currentpage + 1)
+    if (currentpage==2) checkStep2();
+    else if(currentpage==3)checkStep3()
+    else gotostep(currentpage + 1)
 })
 let switchform = 1;
 $('.botreg').click(() => {
@@ -554,7 +550,6 @@ try {
             $('.boxmic').hide()
         };
     }
-    console.log(recognition)
 }
 catch (e) {
     console.log(e)
@@ -575,7 +570,6 @@ inputs.onclick = () => {
     $('.ideaforsearch').fadeIn()
 }
 inputs.oninput = () => {
-    console.log(inputs.value)
     document.querySelectorAll('#idealist li').forEach(v => {
         if (v.childNodes[0].childNodes[1].innerHTML.toLowerCase().indexOf(inputs.value.toLowerCase()) > -1) {
             v.style.display = "block"

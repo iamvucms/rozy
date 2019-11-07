@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\City;
-
+use App\District;
+use App\Coupon;
 class Seller extends Model
 {
     protected $table = 'sellers';
@@ -25,6 +26,17 @@ class Seller extends Model
     }
     public function getTotalProducts(){
         return $this->Products()->count() ?? 0;
+    }
+    public function Coupons()
+    {
+        return $this->hasMany('App\Coupon', 'idsell', 'id');
+    }
+    public function getAvailableCoupon(){
+        return $this->Coupons()->whereRaw('expired > now() AND max_using>0')->get();
+    }
+    public function checkCoupon($coupon){
+        return $this->Coupons()->whereRaw('expired > now() AND max_using>0')
+        ->where('code',$coupon)->count()>0;
     }
     public function Orders(){
         return $this->hasMany('App\Order','idsell','id');
@@ -47,6 +59,17 @@ class Seller extends Model
         $cityName = str_replace("Thành phố",'',$cityName);
         return $cityName;
     }
+    public function District()
+    {
+        return $this->hasOne('App\District', 'id', 'district_id');
+    }
+    public function getDistrict(){
+        $districtName = $this->District()->first()->name;
+        $districtName = str_replace("Quận",'',$districtName);
+        $districtName = str_replace("Huyện",'',$districtName);
+        $districtName = str_replace("Thị Xã",'',$districtName);
+        return $districtName;
+    }
     public function getTotalProductsViewed(){
         $total = 0;
         $Products = $this->Products()->get();
@@ -62,6 +85,12 @@ class Seller extends Model
             $total +=$product->getCountReview($star);
         }
         return $total;
+    }
+    public function getAddressText(){
+        $cityName = $this->getCity();
+        $districtName = $this->getDistrict();
+
+        return $districtName.', '.$cityName;
     }
     public function JoinTime(){
         $datejoin = new Carbon($this->join_at);

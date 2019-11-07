@@ -28,6 +28,8 @@ Route::get('/payment','PayController@show')->name('payment');
 Route::post('/address','AddressController@getMore')->name('address');
 //Shipping Route
 Route::post('/shipper/calculation','ShipperController@getShipPrice')->name('getShipPrice');
+//Coupon Route
+Route::post('/coupon/check','CouponController@check')->name('checkCoupon');
 //GOOGLE API 
 Route::get('/GoogleRedirect', 'Auth\LoginController@GoogleLoginRedirect')->name("GoogleRedirect");
 Route::get('/GoogleCallback', 'Auth\LoginController@GoogleCallBackHandler');

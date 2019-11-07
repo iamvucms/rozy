@@ -57,7 +57,7 @@ class ComposerServiceProvider extends ServiceProvider
         });
         View::composer('payment', function ($view) {
             $view->with('city',new City);
-            $view->with('shipers',new Shipper);
+            $view->with('shippers',new Shipper);
         });
         View::composer('Admin.index', function ($view) {
             $view->with('order',new Order);

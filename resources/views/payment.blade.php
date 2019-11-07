@@ -814,28 +814,29 @@
                                     </div>
                                     <div class="formuser">
                                         <div>
-                                            <input type="radio" name="pickuser" value="0" id="" checked>
-                                            <p>{{$user->getInfo()->gender==1 ? 'Anh' : 'Chị'}}<span class="namer"> {{$user->getInfo()->name}}</span> |
+                                            <input type="radio" name="pickuser" value="0" id="pickuser0" checked>
+                                            @if ($user)
+                                            <label for="pickuser0"><p>{{$user->getInfo()->gender==1 ? 'Anh' : 'Chị'}}<span class="namer"> {{$user->getInfo()->name}}</span> |
                                                 <span class="phoner">{{$user->getInfo()->phone}}</span> <br>
                                                 <span style="font-size:0.9em;">Thông tin mặc định trên tài khoản</span>
-
-                                            </p>
+                                            </p></label>
+                                            @endif
                                         </div>
                                         <div>
-                                            <input type="radio" name="pickuser" value="1" id="">
-                                            <p>
+                                            <input type="radio" name="pickuser" value="1" id="pickuser1">
+                                            <label for="pickuser1"><p>
                                                 Thêm thông tin người nhận khác:
-                                            </p>
+                                            </p></label>
                                         </div>
                                         <form class="infoform" onsubmit="return false">
                                             <table>
                                                 <tr>
                                                     <td>HỌ TÊN NGƯỜI NHẬN</td>
-                                                    <td><input id="shipName" type="text" placeholder="Họ tên người nhận"></td>
+                                                    <td><input onchange="document.querySelector('#pickuser1').checked=true" id="shipName" type="text" placeholder="Họ tên người nhận"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>SỐ ĐIỆN THOẠI</td>
-                                                    <td><input id="shipPhone" type="text"
+                                                    <td><input onchange="document.querySelector('#pickuser1').checked=true" id="shipPhone" type="text"
                                                             placeholder="Số điện thoại liên hệ khi giao hàng"></td>
                                                 </tr>
                                             </table>
@@ -850,17 +851,18 @@
                                     </div>
                                     <div class="formuser">
                                         <div>
-                                            <input type="radio" name="pickaddress" value="0" id="" checked>
-                                            <p> Tại <span class="namer"> {{$user->getInfo()->address}} </span> |
+                                            <input onclick="UpdateTotal()" type="radio" name="pickaddress" value="0" id="pickaddress0" checked>
+                                            @if ($user)
+                                            <label for="pickaddress0"><p> Tại <span class="namer"> {{$user->getInfo()->address}} </span> |
                                                 <span style="font-size:0.9em;">Địa chỉ mặc định trên tài khoản</span>
-
-                                            </p>
+                                            </p></label>
+                                            @endif
                                         </div>
                                         <div>
-                                            <input type="radio" name="pickaddress" value="1" id="">
-                                            <p>
+                                            <input type="radio" name="pickaddress" value="1" id="pickaddress1">
+                                            <label for="pickaddress1"><p>
                                                 Thêm địa chỉ nhận hàng khác:
-                                            </p>
+                                            </p></label>
                                         </div>
                                         
                                         <form class="infoform">
@@ -897,11 +899,51 @@
                                             </table>
                                         </form>
                                         <script>
+                                            var shipMethod = '{{$shippers->get()->last()->id}}';
+                                            var shippers = {!!$shippers->get()->toJson()!!}
                                             var city = document.querySelector('#shipCity')
                                             var district = document.querySelector('#shipDistrict')
                                             var commune = document.querySelector('#shipCommune')
                                             var street = document.querySelector('#shipStreet')
+                                            function checkStep2(){
+                                                check = true
+                                                if(!document.querySelector('#pickaddress0').checked){
+                                                    if(district.value==''){
+                                                        check= false
+                                                        district.style.border = '1px solid red'
+                                                    }
+                                                    if(city.value=='0'){
+                                                        check= false
+                                                        city.style.border = '1px solid red'
+                                                    }
+                                                    if(commune.value==''){
+                                                        check= false
+                                                        commune.style.border = '1px solid red'
+                                                    }
+                                                    if(street.value==''){
+                                                        check= false
+                                                        street.style.border = '1px solid red'
+                                                    }
+                                                }
+                                                if(!document.querySelector('#pickuser0').checked){
+                                                    if(document.querySelector('#shipName').value == ''){
+                                                        check= false
+                                                        document.querySelector('#shipName').style.border = '1px solid red'
+                                                    }
+                                                    if(document.querySelector('#shipPhone').value == ''){
+                                                        check= false
+                                                        document.querySelector('#shipPhone').style.border = '1px solid red'
+                                                    }
+                                                }
+                                                if(check){
+                                                    return gotostep(3)
+                                                }else return false
+                                            }
+                                            function checkStep3(){
+
+                                            }
                                             function getDistrict(){
+                                                document.querySelector('#pickaddress1').checked=true
                                                 pickCity = city.options[city.selectedIndex].value
                                                 if(pickCity==0){
                                                     district.setAttribute('disabled','1')
@@ -921,10 +963,11 @@
                                                     })
                                                     district.innerHTML = html
                                                     district.removeAttribute('disabled')
+                                                    
                                                 })
                                             }
                                             function getCommune(){
-                                                pickDistrict = district.options[city.selectedIndex].value
+                                                pickDistrict = district.options[district.selectedIndex].value
                                                 axios.post('{{url()->route('address')}}',{
                                                     _token: '{{ csrf_token() }}',
                                                     district:pickDistrict
@@ -936,7 +979,66 @@
                                                     })
                                                     commune.innerHTML = html
                                                     commune.removeAttribute('disabled')
+                                                    street.removeAttribute('disabled')
+                                                    
                                                 })
+                                                calShip()
+                                            }
+                                            function calShip(){
+                                                shippers.forEach(shipper=>{
+                                                    document.querySelector('#shipCost_'+shipper.id).innerHTML = '--đang tính--'
+                                                    document.querySelector('#shipDay_'+shipper.id).innerHTML ='--đang tính--'
+                                                    axios.post('{{url()->route('getShipPrice')}}',{
+                                                        district:district.value,
+                                                        city:city.value,
+                                                        shipper:shipper.id
+                                                    }).then(d=>{
+                                                        data = d.data
+                                                        avgDay = Math.ceil(data.reduce((sum,value)=>sum+value.inDay,0)/data.length)
+                                                        document.querySelector('#shipDay_'+shipper.id).innerHTML = avgDay+' - '+(avgDay+1)+' ngày'
+                                                        document.querySelector('#shipCost_'+shipper.id).innerHTML =new Intl.NumberFormat('ja-JP').format(data.reduce((sum,value)=>sum+value.price,0))
+                                                        document.querySelectorAll('#checkShipper').forEach(shipRadio=>{
+                                                        if(shipRadio.checked){
+                                                            document.querySelector('#shipTotal').innerHTML = new Intl.NumberFormat('ja-JP').format(data.reduce((sum,value)=>sum+value.price,0))+'<sup>đ</sup>'
+                                                            document.querySelector('#shipTotal').dataset.price = data.reduce((sum,value)=>sum+value.price,0) 
+                                                            if(document.querySelector('#cpTotal')) document.querySelector('#superTotal').innerHTML =  new Intl.NumberFormat('ja-JP').format(parseInt(document.querySelector('#shipTotal').dataset.price)+parseInt(document.querySelector('#productPrice').dataset.price) + parseInt(document.querySelector('#cpTotal').dataset.price))+'<sup>đ</sup>'
+                                                            else document.querySelector('#superTotal').innerHTML =  new Intl.NumberFormat('ja-JP').format(parseInt(document.querySelector('#shipTotal').dataset.price)+parseInt(document.querySelector('#productPrice').dataset.price))+'<sup>đ</sup>'
+                                                            
+                                                        }
+                                                    })
+                                                })
+                                            })
+                                        }
+                                            function UpdateTotal(){
+                                                if(document.querySelector('#pickaddress0').checked==true){
+                                                    shippers.forEach(shipper=>{
+                                                        document.querySelector('#shipCost_'+shipper.id).innerHTML = '--đang tính--'
+                                                        document.querySelector('#shipDay_'+shipper.id).innerHTML ='--đang tính--'
+                                                        axios.post('{{url()->route('getShipPrice')}}',{
+                                                            district:district.value,
+                                                            city:city.value,
+                                                            shipper:shipper.id,
+                                                            pureAddress: '{{$user ? $user->getInfo()->address:''}}'
+                                                        }).then(d=>{
+                                                            data = d.data
+                                                            avgDay = Math.ceil(data.reduce((sum,value)=>sum+value.inDay,0)/data.length)
+                                                            document.querySelector('#shipDay_'+shipper.id).innerHTML = avgDay+' - '+(avgDay+1)+' ngày'
+                                                            document.querySelector('#shipCost_'+shipper.id).innerHTML = new Intl.NumberFormat('ja-JP').format(data.reduce((sum,value)=>sum+value.price,0))
+                                                            document.querySelectorAll('#checkShipper').forEach(shipRadio=>{
+                                                            if(shipRadio.checked){
+                                                                document.querySelector('#shipTotal').innerHTML = new Intl.NumberFormat('ja-JP').format(data.reduce((sum,value)=>sum+value.price,0))+'<sup>đ</sup>'
+                                                                document.querySelector('#shipTotal').dataset.price = data.reduce((sum,value)=>sum+value.price,0)  
+                                                                if(document.querySelector('#cpTotal')) document.querySelector('#superTotal').innerHTML =  new Intl.NumberFormat('ja-JP').format(parseInt(document.querySelector('#shipTotal').dataset.price)+parseInt(document.querySelector('#productPrice').dataset.price) + parseInt(document.querySelector('#cpTotal').dataset.price))+'<sup>đ</sup>'
+                                                                else document.querySelector('#superTotal').innerHTML =  new Intl.NumberFormat('ja-JP').format(parseInt(document.querySelector('#shipTotal').dataset.price)+parseInt(document.querySelector('#productPrice').dataset.price))+'<sup>đ</sup>'
+                                                            
+                                                            }
+                                                        })
+                                                        })
+                                                    })
+                                                }
+                                            }
+                                            window.onload = ()=>{
+                                                UpdateTotal()
                                             }
                                         </script>
                                     </div>
@@ -947,27 +1049,28 @@
                                             chuyển</p>
                                     </div>
                                     <div class="formuser">
-                                        @foreach ($shipers->get() as $shipper)
-                                        <div>
-                                            <input type="radio" name="pickmethod" id="" checked style="height:54px">
+                                        @foreach ($shippers->get() as $shipper)
+                                        <div class="shipper_{{$shipper->id}}" data-id="{{$shipper->id}}">
+                                            <input type="radio" onclick="shipMethod=this.value;if(document.querySelector('#shipCost_'+this.value).innerHTML.indexOf('tính')<0) document.querySelector('#shipTotal').innerHTML = new Intl.NumberFormat('ja-JP').format(this.parentElement.childNodes[3].childNodes[3].childNodes[7].childNodes[0].innerHTML.replace(',',''))+'<sup>đ</sup>';
+                                                document.querySelector('#shipTotal').dataset.price = this.parentElement.childNodes[3].childNodes[3].childNodes[7].childNodes[0].innerHTML.replace(',','');
+                                                if(document.querySelector('#cpTotal')) document.querySelector('#superTotal').innerHTML =  new Intl.NumberFormat('ja-JP').format(parseInt(document.querySelector('#shipTotal').dataset.price)+parseInt(document.querySelector('#productPrice').dataset.price) + parseInt(document.querySelector('#cpTotal').dataset.price))+'<sup>đ</sup>'; else document.querySelector('#superTotal').innerHTML =  new Intl.NumberFormat('ja-JP').format(parseInt(document.querySelector('#shipTotal').dataset.price)+parseInt(document.querySelector('#productPrice').dataset.price))+'<sup>đ</sup>'"
+                                             name="pickmethod" id="checkShipper" value="{{$shipper->id}}" @if($shipper == $shippers->get()->last()) checked @endif style="height:54px">
                                             <p style="display:flex">
                                                 <img style="height: 40px;width:40px;margin-right: 10px"
                                                     src="{{url($shipper->logo)}}" alt="">
                                             <span><b style="color:#007ff0">{{$shipper->name}}</b> <br>
-                                                    Thời gian dự kiến: <b>2 - 3 ngày</b><br>
-                                                    Phí vận chuyển: <b style="color:red">60,000 <sup>đ</sup></b>
+                                                    Thời gian dự kiến: <b id="shipDay_{{$shipper->id}}">--chưa tính--</b><br>
+                                            Phí vận chuyển: <b style="color:red"><span id="shipCost_{{$shipper->id}}">--chưa tính--</span> <sup>đ</sup></b>
                                                 </span>
                                             </p>
                                         </div>
                                         @endforeach
-                                        
-                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="paymethod" style="display:none">
                                 <div class="choose">
-                                    <div class="active">
+                                    <div class="active" >
                                         <p>
                                             <img src="../assets/img/visa_logo.png" alt="">
                                             <img src="../assets/img/mastercard_logo.png" alt="">
@@ -1010,7 +1113,7 @@
                                             <input placeholder="" type="text" name="code"
                                                 style="background:url('assets/img/khoa.png') 95% no-repeat;background-size: 15px 15px">
                                         </div>
-                                        <div class="form1_2">
+                                        <div class="form1_2">   
                                             <p class="noteccv">*CVV hoặc CVC là mã bảo mật thẻ, số có ba chữ số duy nhất
                                                 ở mặt sau thẻ của bạn tách biệt với số của nó.</p>
                                         </div>
@@ -1172,7 +1275,7 @@
                             </div>
                             <div class="stepredirect">
                                 <button id="back">Trở về</button>
-                                <button id="next">Bước tiếp</button>
+                                <button id="next" @if (request()->step==2) onclick="checkStep2()" @endif>Bước tiếp</button>
                             </div>
                         </div>
                         <div class="yourcartlist">
@@ -1205,18 +1308,27 @@
                                     Đặt hàng
                                 </div>
                                 <div class="eachprice">
-                                    <li>Tổng tiền hàng: <span>{{number_format($myCart->getTotal())}} <sup>đ</sup></span>
+                                    <li>Tổng tiền hàng: <span id="productPrice" data-price="{{$myCart->getTotal()}}">{{number_format($myCart->getTotal())}} <sup>đ</sup></span>
                                     </li>
-                                    <li>Phí vận chuyển:<span>@if (request()->step < 3) --chưa tính-- @else @endif <sup>
+                                    <li>Phí vận chuyển:<span id="shipTotal" data-price="">@if (request()->step < 3) --chưa tính-- @else @endif <sup>
                                                 đ</sup></span></li>
-                                    <li>Mã giảm giá:<span>100,000 <sup>đ</sup></span></li>
-                                    <li>Thành tiền:<span>16,840,000 <sup>đ</sup></span></li>
+                                    @if (Session::get('coupons') && count(Session::get('coupons')[0])>0)
+                                    @php
+                                       $t = 0;
+                                       foreach(Session::get('coupons') as $cp) $t += $cp['value'];
+                                    @endphp
+                                    <li>Mã giảm giá:<span id="cpTotal" data-price="-{{$t}}">-{{number_format($t)}}<sup>đ</sup></span></li>
+                                    @endif
+                                    <li>Thành tiền:<span id="superTotal">@if (request()->step < 3) --chưa tính-- @else @endif <sup>đ</sup></span></li>
                                 </div>
                                 <div class="coupon">
                                     <p class="cptitle"><i class="fas fa-tags"></i> Mã khuyến mãi</p>
-                                    <div class="coupongroup">
-                                        <input type="text"><button>Áp dụng</button>
-                                    </div>
+                                    <form method="post" action="{{url()->route('checkCoupon')}}" style="display:block;width:100%">
+                                        <div class="coupongroup">
+                                            @csrf
+                                            <input name="coupon" type="text"><button>Áp dụng</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -1372,3 +1484,4 @@
     </script>
 </body>
 </html>
+

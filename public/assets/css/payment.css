@@ -85,18 +85,16 @@
 .step1 {
     display: flex;
     margin-top: 20px;
+    align-items: flex-start;
 }
 
 .log2buy {
-    flex-grow: 7;
-    max-width: 70%;
+    width: 70%;
 }
 
 .yourcartlist {
     background: white!important;
-    max-height: 650px;
-    flex-grow: 3;
-    max-width: 30%;
+    width: 30%;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.8);
 }
 

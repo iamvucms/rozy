@@ -32,6 +32,45 @@ class Cart extends Model
         $this->saveCart();
         return true;
     }
+    public function getSellers(){
+        $seller_ids = [];
+        foreach($this->cart as $key =>$cart){
+            $product = Product::where('id',$cart['id'])->first();
+            $idsell = $product->Seller()->id;
+            if(!array_search($idsell,$seller_ids)) $seller_ids[] = $idsell;
+        }
+        
+        return $seller_ids;
+    }
+    public function getProductPerSeller(){
+        $perSellers = collect();
+        $seller_ids = [];
+        foreach($this->cart as $key =>$cart){
+            $product = Product::where('id',$cart['id'])->first();
+            $idsell = $product->Seller()->id;
+            if(!array_search($idsell,$seller_ids)) $seller_ids[] = $idsell;
+        }
+        foreach($seller_ids as $idsell){
+            $perSellers->push($this->getProductBySeller($idsell));
+        }
+        return $perSellers;
+    }
+    public function getProductBySeller($idsell){
+        $products = [];
+        foreach($this->cart as $key =>$cart){
+            $product = Product::where('id',$cart['id'])->first();
+            $id = $product->Seller()->id;
+            if($idsell==$id) $products[] = [
+                'id' =>$product->id,
+                'quantity'=>$cart['quantity']
+                ,
+                'name' => $product->name,
+                'price' =>$product->sale_price,
+                'avatar' =>$product->Avatar()->src?? ''
+            ];
+        }
+        return $products;
+    }
     public function editItem($id,$quantity){
             foreach($this->cart as $key => $item) {
                 if($item['id']==$id){

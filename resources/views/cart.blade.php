@@ -696,12 +696,6 @@
                                 <li><a href="{{url('/payment')}}"><button class="paynowbtn">THANH TOÁN NGAY</button></a>
                                 </li>
                             </div>
-                            <div class="coupon">
-                                <p class="cptitle"><i class="fas fa-tags"></i> Mã khuyến mãi</p>
-                                <div class="coupongroup">
-                                    <input type="text"><button>Áp dụng</button>
-                                </div>
-                            </div>
                         </div>
                         @endif
                     </div>

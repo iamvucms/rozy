@@ -28,6 +28,13 @@ class Shipper extends Model
         }
         return $shipPrices->toJson();
     }
+    public function getRealShipPriceBySeller($seller,$shipper,$city,$district,$pureAddress=null){
+        $per_km = intval($shipper->per_km);
+        if($pureAddress) $fullAddress =$pureAddress;
+        else $fullAddress = $district->name.', '.$city->name;
+        $shipPrice = $this->getShipPrice($seller->getAddressText(),$fullAddress);
+        return $shipPrice;
+    }
     public function getShipPrice($place1,$place2,$returnKm = false){
         $api = 'https://maps.google.com/maps/api/geocode/json?address=YOUR_PLACE&key=AIzaSyA2Zb2vY8-t_9BUYqFFjc9LQiNWUZPLft4';
         $buyerApi = str_replace('YOUR_PLACE',urlencode($place1),$api);

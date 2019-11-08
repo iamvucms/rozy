@@ -466,7 +466,9 @@ $('.stepredirect #back').click(() => {
 })
 $('.stepredirect #next').click(() => {
     if (currentpage==2) checkStep2();
-    else if(currentpage==3)checkStep3()
+    else if(currentpage==3){
+        checkStep3()
+    }
     else gotostep(currentpage + 1)
 })
 let switchform = 1;

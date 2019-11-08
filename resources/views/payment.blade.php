@@ -940,8 +940,79 @@
                                                 }else return false
                                             }
                                             function checkStep3(){
+                                                check = true;
+                                                let payMethod = null;
+                                                pays = document.querySelectorAll('#paytype')
+                                                pays.forEach(p=>{
+                                                    if(p.checked) payMethod = parseInt(p.value)
+                                                })
+                                                if(payMethod!==1 && payMethod !==2 && payMethod!==3) check = false;
+                                                console.log(check)
+                                                if(payMethod==1){
+                                                    console.log()
+                                                    if(document.querySelector('#cardName').value==''){
+                                                        document.querySelector('#cardName').style.border = '1px solid red'
+                                                        check = false
+                                                    }
+                                                    if(isNaN(document.querySelector('#cardCode').value) || document.querySelector('#cardCode').value == ''){
+                                                        check = false
+                                                        document.querySelector('#cardCode').style.border = '1px solid red'
+                                                    }
+                                                    if(!document.querySelector('#cardDay').value.match(/(0[1-9]|1[0-2])\/([0-9][0-9])/g)) {
+                                                        check = false
+                                                        document.querySelector('#cardDay').style.border = '1px solid red'
+                                                    }
+                                                    if(isNaN(document.querySelector('#cardCvv').value) || document.querySelector('#cardCvv').value == ''){
+                                                        check = false
+                                                        document.querySelector('#cardCvv').style.border = '1px solid red'
+                                                    }
+                                                }
+                                                if(check){
+                                                    axios.post('{{url()->route('createOrders')}}',{
+                                                        'name': document.querySelector('#pickuser0').checked ? '@if($user){{$user->getInfo()->name}}@endif': document.querySelector('#shipName').value,
+                                                        'phone': document.querySelector('#pickuser0').checked ? '@if($user){{$user->getInfo()->phone}}@endif': document.querySelector('#shipPhone').value,
+                                                        'city': document.querySelector('#pickaddress0').checked ? 0: parseInt(city.options[city.selectedIndex].value),
+                                                        'district':document.querySelector('#pickaddress0').checked ? 0:parseInt(district.options[district.selectedIndex].value),
+                                                        'commune':document.querySelector('#pickaddress0').checked ? 0:parseInt(commune.options[commune.selectedIndex].value),
+                                                        'street':document.querySelector('#pickaddress0').checked ? 0:street.value,
+                                                        'shipType':parseInt(shipMethod),
+                                                        'payType':parseInt(payMethod)
+                                                    }).then(d=>{
+                                                        data = d.data
+                                                        if(data.success){
+                                                            gotostep(4)
+                                                        }else{
+                                                            if(data.field.indexOf('phone')>=0 || data.field.indexOf('name')>=0 
+                                                            || data.field.indexOf('city')>=0 || data.field.indexOf('district')>=0
+                                                            || data.field.indexOf('commune')>=0 || data.field.indexOf('street')>=0){
+                                                                gotostep(2)
+                                                                if(data.field.indexOf('name')>=0){
+                                                                    document.querySelector('#shipName').style.border = '1px solid red'
+                                                                }else document.querySelector('#shipName').style.border = '1px solid #acacac4f'
+                                                                if(data.field.indexOf('phone')>=0){
+                                                                    document.querySelector('#shipPhone').style.border = '1px solid red'
+                                                                }else document.querySelector('#shipPhone').style.border = '1px solid #acacac4f'
+                                                                if(data.field.indexOf('city')>=0){
+                                                                    city.style.border = '1px solid red'
+                                                                }else city.style.border = '1px solid #acacac4f'
+                                                                if(data.field.indexOf('district')>=0){
+                                                                    district.style.border = '1px solid red'
+                                                                }else district.style.border = '1px solid #acacac4f'
+                                                                if(data.field.indexOf('commune')>=0){
+                                                                    commune.style.border = '1px solid red'
+                                                                }else commune.style.border = '1px solid #acacac4f'
+                                                                if(data.field.indexOf('street')>=0){
+                                                                    street.style.border = '1px solid red'
+                                                                }else street.style.border = '1px solid #acacac4f'
+                                                            }
 
-                                            }
+                                                        }
+                                                    })
+                                                    return gotostep(4)
+                                                }
+                                                else return false;
+                                            }   
+
                                             function getDistrict(){
                                                 document.querySelector('#pickaddress1').checked=true
                                                 pickCity = city.options[city.selectedIndex].value
@@ -1075,42 +1146,42 @@
                                             <img src="../assets/img/visa_logo.png" alt="">
                                             <img src="../assets/img/mastercard_logo.png" alt="">
                                         </p>
-                                        <input type="radio" name="choose" checked><span> Thanh toán bằng thẻ tín
+                                        <input type="radio" name="paytype" id="paytype" value="1" checked><span> Thanh toán bằng thẻ tín
                                             dụng</span>
                                     </div>
                                     <div>
                                         <p>
                                             <img src="../assets/img/bankicon.png" alt="">
                                         </p>
-                                        <input type="radio" name="choose"><span> Thanh toán qua chuyển khoản</span>
+                                        <input type="radio" name="paytype" id="paytype" value="2"><span> Thanh toán qua chuyển khoản</span>
                                     </div>
                                     <div>
                                         <p>
                                             <img src="../assets/img/paywhenre.png" alt="">
                                         </p>
-                                        <input type="radio" name="choose"><span> Thanh toán khi nhận hàng</span>
+                                        <input type="radio" name="paytype" id="paytype" value="3"><span> Thanh toán khi nhận hàng</span>
                                     </div>
                                 </div>
                                 <div class="formccv">
                                     <form action="" onsubmit="return false;">
                                         <div class="form1_2">
                                             <label for="code">Tên chủ thẻ</label><br>
-                                            <input autofocus type="text" name="code"
+                                            <input id="cardName" autofocus type="text" name=""
                                                 style="background:url('assets/img/people.svg') 95% no-repeat;background-size: 15px 15px">
                                         </div>
                                         <div class="form1_2">
                                             <label for="code">Mã thẻ</label><br>
-                                            <input type="text" name="code"
+                                            <input id="cardCode" type="text" name=""
                                                 style="background:url('assets/img/ccv.png') 95% no-repeat;background-size: 15px 15px">
                                         </div>
                                         <div class="form1_4">
                                             <label for="code">Ngày hết hạn</label><br>
-                                            <input placeholder="MM/YY" type="text" name="code"
+                                            <input id="cardDay" placeholder="MM/YY" type="text" name=""
                                                 style="background:url('assets/img/lich.png') 95% no-repeat;background-size: 15px 15px">
                                         </div>
                                         <div class="form1_4">
                                             <label for="code">CCV/CVV</label><br>
-                                            <input placeholder="" type="text" name="code"
+                                            <input id="cardCvv" placeholder="" type="text" name=""
                                                 style="background:url('assets/img/khoa.png') 95% no-repeat;background-size: 15px 15px">
                                         </div>
                                         <div class="form1_2">   
@@ -1268,9 +1339,7 @@
                                         Chúng tôi sẽ liên hệ với bạn sớm theo thông tin bạn đã cung cấp.
                                         <br><i>Chúc bạn một ngày tốt lành !</i>
                                     </span>
-                                    <p style="text-align: center"><a href="{{url()->route('home')}}"><button>Trở về
-                                                trang
-                                                chủ</button></a></p>
+                                    <p style="text-align: center"><a href="{{url()->route('myOrders')}}"><button>Quản lí đơn hàng   </button></a></p>
                                 </div>
                             </div>
                             <div class="stepredirect">
@@ -1312,7 +1381,7 @@
                                     </li>
                                     <li>Phí vận chuyển:<span id="shipTotal" data-price="">@if (request()->step < 3) --chưa tính-- @else @endif <sup>
                                                 đ</sup></span></li>
-                                    @if (Session::get('coupons') && count(Session::get('coupons')[0])>0)
+                                    @if (Session::get('coupons') && count(Session::get('coupons')[0])>0 && intval(request()->step)<3)
                                     @php
                                        $t = 0;
                                        foreach(Session::get('coupons') as $cp) $t += $cp['value'];

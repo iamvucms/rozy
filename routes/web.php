@@ -49,6 +49,7 @@ Route::post('/register','Auth\LoginController@Register')->name('postRegister')->
 
 //OrderController
 Route::put('/orders/{id}','OrderController@OrderStatus')->middleware('auth');
+Route::post('/orders','OrderController@create')->name('createOrders')->middleware('auth');
 //NotifyController
 Route::put('/notifications','NotifyController@Viewed')->name('viewNotify')->middleware('auth');
 //SellerController

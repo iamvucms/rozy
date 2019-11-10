@@ -16,10 +16,10 @@ class Order extends Model
         return $this->hasOne('App\Customer','id','idcus')->first();
     }
     public function Coupon(){
-        if($this->idcoupon===null){
+        if($this->coupon_id===null){
             return null;
         }else{
-            return $this->hasOne('App\Coupon','id','idcoupon')->first();
+            return $this->hasOne('App\Coupon','id','coupon_id')->first();
         }
     }
     public function Shipper(){

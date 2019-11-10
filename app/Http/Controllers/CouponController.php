@@ -11,6 +11,7 @@ class CouponController extends Controller
 {
     public function check(Request $req){
         $sessCoupons = Session::get('coupons') ?? [];
+        if(count($sessCoupons) > count((new Cart)->getSellers())) return redirect()->back();
         $coupon = trim($req->coupon);
         $objCp = new Coupon();
         $checkPublic  = $objCp->checkPublicCoupon($coupon);

@@ -684,9 +684,8 @@
                                                         <h3>ID ĐƠN HÀNG: <span style="color:#ee4d2d">{{strtoupper($order->slug)}}</span></h3>
                                                         <h2>Thông tin người nhận</h2>
                                                         <p class="oName">{{$order->name}}</p>
-                                                        <p>{{$order->phone}}</p>
-                                                        <p>{{$order->address}}</p>
-                                                        <p>{{$order->city}}</p>
+                                                        <p>Điện thoại: <b style="color:black">{{$order->phone}}</b></p>
+                                                        <p>Địa chỉ: <b style="color:black">{{$order->address}}</b></p>
                                                     </div>
                                                     <div class="oPrice">
                                                         <h2>Chi tiết thanh toán</h2>
@@ -699,9 +698,9 @@
                                                                 <td>Vận chuyển-{{$order->getShipper()->name}}</td>
                                                                 <td>{{number_format($order->ship_price)}} đ</td>
                                                             </tr>
-                                                            @if ($order->Coupon())
+                                                            @if ($order->coupon_price>0)
                                                             <tr>
-                                                                <td>{{$order->Coupon()->name}}</td>
+                                                                <td>Mã giảm giá</td>
                                                                 <td>-{{number_format($order->Coupon()->value)}} đ</td>
                                                             </tr>
                                                             @endif

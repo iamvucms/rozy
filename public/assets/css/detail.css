@@ -8,7 +8,67 @@
     padding: 10px;
     box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.5)
 }
-
+.rvBox{
+    display: none;
+    position: fixed;
+    left:30%;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 200px 0px 2000px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 200px 0px 2000px rgba(0,0,0,0.75);
+    box-shadow: 0px 200px 0px 2000px rgba(0,0,0,0.75);
+    top:300px;
+    z-index: 999999;
+    width:40%;
+    padding:15px;
+    background: white;
+}
+.rvBox button{
+    cursor: pointer;
+    padding:10px 10px;
+    color:white;
+    border:none;
+    outline:none;
+    border-radius: 5px;
+    border:1px solid #ddd;
+    font-size: 0.9em;
+    background:#2ecc71
+}
+.showRvImg{
+    display: flex;
+    flex-wrap: wrap;
+    margin:10px 0px;
+}
+.imgRe{
+    height: 80px;
+    width: 80px;
+    padding:5px;
+    margin:0px 5px;
+    border: 1px dashed orange
+}
+#lblRvImg{
+    margin-right: 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border:1px dashed orange;
+    height: 80px;
+    width: 80px;
+    font-size: 1.2em;
+}
+.rvBox .rvStar{
+    padding:10px 0px;
+}
+.rvBox .rvStar label{
+    margin:0px 2px;
+    cursor: pointer;
+    color:rgba(255, 255, 0, 0.5)
+}
+.rvBox input[type=radio]{
+    display: none;
+}
+.rvBox input[type=radio]:checked + label{
+    color:orange
+}
 .productmain .gallery {
     max-width: 40%;
     flex-grow: 2;

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 class Review extends Model
 {
     protected $table = 'reviews';
+    public $timestamps = false;
     public function Customer(){
         return $this->hasOne('App\Customer','id','idcus');
     }

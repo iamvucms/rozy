@@ -2,9 +2,68 @@
 <html lang="en">
 @extends('includes.head')
 @section('title',$product->name)
-
 <body>
     <div class="rozy">
+        <div class="rvBox">
+        <form action="{{url()->route('createReview',['idproduct'=>$product->id])}}" method="post" enctype="multipart/form-data">
+            @csrf    
+            <label for="txtReview">Nội dung:</label>
+            <br>
+            <textarea placeholder="Tối thiểu 30 kí tự" minlength="30" required name="content" id="txtReview" cols="30" rows="5" 
+            style="width:100%;padding:10px;font-size:1em;margin-top:15px"></textarea>    
+            <div class="rvStar">
+                <span>Đánh giá :</span>
+                <input name="rvStar" type="radio" value="1" id="star1" checked>
+                <label for="star1"><i class="fas fa-star" id="star"></i></label>
+                <input name="rvStar" type="radio" value="2" id="star2">
+                <label for="star2"><i class="fas fa-star" id="star"></i></label>
+                <input name="rvStar" type="radio" value="3" id="star3">
+                <label for="star3"><i class="fas fa-star" id="star"></i></label>
+                <input name="rvStar" type="radio" value="4" id="star4">
+                <label for="star4"><i class="fas fa-star" id="star"></i></label>
+                <input name="rvStar" type="radio" value="5" id="star5">
+                <label for="star5"><i class="fas fa-star" id="star"></i></label>
+            </div>
+            <input onchange="readURL(this)" accept="image/gif, image/jpeg, image/png" 
+             style="display:none" id="rvImg" type="file" name="rvImages[]" multiple>
+            <p>Thêm hình ảnh <span style="color:rgba(0,0,0,0.5)">(Tối đa được chọn 5 ảnh)</span></p>
+            <div class="showRvImg">
+                <label for="rvImg" id="lblRvImg">+</label>
+            </div>
+            <button type="submit">Đăng đánh giá</button>
+            <button style="background:red" onclick="document.querySelector('.rvBox').style.display='none';return false;">Huỷ</button>
+        </form> 
+            <script>
+            function readURL(input) {
+                if (input.files) {
+                    if(input.files.length>5){
+                        alert('Tối đa được chọn 5 ảnh');
+                        input.files = []
+                        return;
+                    }
+                    document.querySelector('.showRvImg').innerHTML = '<label for="rvImg" id="lblRvImg">+</label>'
+                    for(let img of input.files){
+                        let reader = new FileReader();
+                        reader.onload = function (e) {
+                            strImg = '<img class="imgRe" src="'+e.target.result+'">'
+                            document.querySelector('.showRvImg').innerHTML = document.querySelector('.showRvImg').innerHTML+strImg
+                        }
+                        reader.readAsDataURL(img);
+                    }
+                    
+                }
+            }
+            document.querySelectorAll('.rvStar input').forEach(v=>{
+                v.onchange = ()=>{
+                    for(i=5;i>=1;i--)
+                        document.querySelector('label[for="star'+i+'"]').style.color = 'rgba(255, 255, 0, 0.5)'
+                    for(i=v.value;i>=1;i--){
+                        document.querySelector('label[for="star'+i+'"]').style.color = 'orange'
+                    }
+                }
+            })
+            </script>
+        </div>
         {{-- <div class="inbox" id="notactive">
             <p class="intitle"><i class="far fa-comment-alt"></i> Trò Chuyện
                 <div class="boxchat">
@@ -1087,7 +1146,7 @@
                             <div class="writereview">
                                 <div>
                                     <p>Chia sẻ nhận xét về sản phẩm</p>
-                                    <button><i class="fas fa-pen-alt"></i> Nhận xét về sản phẩm</button>
+                                    <button onclick="document.querySelector('.rvBox').style.display='block';"><i class="fas fa-pen-alt"></i> Nhận xét về sản phẩm</button>
                                 </div>
                             </div>
                         </div>
@@ -1123,19 +1182,32 @@
                                                 {{date_format(date_create($review->create_at),"H:i:s d-m-Y")}}
                                             </p>
                                         </div>
-                                        <a href="javascript:void(0)"><button><i class="far fa-thumbs-up"></i> <span>Hữu
+                                    <a href="javascript:void(0)" onclick="@if(array_search($review->id,Session::get('point_increment_ids') ?? [])===false)increPoint({{$review->id}})@endif"><button><i class="far fa-thumbs-up"></i> <span><b id="rvPoint_{{$review->id}}" data-point="{{$review->point}}">{{$review->point}}</b> Hữu
                                                     ích</span></button></a>
                                     </div>
                                 </div>
                                 @endforeach
-
                             </div>
                         </div>
-
+                        <script>
+                            function increPoint(id){
+                                axios.post('{{url()->route('increPoint')}}',{
+                                    id:id
+                                }).then(d=>{
+                                    data = d.data
+                                    if(data.success) {
+                                        rv = document.querySelector('#rvPoint_'+id)
+                                        rv.dataset.point = parseInt(rv.dataset.point)+1
+                                        rv.innerHTML = rv.dataset.point
+                                    }
+                                })
+                            }
+                        </script>
                         <div class="btnloadmore" id="pagination">
                             {{$product->getReviews()->links()}}
                         </div>
                     </div>
+                    
                 </div>
                 <!-- categoriesforyou -->
 

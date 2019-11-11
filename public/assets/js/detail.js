@@ -15,13 +15,11 @@ var iproduct = 0;
 var product_row_flash = 6;
 var iproduct_flash = 0;
 if ($(window).width() <= 768) {
-    console.log($(window).width())
     product_row = 3;
     product_row_flash = 3;
     hforfixedtop = 0;
 }
 if ($(window).width() <= 450) {
-    console.log($(window).width())
     product_row = 2;
     product_row_flash = 2;
     hforfixedtop = 0;
@@ -30,7 +28,6 @@ $('#megaheader').css('width', $('.bodyheader .megamenu').width() + 'px')
 $(window).resize(function () {
     $('#megaheader').css('width', $('.bodyheader .megamenu').width() + 'px');
     if ($(window).width() <= 768) {
-        console.log($(window).width())
         product_row = 3;
         product_row_flash = 3;
         document.querySelectorAll('#foryou .product').forEach((val) => {
@@ -38,7 +35,6 @@ $(window).resize(function () {
         })
     }
     if ($(window).width() <= 450) {
-        console.log($(window).width())
         product_row = 2;
         product_row_flash = 2;
         document.querySelectorAll('#foryou .product').forEach((val) => {
@@ -179,7 +175,6 @@ setInterval(() => {
 }, 400)
 //fixed box top 
 var scrollHeight = $(window).scrollTop();
-console.log(scrollHeight)
 if (scrollHeight >= hforfixedtop) {
     $('.boxtop').css('position', 'fixed');
     $('.boxtop').css('top', '0%');
@@ -197,7 +192,6 @@ else if (scrollHeight < hforfixedtop) {
 }
 $(window).on("scroll", function () {
     var scrollHeight = $(window).scrollTop();
-    console.log(scrollHeight)
     if (scrollHeight > hforfixedtop) {
         $('.boxtop').css('position', 'fixed');
         $('.boxtop').css('top', '0%');
@@ -327,7 +321,6 @@ $('#flashsales .loadmore').click(() => {
         $('#flashsales .loadingicon').attr('style', 'display:none !important;');
     }, 500)
 })
-console.log($('#foryou .flashnext1').attr('style'));
 $('#foryou .loadmore').click(() => {
     $('#foryou #loadmoretext').css('display', "none");
     $('#foryou .loadingicon').attr('style', 'display:block !important;' + $('#foryou .loadingicon').attr('style'));
@@ -444,7 +437,6 @@ try {
             $('.boxmic').hide()
         };
     }
-    console.log(recognition)
 }
 catch (e) {
     console.log(e)
@@ -465,7 +457,6 @@ inputs.onclick = () => {
     $('.ideaforsearch').fadeIn()
 }
 inputs.oninput = () => {
-    console.log(inputs.value)
     document.querySelectorAll('#idealist li').forEach(v => {
         if (v.childNodes[0].childNodes[1].innerHTML.toLowerCase().indexOf(inputs.value.toLowerCase()) > -1) {
             v.style.display = "block"

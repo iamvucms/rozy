@@ -57,6 +57,9 @@ Route::get('/shop/{slug}','SellerController@Shop')->name('shop');
 //EnjoyController
 Route::post('/enjoy/add','EnjoyController@addEnjoy')->name('addEnjoy');
 Route::post('/enjoy/delete','EnjoyController@delEnjoy')->name('delEnjoy'); 
+//Review Controller
+Route::post('/reviews','ReviewController@increPoint')->name('increPoint');
+Route::post('/reviews/create/{idproduct}','ReviewController@create')->name('createReview');
 //Manager Area not Login
 Route::group(['prefix' => '/panel/manager','middleware' => 'guest'], function(){
     Route::get('dashboard-login', 'Manager\LoginController@Login')->name('superLogin');

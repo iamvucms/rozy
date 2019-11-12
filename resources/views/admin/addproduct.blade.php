@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../../assetsAdmin/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="../../assetsAdmin/css/index.css">
-  <link rel="stylesheet" href="../../assetsAdmin/css/cat.css">
+  <link rel="stylesheet" href="../../../assetsAdmin/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="../../../assetsAdmin/css/index.css">
+  <link rel="stylesheet" href="../../../assetsAdmin/css/cat.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
+  <link rel="stylesheet" href="../../../assetsAdmin/css/chart.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="../../assetsAdmin/ckeditor/ckeditor.js"></script>
+  <script src="../../../assetsAdmin/ckeditor/ckeditor.js"></script>
   <title>Admin::Products::Add</title>
 </head>
 
@@ -27,7 +27,7 @@
       <div class="options">
         <div class="top">
           <div class="me">
-            <img src="../../assetsAdmin/img/avt.jpg" alt="">
+            <img src="../../../assetsAdmin/img/avt.jpg" alt="">
             <div class="meme">
               <p class="online"><span class="pointonline"></span>
                 Online</p>
@@ -118,7 +118,7 @@
           <li><i class="far fa-envelope"></i> <span class="toptext">Tin
               nhắn</span></li>
           <li class="topprofile">
-            <img src="../../assetsAdmin/img/avt.jpg" alt="">
+            <img src="../../../assetsAdmin/img/avt.jpg" alt="">
             <span class="nameprofile"><span class="toptext">VuCms</span>
               <i class="fas fa-angle-down"></i>
 
@@ -145,7 +145,7 @@
             <ul>
               <li><span class="sub">Quản lí</span></li>
               <li><span class="aright"><i class="fas fa-angle-right"></i></span></li>
-              <li><span class="main"><a href="">Sản Phẩm</a></span></li>
+              <li><span class="main"><a href="{{url()->route('superProduct')}}">Sản Phẩm</a></span></li>
 
             </ul>
           </div>
@@ -364,7 +364,7 @@
                 <td><button id="addsale">+</button></td>
               </tr>
               <tr>
-                <td><img src="../../../assetsAdmin/img/product.jpg" alt=""></td>
+                <td><img src="../../../../assetsAdmin/img/product.jpg" alt=""></td>
                 <td>Ảnh sản phẩm</td>
                 <td>5</td>
                 <td><button id="delsale">x</button></td>
@@ -375,9 +375,9 @@
       </div>
     </div>
   </div>
-  <script src="../../../assetsAdmin/js/jquery.min.js"></script>
-  <script src="../../assetsAdmin/js/chart.min.js"></script>
-  <script src="../../assetsAdmin/js/cat.js"></script>
+  <script src="../../../../assets/js/jquery.min.js"></script>
+  <script src="../../../assetsAdmin/js/chart.min.js"></script>
+  <script src="../../../assetsAdmin/js/cat.js"></script>
   <script>
     CKEDITOR.replace('destext');
   </script>

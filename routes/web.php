@@ -79,7 +79,12 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::post('/categories/deleteMany','Manager\CategoryController@postDeleteCategory')->name('superDeleteEditCategory');
    
     Route::get('/products','Manager\ProductController@show')->name('superProduct');
-
+    Route::get('/products.{id}','Manager\ProductController@getProduct')->name('superGetProduct');
+    Route::get('/products/new','Manager\ProductController@addProduct')->name('superAddProduct');
+    Route::post('/products/new','Manager\ProductController@postAddProduct')->name('superPostAddProduct');
+    Route::post('/products.{slug}','Manager\ProductController@postEditProduct')->name('superPostEditProduct');
+    Route::post('/products/deleteMany','Manager\ProductController@postDeleteProduct')->name('superDeleteEditProduct');
+    
     Route::get('/reviews','Manager\ReviewController@show')->name('superReview');
 
     Route::get('/sellers','Manager\SellerController@show')->name('superSeller');

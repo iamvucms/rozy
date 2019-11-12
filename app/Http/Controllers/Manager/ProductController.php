@@ -17,4 +17,13 @@ class ProductController extends Controller
         }
         return view('Admin.product',compact('products'));
     }
+    public function getProduct($id){
+        $product = Product::find($id);
+        if($product){
+
+        }else abort(404);
+    }
+    public function addProduct(){
+        return view('Admin.addproduct');
+    }
 }

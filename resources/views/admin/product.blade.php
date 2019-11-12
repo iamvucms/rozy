@@ -59,7 +59,7 @@
                         </ul>
                     </div>
                     <div class="groupbtn">
-                        <a href="addproduct.html" class="add"><button id="add">+</button></a>
+                        <a href="{{url()->route('superAddProduct')}}" class="add"><button id="add">+</button></a>
                         <a href="" class="f5"><button id="f5"><i class="fas fa-sync"></i></button></a>
                         <a href="javascript:void(0)" class="remove"><button id="remove"><i
                                     class="far fa-trash-alt"></i></button></a>
@@ -81,321 +81,42 @@
                                 <th>Trạng thái</th>
                                 <th>Thao tác</th>
                             </tr>
+                            @foreach ($products as $product)
                             <tr>
-                                <td><input type="checkbox" id="check"></td>
+                                <td><input data-idcat="{{$product->id}}" type="checkbox" id="check"></td>
                                 <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
+                                    <p><img src="{{url($product->Avatar()->src ?? '')}}" alt=""></p>
                                 </td>
-                                <td><a href="../detail.html" target="__blank">baseball pain discovery mouth area stretch
-                                        discuss people trade stick nine rod differ typical phrase announced beginning
-                                        these prevent when must avoid remain seeing</a></td>
-                                <td>sunlight</td>
-                                <td>8,000,000 VND</td>
+                                <td><a href="{{url()->route('superGetProduct',['id'=>$product->id])}}">{{$product->name}}</a></td>
+                                <td>{{$product->Seller()->name}}</td>
+                                <td>{{number_format($product->sale_price)}} <sup>VND</sup></td>
                                 <td>
-                                    <p><span>85</span></p>
+                                    @if($product->quantity >= 30)
+                                        <p><span>{{$product->quantity}}</span></p>
+                                    @elseif($product->quantity <=0)
+                                        <p class="dan"><span>{{$product->quantity}}</span></p>    
+                                    @else
+                                        <p class="war"><span>{{$product->quantity}}</span></p> 
+                                    @endif
                                 </td>
                                 <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
+                                    @switch($product->status)
+                                        @case(1)
+                                        <p class="sellstt" id="selling">Đang Kinh Doanh</p>
+                                            @break
+                                        @case(2)
+                                        <p class="sellstt" id="hethang">Hết Hàng</p>
+                                            @break
+                                        @default
+                                        <p class="sellstt" id="stopsell">Ngừng Kinh Doanh</p>
+                                    @endswitch
                                 </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
+                                <td><a href="{{url()->route('superGetProduct',['id'=>$product->id])}}"><button><i class="far fa-edit"></i></button></a></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/dodadung.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">daughter pink spring declared independent
-                                        slow taste press heat flower immediately along move electricity somebody sets
-                                        treated climb fought universe deep atmosphere pan community</a></td>
-                                <td>write</td>
-                                <td>13,000,000 VND</td>
-                                <td>
-                                    <p><span>88</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="stopsell">Ngừng Kinh doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/mega4.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">daily able former which cowboy
-                                        understanding garden uncle minute gave begun colony unit traffic even longer
-                                        exactly write story orange told map baby garage</a></td>
-                                <td>independent</td>
-                                <td>15,000,000 VND</td>
-                                <td>
-                                    <p class="war"><span>8</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/mega3.jpg" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">wool pan road back faster settle stems
-                                        that bear frequently trail pine game shoe business test pain belt safe identity
-                                        tune journey market mission</a></td>
-                                <td>split</td>
-                                <td>13,000,000 VND</td>
-                                <td>
-                                    <p><span>39</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="stopsell">Ngừng Kinh doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/dodadung.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">brother meat bowl tonight dawn game throat
-                                        form offer certainly make garden warn figure gently kind sad air account regular
-                                        orange flag hit ride</a></td>
-                                <td>addition</td>
-                                <td>8,000,000 VND</td>
-                                <td>
-                                    <p class="dan"><span>0</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="hethang">Hết Hàng</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product4.jpg" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">chamber structure moving screen its
-                                        ancient unless later sell happy author forty occur action become design band
-                                        musical represent lady pack full whispered instant</a></td>
-                                <td>additional</td>
-                                <td>15,000,000 VND</td>
-                                <td>
-                                    <p><span>17</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/mega7.jpg" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">underline none discover sun see various
-                                        truth struggle mind science heat football him corner went silly small learn
-                                        breeze impossible political sharp handle world</a></td>
-                                <td>weigh</td>
-                                <td>13,000,000 VND</td>
-                                <td>
-                                    <p><span>81</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="hethang">Hết Hàng</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/dodadung.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">prove importance business deer wonder seed
-                                        poetry composition growth brain substance some duck show citizen sentence grew
-                                        solid golden trail position help struggle knife</a></td>
-                                <td>drink</td>
-                                <td>7,000,000 VND</td>
-                                <td>
-                                    <p class="war"><span>9</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product2.jpg" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">farm studying aboard brass written
-                                        population diameter blew buried worried around machinery cannot law rubbed hung
-                                        section thy hat went motion fur everywhere disease</a></td>
-                                <td>knowledge</td>
-                                <td>2,000,000 VND</td>
-                                <td>
-                                    <p><span>21</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/denwa.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">empty doctor garage earn quickly tax part
-                                        those impossible electricity solar cost soon suddenly ago whenever giving eight
-                                        recognize wait system rear kind specific</a></td>
-                                <td>learn</td>
-                                <td>5,000,000 VND</td>
-                                <td>
-                                    <p><span>18</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="hethang">Hết Hàng</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/mega14.jpg" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">parts metal coffee refused adult nodded
-                                        been layers hair night round property product many yourself fed month weak coast
-                                        matter stand total area library</a></td>
-                                <td>truth</td>
-                                <td>11,000,000 VND</td>
-                                <td>
-                                    <p><span>51</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product2.jpg" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">save barn wish prevent perfectly slowly
-                                        seven statement strip finest cloth cup my ruler compare sing equator image
-                                        practical such lake cloud eye everybody</a></td>
-                                <td>key</td>
-                                <td>4,000,000 VND</td>
-                                <td>
-                                    <p><span>52</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/mega12.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">natural therefore five golden sides upon
-                                        fur service establish next ever gone sight jump parent center seldom receive
-                                        bread open orbit chosen knife troops</a></td>
-                                <td>similar</td>
-                                <td>10,000,000 VND</td>
-                                <td>
-                                    <p><span>35</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/mega10.jpg" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">escape wash stove exciting imagine cry
-                                        usual lucky pink cat people skill seen behavior vegetable eight rule horn
-                                        handsome negative task piano laugh far</a></td>
-                                <td>near</td>
-                                <td>3,000,000 VND</td>
-                                <td>
-                                    <p><span>94</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/dodadung.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">bottom modern dark said warn location
-                                        recent faster base he satellites describe arrow article lonely excellent
-                                        changing stuck camera route bean steel doll difficulty</a></td>
-                                <td>actual</td>
-                                <td>8,000,000 VND</td>
-                                <td>
-                                    <p class="war"><span>3</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/mega4.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">coast ago at finger arrange behind
-                                        tomorrow declared pocket stronger mouse amount train pilot green tax compare we
-                                        listen struggle column said ourselves repeat</a></td>
-                                <td>loss</td>
-                                <td>11,000,000 VND</td>
-                                <td>
-                                    <p class="war"><span>0</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/dodadung.png" alt=""></p>
-                                </td>
-                                <td><a href="../detail.html" target="__blank">with acres top drawn hardly everything
-                                        quietly ground steel beside done organized coast evening speak wild film refused
-                                        return too drew statement nodded tape</a></td>
-                                <td>locate</td>
-                                <td>10,000,000 VND</td>
-                                <td>
-                                    <p class="war"><span>9</span></p>
-                                </td>
-                                <td>
-                                    <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                </td>
-                                <td><a href="editproduct.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
+                            @endforeach
                         </table>
-                        <div class="pagination">
-                            <ul>
-                                <li class="active"><a href="javascript:void(0)">1</a></li>
-                                <li><a href="javascript:void(0)">2</a></li>
-                                <li><a href="javascript:void(0)">3</a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-angle-right"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-step-forward"></i></a></li>
-                            </ul>
+                        <div class="paginationx">
+                            {{$products->links()}}
                         </div>
                     </div>
 

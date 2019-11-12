@@ -1,347 +1,407 @@
-.right .bottom .headtitle{
-          display: flex;
-          align-items: flex-end;
-          height: 65px;
-          padding-bottom: 15px;
-          flex-wrap: wrap;
-}
-.headtitle p{
-          margin-bottom: 0px!important;
-          font-size: 1.8em;
-          font-weight: 100;
-          max-width: 150px;
-}
-.headtitle p.sup{
-          max-width: 208px;
-}
-.headtitle ul li{
-          line-height: 40px;
-          text-transform: capitalize;
-          font-size: 0.9em;
-          display: inline-block;
-          color:#999999
-}
-.breadcrumb{
-          white-space: nowrap;
-          height: 40px;
-          margin-left: 10px;
-          width: calc(100% - 310px)
-}
-.supbread{
-          width: calc(100% - 368px);
-}
-.breadcrumb li{
-          padding:0px 2px;
-}
-.headtitle .groupbtn{
-          height: 40px;
-          text-align: right;
-          width:150px;
-}
-.headtitle .groupbtn button{
-          display: inline-block;
-          font-size: 1em;
-          color:white;
-          background:#1e91cf;
-          font-weight: bold;
-          border:0.5px solid  #999999;
-          outline: none;
-          height: 100%;
-          padding:0px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-}
-.headtitle .groupbtn button:hover{
-          opacity: 0.8;
-}
-.groupbtn button#f5{
-          background:white;
-          color:#666;
-}
-.groupbtn button#remove{
-          background:#e3503d;
-          border:none;
-}
-.catlist{
-          border: 1px solid #dcdcdc;
-}
-.catlist .cattitle{
-          color:#4c4d5a;
-          height: 40px;
-          line-height: 40px;
-          padding-left: 15px;
-          margin-bottom: 0px!important;
-          border-bottom: 1px solid #dcdcdc!important;
-}
-.tabcat{
-          background:white;
-          padding:15px;
-}
-.tabcat table{
-          font-size: 0.95em;
-          width: 100%;
-          border: 1px solid #ddd;
-}
-.tabcat table td:first-child,.tabcat table th:first-child{
-          width: 30px;
-}
-.tabcat table#tab5 th:first-child,.tabcat table#tab6 th:first-child{
-          width:auto!important;
-}
-.tabcat table#tab5 th,.tabcat table#tab6 th{
-          font-size: 0.9em;
-          color:#4c4d5a;
+.right .bottom .headtitle {
+    display: flex;
+    align-items: flex-end;
+    height: 65px;
+    padding-bottom: 15px;
+    flex-wrap: wrap;
 }
 
-.tabcat table#tab5 td,.tabcat table#tab6 td{
-          padding-bottom: 0px!important;
-          padding:5px!important;
+.headtitle p {
+    margin-bottom: 0px!important;
+    font-size: 1.8em;
+    font-weight: 100;
+    max-width: 150px;
 }
-table#tab5 td{
-          min-width: 100px;
-}
-table#tab6 td{
-          min-width: 150px;
-}
-table#tab6 td:first-child{
-          min-width: 340px;
-}
-table#tab6 td:nth-child(2),table#tab6 td:nth-child(3){
-          font-size: 1.1em!important;
-          padding-left: 10px!important
-}
-table#tab6  td img{
-          width: 100%;
-          padding:10px;
-}
-#delsale{
-          background: red;
-}
-tabcat table#tab5 td select{
-}
-.tabcat table td,.tabcat table th{
-          padding:0!important;
-          height: 40px!important;
-          line-height: 40px;
-          padding-left: 10px!important;
-          text-transform: capitalize;
 
+.headtitle p.sup {
+    max-width: 208px;
 }
-.tabcat table td{
-          font-size: 0.9em!important;
+
+.headtitle ul li {
+    line-height: 40px;
+    text-transform: capitalize;
+    font-size: 0.9em;
+    display: inline-block;
+    color: #999999
 }
-.tabcat table td:last-child{
-          width: 200px;
+
+.breadcrumb {
+    white-space: nowrap;
+    height: 40px;
+    margin-left: 10px;
+    width: calc(100% - 310px)
 }
-.tabcat table td:last-child a{
-          display: flex;
-          align-items: center;
-          line-height: 40px;
+
+.supbread {
+    width: calc(100% - 368px);
 }
-.tabcat table tr:hover td{
-          background:#acacac18
+
+.breadcrumb li {
+    padding: 0px 2px;
 }
-.tabcat.sup table tr td:nth-child(2){
-          width: 100px;
-          padding-left: 0px!important;
-} 
-.tabcat.sup table tr td:nth-child(2) p{
-          margin-bottom: 0px!important;
+
+.headtitle .groupbtn {
+    height: 40px;
+    text-align: right;
+    width: 150px;
 }
-.tabcat.sup table tr td:nth-child(2) img{
-          height: 70px;
-          width:70px;
-          padding:7px;
-          margin:10px 10px;
-          border: 1px solid #ddd;
-} 
-.tabcat table td:last-child button{
-          height: 30px;
-          line-height: 30px;
-          text-align: center;
-          width:40px;
-          display: inline-block;
-          font-size: 1em;
-          color:white;
-          background:#1e91cf;
-          font-weight: bold;
-          border:none;
-          outline: none;
-          border-radius: 2px;
-          cursor: pointer;
+
+.headtitle .groupbtn button {
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    background: #1e91cf;
+    font-weight: bold;
+    border: 0.5px solid #999999;
+    outline: none;
+    height: 100%;
+    padding: 0px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
-.tabcat table th{
-          color:#007bff;
-          white-space: nowrap;
-          padding-right: 10px!important;
+
+.headtitle .groupbtn button:hover {
+    opacity: 0.8;
 }
-.tabvote table td{
-          padding-right: 10px!important;
+
+.groupbtn button#f5 {
+    background: white;
+    color: #666;
 }
-.tabvote table td:nth-child(2){
-          width: 50px;
-          white-space: nowrap;
+
+.groupbtn button#remove {
+    background: #e3503d;
+    border: none;
 }
-.tabvote table td:nth-child(3){
-          line-height: normal!important;
+
+.catlist {
+    border: 1px solid #dcdcdc;
 }
-.tongquan.tabcat{
-          background:transparent;
-          margin-bottom: 15px;
-          padding:0px!important;
+
+.catlist .cattitle {
+    color: #4c4d5a;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    margin-bottom: 0px!important;
+    border-bottom: 1px solid #dcdcdc!important;
 }
-.pagination{
-          margin-top: 15px;
-          
+
+.tabcat {
+    background: white;
+    padding: 15px;
 }
-.pagination ul{
-          border: 1px solid #ddd;
-          display: inline-block
+
+.tabcat table {
+    font-size: 0.95em;
+    width: 100%;
+    border: 1px solid #ddd;
 }
-.pagination li{
-          display: inline-block;
-          border-right: 1px solid #ddd;
-          width:30px;
-          height: 30px;
-          line-height: 30px;
-          text-align: center;
-          cursor: pointer;
+
+.tabcat table td:first-child, .tabcat table th:first-child {
+    width: 30px;
 }
-.pagination li:hover{
-          opacity: 0.8;
+
+.tabcat table#tab5 th:first-child, .tabcat table#tab6 th:first-child {
+    width: auto!important;
 }
-.pagination li.active{
-          background:#007bff;
+
+.tabcat table#tab5 th, .tabcat table#tab6 th {
+    font-size: 0.9em;
+    color: #4c4d5a;
 }
-.pagination li.active a{
-          color:white;
+
+.tabcat table#tab5 td, .tabcat table#tab6 td {
+    padding-bottom: 0px!important;
+    padding: 5px!important;
 }
-select{
-          height: 40px;
-          text-transform: capitalize!important; 
-          background: white;
+
+table#tab5 td {
+    min-width: 100px;
 }
-select option{
-          text-transform: capitalize!important;
+
+table#tab6 td {
+    min-width: 150px;
 }
-#add .tabcat table{
-          border:none;
+
+table#tab6 td:first-child {
+    min-width: 340px;
 }
-#add table td{
-          padding-bottom: 10px!important;
+
+table#tab6 td:nth-child(2), table#tab6 td:nth-child(3) {
+    font-size: 1.1em!important;
+    padding-left: 10px!important
 }
-#add table tr td:first-child{
-          white-space: nowrap;
-          text-align: right!important;
-          font-weight: 600;
-          width: 20%!important;
+
+table#tab6 td img {
+    width: 100%;
+    padding: 10px;
 }
-#add table tr:hover td{
-          background: white;
+
+#delsale {
+    background: red;
 }
-textarea{
-          line-height: normal!important;
-          height:100px;
-          padding-top: 10px;
+
+tabcat table#tab5 td select {}
+
+.tabcat table td, .tabcat table th {
+    padding: 0!important;
+    height: 40px!important;
+    line-height: 40px;
+    padding-left: 10px!important;
+    text-transform: capitalize;
 }
-#add input,#add textarea,#add select{
-          padding-left: 10px;
-          width:100%;
-          border-radius: 5px;
-          border:none;
-          outline: none;
-          border: 1px solid #ccc;
+
+.tabcat table td {
+    font-size: 0.9em!important;
 }
-#add table tr td:last-child{
-          padding-left: 25px!important;
-          
+
+.tabcat table td:last-child {
+    width: 200px;
 }
-#add table tr td button{
-          height: 30px;
-          line-height: 30px;
-          text-align: center;
-          width: 60px;
+
+.tabcat table td:last-child a {
+    display: flex;
+    align-items: center;
+    line-height: 40px;
 }
-#add table tr td button:hover{
-          opacity: 0.8;
+
+.tabcat table tr:hover td {
+    background: #acacac18
 }
-#add table tr td:first-child .cancelcat{
-          
-          display: inline-block;
-          font-size: 1em;
-          color: white;
-          background: red;
-          font-weight: bold;
-          border: none;
-          outline: none;
-          border-radius: 2px;
-          cursor: pointer;
+
+.tabcat.sup table tr td:nth-child(2) {
+    width: 100px;
+    padding-left: 0px!important;
 }
-.panel ul{
-          display: flex;
+
+.tabcat.sup table tr td:nth-child(2) p {
+    margin-bottom: 0px!important;
 }
-.panel li{
-          cursor: pointer;
-          font-size: 0.95em;
-          color:#a5a5a5;
-          padding:5px 10px;
-          display: inline-block;
-          border-bottom: 1px solid #ddd;
+
+.tabcat.sup table tr td:nth-child(2) img {
+    height: 70px;
+    width: 70px;
+    padding: 7px;
+    margin: 10px 10px;
+    border: 1px solid #ddd;
 }
-.panel li.active{
-          color:black;
-          border:1px solid #ddd;
-          border-bottom: none;
+
+.tabcat table td:last-child button {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 40px;
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    background: #1e91cf;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
 }
-.tabcat table#tab1,.tabcat table#tab2,.tabcat table#tab3,.tabcat table#tab4,.tabcat table#tab5,.tabcat table#tab6{
-          display: none;
+
+.tabcat table th {
+    color: #007bff;
+    white-space: nowrap;
+    padding-right: 10px!important;
 }
-.tabcat table#tab2{
-          min-width: 400px;
+
+.tabvote table td {
+    padding-right: 10px!important;
 }
-.tabcat table#tab1{
-          display: table;
+
+.tabvote table td:nth-child(2) {
+    width: 50px;
+    white-space: nowrap;
 }
-#addfield{
-          height: 30px;
-          line-height: 30px;
-          text-align: center;
-          width: 60px;
-          display: inline-block;
-          font-size: 1em;
-          color: white;
-          background: #1e91cf;
-          font-weight: bold;
-          border: none;
-          outline: none;
-          border-radius: 2px;
-          cursor: pointer;
+
+.tabvote table td:nth-child(3) {
+    line-height: normal!important;
 }
-@media only screen and (max-width:1200px){
-          .breadcrumb{
-                    font-size: 1.1em;
-          }
-          .headtitle{
-                    height: auto!important;
-                    padding-left: 10px;
-                    margin-top: 10px;
-          }
-          .groupbtn{
-                    width: 100%!important;
-                    text-align: left!important;
-          }
-          .groupbtn button{
-                    height: 30px!important;
-                    width: 30px!important;
-                    padding:0px!important;
-          }
-          .tabcat{
-                    overflow-x: scroll;
-          }
-          .tabcat table{
-                    width:auto!important;
-          }
-          #add table{
-                    width:100%!important;
-          }
+
+.tongquan.tabcat {
+    background: transparent;
+    margin-bottom: 15px;
+    padding: 0px!important;
+}
+
+.paginationx {
+    margin-top: 15px;
+}
+
+.paginationx ul {
+    display: flex!important;
+    border: 1px solid #ddd;
+    display: inline-block
+}
+
+.paginationx li {
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.paginationx li a{
+    width:30px;
+}
+.paginationx li:hover {
+    opacity: 0.8;
+}
+
+.paginationx li.active {
+    background: #007bff;
+    color: white
+}
+
+select {
+    height: 40px;
+    text-transform: capitalize!important;
+    background: white;
+}
+
+select option {
+    text-transform: capitalize!important;
+}
+
+#add .tabcat table {
+    border: none;
+}
+
+#add table td {
+    padding-bottom: 10px!important;
+}
+
+#add table tr td:first-child {
+    white-space: nowrap;
+    text-align: right!important;
+    font-weight: 600;
+    width: 20%!important;
+}
+
+#add table tr:hover td {
+    background: white;
+}
+
+textarea {
+    line-height: normal!important;
+    height: 100px;
+    padding-top: 10px;
+}
+
+#add input, #add textarea, #add select {
+    padding-left: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+#add table tr td:last-child {
+    padding-left: 25px!important;
+}
+
+#add table tr td button {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 60px;
+}
+
+#add table tr td button:hover {
+    opacity: 0.8;
+}
+
+#add table tr td:first-child .cancelcat {
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    background: red;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.panel ul {
+    display: flex;
+}
+
+.panel li {
+    cursor: pointer;
+    font-size: 0.95em;
+    color: #a5a5a5;
+    padding: 5px 10px;
+    display: inline-block;
+    border-bottom: 1px solid #ddd;
+}
+
+.panel li.active {
+    color: black;
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.tabcat table#tab1, .tabcat table#tab2, .tabcat table#tab3, .tabcat table#tab4, .tabcat table#tab5, .tabcat table#tab6 {
+    display: none;
+}
+
+.tabcat table#tab2 {
+    min-width: 400px;
+}
+
+.tabcat table#tab1 {
+    display: table;
+}
+
+#addfield {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 60px;
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    background: #1e91cf;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width:1200px) {
+    .breadcrumb {
+        font-size: 1.1em;
+    }
+    .headtitle {
+        height: auto!important;
+        padding-left: 10px;
+        margin-top: 10px;
+    }
+    .groupbtn {
+        width: 100%!important;
+        text-align: left!important;
+    }
+    .groupbtn button {
+        height: 30px!important;
+        width: 30px!important;
+        padding: 0px!important;
+    }
+    .tabcat {
+        overflow-x: scroll;
+    }
+    .tabcat table {
+        width: auto!important;
+    }
+    #add table {
+        width: 100%!important;
+    }
 }

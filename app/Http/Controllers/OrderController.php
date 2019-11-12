@@ -133,6 +133,11 @@ class OrderController extends Controller
             foreach($prod as $p){
                 $orderDetail = new OrderDetail;
                 $orderDetail->idorder =  $order->id;
+                $prox = Product::find($p['id']);
+                if($prox){
+                    $prox->quantity = $prox->quantity - $p['quantity'];
+                    $prox->save();
+                }
                 $orderDetail->idpro = $p['id'];
                 $orderDetail->quantity = $p['quantity'];
                 $orderDetail->save();

@@ -73,8 +73,11 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
 
     Route::get('/categories','Manager\CategoryController@show')->name('superCategory');
     Route::get('/categories.{slug}','Manager\CategoryController@editCategory')->name('superEditCategory');
+    Route::get('/categories/new','Manager\CategoryController@addCategory')->name('superAddCategory');
+    Route::post('/categories/new','Manager\CategoryController@postAddCategory')->name('superPostAddCategory');
     Route::post('/categories.{slug}','Manager\CategoryController@postEditCategory')->name('superPostEditCategory');
-    
+    Route::post('/categories/deleteMany','Manager\CategoryController@postDeleteCategory')->name('superDeleteEditCategory');
+   
     Route::get('/products','Manager\ProductController@show')->name('superProduct');
 
     Route::get('/reviews','Manager\ReviewController@show')->name('superReview');

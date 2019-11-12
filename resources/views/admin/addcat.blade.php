@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../assetsAdmin/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../../assetsAdmin/css/index.css">
-    <link rel="stylesheet" href="../../assetsAdmin/css/cat.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/index.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/cat.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/chart.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <title>Admin::Categories::Add</title>
@@ -17,101 +17,8 @@
 
 <body>
     <div class="vucms">
-        <div class="menubar">
-            <div class="menuname">
-                <span class="namehiden">
-                    VUCMS SYSTEM
-                </span><button id="propbar"><i class="fas fa-bars"></i></button>
-            </div>
-            <div class="options">
-                <div class="top">
-                    <div class="me">
-                        <img src="../../assetsAdmin/img/avt.jpg" alt="">
-                        <div class="meme">
-                            <p class="online"><span class="pointonline"></span>
-                                Online</p>
-                            <p class="myname">I am VuCms</p>
-                        </div>
-                    </div>
-                    <div class="searchbox">
-                        <form action="#">
-                            <input type="search" placeholder="Tìm Kiếm">
-                        </form>
-                    </div>
-                </div>
-                <div class="navigation">
-                    <div class="navtitle">
-                        Khu vực chính
-                    </div>
-                    <div class="navitems">
-                        <ul class="items">
-                            <li class="lv1"><i class="fas fa-tachometer-alt"></i>
-                                <span class="navtext">Bảng điều
-                                    khiển</span>
-                            </li>
-                            <li class="lv1"><i class="fas fa-chart-bar"></i>
-                                <span class="navtext">Quản lí</span><i class="fas fa-angle-right"></i>
-                                <ul class="lv2items">
-                                    <li class="lv2"><a href="categories.html">Danh mục</a></li>
-                                    <li class="lv2"><a href="product.html">Sản phẩm</a></li>
-                                    <li class="lv2"><a href="vote.html">Đánh giá</a></li>
-                                    <li class="lv2"><a href="supplier.html">Nhà cung cấp</a></li>
-                                    <li class="lv2"><a href="file.html">Files</a></li>
-                                </ul>
-                            </li>
 
-                            <!-- <li class="lv1"><i class="fas fa-layer-group"></i>
-                                                                                <span class="navtext">Gian hàng</span><i
-                                                                                          class="fas fa-angle-right"></i>
-                                                                                          <ul class="lv2items">
-                                                                                                    <li class="lv2">Bố cục</li>
-                                                                                                    <li class="lv2">Banner</li>
-                                                                                                    <li class="lv2">Công cụ SEO</li>
-                                                                                                    <li class="lv2">Subcategory 4</li>
-                                                                                                    <li class="lv2">Subcategory 5</li>
-                                                                                          </ul>
-                                                                      </li> -->
-                            <li class="lv1"><i class="fas fa-users"></i> <span class="navtext">Khách hàng</span><i
-                                    class="fas fa-angle-right"></i>
-                                <ul class="lv2items">
-                                    <li class="lv2"><a href="customer.html">Danh sách</a></li>
-                                    <li class="lv2"><a href="customer_group.html">Nhóm</a></li>
-                                    <li class="lv2"><a href="customer_ban.html">Danh sách bị cấm</a></li>
-                                </ul>
-                            </li>
-                            <li class="lv1"><i class="fas fa-shopping-cart"></i>
-                                <span class="navtext">Bán hàng</span><i class="fas fa-angle-right"></i>
-                                <ul class="lv2items">
-                                    <li class="lv2"><a href="order.html">Đơn hàng</a></li>
-                                    <li class="lv2"><a href="coupon.html">Coupon</a></li>
-                                </ul>
-                            </li>
-                            <li class="lv1"><i class="fas fa-desktop"></i>
-                                <span class="navtext">Thiết Kế</span><i class="fas fa-angle-right"></i>
-                                <ul class="lv2items">
-                                    <li class="lv2"><a href="layout.html">Bố cục</a></li>
-                                    <li class="lv2"><a href="banner.html">Banner</a></li>
-                                    <li class="lv2"><a href="seotool.html">Công cụ SEO</a></li>
-                                </ul>
-                            </li>
-                            <li class="lv1"><i class="fas fa-list-ul"></i>
-                                <span class="navtext">Tiện ích</span><i class="fas fa-angle-right"></i>
-                                <ul class="lv2items">
-                                    <li class="lv2">Biên soạn</li>
-                                    <li class="lv2">Subcategory 2</li>
-                                    <li class="lv2">Subcategory 3</li>
-                                    <li class="lv2">Subcategory 4</li>
-                                    <li class="lv2">Subcategory 5</li>
-                                </ul>
-                            </li>
-                            <li class="lv1"><a href="setting.html"><i class="fas fa-cogs"></i> <span class="navtext">Cài
-                                        đặt
-                                        chung</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('includes.menubar')
         <div class="right">
             <div class="top">
                 <ul class="listtop">
@@ -120,7 +27,7 @@
                     <li><i class="far fa-envelope"></i> <span class="toptext">Tin
                             nhắn</span></li>
                     <li class="topprofile">
-                        <img src="../../assetsAdmin/img/avt.jpg" alt="">
+                        <img src="../../../assetsAdmin/img/avt.jpg" alt="">
                         <span class="nameprofile"><span class="toptext">VuCms</span>
                             <i class="fas fa-angle-down"></i>
 
@@ -158,80 +65,82 @@
                         <i class="fas fa-pen-nib"> </i> Thêm Danh Mục
                     </p>
                     <div class="tabcat">
+                        
+                    <form enctype="multipart/form-data" action="{{url()->route('superPostAddCategory')}}" method=POST>
+                        @csrf
                         <table>
-
                             <tr>
                                 <td>Tên danh mục</td>
-                                <td><input type="text" placeholder="Tên Danh Mục	"></td>
+                                <td><input @if (@$errors->toArray()['name'])
+                                    style="border:1px solid red"
+                                    @endif name="name" type="text" value=""></td>
                             </tr>
                             <tr>
-                                <td>Mô tả danh mục</td>
-                                <td><textarea name="" id="" style="width:100%" placeholder="Mô tả danh mục"></textarea>
+                                <td>Ảnh Danh Mục</td>
+                                <td><img id="curImg" style="display:none;height:80px;width:80px;padding:5px" src="" alt="">
+                                    <label for="img" style="border:1px solid #ddd;padding:5px;cursor:pointer;height:40px;line-height:30px;margin-bottom:0px;">Chọn ảnh</label>
+                                    <input accept="image/gif, image/jpeg, image/png"  onchange="readURL(this)" style="display:none" name="catAvt" id="img" type="file" value="">
                                 </td>
                             </tr>
+                            
+                            <script>
+                                function readURL(input) {
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            document.querySelector('#curImg').style.display= 'inline-block'
+                                            document.querySelector('#curImg').setAttribute('src',e.target.result)
+                                        };
+                                        reader.readAsDataURL(input.files[0]);
+                                    }
+                                }
+                            </script>
                             <tr>
-                                <td>Thẻ meta title</td>
-                                <td><input type="text" placeholder="Thẻ meta title"></td>
+                                <td>Icon Danh Mục(Fontawesome)</td>
+                                <td><input @if (@$errors->toArray()['icon'])
+                                    style="border:1px solid red"
+                                    @endif name="icon" type="text" value=""></td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả danh mục </td>
+                                <td><input name="description" type="text" value=""></td>
                             </tr>
                             <tr>
                                 <td>SEO Từ khóa</td>
-                                <td><input type="text" placeholder="SEO Từ Khóa	"></td>
+                                <td><input name="seo_keys" type="text" value=""></td>
                             </tr>
                             <tr>
                                 <td>SEO Mô tả</td>
-                                <td><textarea name="" id="" style="width:100%" placeholder="SEO Mô tả"></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>Danh mục cha</td>
-                                <td>
-                                    <select name="aa" id="">
-                                        <option value="--">--</option>
-                                        <option value="like">block</option>
-                                        <option value="president">concerned</option>
-                                        <option value="example">was</option>
-                                        <option value="why">laid</option>
-                                        <option value="ability">call</option>
-                                        <option value="noise">certain</option>
-                                        <option value="front">electricity</option>
-                                        <option value="fighting">supply</option>
-                                        <option value="potatoes">greatly</option>
-                                        <option value="running">loss</option>
-                                    </select>
+                                <td><textarea name="seo_description" id=""
+                                style="width:100%"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Thứ tự</td>
-                                <td><input type="number" value="0"></td>
+                                <td><input @if (@$errors->toArray()['order'])
+                                    style="border:1px solid red"
+                                    @endif name="order" type="number" value=""></td>
                             </tr>
                             <tr>
                                 <td>SEO URL</td>
-                                <td><input type="text" placeholder="Ví dụ: dien-lanh-dien-tu"></td>
-                            </tr>
-
-                            <tr>
-                                <td>Trạng thái</td>
-                                <td>
-                                    <select name="aa" id="">
-                                        <option value="potatoes">Hiện</option>
-                                        <option value="running">Ẩn</option>
-                                    </select>
-                                </td>
+                                <td><input @if (@$errors->toArray()['slug'])
+                                    style="border:1px solid red"
+                                    @endif name="slug" type="text" value=""></td>
                             </tr>
                             <tr>
-                                <td><button class="cancelcat">Hủy</button></td>
-                                <td><button class="addcat">Thêm</button></td>
+                            <td><button onclick="window.location.href='{{url()->route('superCategory')}}';return false;" class="cancelcat">Hủy</button></td>
+                                <td><button class="addcat">Lưu Lại</button></td>
                             </tr>
-
-
                         </table>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../../assetsAdmin/js/jquery.min.js"></script>
-    <script src="../../assetsAdmin/js/chart.min.js"></script>
-    <script src="../../assetsAdmin/js/cat.js"></script>
+    <script src="../../../../assets/js/jquery.min.js"></script>
+    <script src="../../../assetsAdmin/js/chart.min.js"></script>
+    <script src="../../../assetsAdmin/js/cat.js"></script>
     <script>
     </script>
 </body>

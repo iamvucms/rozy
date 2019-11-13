@@ -644,33 +644,6 @@
                                     <li class="active"><img src="{{url($Img->src ?? '')}}" alt=""></li>
                                 </div>
                                 @endforeach
-                                <div class="item">
-                                    <li><img src="../assets/img/product.jpg" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product2.jpg" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product4.jpg" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product5.jpg" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product.jpg" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product1.png" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product2.jpg" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product4.jpg" alt=""></li>
-                                </div>
-                                <div class="item">
-                                    <li><img src="../assets/img/product5.jpg" alt=""></li>
-                                </div>
                             </div>
                         </div>
                     </div>

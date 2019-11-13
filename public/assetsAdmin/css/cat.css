@@ -329,7 +329,32 @@ textarea {
     border-radius: 2px;
     cursor: pointer;
 }
-
+.cancelcat {
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    padding:5px 15px;
+    background: red;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.addcat {
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    padding:5px 15px;
+    background: #007bff;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
 .panel ul {
     display: flex;
 }

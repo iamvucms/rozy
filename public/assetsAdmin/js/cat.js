@@ -147,9 +147,8 @@ document.querySelectorAll('.panel ul li').forEach(v => {
 function loadmoreaddfields() {
     document.querySelectorAll('#addfield').forEach(v => {
         v.onclick = () => {
-
             if (v.innerHTML == '+') {
-                $('#tab3').append('<tr><td><input type="text" placeholder="Tên trường"></td><td style="padding-left: 25px!important;"><input type="text" placeholder="Giá trị"></td><td style="width:10%"><button id="addfield">+</button></td></tr>')
+                $('#tab3').append('<tr><td><input required name="propertyName[]" type="text" placeholder="Tên trường" style="text-align: right;padding-right: 5px;font-weight: bold;"></td><td style="padding-left: 25px!important;"><input required name="propertyValue[]" type="text" placeholder="Giá trị"></td><td style="width:10%"><button id="addfield">+</button></td></tr>')
                 v.innerHTML = 'x'
                 v.style.backgroundColor = 'red'
             } else {
@@ -157,7 +156,9 @@ function loadmoreaddfields() {
                 v.parentNode.parentNode.outerHTML = ''
             }
             loadmoreaddfields()
+            return false;
         }
+        if(v.innerHTML=='x') v.style.backgroundColor = 'red'
     })
 }
 loadmoreaddfields()
@@ -215,14 +216,17 @@ document.querySelectorAll('#tab2 #addsale').forEach(v => {
         })
     }
 })
-
+var idImg = 1;
 document.querySelectorAll('#tab6 #addsale').forEach(v => {
-    v.onclick = () => {
-        $('#tab6').append('<tr><td><input type="file"></td><td><select name="" id=""><option value="">Ảnh sản phẩm</option><option value="">Ảnh Slide</option><option value="">Ảnh Banner</option></td><td><input type="number"></td><td><button id="delsale">x</button></td></tr>')
+    v.onclick = () => { // Have to set Image after choosing
+        $('#tab6').append('<tr><td><label style="border:1px dashed #333;padding:0px 15px;cursor:pointer" for="imgInp_'+idImg+'" id="lbl_'+idImg+'">Chọn Ảnh</label><input required onchange="readURL(this,'+idImg+')" name="ImgProducts[]" id="imgInp_'+idImg+'" style="display:none" type="file"><img style="display:none;" id="Img_'+idImg+'"></td><td><select required name="groupImg[]" id=""><option value="2">Ảnh Sản Phẩm</option><option value="3">Ảnh Slider</option></td><td><button id="delsale">x</button></td></tr>')
         document.querySelectorAll('#tab6 #delsale').forEach(v => {
             v.onclick = () => {
                 v.parentNode.parentNode.outerHTML = ''
+                return false
             }
         })
+        idImg++;
+        return false
     }
 })

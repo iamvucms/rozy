@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Category;
 use App\Image;
+use App\Alias;
+use App\Property;
 class ProductController extends Controller
 {
     public function show(){
@@ -29,6 +31,7 @@ class ProductController extends Controller
         return view('Admin.addproduct');
     }
     public function postAddProduct(Request $req){
+        
         $req->validate([
             "name" => "required|min:5",
             "metaTitle" => "required|min:5",
@@ -44,7 +47,7 @@ class ProductController extends Controller
             "madeIn" => "required"
         ]);
         if(count($req->groupImg)!=count($req->ImgProducts) 
-        || count($req->propertyName)!=count($req->propertyName) ) return redirect()->back()->withInput();
+        || count($req->propertyName)!=count($req->propertyValue) ) return redirect()->back()->withInput();
         $user = Auth::user();
         $product = new Product;
         $product->name = $req->name;
@@ -68,6 +71,29 @@ class ProductController extends Controller
         $product->save();
         $product->slug = $product->slug.'-'.$product->id;
         $product->save();
+        //Add properties
+        $keyName = $req->propertyName ?? [];
+        $jsonData = [];
+        $jsonData['sku'] = $req->sku;
+        $jsonData['model'] = $req->model;
+        $jsonData['thuonghieu'] = $req->brand;
+        $jsonData['madein'] = $req->madeIn;
+        foreach($keyName as $key=>$value){
+            $keyName[$key]= $this->viToEng($keyName[$key]);
+            $jsonData[$keyName[$key]]=$req->propertyValue[$key];
+            $alias = Alias::where('prop',$keyName[$key])->count();
+            if($alias==0){
+                $newAlias = new Alias;
+                $newAlias->prop = $keyName[$key];
+                $newAlias->alias = $req->propertyName[$key];
+                $newAlias->idcat = intval($req->idcat);
+                $newAlias->save();
+            }
+        }
+        $property = new Property;
+        $property->json = json_encode($jsonData,JSON_UNESCAPED_UNICODE);
+        $property->id = $product->id;
+        $property->save();
         foreach($req->groupImg as $key =>$value){
             switch ($value) {
                 case 1:
@@ -106,7 +132,6 @@ class ProductController extends Controller
                     $Image->id_slide_product = $product->id;
                     $Image->save();
                     break;
-                    //
                 default:
                     break;
             }
@@ -124,6 +149,20 @@ class ProductController extends Controller
             'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
             'y'=>'ý|ỳ|ỷ|ỹ|ỵ|Ý|Ỳ|Ỷ|Ỹ|Ỵ',
             '-'=>' ');
+        foreach($utf8 as $ascii=>$uni) $str = preg_replace("/($uni)/i",$ascii,$str);
+        return strtolower($str);
+    }
+    public function viToEng($str) {
+        if(!$str) return false;
+        $utf8 = array(
+            'a'=>'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ|Á|À|Ả|Ã|Ạ|Ă|Ắ|Ặ|Ằ|Ẳ|Ẵ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ',
+            'd'=>'đ|Đ',
+            'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ|É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
+            'i'=>'í|ì|ỉ|ĩ|ị|Í|Ì|Ỉ|Ĩ|Ị',
+            'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ|Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
+            'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
+            'y'=>'ý|ỳ|ỷ|ỹ|ỵ|Ý|Ỳ|Ỷ|Ỹ|Ỵ',
+            ''=>' ');
         foreach($utf8 as $ascii=>$uni) $str = preg_replace("/($uni)/i",$ascii,$str);
         return strtolower($str);
     }

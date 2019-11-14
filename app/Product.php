@@ -85,6 +85,9 @@ class Product extends Model
         
     }
     //Images relationships
+    public function SlideImages(){
+        return $this->hasMany('App\Image','id_slide_product','id')->select('src')->whereNull('id_avt_product')->get();
+    }
     public function Images(){
         return $this->hasMany('App\Image','id_product','id')->select('src')->whereNull('id_avt_product')->get();
     }

@@ -210,7 +210,7 @@
 							</table>
 							<tr>
 							<td><button class="cancelcat" onclick="window.location.href = '{{url()->route('superProduct')}}';return false">Hủy</button></td>
-								<td><button class="addcat">Thêm</button></td>
+								<td><button class="addcat" on>Thêm</button></td>
 							</tr>
 						</div>
 					</div>
@@ -220,6 +220,7 @@
 	</div>
 	<script src="../../../../assets/js/jquery.min.js"></script>
 	<script src="../../../assetsAdmin/js/chart.min.js"></script>
+	
 	<script src="../../../assetsAdmin/js/cat.js"></script>
 	<script>
 		function readURL(input,outputId) {

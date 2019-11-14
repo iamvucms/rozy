@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function getProduct($id){
         $product = Product::find($id);
         if($product){
-
+            return view('Admin.editproduct',compact("product"));
         }else abort(404);
     }
     public function addProduct(){

@@ -216,7 +216,7 @@ document.querySelectorAll('#tab2 #addsale').forEach(v => {
         })
     }
 })
-var idImg = 1;
+
 document.querySelectorAll('#tab6 #addsale').forEach(v => {
     v.onclick = () => { // Have to set Image after choosing
         $('#tab6').append('<tr><td><label style="border:1px dashed #333;padding:0px 15px;cursor:pointer" for="imgInp_'+idImg+'" id="lbl_'+idImg+'">Chọn Ảnh</label><input required onchange="readURL(this,'+idImg+')" name="ImgProducts[]" id="imgInp_'+idImg+'" style="display:none" type="file"><img style="display:none;" id="Img_'+idImg+'"></td><td><select required name="groupImg[]" id=""><option value="2">Ảnh Sản Phẩm</option><option value="3">Ảnh Slider</option></td><td><button id="delsale">x</button></td></tr>')

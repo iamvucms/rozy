@@ -86,13 +86,13 @@ class Product extends Model
     }
     //Images relationships
     public function SlideImages(){
-        return $this->hasMany('App\Image','id_slide_product','id')->select('src')->whereNull('id_avt_product')->get();
+        return $this->hasMany('App\Image','id_slide_product','id')->select('src','id')->whereNull('id_avt_product')->get();
     }
     public function Images(){
-        return $this->hasMany('App\Image','id_product','id')->select('src')->whereNull('id_avt_product')->get();
+        return $this->hasMany('App\Image','id_product','id')->select('src','id')->whereNull('id_avt_product')->get();
     }
     public function Avatar(){
-        return $this->hasOne('App\Image','id_avt_product','id')->select('src')->first() ?? null;
+        return $this->hasOne('App\Image','id_avt_product','id')->select('src','id')->first() ?? null;
     }
     //Seller Relationships
     public function Seller(){

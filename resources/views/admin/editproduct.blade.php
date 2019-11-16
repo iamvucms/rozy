@@ -154,15 +154,15 @@
 
 								<tr>
 									<td>Model</td>
-								<td><input @if (isset($errors->toArray()['model']))style="border:1px solid red"@endif value="{{$product->getProps()['model']}}" required name="model"  type="text" placeholder="Model"></td>
+								<td><input @if (isset($errors->toArray()['model']))style="border:1px solid red"@endif value="{{$product->getProps()['model'] ?? ''}}" required name="model"  type="text" placeholder="Model"></td>
 								</tr>
 								<tr>
 									<td> Thương hiệu</td>
-									<td><input @if (isset($errors->toArray()['brand']))style="border:1px solid red"@endif value="{{$product->getProps()['thuonghieu']}}" required name="brand" type="text" placeholder="Thương hiệu"></td>
+									<td><input @if (isset($errors->toArray()['brand']))style="border:1px solid red"@endif value="{{$product->getProps()['thuonghieu'] ?? ''}}" required name="brand" type="text" placeholder="Thương hiệu"></td>
 								</tr>
 								<tr>
 									<td>SKU</td>
-									<td><input @if (isset($errors->toArray()['sku']))style="border:1px solid red"@endif required value="{{$product->getProps()['sku']}}" name="sku" type="text" placeholder="SKU"></td>
+									<td><input @if (isset($errors->toArray()['sku']))style="border:1px solid red"@endif required value="{{$product->getProps()['sku'] ?? ''}}" name="sku" type="text" placeholder="SKU"></td>
 								</tr>
 								<tr>
 									<td>Số Lượng</td>
@@ -170,7 +170,7 @@
 								</tr>
 								<tr>
 									<td>Sản xuất tại</td>
-									<td><input @if (isset($errors->toArray()['madeIn']))style="border:1px solid red"@endif required value="{{$product->getProps()['madein']}}" name="madeIn" type="text" placeholder="Sản xuất tại"></td>
+									<td><input @if (isset($errors->toArray()['madeIn']))style="border:1px solid red"@endif required value="{{$product->getProps()['madein'] ?? ''}}" name="madeIn" type="text" placeholder="Sản xuất tại"></td>
 								</tr>
 							</table>
 							{{-- <table id="tab5" border="1">
@@ -197,27 +197,31 @@
 									<th>Nhóm Ảnh</th>
 									<th></th>
 								</tr>
+								
+								@if($product->Avatar())
 								<tr>
-								<td style="position:relative"><label style="border:1px dashed #333;padding:0px 15px;cursor:pointer;position:absolute;top:calc((100% - 42px)/2);left:calc((100% - 91px)/2);color:white;border:1px dashed white" for="imgInp_0" id="lbl_0">Chọn Ảnh</label><input required onchange="readURL(this,0)" value="{{url($product->Avatar()->src ?? '')}}" name="ImgProducts[]" id="imgInp_0" style="display:none" type="file"><img  src="{{url($product->Avatar()->src ?? '')}}" style="display:;" id="Img_0"></td>
-									<td><select required name="groupImg[]" id=""><option value="1">Ảnh đại diện</option></td>
-									<td><button id="delsale">x</button></td>
+									<td style="position:relative"><img  src="{{url($product->Avatar()->src ?? '')}}" style="display:;" id="Img_0"></td>
+									<td><select id=""><option value="1">Ảnh đại diện</option></td>
+									<td><button id="delsale" data-id="{{$product->Avatar()->id}}">x</button></td>
 								</tr>
+								@endif
 								@php
 									$ix = 1;
 								@endphp
 								@foreach ($product->Images() as $productImg)
-								<td style="position:relative"><label style="border:1px dashed #333;padding:0px 15px;cursor:pointer;position:absolute;top:calc((100% - 42px)/2);left:calc((100% - 91px)/2);color:white;border:1px dashed white" for="imgInp_{{$ix}}" id="lbl_{{$ix}}">Chọn Ảnh</label><input required onchange="readURL(this,{{$ix}})" value="{{url($productImg->src ?? '')}}" name="ImgProducts[]" id="imgInp_{{$ix}}" style="display:none" type="file"><img  src="{{url($productImg->src ?? '')}}" style="display:;" id="Img_{{$ix}}"></td>
-									<td><select required name="groupImg[]" id=""><option value="2" selected>Ảnh sản phẩm</option><option value="3">Ảnh slider</option></select></td>
-									<td><button id="delsale">x</button></td>
+								
+								<td style="position:relative"><img  src="{{url($productImg->src ?? '')}}" style="display:;" id="Img_{{$ix}}"></td>
+									<td><select id=""><option value="2" selected>Ảnh sản phẩm</option></select></td>
+									<td><button id="delsale" data-id="{{$productImg->id}}">x</button></td>
 								</tr>
 								@php
 									$ix++;
 								@endphp
 								@endforeach
 								@foreach ($product->SlideImages() as $productImg)
-								<td style="position:relative"><label style="border:1px dashed #333;padding:0px 15px;cursor:pointer;position:absolute;top:calc((100% - 42px)/2);left:calc((100% - 91px)/2);color:white;border:1px dashed white" for="imgInp_{{$ix}}" id="lbl_{{$ix}}">Chọn Ảnh</label><input required onchange="readURL(this,{{$ix}})" value="{{url($productImg->src ?? '')}}" name="ImgProducts[]" id="imgInp_{{$ix}}" style="display:none" type="file"><img  src="{{url($productImg->src ?? '')}}" style="display:;" id="Img_{{$ix}}"></td>
-									<td><select required name="groupImg[]" id=""><option value="2">Ảnh sản phẩm</option><option value="3" selected>Ảnh slider</option></select></td>
-									<td><button id="delsale">x</button></td>
+								<td style="position:relative"><img  src="{{url($productImg->src ?? '')}}" style="display:;" id="Img_{{$ix}}"></td>
+									<td><select  id=""><option value="3" selected>Ảnh slider</option></select></td>
+									<td><button id="delsale" data-id="{{$productImg->id}}">x</button></td>
 								</tr>
 								@php
 									$ix++;

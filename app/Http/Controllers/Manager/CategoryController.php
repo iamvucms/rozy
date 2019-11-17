@@ -48,7 +48,7 @@ class CategoryController extends Controller
         return redirect(route('superCategory'));
     }
     public function postDeleteCategory(Request $req){
-        foreach($req->ids as $id){
+        foreach($req->ids ?? [] as $id){
             $cat = Category::find($id);
             if($cat){
                 $cat->Products()->delete();

@@ -105,8 +105,8 @@ class Order extends Model
         if($role_id==1) $totalYesterday = $this->where('status','4')->whereRaw("DAY(updated_at) = DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
         elseif($role_id==3) $totalYesterday = $this->where('status','4')->where('idsell',$user->Seller()->id)->whereRaw("DAY(updated_at) = DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) AND MONTH(NOW())= MONTH(updated_at) AND YEAR(NOW())= YEAR(updated_at)")->sum('total');
         return [ 'total'=>ceil($total/1000000),
-        'percent' => $totalYesterday!=0 ?ceil($total/$totalYesterday*100) : 100
-    ];
+            'percent' => $totalYesterday!=0 ?ceil($total/$totalYesterday*100) : 100
+        ];
     }
     public function getNewOrderCount(){
         $user = Auth::user();

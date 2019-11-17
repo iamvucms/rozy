@@ -8,12 +8,43 @@ use Illuminate\Support\Facades\DB;
 use App\City;
 use App\District;
 use App\Coupon;
+use App\Review;
 class Seller extends Model
 {
     protected $table = 'sellers';
     
     public function Products(){
         return $this->hasMany('App\Product','idsell','id');
+    }
+    public function Reviews(){
+        return $this->Products()->select('reviews.*')->join('reviews','products.id','=','reviews.id');
+    }
+    public function getCountReviewToday(){
+        $total = $this->Reviews()->whereRaw('DAY(reviews.create_at)=DAY(now()) AND MONTH(reviews.create_at)=MONTH(now()) AND YEAR(reviews.create_at)=YEAR(now())')->count();
+        $pre = $this->Reviews()->whereRaw('DAY(reviews.create_at)=DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) AND MONTH(reviews.create_at)=MONTH(now()) AND YEAR(reviews.create_at)=YEAR(now())')->count();
+        return [ 'total'=>$total,
+            'percent' => $pre!=0 ? ceil($total/$pre*100) : 100
+        ];
+    }
+    public function getAvgPointReview(){
+        return $total = $this->Reviews()->avg('point') ?? 0;
+    }
+    public function getCountGoodReview(){
+        return $this->Reviews()->whereRaw('star > 3')->count();
+    }
+    public function getCountBadReview(){
+        return $this->Reviews()->whereRaw('star < 3')->count();
+    }
+    public function getAvgReview(){
+        return $total = $this->Reviews()->avg('star') ?? 0;
+    }
+    public function getReviews(){
+        $collection = collect();
+        $data = $this->Products()->select('reviews.id')->join('reviews','products.id','=','reviews.id')->get();
+        foreach($data as $rv){
+            $collection->push(Review::find($rv->id));
+        }
+        return $collection;
     }
     public function getProducts($pagination=20){
         return $this->Products()->orderBy('id','DESC')->paginate($pagination);

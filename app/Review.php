@@ -11,6 +11,27 @@ class Review extends Model
     public function Customer(){
         return $this->hasOne('App\Customer','id','idcus');
     }
+    public function getCountReviewToday(){
+        $total = $this->whereRaw('DAY(reviews.create_at)=DAY(now()) AND MONTH(reviews.create_at)=MONTH(now()) AND YEAR(reviews.create_at)=YEAR(now())')->count();
+        $pre = $this->whereRaw('DAY(reviews.create_at)=DAY(ADDDATE(NOW(),INTERVAL -1 DAY)) AND MONTH(reviews.create_at)=MONTH(now()) AND YEAR(reviews.create_at)=YEAR(now())')->count();
+        return [ 'total'=>$total,
+            'percent' => $pre!=0 ? ceil($total/$pre*100) : 100
+        ];
+    }
+    public function getAvgPointReview(){
+        return $total = $this->avg('point') ?? 0;
+    }
+    public function getCountGoodReview(){
+        return $this->whereRaw('star > 3')->count();
+    }
+    public function getCountBadReview(){
+        return $this->whereRaw('star < 3')->count();
+    }
+    public function getAvgReview(){
+        return $total = $this->avg('star') ?? 0;
+    }
+
+
     public function whoWrite(){
         return $this->Customer()->select('name')->first()->name;
     }
@@ -22,7 +43,7 @@ class Review extends Model
     }
     public function Product()
     {
-        return $this->belongsTo('App\Product', 'id', 'idpro');
+        return $this->belongsTo('App\Product', 'idpro', 'id');
     }
     public function getNewReviewCount(){
         $count =$this->whereRaw("DAY(NOW()) - DAY(create_at) <=5 AND MONTH(NOW())= MONTH(create_at) AND YEAR(NOW())= YEAR(create_at)")->count();

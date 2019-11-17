@@ -12,7 +12,7 @@
 */
 
 Route::get('/','HomeController@Index')->name('home');
-Route::get('/products/{slug}','ProductController@Product');
+Route::get('/products/{slug}','ProductController@Product')->name('myProduct');
 Route::get('/categories/{slug}','CategoryController@Category');
 Route::get('/shop/{slug}','SellerController@Seller');
 

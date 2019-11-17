@@ -21,6 +21,20 @@ class ProductController extends Controller
         }
         return view('Admin.product',compact('products'));
     }
+    public function postDeleteProduct(Request $req){
+        foreach($req->ids ?? [] as $id){
+            $product = Product::find($id);
+            if($product){
+                $product->Image()->delete();
+                $product->Property()->delete();
+                $product->ImgAvt()->delete();
+                $product->Slide()->delete();
+                $product->Discount()->delete();
+                $product->delete();
+            }
+        }
+        return response()->json(['success'=>true], 200, []);
+    }
     public function getProduct($id){
         $product = Product::find($id);
         if($product){
@@ -51,6 +65,7 @@ class ProductController extends Controller
         if(count($req->groupImg ?? [])!=count($req->groupImg ?? []) 
         || count($req->propertyName)!=count($req->propertyValue) ) return redirect()->back()->withInput();
         $user = Auth::user();
+        if(($user->Seller()->id ?? 0) !=$product->Seller()->id && $user->role_id !=1) return abort(403);
         $product->name = $req->name;
         $cat = Category::find(intval($req->idcat));
         if($cat) $product->idcat = $cat->id;
@@ -74,7 +89,7 @@ class ProductController extends Controller
         $product->save();
         //Add properties
         $keyName = $req->propertyName ?? [];
-        $jsonData = json_decode(Property::find($product->id)->json,true);
+        $jsonData = json_decode(Property::find($product->id)->json ?? "{}",true);
         if($jsonData===null) $jsonData = [];
         $jsonData['sku'] = $req->sku;
         $jsonData['model'] = $req->model;
@@ -93,6 +108,7 @@ class ProductController extends Controller
             }
         }
         $property = Property::find($product->id);
+        if(!$property) $property = new Property;
         $property->json = json_encode($jsonData,JSON_UNESCAPED_UNICODE);
         $property->id = $product->id;
         $property->save();

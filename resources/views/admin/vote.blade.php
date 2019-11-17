@@ -63,93 +63,69 @@
                     <div class="totalitem">
                         <div class="centeritemt">
                             <p class="numt">
-                                550
+                                {{$reviews->count()}}
                             </p>
                             <p class="dest">
                                 Tổng Đánh giá
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">6%</span> <i class="fas fa-angle-up"></i>
-                            </span>
-                        </span>
                     </div>
                     <div class="totalitem">
                         <div class="centeritemt">
                             <p class="numt">
-                                15
+                                {{$countToDay['total']}}
                             </p>
                             <p class="dest">
                                 Đánh giá hôm nay
                             </p>
                         </div>
                         <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">20%</span> <i class="fas fa-angle-up"></i>
+                            <span class="{{$countToDay['percent'] >=100 ? 'up' : 'down'}}">
+                                <span class="percentt">{{$countToDay['percent']}}%</span> <i class="fas fa-angle-{{$countToDay['percent'] >=100 ? 'up' : 'down'}}"></i>
                             </span>
                         </span>
                     </div>
                     <div class="totalitem">
                         <div class="centeritemt">
                             <p class="numt">
-                                45
+                                {{$countGood}}
                             </p>
                             <p class="dest">
                                 Đánh giá tốt
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="down">
-                                <span class="percentt">2%</span> <i class="fas fa-angle-down"></i>
-                            </span>
-                        </span>
                     </div>
                     <div class="totalitem">
                         <div class="centeritemt">
                             <p class="numt">
-                                12
+                                {{$coundBad}}
                             </p>
                             <p class="dest">
                                 đánh giá tệ
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">10%</span> <i class="fas fa-angle-up"></i>
-                            </span>
-                        </span>
                     </div>
 
                     <div class="totalitem">
                         <div class="centeritemt">
                             <p class="numt">
-                                4.5
+                                {{round($avg,1)}}
+                            </p>
+                            <p class="dest">
+                                Số sao trung bình
+                            </p>
+                        </div>
+                        
+                    </div>
+                    <div class="totalitem">
+                        <div class="centeritemt">
+                            <p class="numt">
+                                {{round($avgPoint,1)}}
                             </p>
                             <p class="dest">
                                 Điểm trung bình
                             </p>
                         </div>
-                        <span class="toprightt">
-                            <span class="down">
-                                <span class="percentt">10%</span> <i class="fas fa-angle-down"></i>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="totalitem">
-                        <div class="centeritemt">
-                            <p class="numt">
-                                5
-                            </p>
-                            <p class="dest">
-                                Đánh giá bị ẩn
-                            </p>
-                        </div>
-                        <span class="toprightt">
-                            <span class="up">
-                                <span class="percentt">3%</span> <i class="fas fa-angle-up"></i>
-                            </span>
-                        </span>
                     </div>
                 </div>
                 <div class="catlist">
@@ -160,166 +136,27 @@
                         <table border="1">
                             <tr>
                                 <th>Tên khách hàng</th>
+                                <th>Sản phẩm</th>
                                 <th>Sao</th>
+                                <th>Điểm</th>
                                 <th>Nội dung</th>
                                 <th>Thời Gian</th>
                                 <th>Xem</th>
                             </tr>
+                            @foreach ($reviews as $review)
                             <tr>
-                                <td><a href="#customer">Cecilia Hicks</a></td>
-                                <td>2 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>broken electric west above mine fly split police entire done exciting easier another
-                                    eight massage greatest discussion accept spend bowl has fresh because log</td>
-                                <td>1/18/2045</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
+                                <td><a href="{{url()->route('superEditCustomer',['id'=>$review->idcus])}}">{{$review->whoWrite()}}</a></td>
+                                <td><a href="{{url()->route('superGetProduct',['id'=>$review->Product()->first()->id])}}">{{$review->Product()->first()->name}}</a></td>
+                                <td>{{$review->star}} <i class="far fa-star" style="color:orange"></i></td>
+                                <td>{{$review->point}}</td>
+                                <td>{{$review->message}}</td>
+                                <td>{{$review->create_at}}</td>
+                                <td><a href="{{url()->route('myProduct',['slug'=>$review->Product()->first()->slug])}}" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
                             </tr>
-                            <tr>
-                                <td><a href="#customer">Mitchell Garza</a></td>
-                                <td>4 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>shadow simple doll molecular three elephant got studied she understanding region
-                                    lose judge barn pay becoming headed exciting south gold nice noted rise room</td>
-                                <td>9/21/2031</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Larry Frazier</a></td>
-                                <td>2 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>short purpose strip hidden automobile smooth value apart evening throat largest
-                                    subject will only mood shine color mark island smaller slowly construction fence
-                                    mountain</td>
-                                <td>9/16/2079</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Flora Cortez</a></td>
-                                <td>4 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>thing string observe nervous stream porch sight mouse term maybe first fight upper
-                                    pressure lake pupil method which tail move poor curious pitch matter</td>
-                                <td>5/28/2042</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Emma Wilkins</a></td>
-                                <td>5 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>goes tobacco hour outside hollow ahead plus ability orbit matter nails anyone
-                                    exciting before herself toward traffic snake length fat noun earlier shallow cloud
-                                </td>
-                                <td>9/10/2095</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Danny Bush</a></td>
-                                <td>3 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>supply bar letter third shot public firm attention another sweet dozen unit break
-                                    sang including damage grown drew horn climate whispered hot sure girl</td>
-                                <td>8/7/2026</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Helena Reese</a></td>
-                                <td>2 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>listen badly tower sitting series express late tried ocean anybody quickly disease
-                                    spend mirror brass pony itself mental support breakfast station stems smooth rate
-                                </td>
-                                <td>2/7/2093</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">George Moreno</a></td>
-                                <td>2 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>attack determine speech writing swept natural year men taste former thousand rich
-                                    rock gun top coach weather satisfied cow brown primitive drive hungry newspaper</td>
-                                <td>7/23/2094</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Lois Weaver</a></td>
-                                <td>3 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>shine blue shells glass start machinery where news everywhere beautiful conversation
-                                    tower replied alike having floating green attack fairly powerful ants certainly
-                                    plenty simply</td>
-                                <td>10/16/2062</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Jeffrey Harper</a></td>
-                                <td>3 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>couple caught found adult importance review vessels substance perfect fed mental
-                                    happy being planned society hair copy north sent worry able instead invented scared
-                                </td>
-                                <td>9/2/2024</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Floyd Stevenson</a></td>
-                                <td>4 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>become floating belong hurried dog rise column studied experiment helpful cool movie
-                                    sheet putting have solution your climb camera single property flow natural involved
-                                </td>
-                                <td>12/11/2031</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Jimmy Figueroa</a></td>
-                                <td>5 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>ahead include blood determine church composed usually taken frog tobacco wool daily
-                                    badly sides industrial physical hunt property threw car exact whale night stove</td>
-                                <td>10/21/2119</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">William Dawson</a></td>
-                                <td>3 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>sport substance piece red age plain needle protection planet frog pole felt alone
-                                    section hour train therefore ants religious because company create soldier thus</td>
-                                <td>5/7/2083</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Jose Fuller</a></td>
-                                <td>1 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>tape potatoes brother continent rest possibly tax driver prevent language seems
-                                    strike onto record shorter lovely major stood number stove clothes shadow reason
-                                    sold</td>
-                                <td>2/13/2093</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Lillie Baker</a></td>
-                                <td>2 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>return native particles mental strength step process many acres article husband
-                                    toward brass vowel treated consist cook another border happy steel begun fairly wife
-                                </td>
-                                <td>7/22/2097</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Mathilda Chavez</a></td>
-                                <td>3 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>doll easy bell separate action dance wool adventure power planning blood claws
-                                    street capital blow swimming oldest drink doing opposite crack last operation lion
-                                </td>
-                                <td>7/12/2073</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#customer">Leo Mathis</a></td>
-                                <td>3 <i class="far fa-star" style="color:orange"></i></td>
-                                <td>thread detail though husband sink whistle in within magnet mine shake tried writing
-                                    development ruler individual gradually trail numeral average halfway brain fear
-                                    shirt</td>
-                                <td>12/8/2097</td>
-                                <td><a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a></td>
-                            </tr>
+                            @endforeach
                         </table>
-                        <div class="pagination">
-                            <ul>
-                                <li class="active"><a href="javascript:void(0)">1</a></li>
-                                <li><a href="javascript:void(0)">2</a></li>
-                                <li><a href="javascript:void(0)">3</a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-angle-right"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-step-forward"></i></a></li>
-                            </ul>
+                        <div class="paginationx">
+                            {{$reviews->links()}}
                         </div>
                     </div>
 
@@ -327,7 +164,7 @@
             </div>
         </div>
     </div>
-    <script src="../../../assetsAdmin/js/jquery.min.js"></script>
+    <script src="../../../../assets/js/jquery.min.js"></script>
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>

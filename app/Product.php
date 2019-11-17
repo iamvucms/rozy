@@ -84,15 +84,24 @@ class Product extends Model
     public function isTrending(){
         
     }
+    public function Slide(){
+        return $this->hasMany('App\Image','id_slide_product','id');
+    }
+    public function Image(){
+        return $this->hasMany('App\Image','id_product','id');
+    }
+    public function ImgAvt(){
+        return $this->hasOne('App\Image','id_avt_product','id');
+    }
     //Images relationships
     public function SlideImages(){
-        return $this->hasMany('App\Image','id_slide_product','id')->select('src','id')->whereNull('id_avt_product')->get();
+        return $this->Slide()->select('src','id')->whereNull('id_avt_product')->get();
     }
     public function Images(){
-        return $this->hasMany('App\Image','id_product','id')->select('src','id')->whereNull('id_avt_product')->get();
+        return $this->Image()->select('src','id')->whereNull('id_avt_product')->get();
     }
     public function Avatar(){
-        return $this->hasOne('App\Image','id_avt_product','id')->select('src','id')->first() ?? null;
+        return $this->ImgAvt()->select('src','id')->first() ?? null;
     }
     //Seller Relationships
     public function Seller(){

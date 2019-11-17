@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../assetsAdmin/css/product.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
+    <script src="../../assets/js/axios.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <title>Admin::Products</title>
@@ -61,7 +62,7 @@
                     <div class="groupbtn">
                         <a href="{{url()->route('superAddProduct')}}" class="add"><button id="add">+</button></a>
                         <a href="" class="f5"><button id="f5"><i class="fas fa-sync"></i></button></a>
-                        <a href="javascript:void(0)" class="remove"><button id="remove"><i
+                        <a href="javascript:void(0)" onclick="deleteSelected()" class="remove"><button id="remove"><i
                                     class="far fa-trash-alt"></i></button></a>
                     </div>
                 </div>
@@ -128,6 +129,17 @@
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>
+        function deleteSelected(){
+            if(selectedCat.length ==0) return;
+            if(confirm('Bạn có chắc muốn xoá sản phẩm này') ){
+                axios.post('{{url()->route('superDeleteEditProduct')}}',{
+                    ids:selectedCat
+                }).then(d=>{
+                    data = d.data
+                    window.location.reload()
+                })  
+            }   
+        }
     </script>
 </body>
 

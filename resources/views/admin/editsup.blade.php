@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <title>Admin::Suppliers::Add</title>
+    <title>Admin::Suppliers::Update</title>
+    <script src="../../../assetsAdmin/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -63,67 +64,48 @@
                         <i class="fas fa-pen-nib"> </i> Cập Nhật Nhà Cung Cấp
                     </p>
                     <div class="tabcat">
+                        <form action="" method="POST">
                         <table>
-
                             <tr>
                                 <td>Tên Nhà Cung Cấp</td>
-                                <td><input type="text" value="Difficulty" placeholder="Tên Nhà Cung Cấp"></td>
+                                <td><input value="{{$seller->name}}" type="text" value="Difficulty" placeholder="Tên Nhà Cung Cấp"></td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả ngắn</td>
+                                <td><input value="{{$seller->short_description}}" placeholder="Mô tả ngắn" type="text" name="short_description" required></td>
                             </tr>
                             <tr>
                                 <td>Mô tả Nhà Cung Cấp</td>
-                                <td><textarea name="" id="" style="width:100%"
-                                        placeholder="Mô tả Nhà Cung Cấp">audience distance subject setting develop pure establish did sight ten hung discover sail frequently rapidly star fewer mad harbor accident ocean alike spider fed</textarea>
+                                <td><textarea name="description" id="destext" style="width:100%"
+                                        placeholder="Mô tả Nhà Cung Cấp">{{$seller->description}}</textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Ảnh đại diện</td>
                                 <td>
-                                    <img src="../../assetsAdmin/img/avt.jpg" alt="" width="100" height="100">
+                                    <img src="{{url($seller->getAvatar() ?? '')}}" alt="" width="100" height="100">
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Danh mục Sản Phẩm</td>
-                                <td>
-                                    <select name="aa" id="">
-                                        <option value="--">--</option>
-                                        <option value="like" selected>block</option>
-                                        <option value="president">concerned</option>
-                                        <option value="example">was</option>
-                                        <option value="why">laid</option>
-                                        <option value="ability">call</option>
-                                        <option value="noise">certain</option>
-                                        <option value="front">electricity</option>
-                                        <option value="fighting">supply</option>
-                                        <option value="potatoes">greatly</option>
-                                        <option value="running">loss</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Trạng thái</td>
-                                <td>
-                                    <select name="aa" id="">
-                                        <option value="potatoes">Hiện</option>
-                                        <option value="running">Ẩn</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><button class="cancelcat">Hủy</button></td>
-                                <td><button class="addcat">Cập Nhật</button></td>
-                            </tr>
+                            
 
 
-                        </table>
+
+                            </table>
+                            <tr>
+                            <td><button class="cancelcat">Hủy</button></td>
+                            <td><button class="addcat">Cập Nhật</button></td>
+                            </tr>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../../../assetsAdmin/js/jquery.min.js"></script>
+    <script src="../../../../assets/js/jquery.min.js"></script>
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>
+        CKEDITOR.replace('destext');
     </script>
 </body>
 

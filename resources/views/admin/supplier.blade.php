@@ -73,190 +73,32 @@
                             <tr>
                                 <th><input type="checkbox" id="checkall"></th>
                                 <th>Ảnh</th>
-                                <th>Nhà Cung Cấp</th>
-                                <th>Danh Mục</th>
-                                <th>Tổng Số Sản Phẩm</th>
+                                <th>Tên Gian Hàng</th>
+                                <th>Email</th>
+                                <th>Sản Phẩm</th>
+                                <th>Đã Bán</th>
+                                <th>Đánh Giá</th>
+                                <th>Tham Gia Từ</th>
                                 <th>Thao tác</th>
                             </tr>
+                            @foreach ($sellers as $seller)
                             <tr>
                                 <td><input type="checkbox" id="check"></td>
                                 <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
+                                    <p><img src="{{url($seller->getAvatar() ?? '')}}" alt=""></p>
                                 </td>
-                                <td><a href="#supplier">interior</a></td>
-                                <td>dear method present</td>
-                                <td>7</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
+                                <td><a href="#supplier">{{$seller->name}}</a></td>
+                                <td>{{$seller->User()->email}}</td>
+                                <td>{{$seller->Products()->count()}}</td>
+                                <td>{{$seller->getTotalSelled()}}</td>
+                                <td>{{$seller->Reviews()->count()}}</td>
+                            <td>{{$seller->JoinTime()}} Ngày trước</td>
+                                <td><a href="{{url()->route('superEditSeller',['id'=>$seller->id])}}"><button><i class="far fa-edit"></i></button></a></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">boat</a></td>
-                                <td>rapidly blood arrow</td>
-                                <td>4</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">shake</a></td>
-                                <td>instrument upper strip</td>
-                                <td>0</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">story</a></td>
-                                <td>underline quickly across</td>
-                                <td>5</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">enemy</a></td>
-                                <td>discussion however remain</td>
-                                <td>2</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">date</a></td>
-                                <td>angry inch afraid</td>
-                                <td>10</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">hide</a></td>
-                                <td>fewer week branch</td>
-                                <td>1</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">silence</a></td>
-                                <td>heard fox record</td>
-                                <td>3</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">garage</a></td>
-                                <td>rocket solar cool</td>
-                                <td>7</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">root</a></td>
-                                <td>minerals forty pet</td>
-                                <td>9</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">duty</a></td>
-                                <td>pick finest leg</td>
-                                <td>7</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">strength</a></td>
-                                <td>cool seeing person</td>
-                                <td>0</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">closer</a></td>
-                                <td>was syllable slightly</td>
-                                <td>3</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">form</a></td>
-                                <td>nearest many characteristic</td>
-                                <td>7</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">attempt</a></td>
-                                <td>hat headed matter</td>
-                                <td>1</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">person</a></td>
-                                <td>new two general</td>
-                                <td>6</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="../../../assetsAdmin/img/product1.png" alt=""></p>
-                                </td>
-                                <td><a href="#supplier">divide</a></td>
-                                <td>my man accurate</td>
-                                <td>8</td>
-                                <td><a href="editsup.html"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
+                            @endforeach
                         </table>
-                        <div class="pagination">
-                            <ul>
-                                <li class="active"><a href="javascript:void(0)">1</a></li>
-                                <li><a href="javascript:void(0)">2</a></li>
-                                <li><a href="javascript:void(0)">3</a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-angle-right"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fas fa-step-forward"></i></a></li>
-                            </ul>
+                        <div class="paginationx">
+                            {{$sellers->links()}}
                         </div>
                     </div>
 
@@ -264,7 +106,7 @@
             </div>
         </div>
     </div>
-    <script src="../../../assetsAdmin/js/jquery.min.js"></script>
+    <script src="../../../../assets/js/jquery.min.js"></script>
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>

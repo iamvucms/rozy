@@ -39,7 +39,7 @@
                                     <li class="lv2"><a href="{{url()->route('superCategory')}}">Danh mục</a></li>
                                     <li class="lv2"><a href="{{url()->route('superProduct')}}">Sản phẩm</a></li>
                                     <li class="lv2"><a href="{{url()->route('superReview')}}">Đánh giá</a></li>
-                                    <li class="lv2"><a href="{{url()->route('superSeller')}}">Nhà cung cấp</a></li>
+                                   @if($user->role_id==1)  <li class="lv2"><a href="{{url()->route('superSeller')}}">Nhà cung cấp</a></li> @endif
                                     <li class="lv2"><a href="{{url()->route('superFile')}}">Files</a></li>
                                 </ul>
                             </li>

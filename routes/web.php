@@ -88,6 +88,11 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::get('/reviews','Manager\ReviewController@show')->name('superReview');
 
     Route::get('/sellers','Manager\SellerController@show')->name('superSeller');
+    Route::get('/sellers.{id}','Manager\SellerController@editSeller')->name('superEditSeller');
+    Route::get('/sellers/new','Manager\SellerController@addSeller')->name('superAddSeller');
+    Route::post('/sellers/new','Manager\SellerController@postAddSeller')->name('superPostAddSeller');
+    Route::post('/sellers.{slug}','Manager\SellerController@postEditSeller')->name('superPostEditSeller');
+    Route::post('/sellers/deleteMany','Manager\SellerController@postDeleteSeller')->name('superDeleteEditSeller');
 
     Route::get('/shippers','Manager\ShipperController@show')->name('superShipper');
     Route::get('/shippers.{id}','Manager\ShipperController@Shipper')->name('superEditShipper');

@@ -82,7 +82,6 @@
                                     <input accept="image/gif, image/jpeg, image/png"  onchange="readURL(this)" style="display:none" name="catAvt" id="img" type="file" value="">
                                 </td>
                             </tr>
-                            
                             <script>
                                 function readURL(input) {
                                     if (input.files && input.files[0]) {

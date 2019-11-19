@@ -89,8 +89,7 @@ class ProductController extends Controller
         $product->save();
         //Add properties
         $keyName = $req->propertyName ?? [];
-        $jsonData = json_decode(Property::find($product->id)->json ?? "{}",true);
-        if($jsonData===null) $jsonData = [];
+        $jsonData = [];
         $jsonData['sku'] = $req->sku;
         $jsonData['model'] = $req->model;
         $jsonData['thuonghieu'] = $req->brand;
@@ -186,6 +185,7 @@ class ProductController extends Controller
             "metaDescription" => "required",
             "metaKeyword" => "required",
             "description" => "required",
+            "idsell" => "numeric",
             "model" => "required",
             "brand" => "required|min:2",
             "sku" => "required|min:5",

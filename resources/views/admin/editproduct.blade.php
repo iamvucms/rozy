@@ -113,6 +113,18 @@
 										</select>
 									</td>
 								</tr>
+								@if ($user->role_id==1)
+								<tr>
+									<td>Nhà cung cấp</td>
+									<td>
+										<select @if (isset($errors->toArray()['status']))style="border:1px solid red"@endif name="idsell" id="">
+											@foreach (App\Seller::get() as $seller)
+											<option @if($seller->id==$product->idsell)selected=selected @endif value="{{$seller->id}}">{{$seller->name}}</option>
+											@endforeach
+										</select>
+									</td>
+								</tr>
+								@endif
 							</table>
 							<table id="tab2">
 								<tr>

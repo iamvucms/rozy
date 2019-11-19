@@ -12,7 +12,6 @@ use App\Review;
 class Seller extends Model
 {
     protected $table = 'sellers';
-    
     public function Products(){
         return $this->hasMany('App\Product','idsell','id');
     }

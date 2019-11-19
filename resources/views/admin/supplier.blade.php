@@ -59,7 +59,7 @@
                         </ul>
                     </div>
                     <div class="groupbtn">
-                        <a href="addsup.html" class="add"><button id="add">+</button></a>
+                        <a href="{{url()->route('superAddSeller')}}" class="add"><button id="add">+</button></a>
                         <a href="" class="f5"><button id="f5"><i class="fas fa-sync"></i></button></a>
                         <a href="javascript:void(0)" onclick="deleteSelected()" class="remove"><button id="remove"><i
                                     class="far fa-trash-alt"></i></button></a>

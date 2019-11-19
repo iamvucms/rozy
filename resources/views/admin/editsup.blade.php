@@ -191,7 +191,7 @@
                             </tr>
                             </table>
                             <tr>
-                            <td><button class="cancelcat">Hủy</button></td>
+                                <td><button class="cancelcat" onclick="window.location.href = '{{url()->route('superSeller')}}';return false">Hủy</button></td>
                             <td><button class="addcat">Cập Nhật</button></td>
                             </tr>
                         </form>

@@ -52,11 +52,17 @@ class Seller extends Model
     public function getProducts($pagination=20){
         return $this->Products()->orderBy('id','DESC')->paginate($pagination);
     }
+    public function Avatar(){
+        return $this->hasOne('App\Image','id_avt_seller','id');
+    }
+    public function Cover(){
+        return $this->hasOne('App\Image','id_cover_seller','id');
+    }
     public function getAvatar(){
-        return $this->hasOne('App\Image','id_avt_seller','id')->first()->src ?? '';
+        return $this->Avatar()->first()->src ?? '';
     }
     public function getCover(){
-        return $this->hasOne('App\Image','id_cover_seller','id')->first()->src ?? '';
+        return $this->Cover()->first()->src ?? '';
     }
     public function getTotalProducts(){
         return $this->Products()->count() ?? 0;
@@ -123,7 +129,6 @@ class Seller extends Model
     public function getAddressText(){
         $cityName = $this->getCity();
         $districtName = $this->getDistrict();
-
         return $districtName.', '.$cityName;
     }
     public function JoinTime(){

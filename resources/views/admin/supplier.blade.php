@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <title>Admin::Suppliers</title>
+    <script src="../../../../assets/js/axios.js"></script>
 </head>
 
 <body>
@@ -53,14 +54,14 @@
                         <ul>
                             <li><span class="sub">Quản lí</span></li>
                             <li><span class="aright"><i class="fas fa-angle-right"></i></span></li>
-                            <li><span class="main"><a href="">Nhà Cung Cấp</a></span></li>
+                        <li><span class="main"><a href="{{url()->route('superSeller')}}">Nhà Cung Cấp</a></span></li>
 
                         </ul>
                     </div>
                     <div class="groupbtn">
                         <a href="addsup.html" class="add"><button id="add">+</button></a>
                         <a href="" class="f5"><button id="f5"><i class="fas fa-sync"></i></button></a>
-                        <a href="javascript:void(0)" class="remove"><button id="remove"><i
+                        <a href="javascript:void(0)" onclick="deleteSelected()" class="remove"><button id="remove"><i
                                     class="far fa-trash-alt"></i></button></a>
                     </div>
                 </div>
@@ -83,12 +84,12 @@
                             </tr>
                             @foreach ($sellers as $seller)
                             <tr>
-                                <td><input type="checkbox" id="check"></td>
+                                <td><input data-idcat="{{$seller->id}}" type="checkbox" id="check"></td>
                                 <td>
                                     <p><img src="{{url($seller->getAvatar() ?? '')}}" alt=""></p>
                                 </td>
                                 <td><a href="#supplier">{{$seller->name}}</a></td>
-                                <td>{{$seller->User()->email}}</td>
+                                <td>{{$seller->email}}</td>
                                 <td>{{$seller->Products()->count()}}</td>
                                 <td>{{$seller->getTotalSelled()}}</td>
                                 <td>{{$seller->Reviews()->count()}}</td>
@@ -110,6 +111,17 @@
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>
+        function deleteSelected(){
+            if(selectedCat.length ==0) return;
+            if(confirm('Bạn có chắc muốn xoá sản phẩm này') ){
+                axios.post('{{url()->route('superDeleteEditSeller')}}',{
+                    ids:selectedCat
+                }).then(d=>{
+                    data = d.data
+                    window.location.reload()
+                })  
+            }   
+        }
     </script>
 </body>
 

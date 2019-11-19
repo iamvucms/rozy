@@ -666,7 +666,7 @@
                         </div>
                         <div class="inforText">
                         <p class="shopName">{{$seller->name}}</p>
-                            {!!nl2br($seller->description)!!} <br>
+                            {!!$seller->description!!} <br>
                         </div>
                     </div>
                 </div>

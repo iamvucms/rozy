@@ -244,7 +244,7 @@
                                         <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
                                         <li id="showoption"><i class="fas fa-angle-down"></i>
                                             <ul>
-                                                <li><i class="far fa-trash-alt"></i> Xóa</li>
+                                                <li onclick="postDelete({{$customer->id}})"><i class="far fa-trash-alt"></i> Xóa</li>
                                                 <li><a href="{{url()->route('superEditCustomer',['id'=>$customer->id])}}" style="color:#555"><i
                                                             class="far fa-edit"></i> Cập Nhật</a></li>
                                             </ul>
@@ -273,6 +273,16 @@
             if(confirm('Bạn có chắc muốn xoá danh mục này') ){
                 axios.post('{{url()->route('superDeleteEditCustomer')}}',{
                     ids:selectedCat
+                }).then(d=>{
+                    data = d.data
+                    window.location.reload()
+                })  
+            }   
+        }
+        function postDelete(id){
+            if(confirm('Bạn có chắc muốn xoá danh mục này') ){
+                axios.post('{{url()->route('superDeleteEditCustomer')}}',{
+                    ids:[id]
                 }).then(d=>{
                     data = d.data
                     window.location.reload()

@@ -18,7 +18,13 @@ class OrderController extends Controller
     public function show(){
         dd('ok');
     }
-    public function Order(Request $req,$slug){
-        dd($slug);
+    public function editOrder($id){
+        dd($id);
+    }
+    public function postEditOrder(Request $req){
+
+    }
+    public function postDeleteOrder(Request $req){
+        dd($req->toArray());
     }
 }

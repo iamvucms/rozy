@@ -330,7 +330,7 @@
                                 @foreach ($lastOrders as $order)
                                     
                                 <tr>
-                                    <td><a href="{{url()->route('superEditOrder',['slug'=>$order->slug])}}" class="tabname">{{$order->slug}}</a></td>
+                                    <td><a href="{{url()->route('superEditOrder',['id'=>$order->id])}}" class="tabname">{{$order->slug}}</a></td>
                                     <td>{{number_format($order->total)}} đ</td>
                                     <td><a href="{{url()->route('superEditCustomer',['id'=>$order->Customer()->id])}}" class="tabcus">{{$order->Customer()->name}}</a></td>
                                     <td><a href="{{url()->route('superEditShipper',['id'=>$order->getShipper()->id])}}" class="tabcus">{{$order->getShipper()->name}}</a></td>
@@ -364,7 +364,7 @@
                                         </div>
                                     </td>
                                     <td>12M</td>
-                                    <td><a href="{{url()->route('superEditOrder',['slug'=>$order->slug])}}" class="tabmanage"><button class="tabbtn"><i class="fas fa-edit"></i></button></a> </td>
+                                    <td><a href="{{url()->route('superEditOrder',['id'=>$order->id])}}" class="tabmanage"><button class="tabbtn"><i class="fas fa-edit"></i></button></a> </td>
                                 </tr>
                                 @endforeach
                                 

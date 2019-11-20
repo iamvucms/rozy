@@ -16,7 +16,7 @@ class Seller extends Model
         return $this->hasMany('App\Product','idsell','id');
     }
     public function User(){
-        return $this->hasOne('App\User','id','user_id')->first();
+        return $this->hasOne('App\User','id','user_id');
     }
     public function Reviews(){
         return $this->Products()->select('reviews.*')->join('reviews','products.id','=','reviews.id');

@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Rozy.</title>
-   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+   <link href="assets/css/all.css" rel="stylesheet">
    <link rel="stylesheet" href="assets/css/index.css">
    <link rel="stylesheet" href="assets/css/slide.min.css">
    <link rel="stylesheet" href="assets/css/slide.theme.min.css">

@@ -47,6 +47,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             $user->last_login = date('Y-m-d H:i:s');
+            $user->last_login_ip = $req->ip();
             $user->save();
             $this->resetTraffic();
             if($req->type=='PAYMENT'){
@@ -69,6 +70,8 @@ class LoginController extends Controller
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
         $user->last_login = date('Y-m-d H:i:s');
+        $user->role_id=4;
+        $user->last_login_ip = $req->ip();
         $user->save();
         $this->resetTraffic();
         Customer::insert([
@@ -94,6 +97,7 @@ class LoginController extends Controller
         if($user->count()>0){
             $preUser = $user->first();
             $preUser->last_login = date('Y-m-d H:i:s');
+            $preUser->last_login_ip = $req->ip();
             $preUser->save();
             Auth::loginUsingId($user->first()->id);
             if($user->first()->Avatar()->count()==0){
@@ -103,7 +107,9 @@ class LoginController extends Controller
             $user = new User;
             $user->email = $google->email;
             $user->google_id=$google->id;
+            $user->role_id =4;
             $user->last_login = date('Y-m-d H:i:s');
+            $user->last_login_ip = $req->ip();
             $user->save();
             $user->Avatar()->create(['id_avt_user'=>$user->id,'src'=>$google->avatar]);
             Customer::insert(['user_id'=>$user->id,'name'=>$google->name]);

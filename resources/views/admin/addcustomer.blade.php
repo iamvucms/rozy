@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../assetsAdmin/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../../assetsAdmin/css/index.css">
-    <link rel="stylesheet" href="../../assetsAdmin/css/cat.css">
-    <link rel="stylesheet" href="../../assetsAdmin/css/order.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/index.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/cat.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/order.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
+    <link rel="stylesheet" href="../../../assetsAdmin/css/chart.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="../../assetsAdmin/ckeditor/ckeditor.js"></script>
+    <script src="../../../assetsAdmin/ckeditor/ckeditor.js"></script>
     <title>Admin::Customers::Add</title>
 </head>
 
@@ -28,7 +28,7 @@
             <div class="options">
                 <div class="top">
                     <div class="me">
-                        <img src="../../assetsAdmin/img/avt.jpg" alt="">
+                        <img src="../../../assetsAdmin/img/avt.jpg" alt="">
                         <div class="meme">
                             <p class="online"><span class="pointonline"></span>
                                 Online</p>
@@ -124,7 +124,7 @@
                     <li><i class="far fa-envelope"></i> <span class="toptext">Tin
                             nhắn</span></li>
                     <li class="topprofile">
-                        <img src="../../assetsAdmin/img/avt.jpg" alt="">
+                        <img src="../../../assetsAdmin/img/avt.jpg" alt="">
                         <span class="nameprofile"><span class="toptext">VuCms</span>
                             <i class="fas fa-angle-down"></i>
 
@@ -166,144 +166,101 @@
                             <ul>
                                 <li data-id="tab1" class="active">1. Thông tin</li>
                                 <li data-id="tab2">2. Tài Khoản</li>
-                                <li data-id="tab3">3. Thanh Toán</li>
-
                             </ul>
                         </div>
-                        <table id="tab1">
-                            <tr>
-                                <td>
-                                    Số Nhà,Đường
-                                </td>
-                                <td><input type="text" placeholder="Số Nhà,Đường"></td>
-                            </tr>
-                            <tr>
-                                <td>Quận/Huyện</td>
-                                <td><input type="text" placeholder="Quận/Huyện" list="liststore" value="">
-                                    <datalist id="liststore">
-                                        <option value="ROZY">
-                                        <option value="Internet Explorer">
-                                        <option value="Firefox">
-                                        <option value="Chrome">
-                                        <option value="Opera">
-                                        <option value="Safari">
-                                    </datalist>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tỉnh/Thành</td>
-                                <td><input type="text" placeholder="Tỉnh/Thành" list="liststore" value="">
-                                </td>
-                            </tr>
+                        <form enctype="multipart/form-data" action="{{url()->route('superPostAddCustomer')}}" method="POST">
+                            @csrf
+                            <table id="tab1">
                             <tr>
                                 <td>Họ Tên Khách Hàng</td>
-                                <td><input type="text" placeholder="Họ Tên Khách Hàng"></td>
+                                <td><input required name="name" type="text" placeholder="Họ Tên Khách Hàng"></td>
+                            </tr>
+                            <tr>
+                                <td>Ảnh đại diện</td>
+                                <td>
+                                    <img id="avatarImg" src="" alt="" style="display:none;width:80px;height:80px">
+                                    <input onchange="readURL(this)" accept="image/gif, image/jpeg, image/png" required name="avatar" id="avatar" type="file" style="display:none" placeholder="Địa chỉ">
+                                    <label for="avatar" style="border:1px solid #ddd;padding:5px;cursor:pointer;height:40px;line-height:30px;margin-bottom:0px;">Chọn ảnh</label>
+                                </td>
+                            </tr>
+                            <script>
+                                function readURL(input) {
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            document.querySelector('#avatarImg').style.display = 'inline-block'
+                                            document.querySelector('#avatarImg').setAttribute('src',e.target.result)
+                                        };
+                                        reader.readAsDataURL(input.files[0]);
+                                    }
+                                }
+                            </script>
+                            <tr>
+                                <td>Địa chỉ</td>
+                                <td><input required name="address" type="text" placeholder="Địa chỉ"></td>
                             </tr>
                             <tr>
                                 <td>Nhóm Khách Hàng</td>
                                 <td>
-                                    <select name="aa" id="">
-                                        <option value="--">Khách Hàng Mới</option>
-                                        <option value="like">Khách Hàng Tiềm Năng</option>
-                                        <option value="president">Khách Hàng Thân Thiết</option>
-                                        <option value="example">Khách Hàng Lâu Năm</option>
+                                    <select required name="group_type" id="">
+                                        <option value="0">Mặc Định</option>
+                                        <option value="1">Khách Hàng Tích Cực</option>
+                                        <option value="2">Khách Hàng Tiềm Năng</option>
+                                        <option value="3">Khách Hàng Thân Thiết</option>
+                                        <option value="4">Khách Hàng Bị Cấm</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Email</td>
-                                <td><input type="text" placeholder="Email Khách Hàng"></td>
+                                <td>Giới tính</td>
+                                <td>
+                                    <select required name="gender" id="">
+                                        <option value="1">Nam</option>
+                                        <option value="2">Nữ</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Số điện thoại</td>
-                                <td><input type="text" placeholder="Số điện thoại khách hàng"></td>
+                                <td><input required name="phone" type="text" placeholder="Số điện thoại khách hàng"></td>
                             </tr>
                             <tr>
                                 <td>Nhận Tin</td>
                                 <td>
-                                    <select name="aa" id="">
-                                        <option value="--">Bật </option>
-                                        <option value="like">Tắt</option>
+                                    <select required name="notification" id="">
+                                        <option value="1">Bật </option>
+                                        <option value="0">Tắt</option>
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Trạng Thái</td>
-                                <td>
-                                    <select name="aa" id="">
-                                        <option value="--">Hoạt Động </option>
-                                        <option value="like">Cấm</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-
                         </table>
                         <table id="tab2">
                             <tr>
                                 <td>Email/Tên Người Dùng</td>
-                                <td><input type="text" placeholder="Email Khách Hàng"></td>
-                            </tr>
-                            <tr>
-                                <td>Số điện thoại</td>
-                                <td><input type="text" placeholder="Số điện thoại khách hàng"></td>
+                                <td><input name="email" required type="text" placeholder="Email Khách Hàng"></td>
                             </tr>
                             <tr>
                                 <td>Mật Khẩu</td>
-                                <td><input type="password" placeholder="Mật Khẩu"></td>
+                                <td><input name="password" type="password" placeholder="Mật Khẩu"></td>
                             </tr>
                             <tr>
                                 <td>Nhập Lại Mật Khẩu</td>
-                                <td><input type="password" placeholder="Nhập Lại Mật Khẩu"></td>
+                                <td><input name="cpassword" type="password" placeholder="Nhập Lại Mật Khẩu"></td>
                             </tr>
                         </table>
-                        <table id="tab3">
-                            <div>
-                                <tr>
-                                    <td>Người Thanh Toán</td>
-                                    <td><input type="text" placeholder="Người Thanh Toán"></td>
-                                </tr>
-                                <tr>
-                                    <td>Mã Số Thuế</td>
-                                    <td><input type="text" placeholder="Mã Số Thuế"></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Phương Thức</td>
-                                    <td> <select name="aa" id="">
-                                            <option value="--">Thanh Toán Khi Nhận Hàng</option>
-                                            <option value="like">Thanh Toán Trực Tiếp</option>
-                                            <option value="president">Thanh Toán Online</option>
-                                            <option value="example" selected>Thanh Toán Visa/MasterCard</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Mã Thẻ</td>
-                                    <td><input type="text" placeholder="Mã Thẻ"></td>
-                                </tr>
-                                <tr>
-                                    <td>Ngày Hết Hạn</td>
-                                    <td><input type="text" placeholder="MM/YY"></td>
-                                </tr>
-                                <tr>
-                                    <td>Mã Bảo Mật</td>
-                                    <td><input type="text" placeholder="CVV/CCV"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><button class="addcat" style="width:auto;padding:0px 7px;">Hoàn Tất <i
-                                                class="fas fa-arrow-right"></i></button></td>
-                                </tr>
-                        </table>
+                        <tr>
+                            <td><button class="cancelcat" onclick="window.location.href = '{{url()->route('superCustomer')}}';return false">Hủy</button></td>
+                            <td><button class="addcat">Thêm</button></td>
+                        </tr>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../../assetsAdmin/js/jquery.min.js"></script>
-    <script src="../../assetsAdmin/js/chart.min.js"></script>
-    <script src="../../assetsAdmin/js/cat.js"></script>
+    <script src="../../../../assets/js/jquery.min.js"></script>
+    <script src="../../../assetsAdmin/js/chart.min.js"></script>
+    <script src="../../../assetsAdmin/js/cat.js"></script>
 
 </body>
 

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../../assetsAdmin/css/chart.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <title>Admin::Suppliers::Update</title>
+    <title>Admin::Suppliers::Add</title>
     <script src="../../../../assetsAdmin/ckeditor/ckeditor.js"></script>
     <script src="../../../../assets/js/axios.js"></script>
 </head>
@@ -157,6 +157,15 @@
                                 })
                             }
                             </script>
+                            <tr>
+                                <td>Email Đăng Nhập</td>
+                                <td><input required placeholder="Email Đăng Nhập" type="text" name="email" required></td>
+                            </tr>
+                            <tr>
+                                <td>Mật khẩu</td>
+                                <td><input required placeholder="Mật Khẩu" type="password" name="password" required></td>
+                            </tr>
+
                             <tr>
                                 <td>Mô tả ngắn</td>
                                 <td><input required name="short_description" placeholder="Mô tả ngắn" type="text" name="short_description" required></td>

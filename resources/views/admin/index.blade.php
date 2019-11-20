@@ -202,7 +202,7 @@
                                         <td><img src="{{url($customer->getAvatar())}}" alt="" class="avtuser"></td>
                                         <td>{{$customer->name}}</td>
                                         @if ($user->role_id==1)
-                                        <td>{{$customer->User()->email}}</td>
+                                        <td>{{$customer->User->first()->email}}</td>
                                         @endif
                                         <td>{{$customer->create_at}}</td>
                                         <td><a href="{{url()->route('superEditCustomer',['id'=>$customer->id])}}"><button

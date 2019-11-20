@@ -201,6 +201,7 @@
         </div>
     </div>
     <script src="../../../../assets/js/jquery.min.js"></script>
+    <script src="../../../../assets/js/socket.io.js"></script>
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>

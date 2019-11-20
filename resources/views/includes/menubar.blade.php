@@ -40,7 +40,6 @@
                                     <li class="lv2"><a href="{{url()->route('superProduct')}}">Sản phẩm</a></li>
                                     <li class="lv2"><a href="{{url()->route('superReview')}}">Đánh giá</a></li>
                                    @if($user->role_id==1)  <li class="lv2"><a href="{{url()->route('superSeller')}}">Nhà cung cấp</a></li> @endif
-                                    <li class="lv2"><a href="{{url()->route('superFile')}}">Files</a></li>
                                 </ul>
                             </li>
 
@@ -58,8 +57,7 @@
                             <li class="lv1"><i class="fas fa-users"></i> <span class="navtext">Khách hàng</span><i
                                     class="fas fa-angle-right"></i>
                                 <ul class="lv2items">
-                                    <li class="lv2"><a href="customer.html">Danh sách</a></li>
-                                    <li class="lv2"><a href="customer_group.html">Nhóm</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superCustomer')}}">Danh sách</a></li>
                                     <li class="lv2"><a href="customer_ban.html">Danh sách bị cấm</a></li>
                                 </ul>
                             </li>

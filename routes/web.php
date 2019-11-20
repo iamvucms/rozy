@@ -100,7 +100,11 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::get('/files','Manager\CategoryController@show')->name('superFile');
 
     Route::get('/customers','Manager\CustomerController@show')->name('superCustomer');
-    Route::get('/customers.{id}','Manager\CustomerController@Customer')->name('superEditCustomer');
+    Route::get('/customers.{id}','Manager\CustomerController@editCustomer')->name('superEditCustomer');
+    Route::get('/customers/new','Manager\CustomerController@addCustomer')->name('superAddCustomer');
+    Route::post('/customers/new','Manager\CustomerController@postAddCustomer')->name('superPostAddCustomer');
+    Route::post('/customers.{id}','Manager\CustomerController@postEditCustomer')->name('superPostEditCustomer');
+    Route::post('/customers/deleteMany','Manager\CustomerController@postDeleteCustomer')->name('superDeleteEditCustomer');
 
     Route::get('/histories','Manager\HistoryController@show')->name('history');
 

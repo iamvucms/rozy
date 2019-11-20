@@ -16,6 +16,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             $user->last_login = date('Y-m-d H:i:s');
+            $user->last_login_ip = $req->ip();
             $user->save();
             return redirect(url()->route('dashboard'));
         }

@@ -12,6 +12,9 @@ class Order extends Model
     public function OrderDetails(){
         return $this->hasMany('App\OrderDetail','idorder','id');
     }
+    public function RlCustomer(){
+        return $this->hasOne('App\Customer','id','idcus');
+    }
     public function Customer(){
         return $this->hasOne('App\Customer','id','idcus')->first();
     }
@@ -88,6 +91,42 @@ class Order extends Model
             $dataCustomers->push(Customer::where('id',$cus->id)->first());
         }
         return $dataCustomers;
+    }
+    public function getTotalValue(){
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $total = $this->sum('total');
+        elseif($role_id==3)$total = $this
+        ->where('idsell',$user->Seller()->id)->sum('total');
+        return ceil($total/1000000);
+    }
+    public function getCountCompletedOrder(){
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $count = $this->where('status','4')->count();
+        elseif($role_id==3) $count = $this->where('idsell',$user->Seller()->id)->where('status','4')->count();
+        return $count??0;
+    }
+    public function getCountWaitingOrder(){
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $count = $this->where('status','1')->count();
+        elseif($role_id==3) $count = $this->where('idsell',$user->Seller()->id)->where('status','1')->count();
+        return $count??0;
+    }
+    public function getCountCancelOrder(){
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $count = $this->where('status','5')->count();
+        elseif($role_id==3) $count = $this->where('idsell',$user->Seller()->id)->where('status','5')->count();
+        return $count??0;
+    }
+    public function getCountDeliveringOrder(){
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        if($role_id==1) $count = $this->where('status','3')->count();
+        elseif($role_id==3) $count = $this->where('idsell',$user->Seller()->id)->where('status','3')->count();
+        return $count??0;
     }
     public function getTotalPrice(){
         $user = Auth::user();

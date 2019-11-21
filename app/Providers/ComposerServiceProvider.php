@@ -44,6 +44,7 @@ class ComposerServiceProvider extends ServiceProvider
                 $traffic->save();
             }
         }
+         
         View::composer('*',function($view){
             if(Auth::user()){
                 $user = Auth::user();

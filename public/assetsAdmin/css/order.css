@@ -90,7 +90,7 @@ ul.catright{
           left:0px;
           z-index: 99;
           position: absolute;
-          width:calc(100% + 20px);
+          width:calc(100% + 50px);
           background:white!important;
           border:1px solid rgba(221, 221, 221, 0.5);
 }

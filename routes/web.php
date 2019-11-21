@@ -95,13 +95,19 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::post('/sellers/deleteMany','Manager\SellerController@postDeleteSeller')->name('superDeleteEditSeller');
 
     Route::get('/shippers','Manager\ShipperController@show')->name('superShipper');
-    Route::get('/shippers.{id}','Manager\ShipperController@Shipper')->name('superEditShipper');
+    Route::get('/shippers.{id}','Manager\ShipperController@editShipper')->name('superEditShipper');
+    Route::get('/shippers/new','Manager\ShipperController@addShipper')->name('superAddShipper');
+    Route::post('/shippers/new','Manager\ShipperController@postAddShipper')->name('superPostAddShipper');
+    Route::post('/shippers.{id}','Manager\ShipperController@postEditShipper')->name('superPostEditShipper');
+    Route::post('/shippers/deleteMany','Manager\ShipperController@postDeleteShipper')->name('superDeleteEditShipper');
 
     Route::get('/files','Manager\CategoryController@show')->name('superFile');
 
     Route::get('/customers','Manager\CustomerController@show')->name('superCustomer');
     Route::get('/customers.{id}','Manager\CustomerController@editCustomer')->name('superEditCustomer');
+    Route::get('/customers-banner','Manager\CustomerController@getBannerCustomer')->name('superBannerCustomer');
     Route::get('/customers/new','Manager\CustomerController@addCustomer')->name('superAddCustomer');
+    Route::post('/customers-banner','Manager\CustomerController@postUnbanCustomer')->name('superUnbanCustomer');
     Route::post('/customers/new','Manager\CustomerController@postAddCustomer')->name('superPostAddCustomer');
     Route::post('/customers.{id}','Manager\CustomerController@postEditCustomer')->name('superPostEditCustomer');
     Route::post('/customers/deleteMany','Manager\CustomerController@postDeleteCustomer')->name('superDeleteEditCustomer');
@@ -111,8 +117,7 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::post('/traffic/moneys','Manager\TrafficController@getViewEachDay')->name('getViewEachDay');
 
     Route::get('/orders','Manager\OrderController@show')->name('superOrder');
-    Route::get('/orders.{id}','Manager\OrderController@editOrder')->name('superEditOrder');
-    Route::post('/orders.{id}','Manager\OrderController@postEditOrder')->name('superPostEditOrder');
+    Route::post('/orders-accept','Manager\OrderController@editOrder')->name('superAcceptOrder');
     Route::post('/orders/deleteMany','Manager\OrderController@postDeleteOrder')->name('superDeleteEditOrder');
     Route::post('/orders/moneys','Manager\OrderController@getMoneyEachDay')->name('getMoneyEachDay');
 });

@@ -21,7 +21,7 @@
     <div class="vucms">
         @include('includes.menubar')
         <div class="right">
-        @include('includes.top')
+            @include('includes.top')
             <div class="bottom">
                 <div class="headtitle">
                     <p style="max-width:200px;">KHÁCH HÀNG</p>
@@ -111,17 +111,8 @@
                 </div>
                 <div class="catlist">
                     <div class="cattitle">
-                        <span><i class="fas fa-list-ul"></i> Tất Cả Đơn Hàng</span>
+                        <span><i class="fas fa-list-ul"></i> Khách Hàng Bị Cấm</span>
                         <ul class="catright">
-                            <li><i class="fas fa-filter"></i> Tất Cả <i class="fas fa-angle-down"></i>
-                                <ul style="width:auto;">
-                                    <li onclick="filter(0)">Tất Cả </li>
-                                    <li onclick="filter(1)">Khách Hàng Tích Cực</li>
-                                    <li onclick="filter(2)">Khách hàng Thân thiết</li>
-                                    <li onclick="filter(3)">Khách Hàng Tiềm Năng</li>
-                                    <li onclick="filter(4)">Khách Hàng Bị Cấm</li>
-                                </ul>
-                            </li>
                             <li><i class="fas fa-sort-amount-up"></i> Sắp Xếp <i class="fas fa-angle-down"></i>
                                 <ul>
                                     <li onclick="orderBy(0)">Mặc định</li>
@@ -132,8 +123,8 @@
                             </li>
                             <li><i class="fas fa-radiation"></i> Thao Tác <i class="fas fa-angle-down"></i>
                                 <ul>
-                                    <li><a href="{{url()->route('superAddCustomer')}}" style="color:#555"><i class="fas fa-plus-circle"></i>
-                                            Thêm mới</a></li>
+                                    <li onclick="unbanMany()"><i class="fas fa-plus-circle"></i>
+                                            Bỏ Cấm</li>
                                     <li onclick="deleteSelected()"><i class="far fa-trash-alt"></i> Xóa</li>
                                 </ul>
                             </li>
@@ -219,8 +210,8 @@
                                         <li id="showoption"><i class="fas fa-angle-down"></i>
                                             <ul>
                                                 <li onclick="postDelete({{$customer->id}})"><i class="far fa-trash-alt"></i> Xóa</li>
-                                                <li><a href="{{url()->route('superEditCustomer',['id'=>$customer->id])}}" style="color:#555"><i
-                                                            class="far fa-edit"></i> Cập Nhật</a></li>
+                                                <li onclick="unban({{$customer->id}})">
+                                                    <i class="far fa-edit"></i> Bỏ Cấm</li>
                                             </ul>
                                         </li>
                                     </div>
@@ -242,10 +233,30 @@
     <script src="../../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../../assetsAdmin/js/cat.js"></script>
     <script>
-        
+        function unbanMany(){
+            if(selectedCat.length ==0) return;
+            if(confirm('Bạn có chắc muốn bỏ cấm khách hàng này') ){
+                axios.post('{{url()->route('superUnbanCustomer')}}',{
+                    ids:selectedCat
+                }).then(d=>{
+                    data = d.data
+                    window.location.reload()
+                })  
+            }   
+        }
+        function unban(id){
+            if(confirm('Bạn có chắc muốn bỏ cấm khách hàng này') ){
+                axios.post('{{url()->route('superUnbanCustomer')}}',{
+                    ids:[id]
+                }).then(d=>{
+                    data = d.data
+                    window.location.reload()
+                })  
+            }   
+        }
         function deleteSelected(){
             if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn xoá danh mục này') ){
+            if(confirm('Bạn có chắc muốn xoá khách hàng này') ){
                 axios.post('{{url()->route('superDeleteEditCustomer')}}',{
                     ids:selectedCat
                 }).then(d=>{
@@ -255,7 +266,7 @@
             }   
         }
         function postDelete(id){
-            if(confirm('Bạn có chắc muốn xoá danh mục này') ){
+            if(confirm('Bạn có chắc muốn xoá khách hàng này') ){
                 axios.post('{{url()->route('superDeleteEditCustomer')}}',{
                     ids:[id]
                 }).then(d=>{

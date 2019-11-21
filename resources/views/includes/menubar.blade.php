@@ -58,13 +58,13 @@
                                     class="fas fa-angle-right"></i>
                                 <ul class="lv2items">
                                     <li class="lv2"><a href="{{url()->route('superCustomer')}}">Danh sách</a></li>
-                                    <li class="lv2"><a href="customer_ban.html">Danh sách bị cấm</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superBannerCustomer')}}">Danh sách bị cấm</a></li>
                                 </ul>
                             </li>
                             <li class="lv1"><i class="fas fa-shopping-cart"></i>
                                 <span class="navtext">Bán hàng</span><i class="fas fa-angle-right"></i>
                                 <ul class="lv2items">
-                                    <li class="lv2"><a href="order.html">Đơn hàng</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superOrder')}}">Đơn hàng</a></li>
                                     <li class="lv2"><a href="coupon.html">Coupon</a></li>
                                 </ul>
                             </li>

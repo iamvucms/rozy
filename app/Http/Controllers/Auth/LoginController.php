@@ -46,6 +46,10 @@ class LoginController extends Controller
         $credentials = $req->only('email', 'password');
         if(Auth::attempt($credentials)){
             $user = Auth::user();
+            if($user->getInfo() && $user->getInfo()->group_type==4){
+                Auth::logout();
+                return redirect()->back();
+            }
             $user->last_login = date('Y-m-d H:i:s');
             $user->last_login_ip = $req->ip();
             $user->save();
@@ -96,6 +100,9 @@ class LoginController extends Controller
         $user = User::where('email',$google->email);
         if($user->count()>0){
             $preUser = $user->first();
+            if($preUser->getInfo() && $preUser->getInfo()->group_type==4){
+                return redirect()->back();
+            }
             $preUser->last_login = date('Y-m-d H:i:s');
             $preUser->last_login_ip = $req->ip();
             $preUser->save();

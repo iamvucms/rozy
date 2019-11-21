@@ -24,21 +24,7 @@
                 </span><button id="propbar"><i class="fas fa-bars"></i></button>
             </div>
             <div class="options">
-                <div class="top">
-                    <div class="me">
-                        <img src="../../assetsAdmin/img/avt.jpg" alt="">
-                        <div class="meme">
-                            <p class="online"><span class="pointonline"></span>
-                                Online</p>
-                            <p class="myname">I am VuCms</p>
-                        </div>
-                    </div>
-                    <div class="searchbox">
-                        <form action="#">
-                            <input type="search" placeholder="Tìm Kiếm">
-                        </form>
-                    </div>
-                </div>
+            @include('includes.top')
                 <div class="navigation">
                     <div class="navtitle">
                         Khu vực chính

@@ -15,7 +15,7 @@ class CustomerController extends Controller
         return view('Admin.customer',compact("customers"));
     }
     public function editCustomer($id){
-        $customer =Customer::with('Image')->first();
+        $customer =Customer::with('Image')->find(intval($id));
         return view('Admin.editcustomer',compact('customer'));
     }
     public function postEditCustomer(Request $req,$id){
@@ -133,5 +133,20 @@ class CustomerController extends Controller
             $customer->delete();
         }
         return redirect()->route('superCustomer');
+    }
+    public function getBannerCustomer(){
+        $customers = Customer::where('group_type','4')->with('User')->with('Image')->with('Reviews')->with('Orders')->paginate(20);
+        return view('Admin.bannercustomer',compact('customers'));
+    }
+    public function postUnbanCustomer(Request $req){
+        $ids = $req->ids ?? [];
+        foreach($ids as $id){
+            $customer = Customer::find(intval($id));
+            if($customer){
+                $customer->group_type=0;
+                $customer->save();
+            }
+        }
+        return response()->json(['success'=>true], 200, []);
     }
 }

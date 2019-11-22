@@ -10,7 +10,7 @@ class Order extends Model
     protected $table = 'orders';
     public $fillable = ['status','id','name','address','phone','city','total'];
     public function OrderDetails(){
-        return $this->hasMany('App\OrderDetail','idorder','id');
+        return $this->hasMany('App\OrderDetail','idorder','id')->with('Product');
     }
     public function RlCustomer(){
         return $this->hasOne('App\Customer','id','idcus');
@@ -27,6 +27,9 @@ class Order extends Model
     }
     public function Shipper(){
         return $this->hasOne('App\Shipper','id','idship');
+    }
+    public function RlShipper(){
+        return $this->hasOne('App\Shipper','id','idship')->select('name');
     }
     public function getShipper(){
         return $this->Shipper()->first();

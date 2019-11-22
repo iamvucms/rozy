@@ -9,7 +9,7 @@ class OrderDetail extends Model
     protected $table = 'orderdetails';
     public $timestamps = false;
     public function Product(){
-        return $this->hasOne('App\Product', 'id', 'idpro');
+        return $this->hasOne('App\Product', 'id', 'idpro')->with('ImgAvt');
     }
     public function getProduct(){
         return $this->Product()->first();

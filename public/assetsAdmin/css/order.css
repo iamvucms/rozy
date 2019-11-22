@@ -1,126 +1,224 @@
-.cattitle{
+.cattitle {}
+
+.taborder table td:last-child a {
+    display: inline-block!important;
+    line-height: 30px!important;
 }
-.taborder table td:last-child a{
-          display: inline-block!important;
-          line-height: 30px!important;
+body,html{
+    height: 100%;
 }
-.taborder table td:last-child{
-          width:100px;
+.taborder table td:last-child {
+    width: 100px;
 }
-.right .bottom{
-          padding-bottom: 150px;
+
+.right .bottom {
+    padding-bottom: 150px;
 }
-table td  li#showoption{
-          height: 30px;
-          border:none;
-          padding:0px 7px;
-          line-height: 30px;
-          background:#1e91cf;
-          border-left: 1px solid rgba(221, 221, 221, 0.541);
-          color:white;
-          outline: none;
-          cursor: pointer;
-          border-radius: 2px;
-          border-bottom-left-radius: 0px;
-          border-top-left-radius: 0px;
-          position: relative;
+
+.detailBox {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 230px);
+    background:rgba(0,0,0,0.75);
+    z-index: 99999;
 }
-table td  li#showoption:hover ul{
-          display: block;
+.detailBox .box{
+    border-radius: 10px;
+    margin:300px auto;
+    padding: 15px;
+    background:white;
+    width:800px;
 }
-table td  li#showoption ul{
-          z-index: 999;
-          width:160px;
-          position: absolute;
-          top:100%;
-          right:0%;
-          background:white;
-          color:#555;
-          border:1px solid #ddd;
-          display: none;
+.detailBox table.probox {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
 }
- table td  li#showoption ul li{
-          padding: 0px 10px;
+.detailBox table.probox th{
+    text-align: center;
 }
- table td  li#showoption ul li:hover{
-          background:#ddd;
+.detailBox table.probox td{
+    padding:10px;
+    text-align: center;
 }
- table td  li#showoption ul li i{
-          display: inline-block;
-          width:15px;
-          text-align: center;
+.detailBox table.probox td button{
+    border:none;
+    background:red;
+    color:white;
+    padding:5px 15px;
+    cursor: pointer;
+    border-radius: 3px;
 }
-.taborder table td:last-child button{
-          border-bottom-right-radius: 0px;
-          border-top-right-radius: 0px;
+.detail{
+    margin-top: 25px;
+    display: flex;
 }
-.lasttd{
-          display: flex;
+.detail .col1{
+    width:40%;
+    padding-right: 10px;
+    border-right: 1px solid #ddd;
 }
-.cattitle li{
-          white-space: nowrap;
-          display: inline-block;
-          position: relative;
-          margin-left: 10px;
-          height: 35px;
-          line-height: 35px;
-          padding:0px 10px;
-          border:none;
-          background:#06cec4;
-          color:white;
-          cursor: pointer;
-          text-transform: capitalize;
+.detail .col1 span{
+    color:rgba(0,0,0,0.5)
 }
-ul.catright{
-          
-          margin-top: 1.5px;
-          display: flex;
-          float:right;
-          margin-right: 25px;
+.detail .col1 b{
+    color:#1e91cf
 }
-.cattitle li:hover ul{
-          display: block;
+.detail .col2{
+    width:60%;
+    padding-left: 10px;
 }
-.cattitle ul{
-          margin-bottom: 0px!important
+.detail table{
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    width:100%;
 }
-.cattitle li ul{
-          display: none;
-          top:100%;
-          left:0px;
-          z-index: 99;
-          position: absolute;
-          width:calc(100% + 50px);
-          background:white!important;
-          border:1px solid rgba(221, 221, 221, 0.5);
+.detail table td{
+    padding:5px;
+    text-align: right;
 }
-.cattitle li ul li{
-          margin-left: 0px!important;
-          display: block;
-          background:white;
-          color:#555;
-          height:35px;
-          line-height: 35px;
-          border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+.detail table tr td:first-child{
+    color:rgba(0,0,0,0.5);
+    padding-right: 15px;
 }
-.cattitle li ul li:hover{
-          background:#ddd;
+.detail table tr td:last-child{
+    width:30%
 }
-.taborder tr td{
-          padding-right: 10px!important;
+table td li#showoption {
+    height: 30px;
+    border: none;
+    padding: 0px 7px;
+    line-height: 30px;
+    background: #1e91cf;
+    border-left: 1px solid rgba(221, 221, 221, 0.541);
+    color: white;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    position: relative;
 }
-.taborder tr td:nth-child(5),.taborder tr td:nth-child(6){
-          min-width:130px;
+
+table td li#showoption:hover ul {
+    display: block;
 }
-.tabcat #tab2 td{
-          padding:5px!important;
+
+table td li#showoption ul {
+    z-index: 999;
+    width: 160px;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    background: white;
+    color: #555;
+    border: 1px solid #ddd;
+    display: none;
 }
-.tabcat #tab2 th{
-          font-size: 0.9em;
-          color:#4c4d5a!important;
+
+table td li#showoption ul li {
+    padding: 0px 10px;
+}
+
+table td li#showoption ul li:hover {
+    background: #ddd;
+}
+
+table td li#showoption ul li i {
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+}
+
+.taborder table td:last-child button {
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.lasttd {
+    display: flex;
+}
+
+.cattitle li {
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    height: 35px;
+    line-height: 35px;
+    padding: 0px 10px;
+    border: none;
+    background: #06cec4;
+    color: white;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+ul.catright {
+    margin-top: 1.5px;
+    display: flex;
+    float: right;
+    margin-right: 25px;
+}
+
+.cattitle li:hover ul {
+    display: block;
+}
+
+.cattitle ul {
+    margin-bottom: 0px!important
+}
+
+.cattitle li ul {
+    display: none;
+    top: 100%;
+    left: 0px;
+    z-index: 99;
+    position: absolute;
+    width: calc(100% + 50px);
+    background: white!important;
+    border: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+.cattitle li ul li {
+    margin-left: 0px!important;
+    display: block;
+    background: white;
+    color: #555;
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+}
+
+.cattitle li ul li:hover {
+    background: #ddd;
+}
+
+.taborder tr td {
+    padding-right: 10px!important;
+}
+
+.taborder tr td:nth-child(5), .taborder tr td:nth-child(6) {
+    min-width: 130px;
+}
+
+.tabcat #tab2 td {
+    padding: 5px!important;
+}
+
+.tabcat #tab2 th {
+    font-size: 0.9em;
+    color: #4c4d5a!important;
+}
+
+@media only screen and (max-width:450px) {
+    ul.catright {
+        margin-right: 5px;
+    }
 }
 @media only screen and (max-width:450px){
-          ul.catright{
-                    margin-right: 5px;
-          }
+    .detailBox{
+        width: calc(100% - 40px);
+    }
 }

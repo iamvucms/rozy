@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
     <script src="../../assets/js/axios.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../assets/css/all.css"
+        >
     <title>Admin::Orders</title>
 </head>
 
@@ -21,6 +21,63 @@
     <div class="vucms">
         @include('includes.menubar')
         <div class="right" style="position:relative">
+            <div class="detailBox">
+                <div class="box" >
+                    <h2>Thông Tin Chi Tiết Đơn Hàng</h2>
+                    <table class="probox" border="1">
+                        <tr>
+                            <th>ID</th>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Giá gốc</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        <tr>
+                            <td>a</td>
+                            <td><img src="" alt=""></td>
+                            <td><a href=""></a></td>
+                            <td>a</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><button onclick=""><i class="fal fa-trash-alt"></i> Xoá</button></td>
+                        </tr>
+                    </table>
+                    <div class="detail">
+                        <div class="col1">
+                            <h3>Thông tin người nhận</h3>
+                                <span>Họ và tên: </span><b id="dtname">aaaa</b> <br>
+                                <span>Điện thoại: </span><b id="dtphone">aaa</b><br>
+                                <span>Địa chỉ: </span><b id="dtaddress">aa</b><br>
+                                <span>Thanh toán: </span><b id="dtpay">aa</b><br>
+                        </div>
+                        <div class="col2">
+                            <h3>Thông tin người nhận</h3>
+                            <table border="1">
+                                <tr>
+                                    <td>Tổng tiền hàng</td>
+                                    <td id="dtProductPrice">q</td>
+                                </tr>
+                                <tr>
+                                    <td>Vận chuyển-<span id="dtship"></span></td>
+                                    <td id="dtshipMoney">q</td>
+                                </tr>
+                                <tr>
+                                    <td>Mã Giảm Giá:</td>
+                                    <td id="dtCoupon">q</td>
+                                </tr>
+                                <tr>
+                                    <td>Tổng cộng</td>
+                                    <td id="dtAllPrice">q</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @include('includes.top')
             <div class="bottom">
                 <div class="headtitle">
@@ -191,7 +248,7 @@
                                     <td>{{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($order->updated_at,'Asia/Ho_Chi_Minh')) <60 ? Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($order->updated_at,'Asia/Ho_Chi_Minh')).' phút' : Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInHours(Carbon\Carbon::parse($order->updated_at,'Asia/Ho_Chi_Minh')).' giờ'}}  trước</td>
                                     <td>
                                         <div class="lasttd">
-                                            <a href="#" target="__blank"><button><i class="far fa-eye"></i></button></a>
+                                            <a href="javascript:void(0)" onclick="showDetail({{$order->id}})"><button><i class="far fa-eye"></i></button></a>
                                             <li id="showoption"><i class="fas fa-angle-down"></i>
                                                 <ul>
                                                     <li><i class="far fa-trash-alt"></i> Xóa</li>
@@ -222,6 +279,56 @@
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
     <script>
+        document.querySelector('.detailBox').onclick = e=>{
+            if(e.target.className=='detailBox') document.querySelector('.detailBox').style.display ='none'
+        }
+        function showDetail(id){
+            axios.post('{{url()->route('superGetOrderDetail')}}',{
+                    id:id
+                }).then(d=>{
+                    data = d.data
+                    if(data.success){
+                        
+                        box = document.querySelector('.detailBox')
+                        table = document.querySelector('.detailBox table tbody')
+                        tr = document.querySelectorAll('.detailBox table tr')
+                        ar = Array.from(tr);
+                        html = ar[0].outerHTML
+                        order = data.data[0]
+                        console.log(order)
+                        let paytext = '';
+                        switch (order.pay_type) {
+                            case 1:
+                                paytext = 'Thanh toán Visa/MasterCard'
+                                break;
+                            case 2:
+                                paytext = 'Thanh toán qua chuyển khoản'
+                                break;
+                            case 3:
+                                paytext = 'Thanh toán khi nhận hàng'
+                                break;
+                            
+                        }
+                        document.querySelector('#dtphone').innerHTML = order.phone
+                        document.querySelector('#dtaddress').innerHTML = order.address
+                        document.querySelector('#dtpay').innerHTML = paytext
+                        document.querySelector('#dtname').innerHTML = order.name
+                        document.querySelector('#dtCoupon').innerHTML = "-"+(new Intl.NumberFormat('ja-JP').format(order.coupon_price))+" VND"
+                        document.querySelector('#dtship').innerHTML = order.shipper.name
+                        document.querySelector('#dtshipMoney').innerHTML = (new Intl.NumberFormat('ja-JP').format(order.ship_price))+" VND"
+                        document.querySelector('#dtAllPrice').innerHTML = (new Intl.NumberFormat('ja-JP').format(order.total))+" VND"
+                        productprice = 0
+                        order.order_details.forEach(odd=>{
+                            let product = odd.product
+                            
+                            html+= '<tr><td>'+product.id+'</td><td><img width="80" height="80" src="{{url('/')}}'+product.img_avt.src+'"></td><td>'+product.name+'</td><td>'+(new Intl.NumberFormat('ja-JP').format(product.sale_price))+' VND</td><td>'+(new Intl.NumberFormat('ja-JP').format(product.price))+' VND</td><td>'+odd.quantity+'</td><td>'+(new Intl.NumberFormat('ja-JP').format(product.sale_price*odd.quantity))+' VND</td><td><button onclick="RemoveProduct('+order.id+','+product.id+',this)"><i class="fal fa-trash-alt"></i> Xoá</button></td></tr>'
+                        })
+                        document.querySelector('#dtProductPrice').innerHTML = (new Intl.NumberFormat('ja-JP').format(productprice))+" VND"
+                        table.innerHTML = html;
+                        box.style.display = 'block'
+                    }
+                })  
+        }
         function deleteSelected(){
             if(selectedCat.length ==0) return;
             if(confirm('Bạn có chắc muốn xoá đơn hàng này') ){
@@ -230,6 +337,22 @@
                 }).then(d=>{
                     data = d.data
                     window.location.reload()
+                })  
+            }   
+        }
+        function RemoveProduct(idorder,idproduct,btn){
+            if(confirm('Bạn có chắc muốn xoá sản phẩm này khỏi đơn hàng') ){
+                axios.post('{{url()->route('superDeleteOrderDetail')}}',{
+                    idorder:idorder,
+                    idproduct:idproduct
+                }).then(d=>{
+                    data = d.data
+                    if(data.success){
+                        if(data.isF5) window.location.reload()
+                        else{
+                            btn.parentElement.parentElement.outerHTML = ''
+                        }
+                    }
                 })  
             }   
         }

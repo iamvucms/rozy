@@ -11,6 +11,7 @@ use App\City;
 
 class Shipper extends Model
 {
+    protected $fillable = ['name'];
     protected $table = 'shippers';
     public function getRealShipPrice($shipper,$city,$district,$pureAddress=null){
         $cart = (new Cart)->getProductPerSeller();

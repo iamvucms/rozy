@@ -3,7 +3,9 @@ let cw = $(window).width();
 $('#propbar').click(() => {
     if (nav_stt === true) {
         $('.menubar').css('width', '40px')
+        
         setTimeout(() => {
+            $('.detailBox').css('width','calc(100% - 40px)')
             $('.right').css('width', 'calc(100% - 40px)')
             $('.right').css('padding-left', '40px')
         }, 200);
@@ -20,6 +22,7 @@ $('#propbar').click(() => {
         $('.lv2items').hide()
         nav_stt = false;
     } else {
+        $('.detailBox').css('width','calc(100% - 230px)')
         $('.menubar').css('width', '230px')
         $('.right').css('width', '100%')
         if (cw > 550) $('.right').css('padding-left', '230px')

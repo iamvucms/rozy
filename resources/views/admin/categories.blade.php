@@ -73,7 +73,7 @@
     <script>
         function deleteSelected(){
             if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn xoá danh mục này') ){
+            if(confirm('Bạn có chắc muốn xoá '+selectedCat.length+' danh mục này') ){
                 axios.post('{{url()->route('superDeleteEditCategory')}}',{
                     ids:selectedCat
                 }).then(d=>{

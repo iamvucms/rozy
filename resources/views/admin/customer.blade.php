@@ -245,21 +245,19 @@
         
         function deleteSelected(){
             if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn xoá danh mục này') ){
+            if(confirm('Bạn có chắc muốn xoá '+selectedCat.length+' khách hàng này') ){
                 axios.post('{{url()->route('superDeleteEditCustomer')}}',{
                     ids:selectedCat
                 }).then(d=>{
-                    data = d.data
                     window.location.reload()
                 })  
             }   
         }
         function postDelete(id){
-            if(confirm('Bạn có chắc muốn xoá danh mục này') ){
+            if(confirm('Bạn có chắc muốn xoá khách hàng này') ){
                 axios.post('{{url()->route('superDeleteEditCustomer')}}',{
                     ids:[id]
                 }).then(d=>{
-                    data = d.data
                     window.location.reload()
                 })  
             }   

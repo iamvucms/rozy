@@ -275,7 +275,7 @@
                                     <span class="acttext"><span class="actname"><a href="{{url()->route('superEditCustomer',['id'=>$action->Customer()->id])}}">{{$action->Customer()->name}}</a>:</span> Lorem
                                         {{$action->message}} <br>
                                     </span>
-                                    <span class="acttime"><i class="far fa-clock"></i> {{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')) <60 ? Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')).' phút' : Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInHours(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')).' giờ'}}  trước</span>
+                                    <span class="acttime"><i class="far fa-clock"></i> {{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')) <60 ? Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')).' phút' : (Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInHours(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh'))<24?Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInHours(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')).' giờ':Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInDays(Carbon\Carbon::parse($action->created_at,'Asia/Ho_Chi_Minh')).' ngày')}}  trước</span>
                                 </li> 
                                 @endforeach
                                 

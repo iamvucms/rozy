@@ -235,7 +235,7 @@
     <script>
         function unbanMany(){
             if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn bỏ cấm khách hàng này') ){
+            if(confirm('Bạn có chắc muốn bỏ cấm '+selectedCat.length+' khách hàng này') ){
                 axios.post('{{url()->route('superUnbanCustomer')}}',{
                     ids:selectedCat
                 }).then(d=>{
@@ -256,7 +256,7 @@
         }
         function deleteSelected(){
             if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn xoá khách hàng này') ){
+            if(confirm('Bạn có chắc muốn xoá '+selectedCat.length+' khách hàng này') ){
                 axios.post('{{url()->route('superDeleteEditCustomer')}}',{
                     ids:selectedCat
                 }).then(d=>{

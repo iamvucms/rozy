@@ -123,4 +123,11 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::post('/orders/deleteOrderDetail','Manager\OrderController@postDeleteOrderDetail')->name('superDeleteOrderDetail');
     Route::post('/orders/deleteMany','Manager\OrderController@postDeleteOrder')->name('superDeleteEditOrder');
     Route::post('/orders/moneys','Manager\OrderController@getMoneyEachDay')->name('getMoneyEachDay');
+
+    Route::get('/coupons','Manager\CouponController@show')->name('superCoupon');
+    Route::get('/coupons.{id}','Manager\CouponController@editCoupon')->name('superEditCoupon');
+    Route::get('/coupons/new','Manager\CouponController@addCoupon')->name('superAddCoupon');
+    Route::post('/coupons/new','Manager\CouponController@postAddCoupon')->name('superPostAddCoupon');
+    Route::post('/coupons.{id}','Manager\CouponController@postEditCoupon')->name('superPostEditCoupon');
+    Route::post('/coupons/deleteMany','Manager\CouponController@postDeleteCoupon')->name('superDeleteEditCoupon');
 });

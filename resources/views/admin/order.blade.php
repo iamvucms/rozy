@@ -331,7 +331,7 @@
         }
         function deleteSelected(){
             if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn xoá đơn hàng này') ){
+            if(confirm('Bạn có chắc muốn xoá '+selectedCat.length+' đơn hàng này') ){
                 axios.post('{{url()->route('superDeleteEditOrder')}}',{
                     ids:selectedCat
                 }).then(d=>{

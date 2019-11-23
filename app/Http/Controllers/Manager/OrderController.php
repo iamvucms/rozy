@@ -21,7 +21,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $role_id = $user->role_id;
         if($role_id==1) $orders = Order::with('OrderDetails')->with('Shipper')->with('Seller')->with('RlCustomer')->paginate(20);
-        else if($role==3) $orders = Order::where('idsell',$user->Seller()->id)->with('OrderDetails')->with('Shipper')->with('Seller')->with('RlCustomer')->paginate(20);
+        else if($role_id==3) $orders = Order::where('idsell',$user->Seller()->id)->with('OrderDetails')->with('Shipper')->with('Seller')->with('RlCustomer')->paginate(20);
         return view('Admin.order',compact('orders'));
     }
     public function postDeleteOrderDetail(Request $req){
@@ -75,7 +75,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $role_id = $user->role_id;
         if($role_id==1) $orders = Order::where('id',intval($id))->with('OrderDetails')->with('Shipper')->with('Seller')->with('RlCustomer')->paginate(20);
-        else if($role==3) $orders = Order::where('id',intval($id))->where('idsell',$user->Seller()->id)->with('OrderDetails')->with('Shipper')->with('Seller')->with('RlCustomer')->paginate(20);
+        else if($role_id==3) $orders = Order::where('id',intval($id))->where('idsell',$user->Seller()->id)->with('OrderDetails')->with('Shipper')->with('Seller')->with('RlCustomer')->paginate(20);
         if(count($orders)==0) return abort(403);
         return view('Admin.order',compact('orders'));
     }

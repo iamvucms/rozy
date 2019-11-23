@@ -105,7 +105,7 @@
     <script>
         function deleteSelected(){
             if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn xoá sản phẩm này') ){
+            if(confirm('Bạn có chắc muốn xoá '+selectedCat.length+' sản phẩm này') ){
                 axios.post('{{url()->route('superDeleteEditProduct')}}',{
                     ids:selectedCat
                 }).then(d=>{

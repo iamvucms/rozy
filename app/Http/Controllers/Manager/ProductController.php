@@ -18,7 +18,7 @@ class ProductController extends Controller
             $products = Product::paginate(20);
         }elseif($user->role_id==3){
             $products = Product::where('idsell',$user->Seller()->id)->paginate(20);
-        }
+        }else return abort(403);
         return view('Admin.product',compact('products'));
     }
     public function postDeleteProduct(Request $req){

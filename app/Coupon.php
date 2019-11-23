@@ -10,6 +10,9 @@ class Coupon extends Model
     public function getAvailable(){
         return $this->whereRaw('expired > now() AND max_using>0 AND idsell=0')->get();
     }
+    public function Seller(){
+        return $this->hasOne('App\Seller','id','idsell');
+    }
     public function checkPublicCoupon($coupon){
         return $this->whereRaw('expired > now() AND max_using> 0 AND idsell=0')->where('code',$coupon)->get();
     }

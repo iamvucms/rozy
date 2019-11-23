@@ -7,12 +7,12 @@
             <div class="options">
                 <div class="top">
                     <div class="me">
-                        <img src="{{url($user->getAvatar() ??'https://png.pngtree.com/svg/20160601/unknown_avatar_182562.png') }}"
+                        <img src="@if($user->role_id==1) {{url($user->getAvatar() ??'https://png.pngtree.com/svg/20160601/unknown_avatar_182562.png') }} @elseif($user->role_id==3) {{url($user->Seller()->getAvatar() ??'https://png.pngtree.com/svg/20160601/unknown_avatar_182562.png') }} @endif "
                             alt="">
                         <div class="meme">
                             <p class="online"><span class="pointonline"></span>
                                 Online</p>
-                            <p class="myname">{{$user->getInfo()->name}}</p>
+                            <p class="myname">@if($user->role_id==1) {{$user->getInfo()->name}} @elseif($user->role_id==3) {{$user->Seller()->name}} @endif</p>
                         </div>
                     </div>
                     <div class="searchbox">
@@ -65,7 +65,8 @@
                                 <span class="navtext">Bán hàng</span><i class="fas fa-angle-right"></i>
                                 <ul class="lv2items">
                                     <li class="lv2"><a href="{{url()->route('superOrder')}}">Đơn hàng</a></li>
-                                    <li class="lv2"><a href="coupon.html">Coupon</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superCoupon')}}"">Coupon</a></li>
+                                    @if($user->role_id==1) <li class="lv2"><a href="{{url()->route('superCoupon')}}"">Khuyến Mãi</a></li> @endif
                                 </ul>
                             </li>
                             <li class="lv1"><i class="fas fa-desktop"></i>

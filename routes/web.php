@@ -130,4 +130,11 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::post('/coupons/new','Manager\CouponController@postAddCoupon')->name('superPostAddCoupon');
     Route::post('/coupons.{id}','Manager\CouponController@postEditCoupon')->name('superPostEditCoupon');
     Route::post('/coupons/deleteMany','Manager\CouponController@postDeleteCoupon')->name('superDeleteEditCoupon');
+
+    Route::get('/discounts','Manager\DiscountController@show')->name('superDiscount');
+    Route::get('/discounts.{id}','Manager\DiscountController@editDiscount')->name('superEditDiscount');
+    Route::get('/discounts/new','Manager\DiscountController@addDiscount')->name('superAddDiscount');
+    Route::post('/discounts/new','Manager\DiscountController@postAddDiscount')->name('superPostAddDiscount');
+    Route::post('/discounts.{id}','Manager\DiscountController@postEditDiscount')->name('superPostEditDiscount');
+    Route::post('/discounts/deleteMany','Manager\DiscountController@postDeleteDiscount')->name('superDeleteEditDiscount');
 });

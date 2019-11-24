@@ -66,7 +66,7 @@
                                 <ul class="lv2items">
                                     <li class="lv2"><a href="{{url()->route('superOrder')}}">Đơn hàng</a></li>
                                     <li class="lv2"><a href="{{url()->route('superCoupon')}}"">Coupon</a></li>
-                                    @if($user->role_id==1) <li class="lv2"><a href="{{url()->route('superCoupon')}}"">Khuyến Mãi</a></li> @endif
+                                    @if($user->role_id==1) <li class="lv2"><a href="{{url()->route('superDiscount')}}"">Khuyến Mãi</a></li> @endif
                                 </ul>
                             </li>
                             <li class="lv1"><i class="fas fa-desktop"></i>

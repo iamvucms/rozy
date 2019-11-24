@@ -64,7 +64,7 @@
                             </tr>
                             @if($user->role_id==1)
                             <tr>
-                                <td>Phạm Vi</td>
+                                <td>Áp dụng cho</td>
                                 <td>
                                 <select class="js-example-basic-single" name="idsell">
                                     <option value="0" >Toàn Hệ Thống</option>

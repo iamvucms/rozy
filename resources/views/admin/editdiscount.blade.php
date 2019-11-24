@@ -43,36 +43,54 @@
                             @csrf
                             <table>
                             <tr>
-                                <td>Tên Mã Discount</td>
-                                <td><input value="{{$discount->name}}" @if(isset($errors->toArray()['name']))style="border:1px solid red" @endif required name="name" type="text" placeholder="Tên Mã Discount"></td>
+                                <td>Loại Khuyến Mãi</td>
+                                <td><select name="type" id="dcType" onchange="changeMe()">
+                                    <option value="1" @if($discount->total!==null && $discount->selled!==null) selected=selected @endif>FlashSale</option>
+                                    <option value="2" @if($discount->total===null && $discount->selled===null) selected=selected @endif>Khuyến Mãi Thường</option>
+                                </select></td>
+                            </tr>
+                            <tr @if($discount->total===null && $discount->selled===null) style="display:none" @endif id="totalInp">
+                                <td>Giới Hạn Lượt Mua</td>
+                                <td><input id="total" value="{{$discount->total}}" @if(isset($errors->toArray()['count']))style="border:1px solid red" @endif  min="1" @if($discount->total!==null && $discount->selled!==null) name="total" required @endif type="number" placeholder="Số Lần Sử dụng" ></td>
+                            </tr>
+                            <script>
+                                function changeMe(){
+                                    selected = document.querySelector('#dcType').value
+                                    if(selected==1){
+                                        document.querySelector('#totalInp').style.display ='table-row'
+                                        document.querySelector('#total').removeAttribute('disabled')
+                                        document.querySelector('#total').setAttribute('required',true)
+                                        document.querySelector('#total').setAttribute('name','total')
+                                    }else if(selected==2){
+                                        document.querySelector('#total').removeAttribute('name')
+                                        document.querySelector('#total').removeAttribute('required')
+                                        document.querySelector('#totalInp').style.display ='none'
+                                        document.querySelector('#total').setAttribute('disabled',true)
+                                    }
+                                }
+                            </script>
+                            <tr>
+                                <td>Phần Trăm (<span id="myPercent">{{$discount->percent}}</span>%)</td>
+                                <td><input name="percent" onchange="document.querySelector('#myPercent').innerHTML=this.value" value="{{$discount->percent}}" @if(isset($errors->toArray()['value']))style="border:1px solid red" @endif name="percent" step="1" min="1" max="100" required type="range" placeholder="Giá trị" ></td>
                             </tr>
                             <tr>
-                                <td>Mã Discount</td>
-                                <td><input value="{{$discount->code}}" @if(isset($errors->toArray()['code']))style="border:1px solid red" @endif name="code" required type="text" placeholder="Mã Discount"></td>
-                            </tr>
-                            <tr>
-                                <td>Số Lần Sử dụng</td>
-                                <td><input value="{{$discount->max_using}}" @if(isset($errors->toArray()['count']))style="border:1px solid red" @endif name="count" min="1" required type="number" placeholder="Số Lần Sử dụng" ></td>
-                            </tr>
-                            <tr>
-                                <td>Giá trị</td>
-                                <td><input value="{{$discount->value}}" @if(isset($errors->toArray()['value']))style="border:1px solid red" @endif name="value" min="10000" required type="number" placeholder="Giá trị" ></td>
+                                <td>Ngày Bắt Đầu</td>
+                                <td><input value="{{date('Y-m-d\TH:i:s',strtotime($discount->from))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="from" type="datetime-local" placeholder="mm/dd/YYYY"></td>
                             </tr>
                             <tr>
                                 <td>Ngày Hết Hạn</td>
-                            <td><input value="{{date('Y-m-d',strtotime($discount->expired))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="expired" type="date" placeholder="mm/dd/YYYY"></td>
+                            <td><input  value="{{date('Y-m-d\TH:i:s',strtotime($discount->to))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="to" type="datetime-local" placeholder="mm/dd/YYYY"></td>
                             </tr>
-                            @if($user->role_id==1)
                             <tr>
-                                <td>Phạm Vi</td>
+                                <td>Áp dụng cho</td>
                                 <td>
-                                <select class="js-example-basic-single" name="idsell">
-                                    <option value="0" @if($discount->idsell==0)selected=selected @endif>Toàn Hệ Thống</option>
-                                    
+                                <select class="js-example-basic-single" name="idproduct">
+                                    @foreach ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                    @endforeach
                                 </select>
                                 </td>
                             </tr>
-                            @endif
                         </table> 
                         <tr>
                         <td><button class="cancelcat" onclick=" window.location.href='{{url()->route('superDiscount')}}';return false">Hủy</button></td>

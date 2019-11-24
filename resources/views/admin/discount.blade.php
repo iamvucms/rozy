@@ -157,7 +157,7 @@
                         <tr data-id={{$discount->id}} data-percent={{$discount->percent}} data-time={{strtotime($discount->to)}} data-cat="{{$discount->RlProduct->idcat}}" data-type="@if($discount->selled && $discount->total){{1}}@else{{2}}@endif" data-percent="{{$discount->percent}}" data-status="@if(time()-strtotime($discount->from)>0 && strtotime($discount->to)-time()>0 && (intval($discount->total) - intval($discount->selled) > 0 || ($discount->total ===null & $discount->selled===null))){{1}}@else{{0}}@endif">
                             <td><input data-idcat="{{$discount->id}}" type="checkbox" id="check"></td>
                             <td>@if($discount->RlProduct) <a href="{{url()->route('superGetProduct',['id'=>$discount->RlProduct->id])}}">{{$discount->RlProduct->name}}</a> @endif</td>
-                            <td>@if($discount->selled && $discount->total) Flashsale @else Giảm giá @endif</td>
+                            <td>@if($discount->selled!==null && $discount->total!==null) Flashsale @else Giảm giá @endif</td>
                             <td style="color:green;font-size:1.1em!important">-{{$discount->percent}}%</td>
                             <td>{{number_format($discount->RlProduct->price)}} VND</td>
                             <td>{{number_format($discount->RlProduct->sale_price)}} VND</td>

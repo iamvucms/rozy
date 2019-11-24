@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class Discount extends Model
 {
     protected $table = 'discount';
+    public $timestamps = false;
     public function RlProduct(){
         return $this->hasOne('App\Product','id','idproduct');
     }

@@ -56,6 +56,9 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('user',Auth::user());
             $view->with('enjoy',new Enjoy);
         });
+        View::composer(['Admin.adddiscount','Admin.editdiscount'],function($view){
+            $view->with('products',Product::get());
+        });
         View::composer('payment', function ($view) {
             $view->with('city',new City);
             $view->with('shippers',new Shipper);

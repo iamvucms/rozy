@@ -152,7 +152,18 @@
     font-size: 1.1em;
     line-height: 30px;
 }
-
+#dslider{
+    margin:15px 0px;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#dslider .owl-carousel .item img{
+    height: 100%;
+}
+#dslider .owl-stage-outer{
+    height: 100%;
+}
 #keyslider {
     height: 75px;
     width: 80%;

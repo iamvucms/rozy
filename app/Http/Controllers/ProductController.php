@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cookie;
 class ProductController extends Controller
 {
     public function Product(Request $req){
-        $product = Product::where('slug',$req->slug)->first();
+        $product = Product::where('slug',$req->slug)->with('Review')->with('Slide')->first();
         $slug = $req->slug;
         if($product==null) return abort(404);
         if(empty(Cookie::get('is_view'.$slug))){

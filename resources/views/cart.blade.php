@@ -713,64 +713,63 @@
                             @foreach ($recommandProducts as $product)
                             <div class="product">
                                 <div class="imgbox">
-                                    <a href="#viewflash">
-                                        <img src="{{isset($product->Avatar()->src) ? url($product->Avatar()->src) : 'assets/img/product5.jpg'}}"
-                                            alt="">
-                                    </a>
-                                    <div class="groupcart">
-                                        <a href="javascript:void(0)"> <button  title="Thêm vào danh sách yêu thích"><i onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
-                                                 class="@if($enjoy->is_exists($product->id))
-                                                    fas fa-heart
-                                                 @else
-                                                    far fa-heart
-                                                 @endif"></i></button></a>
-                                        <a href="#cartoption"> <button onclick="addCartX({{$product->id}})" title="Thêm vào giỏ hàng"><i
-                                                 class="fas fa-cart-plus"></i></button></a>
-                                     </div>
-                                    
-                                    <span id="new_trend"><img src="assets/img/new.png" alt=""></span>
-
+                                   <a href="#viewflash">
+                                      <img src="{{isset($product->ImgAvt->src) ? url($product->ImgAvt->src) : ''}}" alt="">
+                                   </a>
+                                   <div class="groupcart">
+                                      <a href="javascript:void(0)"> <button title="Thêm vào danh sách yêu thích"><i
+                                               onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
+                                               class="@if($enjoy->is_exists($product->id))
+                                               fas fa-heart
+                                            @else
+                                               far fa-heart
+                                            @endif"></i></button></a>
+                                      <a href="#cartoption" onclick="addCartX({{$product->id}})""> <button onclick="addCartX({{$product->id}})"
+                                            title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
+                                   </div>
+                                   @if ($product->isNew())
+                                   <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
+                                   @endif
                                 </div>
                                 @php
-                                $discount = $product->AvailableDiscount()->get();
+                                $discount = $product->Discount->toArray();
                                 @endphp
                                 @if (count($discount)>0)
-                                <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
+                                <div class="salespercent">{{$discount[0]['percent'] ?? ''}}% </div>
                                 @endif
-
-                                <div class="product_name"><a
-                                        href="{{url('./products/'.$product->slug)}}">{{$product->name}}</a>
+           
+                                <div class="product_name"><a href="{{url('./products/'.$product->slug)}}">{{$product->name}}</a>
                                 </div>
                                 <div class="product_price">
-                                    @if (count($discount)>0)
-                                    <span
-                                        class="newprice">{{number_format($product->price-$discount[0]->percent/100*$product->price)}}
-                                        <sup>đ</sup></span>
-                                    <span class="oldprice">{{number_format($product->price)}} <sup>đ</sup></span>
-                                    @else
-                                    <span class="newprice">{{number_format($product->price)}} <sup>đ</sup></span>
-                                    @endif
-
+                                   @if (count($discount)>0)
+                                   <span
+                                      class="newprice">{{number_format($product->price-$discount[0]['percent']/100*$product->price)}}
+                                      <sup>đ</sup></span>
+                                   <span class="oldprice">{{number_format($product->price)}} <sup>đ</sup></span>
+                                   @else
+                                   <span class="newprice">{{number_format($product->price)}} <sup>đ</sup></span>
+                                   @endif
+           
                                 </div>
                                 <div class="rating">
-                                    <p>
-                                        @for ($i = 1; $i <= $product->getAvgReview(); $i++)
-                                            <i class="fas fa-star" style="color:orange" id="star"></i>
+                                   <p>
+                                      @for ($i = 1; $i <= $product->Review->avg('star'); $i++)
+                                         <i class="fas fa-star" style="color:orange" id="star"></i>
+                                         @endfor
+                                         @for ($i = 1; $i <= 5-$product->Review->avg('star'); $i++)
+                                            <i class="fas fa-star" id="star"></i>
                                             @endfor
-                                            @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
-                                                <i class="fas fa-star" id="star"></i>
-                                                @endfor
-                                                <span id="review_count">({{$product->getCountReview()}})</span>
-                                    </p>
-                                    <span class="selled"><i class="fas fa-check-double"></i>
-                                        {{$product->getTotalQuantitySelled()}}</span>
+                                            <span id="review_count">({{$product->Review->count()}})</span>
+                                   </p>
+                                   <span class="selled"><i class="fas fa-check-double"></i>
+                                      {{$product->getTotalQuantitySelled()}}</span>
                                 </div>
                                 <div class="supaddress">
-
-                                    {{$product->getAddress()}}
+                                    {{str_replace("Thành phố",'',str_replace("Tỉnh",'',$product->RlSeller->City->name))}}
                                 </div>
-
-                            </div>
+           
+                             </div>
+                        
                             @endforeach
                             <script>
                                 function addCartX(id) {

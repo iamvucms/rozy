@@ -720,7 +720,7 @@
                             <div class="product">
                                 <div class="imgbox">
                                     <a href="#viewflash">
-                                        <img src="{{isset($product->Avatar()->src) ? url($product->Avatar()->src) : 'assets/img/product5.jpg'}}"
+                                        <img src="{{isset($product->ImgAvt->src) ? url($product->ImgAvt->src) : 'assets/img/product5.jpg'}}"
                                             alt="">
                                     </a>
                                     <div class="groupcart">
@@ -738,10 +738,10 @@
 
                                 </div>
                                 @php
-                                $discount = $product->AvailableDiscount()->get();
+                                $discount = $product->Discount->toArray();
                                 @endphp
                                 @if (count($discount)>0)
-                                <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
+                                <div class="salespercent">{{$discount[0]['percent'] ?? ''}}% </div>
                                 @endif
 
                                 <div class="product_name"><a
@@ -750,7 +750,7 @@
                                 <div class="product_price">
                                     @if (count($discount)>0)
                                     <span
-                                        class="newprice">{{number_format($product->price-$discount[0]->percent/100*$product->price)}}
+                                        class="newprice">{{number_format($product->price-$discount[0]['percent']/100*$product->price)}}
                                         <sup>đ</sup></span>
                                     <span class="oldprice">{{number_format($product->price)}} <sup>đ</sup></span>
                                     @else
@@ -760,20 +760,20 @@
                                 </div>
                                 <div class="rating">
                                     <p>
-                                        @for ($i = 1; $i <= $product->getAvgReview(); $i++)
+                                        @for ($i = 1; $i <= $product->Review->avg('star'); $i++)
                                             <i class="fas fa-star" style="color:orange" id="star"></i>
                                             @endfor
-                                            @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
+                                            @for ($i = 1; $i <= 5-$product->Review->avg('star'); $i++)
                                                 <i class="fas fa-star" id="star"></i>
                                                 @endfor
-                                                <span id="review_count">({{$product->getCountReview()}})</span>
+                                                <span id="review_count">({{$product->Review->count()}})</span>
                                     </p>
                                     <span class="selled"><i class="fas fa-check-double"></i>
                                         {{$product->getTotalQuantitySelled()}}</span>
                                 </div>
                                 <div class="supaddress">
 
-                                    {{$product->getAddress()}}
+                                        {{str_replace("Thành phố",'',str_replace("Tỉnh",'',$product->RlSeller->City->name))}}
                                 </div>
 
                             </div>

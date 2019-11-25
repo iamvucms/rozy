@@ -11,6 +11,9 @@ class OrderDetail extends Model
     public function Product(){
         return $this->hasOne('App\Product', 'id', 'idpro')->with('ImgAvt');
     }
+    public function Order(){
+        return $this->hasOne('App\Order','id','idorder');
+    }
     public function getProduct(){
         return $this->Product()->first();
     }

@@ -2,66 +2,69 @@
 <html lang="en">
 @extends('includes.head')
 @section('title',$product->name)
+
 <body>
     <div class="rozy">
         <div class="rvBox">
-        <form action="{{url()->route('createReview',['idproduct'=>$product->id])}}" method="post" enctype="multipart/form-data">
-            @csrf    
-            <label for="txtReview">Nội dung:</label>
-            <br>
-            <textarea placeholder="Tối thiểu 30 kí tự" minlength="30" required name="content" id="txtReview" cols="30" rows="5" 
-            style="width:100%;padding:10px;font-size:1em;margin-top:15px"></textarea>    
-            <div class="rvStar">
-                <span>Đánh giá :</span>
-                <input name="rvStar" type="radio" value="1" id="star1" checked>
-                <label for="star1"><i class="fas fa-star" id="star"></i></label>
-                <input name="rvStar" type="radio" value="2" id="star2">
-                <label for="star2"><i class="fas fa-star" id="star"></i></label>
-                <input name="rvStar" type="radio" value="3" id="star3">
-                <label for="star3"><i class="fas fa-star" id="star"></i></label>
-                <input name="rvStar" type="radio" value="4" id="star4">
-                <label for="star4"><i class="fas fa-star" id="star"></i></label>
-                <input name="rvStar" type="radio" value="5" id="star5">
-                <label for="star5"><i class="fas fa-star" id="star"></i></label>
-            </div>
-            <input onchange="readURL(this)" accept="image/gif, image/jpeg, image/png" 
-             style="display:none" id="rvImg" type="file" name="rvImages[]" multiple>
-            <p>Thêm hình ảnh <span style="color:rgba(0,0,0,0.5)">(Tối đa được chọn 5 ảnh)</span></p>
-            <div class="showRvImg">
-                <label for="rvImg" id="lblRvImg">+</label>
-            </div>
-            <button type="submit">Đăng đánh giá</button>
-            <button style="background:red" onclick="document.querySelector('.rvBox').style.display='none';return false;">Huỷ</button>
-        </form> 
+            <form action="{{url()->route('createReview',['idproduct'=>$product->id])}}" method="post"
+                enctype="multipart/form-data">
+                @csrf
+                <label for="txtReview">Nội dung:</label>
+                <br>
+                <textarea placeholder="Tối thiểu 30 kí tự" minlength="30" required name="content" id="txtReview"
+                    cols="30" rows="5" style="width:100%;padding:10px;font-size:1em;margin-top:15px"></textarea>
+                <div class="rvStar">
+                    <span>Đánh giá :</span>
+                    <input name="rvStar" type="radio" value="1" id="star1" checked>
+                    <label for="star1"><i class="fas fa-star" id="star"></i></label>
+                    <input name="rvStar" type="radio" value="2" id="star2">
+                    <label for="star2"><i class="fas fa-star" id="star"></i></label>
+                    <input name="rvStar" type="radio" value="3" id="star3">
+                    <label for="star3"><i class="fas fa-star" id="star"></i></label>
+                    <input name="rvStar" type="radio" value="4" id="star4">
+                    <label for="star4"><i class="fas fa-star" id="star"></i></label>
+                    <input name="rvStar" type="radio" value="5" id="star5">
+                    <label for="star5"><i class="fas fa-star" id="star"></i></label>
+                </div>
+                <input onchange="readURL(this)" accept="image/gif, image/jpeg, image/png" style="display:none"
+                    id="rvImg" type="file" name="rvImages[]" multiple>
+                <p>Thêm hình ảnh <span style="color:rgba(0,0,0,0.5)">(Tối đa được chọn 5 ảnh)</span></p>
+                <div class="showRvImg">
+                    <label for="rvImg" id="lblRvImg">+</label>
+                </div>
+                <button type="submit">Đăng đánh giá</button>
+                <button style="background:red"
+                    onclick="document.querySelector('.rvBox').style.display='none';return false;">Huỷ</button>
+            </form>
             <script>
-            function readURL(input) {
-                if (input.files) {
-                    if(input.files.length>5){
-                        alert('Tối đa được chọn 5 ảnh');
-                        input.files = []
-                        return;
-                    }
-                    document.querySelector('.showRvImg').innerHTML = '<label for="rvImg" id="lblRvImg">+</label>'
-                    for(let img of input.files){
-                        let reader = new FileReader();
-                        reader.onload = function (e) {
-                            strImg = '<img class="imgRe" src="'+e.target.result+'">'
-                            document.querySelector('.showRvImg').innerHTML = document.querySelector('.showRvImg').innerHTML+strImg
+                function readURL(input) {
+                    if (input.files) {
+                        if (input.files.length > 5) {
+                            alert('Tối đa được chọn 5 ảnh');
+                            input.files = []
+                            return;
                         }
-                        reader.readAsDataURL(img);
+                        document.querySelector('.showRvImg').innerHTML = '<label for="rvImg" id="lblRvImg">+</label>'
+                        for (let img of input.files) {
+                            let reader = new FileReader();
+                            reader.onload = function (e) {
+                                strImg = '<img class="imgRe" src="' + e.target.result + '">'
+                                document.querySelector('.showRvImg').innerHTML = document.querySelector('.showRvImg').innerHTML + strImg
+                            }
+                            reader.readAsDataURL(img);
+                        }
+
                     }
-                    
                 }
-            }
-            document.querySelectorAll('.rvStar input').forEach(v=>{
-                v.onchange = ()=>{
-                    for(i=5;i>=1;i--)
-                        document.querySelector('label[for="star'+i+'"]').style.color = 'rgba(255, 255, 0, 0.5)'
-                    for(i=v.value;i>=1;i--){
-                        document.querySelector('label[for="star'+i+'"]').style.color = 'orange'
+                document.querySelectorAll('.rvStar input').forEach(v => {
+                    v.onchange = () => {
+                        for (i = 5; i >= 1; i--)
+                            document.querySelector('label[for="star' + i + '"]').style.color = 'rgba(255, 255, 0, 0.5)'
+                        for (i = v.value; i >= 1; i--) {
+                            document.querySelector('label[for="star' + i + '"]').style.color = 'orange'
+                        }
                     }
-                }
-            })
+                })
             </script>
         </div>
         {{-- <div class="inbox" id="notactive">
@@ -296,171 +299,181 @@
                         </div>
                         @else
                         <div class="rightoptions">
-                     <li class="roption">
-                        <i class="fas fa-user-alt"></i>
-                        <span class="uptitle">Đăng nhập</span>
-                        <span class="downtitle">Tài khoản</span>
-                        <ul>
-                           <div class="sendform" id="login">
-                              <p class="logintitle">Đăng nhập</p>
-                           <form action="{{url()->route('login')}}" method="post" >
-                                 @csrf
-                                 <div class="inputgroup">
-                                    <input type="text" name="email" placeholder="Email đăng nhập" autocomplete="off">
-                                 </div>
-                                 <div class="inputgroup">
+                            <li class="roption">
+                                <i class="fas fa-user-alt"></i>
+                                <span class="uptitle">Đăng nhập</span>
+                                <span class="downtitle">Tài khoản</span>
+                                <ul>
+                                    <div class="sendform" id="login">
+                                        <p class="logintitle">Đăng nhập</p>
+                                        <form action="{{url()->route('login')}}" method="post">
+                                            @csrf
+                                            <div class="inputgroup">
+                                                <input type="text" name="email" placeholder="Email đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
 
-                                    <input type="password" name="password" placeholder="Mật khẩu đăng nhập" autocomplete="off">
-                                 </div>
-                                 <a id="clickforgot" class="forget" href="#forgot"><span>Quên mật khẩu ?</span></a><br>
-                                 <button class="sendnow" type="submit"><span>Đăng nhập ngay</span></button>
-                              </form>
-                           </div>
-                           <div class="sendform" id="register">
-                              
-                              <p class="logintitle">Đăng ký</p>
-                           <form action="{{url()->route('postRegister')}}" method="post">
-                                 @csrf
-                                 <div class="inputgroup">
-                                    <input type="text" name="name" placeholder="Tên đầy đủ" autocomplete="off">
-                                 </div>
-                                 <div class="inputgroup">
-                                    <input type="text" name="phone" placeholder="Số điện thoại" autocomplete="off">
-                                 </div>
-                                 <div class="inputgroup">
+                                                <input type="password" name="password" placeholder="Mật khẩu đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <a id="clickforgot" class="forget" href="#forgot"><span>Quên mật khẩu
+                                                    ?</span></a><br>
+                                            <button class="sendnow" type="submit"><span>Đăng nhập ngay</span></button>
+                                        </form>
+                                    </div>
+                                    <div class="sendform" id="register">
 
-                                    <input type="text" name="email" placeholder="Email đăng nhập" autocomplete="off">
-                                 </div>
-                                 <div class="inputgroup">
+                                        <p class="logintitle">Đăng ký</p>
+                                        <form action="{{url()->route('postRegister')}}" method="post">
+                                            @csrf
+                                            <div class="inputgroup">
+                                                <input type="text" name="name" placeholder="Tên đầy đủ"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
+                                                <input type="text" name="phone" placeholder="Số điện thoại"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
 
-                                    <input type="password" name="password" placeholder="Mật khẩu đăng nhập"
-                                       autocomplete="off">
-                                 </div>
-                                 <button class="sendnow"><span>Đăng ký ngay</span></button>
-                              </form>
-                           </div>
-                           <div class="sendform" id="forgot" style="position: relative;">
+                                                <input type="text" name="email" placeholder="Email đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="inputgroup">
 
-                              <p class="logintitle" > Khôi phục tài khoản</p>
-                              <span style="margin-top:10px;width:100px;display:none;font-size:0.8em;" id="RecoveryMessage"></span>
-                              <form onsubmit="return false;">
-                                 <div class="inputgroup" id="recoveryGroup">
-                                    <input id="recoveryEmail" type="text" name="email" placeholder="Email"
-                                       autocomplete="off"> <br>
-                                 </div>
-                                 <p id="recoveryError" style="color:red;display:none;margin-top:5px;font-size:0.8em;"></p>
-                                 <button class="sendnow" id="backlogin"><span>Trở lại</span></button>
-                                 <button class="sendnow" id="recbutton" onclick="recovery()"><span>Khôi phục</span></button>
-                              </form>
-                           </div>
-                           <script>
-                              var globalEmail = '';
-                                 function recovery(){
-                                    pRecoveryMessage = document.querySelector('#RecoveryMessage')
-                                    pError = document.querySelector('#recoveryError')
-                                    recoveryEmail = document.querySelector('#recoveryEmail')
-                                    recbutton = document.querySelector('#recbutton');
-                                    globalEmail = recoveryEmail.value;
-                                    let email = recoveryEmail.value
-                                    axios.post('{{url()->route('recovery')}}',{
-                                       email:email,
-                                       _token: '{{ csrf_token() }}'
-                                    }).then(data=>{
-                                       data = data.data
-                                       if(data.success){
-                                          pError.style.display = 'none'
-                                          pRecoveryMessage.style.display = 'inline-block'
-                                          pRecoveryMessage.innerHTML = data.message
-                                          recoveryEmail.setAttribute('placeholder','Nhập mã số');
-                                          recoveryEmail.value = ''
-                                          recbutton.innerHTML = '<span>Xác Minh</span>'
-                                          recbutton.setAttribute('onclick','sendRecoveryCode()');
+                                                <input type="password" name="password" placeholder="Mật khẩu đăng nhập"
+                                                    autocomplete="off">
+                                            </div>
+                                            <button class="sendnow"><span>Đăng ký ngay</span></button>
+                                        </form>
+                                    </div>
+                                    <div class="sendform" id="forgot" style="position: relative;">
 
-                                       }else{
-                                          recbutton.innerHTML = '<span>Khôi phục</span>'
-                                          recbutton.setAttribute('onclick','recovery()');
-                                          pError.style.display = 'block'
-                                          pError.innerHTML = data.message
-                                          pRecoveryMessage.style.display = 'none'
-                                       }
-                                    })
-                                 }
-                                 function sendRecoveryCode(){
-                                    pRecoveryMessage = document.querySelector('#RecoveryMessage')
-                                    pError = document.querySelector('#recoveryError')
-                                    recoveryEmail = document.querySelector('#recoveryEmail')
-                                    recbutton = document.querySelector('#recbutton');
-                                    formGroup = document.querySelector('#recoveryGroup')
-                                    axios.post('{{url()->route('postReset')}}',{
-                                       _token:'{{csrf_token()}}',
-                                       code:recoveryEmail.value,
-                                       email:globalEmail
-                                    }).then(data=>{
-                                       data = data.data
-                                       if(data.canRecovery){
-                                          pError.style.display = 'none'
-                                          recbutton.setAttribute('onclick','sendRecoveryInfo()');
-                                          recbutton.innerHTML = '<span>Cập Nhật</span>'
-                                          recoveryEmail.setAttribute('placeholder','Nhập mật khẩu mới')
-                                          recoveryEmail.setAttribute('type','password')
-                                          recoveryEmail.value = ''
-                                          input = document.createElement('input');
-                                          input.setAttribute('id','confirmPassword')
-                                          input.setAttribute('type','password')
-                                          input.setAttribute('placeholder','Xác nhận mật khẩu')
-                                          formGroup.appendChild(input)
-                                       }else{
-                                          pError.style.display = 'block'
-                                          pError.innerHTML = data.message
-                                       }
-                                    })
-                                    
-                                    
-                                 }
-                                 function sendRecoveryInfo(){
-                                    pRecoveryMessage = document.querySelector('#RecoveryMessage')
-                                    pError = document.querySelector('#recoveryError')
-                                    recoveryPass1 = document.querySelector('#recoveryEmail')
-                                    recoveryPass2 = document.querySelector('#confirmPassword')
-                                    recbutton = document.querySelector('#recbutton');
-                                    formGroup = document.querySelector('#recoveryGroup')
-                                    if(recoveryPass1.value!= recoveryPass2.value){
-                                       pError.style.display = 'block'
-                                       pError.innerHTML = 'Vui lòng nhập đúng mật khẩu'
-                                    }else{
-                                       axios.post('{{url()->route('postRecovery')}}',{
-                                          _token:'{{csrf_token()}}',
-                                          email:globalEmail,
-                                          password:recoveryPass1.value
-                                       }).then(data=>{
-                                          data = data.data
-                                          if(data.success){
-                                             document.querySelector('#forgot').innerHTML = '<center style="font-size:1.2em;color:green">Cập nhật mật khẩu thành công</center>'
-                                             setTimeout(() => {
-                                                $('#forgot').hide();
-                                                $('#register').fadeOut(0);
-                                                $('#login').fadeIn(500);
-                                                $('#clickregister').show();
-                                                $('#clicklogin').hide();
-                                                document.querySelector('#forgot').innerHTML = '<p class="logintitle" > Khôi phục tài khoản</p><span style="margin-top:10px;width:100px;display:none;" id="RecoveryMessage"></span><form onsubmit="return false;"><div class="inputgroup" id="recoveryGroup"><input id="recoveryEmail" type="text" name="email" placeholder="Email"autocomplete="off"> <br></div><p id="recoveryError" style="color:red;display:none;margin-top:5px"></p><button class="sendnow" id="backlogin"><span>Trở lại</span></button><button class="sendnow" id="recbutton" onclick="recovery()"><span>Khôi phục</span></button></form>'
-                                             }, 1500);
-                                          }
-                                       })
-                                    }
-                                 }
-                              </script>
-                           <li id="clicklogin"><i class="fas fa-sign-in-alt"></i> Đăng nhập</li>
-                           <li id="clickregister"><i class="fas fa-user-plus"></i> Đăng ký</li>
-                           <li style="background: #4166b2">&emsp;<i class="fab fa-facebook-f"></i>&emsp;| Đăng nhập với
-                              facebook</li>
-                           <li style="background-color: #df4a32;"
-                              onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i
-                                 class="fab fa-google-plus-g"></i> | Đăng nhập với
-                              Google</li>
-                        </ul>
-                     </li>
+                                        <p class="logintitle"> Khôi phục tài khoản</p>
+                                        <span style="margin-top:10px;width:100px;display:none;font-size:0.8em;"
+                                            id="RecoveryMessage"></span>
+                                        <form onsubmit="return false;">
+                                            <div class="inputgroup" id="recoveryGroup">
+                                                <input id="recoveryEmail" type="text" name="email" placeholder="Email"
+                                                    autocomplete="off"> <br>
+                                            </div>
+                                            <p id="recoveryError"
+                                                style="color:red;display:none;margin-top:5px;font-size:0.8em;"></p>
+                                            <button class="sendnow" id="backlogin"><span>Trở lại</span></button>
+                                            <button class="sendnow" id="recbutton" onclick="recovery()"><span>Khôi
+                                                    phục</span></button>
+                                        </form>
+                                    </div>
+                                    <script>
+                                        var globalEmail = '';
+                                        function recovery() {
+                                            pRecoveryMessage = document.querySelector('#RecoveryMessage')
+                                            pError = document.querySelector('#recoveryError')
+                                            recoveryEmail = document.querySelector('#recoveryEmail')
+                                            recbutton = document.querySelector('#recbutton');
+                                            globalEmail = recoveryEmail.value;
+                                            let email = recoveryEmail.value
+                                            axios.post('{{url()->route('recovery')}}', {
+                                                email: email,
+                                                _token: '{{ csrf_token() }}'
+                                            }).then(data => {
+                                                data = data.data
+                                                if (data.success) {
+                                                    pError.style.display = 'none'
+                                                    pRecoveryMessage.style.display = 'inline-block'
+                                                    pRecoveryMessage.innerHTML = data.message
+                                                    recoveryEmail.setAttribute('placeholder', 'Nhập mã số');
+                                                    recoveryEmail.value = ''
+                                                    recbutton.innerHTML = '<span>Xác Minh</span>'
+                                                    recbutton.setAttribute('onclick', 'sendRecoveryCode()');
 
-                  </div>
+                                                } else {
+                                                    recbutton.innerHTML = '<span>Khôi phục</span>'
+                                                    recbutton.setAttribute('onclick', 'recovery()');
+                                                    pError.style.display = 'block'
+                                                    pError.innerHTML = data.message
+                                                    pRecoveryMessage.style.display = 'none'
+                                                }
+                                            })
+                                        }
+                                        function sendRecoveryCode() {
+                                            pRecoveryMessage = document.querySelector('#RecoveryMessage')
+                                            pError = document.querySelector('#recoveryError')
+                                            recoveryEmail = document.querySelector('#recoveryEmail')
+                                            recbutton = document.querySelector('#recbutton');
+                                            formGroup = document.querySelector('#recoveryGroup')
+                                            axios.post('{{url()->route('postReset')}}', {
+                                                _token: '{{csrf_token()}}',
+                                                code: recoveryEmail.value,
+                                                email: globalEmail
+                                            }).then(data => {
+                                                data = data.data
+                                                if (data.canRecovery) {
+                                                    pError.style.display = 'none'
+                                                    recbutton.setAttribute('onclick', 'sendRecoveryInfo()');
+                                                    recbutton.innerHTML = '<span>Cập Nhật</span>'
+                                                    recoveryEmail.setAttribute('placeholder', 'Nhập mật khẩu mới')
+                                                    recoveryEmail.setAttribute('type', 'password')
+                                                    recoveryEmail.value = ''
+                                                    input = document.createElement('input');
+                                                    input.setAttribute('id', 'confirmPassword')
+                                                    input.setAttribute('type', 'password')
+                                                    input.setAttribute('placeholder', 'Xác nhận mật khẩu')
+                                                    formGroup.appendChild(input)
+                                                } else {
+                                                    pError.style.display = 'block'
+                                                    pError.innerHTML = data.message
+                                                }
+                                            })
+
+
+                                        }
+                                        function sendRecoveryInfo() {
+                                            pRecoveryMessage = document.querySelector('#RecoveryMessage')
+                                            pError = document.querySelector('#recoveryError')
+                                            recoveryPass1 = document.querySelector('#recoveryEmail')
+                                            recoveryPass2 = document.querySelector('#confirmPassword')
+                                            recbutton = document.querySelector('#recbutton');
+                                            formGroup = document.querySelector('#recoveryGroup')
+                                            if (recoveryPass1.value != recoveryPass2.value) {
+                                                pError.style.display = 'block'
+                                                pError.innerHTML = 'Vui lòng nhập đúng mật khẩu'
+                                            } else {
+                                                axios.post('{{url()->route('postRecovery')}}', {
+                                                    _token: '{{csrf_token()}}',
+                                                    email: globalEmail,
+                                                    password: recoveryPass1.value
+                                                }).then(data => {
+                                                    data = data.data
+                                                    if (data.success) {
+                                                        document.querySelector('#forgot').innerHTML = '<center style="font-size:1.2em;color:green">Cập nhật mật khẩu thành công</center>'
+                                                        setTimeout(() => {
+                                                            $('#forgot').hide();
+                                                            $('#register').fadeOut(0);
+                                                            $('#login').fadeIn(500);
+                                                            $('#clickregister').show();
+                                                            $('#clicklogin').hide();
+                                                            document.querySelector('#forgot').innerHTML = '<p class="logintitle" > Khôi phục tài khoản</p><span style="margin-top:10px;width:100px;display:none;" id="RecoveryMessage"></span><form onsubmit="return false;"><div class="inputgroup" id="recoveryGroup"><input id="recoveryEmail" type="text" name="email" placeholder="Email"autocomplete="off"> <br></div><p id="recoveryError" style="color:red;display:none;margin-top:5px"></p><button class="sendnow" id="backlogin"><span>Trở lại</span></button><button class="sendnow" id="recbutton" onclick="recovery()"><span>Khôi phục</span></button></form>'
+                                                        }, 1500);
+                                                    }
+                                                })
+                                            }
+                                        }
+                                    </script>
+                                    <li id="clicklogin"><i class="fas fa-sign-in-alt"></i> Đăng nhập</li>
+                                    <li id="clickregister"><i class="fas fa-user-plus"></i> Đăng ký</li>
+                                    <li style="background: #4166b2">&emsp;<i class="fab fa-facebook-f"></i>&emsp;| Đăng
+                                        nhập với
+                                        facebook</li>
+                                    <li style="background-color: #df4a32;"
+                                        onclick="window.location.href = '{{url()->route('GoogleRedirect')}}'"><i
+                                            class="fab fa-google-plus-g"></i> | Đăng nhập với
+                                        Google</li>
+                                </ul>
+                            </li>
+
+                        </div>
                         @endif
                         <div class="cartarea">
                             <li>
@@ -691,7 +704,7 @@
                                 <span><i class="fas fa-history"></i></span>
                                 <p>NHẬN HÀNG TRONG 2 GIỜ - ĐỔI TRẢ 24 GIỜ </p>
                             </div>
-                            <div class="colorpick">
+                            {{-- <div class="colorpick">
                                 <span class="ctitle">
                                     Màu sắc:
                                 </span>
@@ -700,7 +713,7 @@
                                     <li class="black active" style="background:black"></li>
                                     <li class="blue" style="background:#007ff0"></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <form action="{{url()->route('addCart')}}" method=POST onsubmit="return false;">
                                 <div class="quantity">
                                     <span class="qtitle">
@@ -728,10 +741,11 @@
                                 </div>
                             </form>
                             <script>
-                                
+
                                 function addCart() {
-                                    let preCount = {{ $myCart-> getQuantityAll()}}
-                                
+                                    let preCount = {{ $myCart-> getQuantityAll()
+                                }}
+
                                 let btnAddCart = document.querySelector('#btnAddCart')
                                 btnAddCart.innerHTML = ' <img style="width:45px" src="{{asset('assets/img/loading.svg')}}" alt="">'
                                 let quan = parseInt(document.querySelector('#quantity').value)
@@ -823,7 +837,8 @@
                         <div class="shopname">
                             <i class="fas fa-store-alt"></i>
                             <span>
-                                <a href="{{url('/shop/'.$product->Seller()->slug)}}">{{$product->Seller()->name}}</a> <br>
+                                <a href="{{url('/shop/'.$product->Seller()->slug)}}">{{$product->Seller()->name}}</a>
+                                <br>
                                 <small>Cam kết chính hiệu 100%</small>
                             </span>
                             <a href="{{url('/shop/'.$product->Seller()->slug)}}" id="viewshop" class="tabfade">
@@ -924,141 +939,20 @@
                         </div>
                         <div class="dgroup">
                             <div class="destext">
-                                <h2>Đặc điểm nổi bật của Samsung Galaxy A30</h2>
-                                <div class="productnews">
-                                    <h2>
-                                        Now farmer later thumb term full camera valley nearby improve slipped direction
-                                        anyway lovely village activity bad protection anyone tribe shelter say evidence
-                                        straight
-                                    </h2>
-                                    <div class="blocknew">
-                                        <h3 class="hightlight">
-                                            Màn hình lớn tương đương <a href="#">Galaxy S10+</a>
-                                        </h3>
-                                        <p class="nonetext">
-                                            Có thể bạn sẽ bất ngờ bởi chiếc điện thoại Samsung mới sở hữu cho mình màn
-                                            hình có kích thước lên tới 6.4 inch, tương đương với màn hình của chiếc
-                                            Samsung <a href="#">Galaxy S10+</a>.
-                                        </p>
-                                        <img src="../assets/img/sp2.jpg" alt="">
-                                        <p class="nonetext">
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                        </p>
+                                <div class="dslider">
+                                    <div class="owl-carousel owl-theme" id="dslider">
+                                        @foreach ($product->Slide as $slideImg)
+                                        <div class="item">
+                                            <a href="javascript:void(0)">
+                                                <img src="{{$slideImg->src}}" alt="">
+                                            </a>
+                                        </div>
+                                        @endforeach
                                     </div>
-                                    <div class="blocknew">
-                                        <h3 class="hightlight">
-                                            Màn hình lớn tương đương <a href="#">Galaxy S10+</a>
-                                        </h3>
-                                        <p class="nonetext">
-                                            Có thể bạn sẽ bất ngờ bởi chiếc điện thoại Samsung mới sở hữu cho mình màn
-                                            hình có kích thước lên tới 6.4 inch, tương đương với màn hình của chiếc
-                                            Samsung <a href="#">Galaxy S10+</a>.
-                                        </p>
-                                        <img src="../assets/img/sp4.jpg" alt="">
-                                        <p class="nonetext">
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                        </p>
-                                    </div>
-                                    <div class="blocknew">
-                                        <h3 class="hightlight">
-                                            Màn hình lớn tương đương <a href="#">Galaxy S10+</a>
-                                        </h3>
-                                        <p class="nonetext">
-                                            Có thể bạn sẽ bất ngờ bởi chiếc điện thoại Samsung mới sở hữu cho mình màn
-                                            hình có kích thước lên tới 6.4 inch, tương đương với màn hình của chiếc
-                                            Samsung <a href="#">Galaxy S10+</a>.
-                                        </p>
-                                        <img src="../assets/img/sp3.jpg" alt="">
-                                        <p class="nonetext">
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                        </p>
-                                    </div>
-                                    <div class="blocknew" style="display:none">
-                                        <h3 class="hightlight">
-                                            Màn hình lớn tương đương <a href="#">Galaxy S10+</a>
-                                        </h3>
-                                        <p class="nonetext">
-                                            Có thể bạn sẽ bất ngờ bởi chiếc điện thoại Samsung mới sở hữu cho mình màn
-                                            hình có kích thước lên tới 6.4 inch, tương đương với màn hình của chiếc
-                                            Samsung <a href="#">Galaxy S10+</a>.
-                                        </p>
-                                        <img src="../assets/img/sp5.jpg" alt="">
-                                        <p class="nonetext">
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                        </p>
-                                    </div>
-                                    <div class="blocknew" style="display:none">
-                                        <h3 class="hightlight">
-                                            Màn hình lớn tương đương <a href="#">Galaxy S10+</a>
-                                        </h3>
-                                        <p class="nonetext">
-                                            Có thể bạn sẽ bất ngờ bởi chiếc điện thoại Samsung mới sở hữu cho mình màn
-                                            hình có kích thước lên tới 6.4 inch, tương đương với màn hình của chiếc
-                                            Samsung <a href="#">Galaxy S10+</a>.
-                                        </p>
-                                        <img src="../assets/img/sp1.jpg" alt="">
-                                        <p class="nonetext">
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                            Tuy nhiên khác với màn hình <a href="#">Infinity-O</a> trên người đàn anh
-                                            đắt tiền thì Galaxy A30 sẽ sở hữu màn hình <a href="#">Infinity-U</a> hoàn
-                                            toàn mới mẻ.
-                                            Với tỷ lệ màn hình 19:9 đảm bảo cho bạn có một không gian trải nghiệm rộng
-                                            rãi trên kích thước 6 inch nhưng vẫn tối ưu được diện tích tổng thể thân
-                                            máy.
-                                        </p>
-                                    </div>
-                                    <div class="readmore"><a href="javascript:void(0)" id="readtextmore">Đọc Thêm <i
-                                                class="fas fa-angle-down"></i></a></div>
+                                    <button id="goleft"><i class="fas fa-chevron-left"></i></button>
+                                    <button id="goright"><i class="fas fa-chevron-right"></i></button>
                                 </div>
+                                {!!$product->description!!}
                             </div>
                             <div class="desnumber">
                                 <div class="pbanner">
@@ -1067,9 +961,9 @@
                                 <div class="pbanner">
                                     <a href="#"><img src="../assets/img/pbanner2.jpg" alt=""></a>
                                 </div>
-                                <div class="pbanner">
+                                {{-- <div class="pbanner">
                                     <a href="#"><img src="../assets/img/pbanner1.png" alt=""></a>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </div>
@@ -1119,7 +1013,8 @@
                             <div class="writereview">
                                 <div>
                                     <p>Chia sẻ nhận xét về sản phẩm</p>
-                                    <button onclick="document.querySelector('.rvBox').style.display='block';"><i class="fas fa-pen-alt"></i> Nhận xét về sản phẩm</button>
+                                    <button onclick="document.querySelector('.rvBox').style.display='block';"><i
+                                            class="fas fa-pen-alt"></i> Nhận xét về sản phẩm</button>
                                 </div>
                             </div>
                         </div>
@@ -1128,10 +1023,10 @@
                                 <p>Nhận xét</p>
                             </div>
                             <div class="rvlist">
-                                @foreach ($product->getReviews() as $review)
+                                @foreach ($product->Review->paginate(10) as $review)
                                 <div class="rv">
                                     <div class="rvauthor">
-                                        <img  src="{{url($review->Customer()->first()->getAvatar() ?? '')}}" alt="">
+                                        <img src="{{url($review->Customer()->first()->getAvatar() ?? '')}}" alt="">
                                         <div>
                                             <p>{{$review->whoWrite()}}</p>
                                             <p>
@@ -1146,7 +1041,7 @@
                                             <p class="rvcontent">{{$review->message ?? ''}}</p>
 
                                             <p class="rvgallery">
-                                                @foreach ($review->getImages() as $rvimg)
+                                                @foreach ($review->Images as $rvimg)
                                                 <img src="{{url($rvimg->src ?? '')}}" alt="{{$product->name}}">
                                                 @endforeach
                                             </p>
@@ -1155,7 +1050,10 @@
                                                 {{date_format(date_create($review->create_at),"H:i:s d-m-Y")}}
                                             </p>
                                         </div>
-                                    <a href="javascript:void(0)" onclick="@if(array_search($review->id,Session::get('point_increment_ids') ?? [])===false)increPoint({{$review->id}})@endif"><button><i class="far fa-thumbs-up"></i> <span><b id="rvPoint_{{$review->id}}" data-point="{{$review->point}}">{{$review->point}}</b> Hữu
+                                        <a href="javascript:void(0)"
+                                            onclick="@if(array_search($review->id,Session::get('point_increment_ids') ?? [])===false)increPoint({{$review->id}})@endif"><button><i
+                                                    class="far fa-thumbs-up"></i> <span><b id="rvPoint_{{$review->id}}"
+                                                        data-point="{{$review->point}}">{{$review->point}}</b> Hữu
                                                     ích</span></button></a>
                                     </div>
                                 </div>
@@ -1163,24 +1061,24 @@
                             </div>
                         </div>
                         <script>
-                            function increPoint(id){
-                                axios.post('{{url()->route('increPoint')}}',{
-                                    id:id
-                                }).then(d=>{
+                            function increPoint(id) {
+                                axios.post('{{url()->route('increPoint')}}', {
+                                    id: id
+                                }).then(d => {
                                     data = d.data
-                                    if(data.success) {
-                                        rv = document.querySelector('#rvPoint_'+id)
-                                        rv.dataset.point = parseInt(rv.dataset.point)+1
+                                    if (data.success) {
+                                        rv = document.querySelector('#rvPoint_' + id)
+                                        rv.dataset.point = parseInt(rv.dataset.point) + 1
                                         rv.innerHTML = rv.dataset.point
                                     }
                                 })
                             }
                         </script>
                         <div class="btnloadmore" id="pagination">
-                            {{$product->getReviews()->links()}}
+                            {{$product->Review->paginate(10)->links()}}
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- categoriesforyou -->
 
@@ -1190,100 +1088,99 @@
                         CÓ THỂ BẠN CŨNG THÍCH
                     </div>
                     <div class="salesproducts" id="foryou">
-                  @foreach ($recommandProducts as $product)
-                  <div class="product">
-                     <div class="imgbox">
-                        <a href="#viewflash">
-                           <img
-                              src="{{isset($product->Avatar()->src) ? url($product->Avatar()->src) : 'assets/img/product5.jpg'}}"
-                              alt="">
-                        </a>
-                        <div class="groupcart">
-                            <a href="javascript:void(0)"> <button  title="Thêm vào danh sách yêu thích"><i onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
-                                     class="@if($enjoy->is_exists($product->id))
-                                        fas fa-heart
-                                     @else
-                                        far fa-heart
-                                     @endif"></i></button></a>
-                            <a href="#cartoption"> <button onclick="addCartX({{$product->id}})" title="Thêm vào giỏ hàng"><i
-                                     class="fas fa-cart-plus"></i></button></a>
-                         </div>
-                        @if ($product->isNew())
-                           <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
-                        @endif
-                     </div>
-                     @php
-                     $discount = $product->AvailableDiscount()->get();
-                     @endphp
-                     @if (count($discount)>0)
-                     <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
-                     @endif
-
-                     <div class="product_name"><a href="{{url('./products/'.$product->slug)}}">{{$product->name}}</a>
-                     </div>
-                     <div class="product_price">
-                        @if (count($discount)>0)
-                        <span
-                           class="newprice">{{number_format($product->price-$discount[0]->percent/100*$product->price)}}
-                           <sup>đ</sup></span>
-                        <span class="oldprice">{{number_format($product->price)}} <sup>đ</sup></span>
-                        @else
-                        <span class="newprice">{{number_format($product->price)}} <sup>đ</sup></span>
-                        @endif
-
-                     </div>
-                     <div class="rating">
-                        <p>
-                           @for ($i = 1; $i <= $product->getAvgReview(); $i++)
-                              <i class="fas fa-star" style="color:orange" id="star"></i>
-                              @endfor
-                              @for ($i = 1; $i <= 5-$product->getAvgReview(); $i++)
-                                 <i class="fas fa-star" id="star"></i>
-                                 @endfor
-                                 <span id="review_count">({{$product->getCountReview()}})</span>
-                        </p>
-                        <span class="selled"><i class="fas fa-check-double"></i>
-                           {{$product->getTotalQuantitySelled()}}</span>
-                     </div>
-                     <div class="supaddress">
-
-                        {{$product->getAddress()}}
-                     </div>
-
-                  </div>
-                  @endforeach
-                  <script>
-                    function addCartX(id) {
-                       let preCount = {{ $myCart-> getQuantityAll()}}
-                       let quan = 1
-                       axios.post('{{url()->route('addCart')}}', {
-                          id: id,
-                          quantity: quan
-                       }).then(data => {
-                          if (data.data.success) {
-                                window.location.reload()    
-                          }
-                       })
+                        @foreach ($recommandProducts as $product)
+                        <div class="product">
+                                <div class="imgbox">
+                                   <a href="#viewflash">
+                                      <img src="{{isset($product->ImgAvt->src) ? url($product->ImgAvt->src) : ''}}" alt="">
+                                   </a>
+                                   <div class="groupcart">
+                                      <a href="javascript:void(0)"> <button title="Thêm vào danh sách yêu thích"><i
+                                               onclick="if(this.getAttribute('class')=='fas fa-heart'){delLove({{$product->id}});this.setAttribute('class','far fa-heart')}else{addLove({{$product->id}});this.setAttribute('class','fas fa-heart')}"
+                                               class="@if($enjoy->is_exists($product->id))
+                                               fas fa-heart
+                                            @else
+                                               far fa-heart
+                                            @endif"></i></button></a>
+                                      <a href="#cartoption" onclick="addCartX({{$product->id}})""> <button onclick="addCartX({{$product->id}})"
+                                            title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></button></a>
+                                   </div>
+                                   @if ($product->isNew())
+                                   <span id="new_trend"><img src="../assets/img/new.png" alt=""></span>
+                                   @endif
+                                </div>
+                                @php
+                                $discount = $product->Discount->toArray();
+                                @endphp
+                                @if (count($discount)>0)
+                                <div class="salespercent">{{$discount[0]['percent'] ?? ''}}% </div>
+                                @endif
+           
+                                <div class="product_name"><a href="{{url('./products/'.$product->slug)}}">{{$product->name}}</a>
+                                </div>
+                                <div class="product_price">
+                                   @if (count($discount)>0)
+                                   <span
+                                      class="newprice">{{number_format($product->price-$discount[0]['percent']/100*$product->price)}}
+                                      <sup>đ</sup></span>
+                                   <span class="oldprice">{{number_format($product->price)}} <sup>đ</sup></span>
+                                   @else
+                                   <span class="newprice">{{number_format($product->price)}} <sup>đ</sup></span>
+                                   @endif
+           
+                                </div>
+                                <div class="rating">
+                                   <p>
+                                      @for ($i = 1; $i <= $product->Review->avg('star'); $i++)
+                                         <i class="fas fa-star" style="color:orange" id="star"></i>
+                                         @endfor
+                                         @for ($i = 1; $i <= 5-$product->Review->avg('star'); $i++)
+                                            <i class="fas fa-star" id="star"></i>
+                                            @endfor
+                                            <span id="review_count">({{$product->Review->count()}})</span>
+                                   </p>
+                                   <span class="selled"><i class="fas fa-check-double"></i>
+                                      {{$product->getTotalQuantitySelled()}}</span>
+                                </div>
+                                <div class="supaddress">
+                                    {{str_replace("Thành phố",'',str_replace("Tỉnh",'',$product->RlSeller->City->name))}}
+                                </div>
+           
+                             </div>
+                        @endforeach
+                        <script>
+                            function addCartX(id) {
+                                let preCount = {{ $myCart-> getQuantityAll()
+                            }}
+                            let quan = 1
+                            axios.post('{{url()->route('addCart')}}', {
+                                id: id,
+                                quantity: quan
+                            }).then(data => {
+                                if (data.data.success) {
+                                    window.location.reload()
+                                }
+                            })
                     }
-                    function addLove(id){   
-                        axios.post('{{url()->route('addEnjoy')}}',{
-                           id:id,
-                           type:1
-                        }).then(data=>{
-                           data = data.data
-                           if(data.success){
-                              
-                           }
-                        })
-                     }
-                     function delLove(id){
-                        axios.post('{{url()->route('delEnjoy')}}',{
-                           id:id,
-                        }).then(data=>{
-                        })
-                     }
-                    </script><!-- endrightoption -->
-               </div>
+                            function addLove(id) {
+                                axios.post('{{url()->route('addEnjoy')}}', {
+                                    id: id,
+                                    type: 1
+                                }).then(data => {
+                                    data = data.data
+                                    if (data.success) {
+
+                                    }
+                                })
+                            }
+                            function delLove(id) {
+                                axios.post('{{url()->route('delEnjoy')}}', {
+                                    id: id,
+                                }).then(data => {
+                                })
+                            }
+                        </script><!-- endrightoption -->
+                    </div>
                 </div>
             </div>
             <!-- endbodycenter -->

@@ -220,7 +220,7 @@ $('.product').css('transition', 'all ease 0.2s');
 //Carousel Slider Banner Mega
 var owl = $('.description .destext #dslider');
 owl.owlCarousel({
-    items: 5,
+    items: 1,
     loop: true,
     margin: 10,
     autoplay: true,
@@ -234,7 +234,7 @@ $('#goright').click(function () {
 $('#goleft').click(function () {
     // With optional speed parameter
     // Parameters has to be in square bracket '[]'
-    owl.trigger('prev.owl.carousel', [300]);
+    owl.trigger('prev.owl.carousel');
 })
 $('#catsforyou .catsforyoutitle span').click(() => {
     $('#catsforyou').fadeOut(500);

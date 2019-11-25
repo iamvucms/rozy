@@ -23,14 +23,18 @@ class Product extends Model
         foreach($cats as $cat){
             $equalCat[] = $cat->id;
         }
-        $products = $this->whereIn('idcat',$equalCat)->limit($limit)->get();
+        $products = $this->whereIn('idcat',$equalCat)->with('ImgAvt')->with('OrderDetail')
+        ->with('Discount')
+        ->with('Review')->limit($limit)->get();
         if($products->count()<$limit){
             $diff = $limit-$products->count();
             $ids = [];
             foreach($products as $product){
                 $ids[] = $product->id;
             }
-            $extraProduct = Product::whereNotIn('id',$ids)->limit($diff)->get();
+            $extraProduct = Product::whereNotIn('id',$ids)->with('ImgAvt')->with('OrderDetail')
+            ->with('Discount')
+            ->with('Review')->limit($diff)->get();
             $products = $products->merge($extraProduct);
         }
         return $products;        
@@ -38,19 +42,20 @@ class Product extends Model
     //Discount Relationship
     public function Discount()
     {
-        return $this->hasMany('App\Discount', 'idproduct', 'id');
+        $current = date("Y-m-d H:i:s");
+        return $this->hasMany('App\Discount', 'idproduct', 'id')->where([['from','<',$current],['to','>',$current]])
+        ->whereRaw('(discount.total - discount.selled > 0 OR (total IS NULL AND selled IS NULL))')
+        ->orderBy('percent','DESC');
     }
     public function AvailableDiscount()
     {
         $current = date("Y-m-d H:i:s");
         return $this->Discount()->select("percent")
-        ->where([['from','<',$current],['to','>',$current]])
-        ->whereRaw('(discount.total - discount.selled > 0 OR (total IS NULL AND selled IS NULL))')
-        ->orderBy('percent','DESC')->limit(1);
+        ->limit(1);
     }
     //Review Relationship
     public function Review(){
-        return $this->hasMany('App\Review','idpro','id');
+        return $this->hasMany('App\Review','idpro','id')->with('Images');
     }
     public function getCountReview($star=0){
         return $this->Review()->where('star','>',$star)->count();
@@ -76,10 +81,14 @@ class Product extends Model
     }
     //OrderDetail Relationship
     public function OrderDetail(){
-        return $this->hasMany('App\OrderDetail','idpro','id');
+        return $this->hasMany('App\OrderDetail','idpro','id')->with('Order');
     }
     public function getTotalQuantitySelled(){
-        return $this->OrderDetail()->sum('quantity');
+        $p= 0;
+        foreach($this->OrderDetail()->get() as $odd){
+            if($odd->Order->status==4) $p+= $odd->quantity;
+        }
+        return $p;
     }
     public function isTrending(){
         
@@ -104,8 +113,11 @@ class Product extends Model
         return $this->ImgAvt()->select('src','id')->first() ?? null;
     }
     //Seller Relationships
+    public function RlSeller(){
+        return $this->hasOne('App\Seller','id','idsell')->with('City');
+    }
     public function Seller(){
-        return $this->hasOne('App\Seller','id','idsell')->first();
+        return $this->RlSeller()->first();
     }
     public function isNew($datediff=15){
         $products = $this->whereRaw("DATEDIFF(now(),create_at) >0 AND DATEDIFF(now(),create_at) < $datediff")->where('id',$this->id);
@@ -131,8 +143,12 @@ class Product extends Model
     //Product For Filter
     public function search($cat,$keyword){
         $temp = $this;
-        if($keyword!==null) $temp = $temp->where('products.name','like',"%$keyword%");
-        if(!($cat==0 || $cat===null)) $temp = $temp->where('idcat',$cat);
+        if($keyword!==null) $temp = $temp->where('products.name','like',"%$keyword%")->with('ImgAvt')->with('OrderDetail')
+        ->with('Discount')
+        ->with('Review');
+        if(!($cat==0 || $cat===null)) $temp = $temp->where('idcat',$cat)->with('ImgAvt')->with('OrderDetail')
+        ->with('Discount')
+        ->with('Review');
         return $temp;
     }   
     public function withPrice($cat,$keyword,$from,$to){

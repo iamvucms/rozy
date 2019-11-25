@@ -13,7 +13,10 @@ class Seller extends Model
 {
     protected $table = 'sellers';
     public function Products(){
-        return $this->hasMany('App\Product','idsell','id');
+        return $this->hasMany('App\Product','idsell','id')
+        ->with('ImgAvt')->with('OrderDetail')
+        ->with('Discount')
+        ->with('Review');
     }
     public function User(){
         return $this->hasOne('App\User','id','user_id');

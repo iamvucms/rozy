@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cookie;
 use App\Product;
+use App\Discount;
 class Cart extends Model
 {
     private $cart;
@@ -15,6 +16,8 @@ class Cart extends Model
         $product =Product::where('id',$id)->first();
         if($quantity>$product->quantity) return false;
         $exists = $this->is_exists($id);
+        $dc = new Discount;
+        $percent = $dc->getMaxAvailablerForProduct($product->id) ?? 0;
         if($product->count() > 0 && $quantity > 0){
             if($exists){
                 if($this->getQuantity($id)+$quantity > $product->quantity) return false;
@@ -24,7 +27,7 @@ class Cart extends Model
                     'id' =>$id,
                     'quantity'=>$quantity,
                     'name' => $product->name,
-                    'price' =>$product->sale_price,
+                    'price' =>ceil($product->price - $percent*$product->price/100),
                     'avatar' =>$product->Avatar()->src?? ''
                 ];
             }
@@ -60,11 +63,13 @@ class Cart extends Model
         foreach($this->cart as $key =>$cart){
             $product = Product::where('id',$cart['id'])->first();
             $id = $product->Seller()->id;
+            $dc = new Discount;
+            $percent = $dc->getMaxAvailablerForProduct($product->id) ?? 0;
             if($idsell==$id) $products[] = [
                 'id' =>$product->id,
                 'quantity'=>$cart['quantity'],
                 'name' => $product->name,
-                'price' =>$product->sale_price,
+                'price' =>ceil($product->price - $percent*$product->price/100),
                 'avatar' =>$product->Avatar()->src ?? ''
             ];
         }

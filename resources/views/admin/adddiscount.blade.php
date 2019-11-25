@@ -36,48 +36,65 @@
                 </div>
                 <div class="catlist" id="add">
                     <p class="cattitle">
-                        <i class="fas fa-pen-nib"> </i> Cập Nhật Discount
+                        <i class="fas fa-pen-nib"> </i> Thêm Discount
                     </p>
                     <div class="tabcat">
-                        <form action="{{url()->route('superPostEditDiscount',['id'=>$discount->id])}}" method="POST">
+                        <form action="{{url()->route('superPostAddDiscount')}}" method="POST">
                             @csrf
                             <table>
                             <tr>
-                                <td>Tên Mã Discount</td>
-                                <td><input value="{{$discount->name}}" @if(isset($errors->toArray()['name']))style="border:1px solid red" @endif required name="name" type="text" placeholder="Tên Mã Discount"></td>
+                                <td>Loại Khuyến Mãi</td>
+                                <td><select name="type" id="dcType" onchange="changeMe()">
+                                    <option value="1" selected=selected >FlashSale</option>
+                                    <option value="2">Khuyến Mãi Thường</option>
+                                </select></td>
+                            </tr>
+                            <tr id="totalInp">
+                                <td>Giới Hạn Lượt Mua</td>
+                                <td><input id="total" @if(isset($errors->toArray()['total']))style="border:1px solid red" @endif  min="1" name="total" required type="number" placeholder="Giới Hạn Lượt Mua" ></td>
+                            </tr>
+                            <script>
+                                function changeMe(){
+                                    selected = document.querySelector('#dcType').value
+                                    if(selected==1){
+                                        document.querySelector('#totalInp').style.display ='table-row'
+                                        document.querySelector('#total').removeAttribute('disabled')
+                                        document.querySelector('#total').setAttribute('required',true)
+                                        document.querySelector('#total').setAttribute('name','total')
+                                    }else if(selected==2){
+                                        document.querySelector('#total').removeAttribute('name')
+                                        document.querySelector('#total').removeAttribute('required')
+                                        document.querySelector('#totalInp').style.display ='none'
+                                        document.querySelector('#total').setAttribute('disabled',true)
+                                    }
+                                }
+                            </script>
+                            <tr>
+                                <td>Phần Trăm (<span id="myPercent">1</span>%)</td>
+                                <td><input name="percent" onchange="document.querySelector('#myPercent').innerHTML=this.value" value="0" @if(isset($errors->toArray()['percent']))style="border:1px solid red" @endif name="percent" step="1" min="1" max="100" required type="range" placeholder="Giá trị" ></td>
                             </tr>
                             <tr>
-                                <td>Mã Discount</td>
-                                <td><input value="{{$discount->code}}" @if(isset($errors->toArray()['code']))style="border:1px solid red" @endif name="code" required type="text" placeholder="Mã Discount"></td>
-                            </tr>
-                            <tr>
-                                <td>Số Lần Sử dụng</td>
-                                <td><input value="{{$discount->max_using}}" @if(isset($errors->toArray()['count']))style="border:1px solid red" @endif name="count" min="1" required type="number" placeholder="Số Lần Sử dụng" ></td>
-                            </tr>
-                            <tr>
-                                <td>Giá trị</td>
-                                <td><input value="{{$discount->value}}" @if(isset($errors->toArray()['value']))style="border:1px solid red" @endif name="value" min="10000" required type="number" placeholder="Giá trị" ></td>
+                                <td>Ngày Bắt Đầu</td>
+                                <td><input @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="from" type="datetime-local" placeholder="mm/dd/YYYY"></td>
                             </tr>
                             <tr>
                                 <td>Ngày Hết Hạn</td>
-                            <td><input value="{{date('Y-m-d',strtotime($discount->expired))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="expired" type="date" placeholder="mm/dd/YYYY"></td>
+                            <td><input @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="to" type="datetime-local" placeholder="mm/dd/YYYY"></td>
                             </tr>
-                            @if($user->role_id==1)
                             <tr>
                                 <td>Áp dụng cho</td>
                                 <td>
-                                <select class="js-example-basic-single" name="idsell">
-                                    <option value="0" >Toàn Hệ Thống</option>
-                                    
-                                    <option value="" ></option>
+                                <select class="js-example-basic-single" name="idproduct">
+                                    @foreach ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                    @endforeach
                                 </select>
                                 </td>
                             </tr>
-                            @endif
                         </table> 
                         <tr>
                         <td><button class="cancelcat" onclick=" window.location.href='{{url()->route('superDiscount')}}';return false">Hủy</button></td>
-                            <td><button class="addcat">Cập Nhật</button></td>
+                            <td><button class="addcat">Thêm</button></td>
                         </tr>
                         </form>
                     </div>

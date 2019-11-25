@@ -130,7 +130,7 @@
                             </li>
                             <li><i class="fas fa-radiation"></i> Thao Tác <i class="fas fa-angle-down"></i>
                                 <ul>
-                                    <li><a href="{{url()->route('superAddCustomer')}}" style="color:#555"><i class="fas fa-plus-circle"></i>
+                                    <li><a href="{{url()->route('superAddDiscount')}}" style="color:#555"><i class="fas fa-plus-circle"></i>
                                             Thêm mới</a></li>
                                     <li onclick="deleteSelected()"><i class="far fa-trash-alt"></i> Xóa</li>
                                 </ul>
@@ -160,7 +160,7 @@
                             <td>@if($discount->selled!==null && $discount->total!==null) Flashsale @else Giảm giá @endif</td>
                             <td style="color:green;font-size:1.1em!important">-{{$discount->percent}}%</td>
                             <td>{{number_format($discount->RlProduct->price)}} VND</td>
-                            <td>{{number_format($discount->RlProduct->sale_price)}} VND</td>
+                            <td>{{number_format(ceil($discount->RlProduct->price - $discount->RlProduct->price*$discount->percent/100))}} VND</td>
                             <td>{{date('H:i:s d/m/Y',strtotime($discount->from))}}</td>
                             <td>{{date('H:i:s d/m/Y',strtotime($discount->to))}}</td>
                             <td>{{$discount->total ?? '--'}}</td>
@@ -199,7 +199,7 @@
         function deleteSelected(){
             if(selectedCat.length ==0) return;
             if(confirm('Bạn có chắc muốn xoá '+selectedCat.length+' khuyến mãi này') ){
-                axios.post('{{url()->route('superDeleteEditCustomer')}}',{
+                axios.post('{{url()->route('superDeleteEditDiscount')}}',{
                     ids:selectedCat
                 }).then(d=>{
                     window.location.reload()
@@ -208,7 +208,7 @@
         }
         function postDelete(id){
             if(confirm('Bạn có chắc muốn xoá khuyến mãi này') ){
-                axios.post('{{url()->route('superDeleteEditCustomer')}}',{
+                axios.post('{{url()->route('superDeleteEditDiscount')}}',{
                     ids:[id]
                 }).then(d=>{
                     window.location.reload()

@@ -75,18 +75,18 @@
                             </tr>
                             <tr>
                                 <td>Ngày Bắt Đầu</td>
-                                <td><input value="{{date('Y-m-d\TH:i:s',strtotime($discount->from))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="from" type="datetime-local" placeholder="mm/dd/YYYY"></td>
+                                <td><input value="{{date('Y-m-d\TH:i',strtotime($discount->from))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="from" type="datetime-local" placeholder="mm/dd/YYYY"></td>
                             </tr>
                             <tr>
                                 <td>Ngày Hết Hạn</td>
-                            <td><input  value="{{date('Y-m-d\TH:i:s',strtotime($discount->to))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="to" type="datetime-local" placeholder="mm/dd/YYYY"></td>
+                            <td><input  value="{{date('Y-m-d\TH:i',strtotime($discount->to))}}" @if(isset($errors->toArray()['expired']))style="border:1px solid red" @endif min="{{date('Y-m-d')}}" required name="to" type="datetime-local" placeholder="mm/dd/YYYY"></td>
                             </tr>
                             <tr>
                                 <td>Áp dụng cho</td>
                                 <td>
                                 <select class="js-example-basic-single" name="idproduct">
                                     @foreach ($products as $product)
-                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                    <option value="{{$product->id}}" @if($product->id==$discount->idproduct) selected=selected @endif>{{$product->name}}</option>
                                     @endforeach
                                 </select>
                                 </td>

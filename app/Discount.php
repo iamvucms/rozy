@@ -39,6 +39,13 @@ class Discount extends Model
         }
         return $temps;
     }
+    public function getMaxAvailablerForProduct($idproduct){
+        $current = date("Y-m-d H:i:s");
+        return $this->where([['from','<',$current],['to','>',$current]])
+        ->whereRaw('(discount.total - discount.selled > 0 OR (discount.total is null AND discount.selled is null))')
+        ->where('idproduct',$idproduct)
+        ->max('percent') ?? 0;
+    }
     public function getAvailableCount(){
         $current = date("Y-m-d H:i:s");
         return $this->where([['from','<',$current],['to','>',$current]])

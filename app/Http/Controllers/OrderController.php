@@ -142,7 +142,6 @@ class OrderController extends Controller
                 $orderDetail->quantity = $p['quantity'];
                 $orderDetail->save();
             }
-               
         }
         Cookie::queue('cart',json_encode([]),999999999);
         Session::forget('coupons');

@@ -13,6 +13,7 @@ use App\Review;
 use App\Traffic;
 use App\City;
 use App\Shipper;
+use App\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 class ComposerServiceProvider extends ServiceProvider
@@ -50,7 +51,9 @@ class ComposerServiceProvider extends ServiceProvider
                 $user = Auth::user();
                 $user->last_action = date('Y-m-d H:i:s');
                 $user->save();
+                $view->with('messages',new Message);
             }
+            
             $view->with('categories',Category::orderBy('order','ASC')->get());
             $view->with('myCart',new Cart);
             $view->with('user',Auth::user());

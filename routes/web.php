@@ -65,7 +65,9 @@ Route::group(['prefix' => '/panel/manager','middleware' => 'guest'], function(){
     Route::get('dashboard-login', 'Manager\LoginController@Login')->name('superLogin');
     Route::post('dashboard-login', 'Manager\LoginController@postLogin')->name('superPostLogin');
 });
-
+//Message Resource
+Route::resource('messages', 'MessageController');
+Route::post('/messages-getMsg','MessageController@getMessages')->name('getMsgBySeller')->middleware('auth');
 //Manager Area Logined 
 Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], function(){
     Route::get('/','Manager\DashboardController@Index')->name('dashboard');

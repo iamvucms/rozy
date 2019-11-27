@@ -5,11 +5,19 @@
         <li><i class="far fa-envelope"></i> <span class="toptext">Tin
                 nhắn</span></li>
         <li class="topprofile">
+            @if($user->role_id==1)
             <img src="{{url($user->getAvatar() ?? '')}}" alt="">
             <span class="nameprofile"><span class="toptext">{{$user->getInfo()->name}}</span>
                 <i class="fas fa-angle-down"></i>
 
             </span>
+            @elseif($user->role_id==3)
+            <img src="{{url($user->Seller()->getAvatar() ?? '')}}" alt="">
+            <span class="nameprofile"><span class="toptext">{{$user->Seller()->name}}</span>
+                <i class="fas fa-angle-down"></i>
+
+            </span>
+            @endif
             <ul>
                 <li><i class="fas fa-cogs"></i> <a href="#">&nbsp;
                         Cài Đặt</a></li>

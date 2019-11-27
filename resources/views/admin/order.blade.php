@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
     <script src="../../assets/js/axios.js"></script>
+    <script src="../../../assets/js/socket.io.js"></script>
+    <script src="../../../assets/js/socket.init.js"></script>
     <link rel="stylesheet" href="../../../assets/css/all.css"
         >
     <title>Admin::Orders</title>
@@ -19,6 +21,112 @@
 
 <body>
     <div class="vucms">
+        @if(isset($messages) && $user->role_id==3)
+		<div class="inbox" id="notactive">
+			<p class="intitle" style="margin:0px!important"><i class="far fa-comment-alt"></i> Trò Chuyện
+				<div class="boxchat">
+					<div class="listuser">
+						<div class="toptool" style="border-radius:10px 0 0 0;color:white">
+							Danh Sách
+						</div>
+						<ul id="sellerlist">
+							
+							@php
+							$MsgSellers = $messages->myCustomers($user->Seller()->id);
+							
+							@endphp
+							@foreach ($MsgSellers as $cus)
+							<li @if($cus==$MsgSellers->first()) class="active" @endif 
+							data-name="{{$cus->Customer->name}}"
+							data-user="{{$cus->Customer->user_id}}"
+							data-customer="{{$cus->Customer->id}}" data-user="{{$cus->Customer->user_id}}" 
+							data-avatar="{{url($cus->Customer->Image->src ?? '')}}">
+							{{$cus->Customer->name}}</li>
+							@endforeach
+							
+						</ul>
+					</div>
+					
+					<div class="preboxchat">
+						<div class="toptool"><span class="centername">Khách Hàng: {{$MsgSellers->first()->Customer->name}}</span> <button
+								class="closechat">×</button></div>
+						<div class="chatlist">
+							<div class="scrolllog">
+								<ul id="chatlog" data-current="{{$MsgSellers->first()->Customer->user_id}}">
+									@foreach ($messages->getMessagesBySeller($MsgSellers->first()->Customer->id,$user->Seller()->id) as $msg)
+                                        @if($msg->position==1) 
+                                        <li class="left">
+                                            <img src="{{url($MsgSellers->first()->Customer->Image->src ?? '')}}" alt="" class="avtsend">
+                                            <p class="msgcontent">{{$msg->msg}}</p>
+                                        </li>
+										@else
+										<li class="right">
+                                            <p class="msgcontent">{{$msg->msg}}</p>
+                                        </li>
+										@endif
+									@endforeach
+								</ul>
+							</div>
+						</div>
+						<div class="send">
+							<input id="msgTxt" type="text" onkeypress="CheckEnter(event)" placeholder="Nhập tin nhắn">
+							<button id="sendMsg"><i class="far fa-paper-plane"></i></button>
+						</div>
+					</div>
+				</div>
+			</p>
+
+		</div>
+		<script>
+			function CheckEnter(e){
+				if(e.keyCode==13) SendNow()
+			}
+			function SendNow(){
+				txtInp = document.querySelector('#msgTxt')
+				if(txtInp.value!=''){
+					let to =document.querySelector('#chatlog').dataset.current
+					SendMessage(txtInp.value,{{$user->id}},to,2)
+					html = `<li class="right">
+								<p class="msgcontent">${document.querySelector('#msgTxt').value}</p>
+							</li>`
+					txtInp.value = ''
+					document.querySelector('#chatlog').innerHTML = document.querySelector('#chatlog').innerHTML+html
+					$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+				}
+			}
+			document.querySelector('#sendMsg').onclick = SendNow
+			document.querySelectorAll('#sellerlist li').forEach(v=>{
+				v.onclick = (e)=>{
+					document.querySelectorAll('#sellerlist li').forEach(x=>{
+							x.classList.remove('active')
+					})
+					v.classList.add('active')
+					axios.post('{{url()->route('getMsgByCustomer')}}',{
+						idcus:v.dataset.customer
+					}).then(d=>{
+						data = d.data
+						if(data.success){
+                            document.querySelector('.toptool .centername').innerHTML='Khách Hàng: '+v.dataset.name
+                            document.querySelector('#chatlog').setAttribute('data-current',v.dataset.user)
+                            msg = data.data
+                            html = ''
+                            for(let m of msg){
+                                if(m.position==2) html += `<li class="right">
+                                                <p class="msgcontent">${m.msg}</p>
+                                            </li>`;
+                                else html += `<li class="left">
+                                                <img src="${v.dataset.avatar}" alt="" class="avtsend">
+                                                <p class="msgcontent">${m.msg}</p>
+                                            </li>`
+                            }
+                            document.querySelector('#chatlog').innerHTML = html
+                            $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 300);
+                        }
+					})
+				}
+			})
+		</script>
+		@endif
         @include('includes.menubar')
         <div class="right" style="position:relative">
             <div class="detailBox">
@@ -414,6 +522,20 @@
             })
             table.innerHTML = html
         }
+        var　getMsgURI='{{url()->route('getMsgByCustomer')}}';
+        $('.inbox .intitle').click(() => {
+            $('.inbox').attr('id', 'active')
+            $('.boxchat').css('display', 'flex')
+            $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+        })
+        $('.closechat').click(() => {
+    
+            $('.boxchat').hide()
+            $('.inbox').attr('id', 'notactive')
+        })
+        @if($user->role_id==3)
+			socketAuth({{$user->id}},2,'{{$user->password}}')
+		@endif
     </script>
 </body>
 

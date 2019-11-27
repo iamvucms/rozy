@@ -373,16 +373,6 @@ $("#gotop").click(()=>{
                           }, 'slow');
           }
 })
-$('.inbox p.intitle').click(()=>{
-          $('.inbox').attr('id','active')
-          $('.boxchat').css('display','block')
-          $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
-})
-$('.closechat').click(()=>{
-          
-          $('.boxchat').hide()
-          $('.inbox').attr('id','notactive')
-})
 var inputs = document.querySelector('.searchinput')
 try {
           var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;

@@ -397,16 +397,6 @@ $("#scroll2review").click(() => {
         scrollTop: $("div.review").offset().top - 110
     }, 'slow')
 })
-$('.inbox p.intitle').click(() => {
-    $('.inbox').attr('id', 'active')
-    $('.boxchat').css('display', 'block')
-    $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
-})
-$('.closechat').click(() => {
-
-    $('.boxchat').hide()
-    $('.inbox').attr('id', 'notactive')
-})
 // let a = ($(window).width()*14/100-10-130/2)*2-20;
 // $('.inbox .boxchat').css('width',a+"px")
 // $('.inbox .boxchat').css('left','calc(100% - '+a+"px"+')/2')

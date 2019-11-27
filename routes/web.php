@@ -67,7 +67,8 @@ Route::group(['prefix' => '/panel/manager','middleware' => 'guest'], function(){
 });
 //Message Resource
 Route::resource('messages', 'MessageController');
-Route::post('/messages-getMsg','MessageController@getMessages')->name('getMsgBySeller')->middleware('auth');
+Route::post('/messages-getMsg.seller','MessageController@getMessagesBySeller')->name('getMsgBySeller')->middleware('auth');
+Route::post('/messages-getMsg.customer','MessageController@getMessagesByCustomer')->name('getMsgByCustomer')->middleware('auth');
 //Manager Area Logined 
 Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], function(){
     Route::get('/','Manager\DashboardController@Index')->name('dashboard');

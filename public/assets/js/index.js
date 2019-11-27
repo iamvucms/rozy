@@ -369,16 +369,8 @@ $("#gotop").click(() => {
         }, 'slow');
     }
 })
-$('.inbox p.intitle').click(() => {
-    $('.inbox').attr('id', 'active')
-    $('.boxchat').css('display', 'flex')
-    $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
-})
-$('.closechat').click(() => {
 
-    $('.boxchat').hide()
-    $('.inbox').attr('id', 'notactive')
-})
+
 
 
 

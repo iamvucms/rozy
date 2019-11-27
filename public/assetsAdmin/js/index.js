@@ -134,3 +134,13 @@ if (cw < 550) {
     $('.lv2items').hide()
     nav_stt = false;
 }
+$('.inbox .intitle').click(() => {
+    $('.inbox').attr('id', 'active')
+    $('.boxchat').css('display', 'flex')
+    $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+})
+$('.closechat').click(() => {
+
+    $('.boxchat').hide()
+    $('.inbox').attr('id', 'notactive')
+})

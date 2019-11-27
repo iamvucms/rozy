@@ -15,7 +15,7 @@
                             <p class="myname">@if($user->role_id==1) {{$user->getInfo()->name}} @elseif($user->role_id==3) {{$user->Seller()->name}} @endif</p>
                         </div>
                     </div>
-                    <div class="searchbox">
+                    <div class="searchbox" >
                         <form action="#">
                             <input type="search" placeholder="Tìm Kiếm">
                         </form>

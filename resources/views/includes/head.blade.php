@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
     <link rel="stylesheet" href="../assets/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="../assets/css/jquery-ui.theme.min.css">
-    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
     <script src="../assets/js/zoom/jquery.zoom.min.js"></script>
     <script src="../assets/js/lazy.js"></script>
     <!-- <script src="../assets/js/lazy.plugin.js"></script> -->

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Message;
 use App\Seller;
+use App\Customer;
 class MessageController extends Controller
 {
     /**
@@ -60,13 +61,25 @@ class MessageController extends Controller
     {
         //
     }
-    public function getMessages(Request $req){
+    public function getMessagesBySeller(Request $req){
         $idsell = $req->idsell;
         $obj = new Message;
         $seller = Seller::find(intval($idsell));
         $user=Auth::user();
         if($seller===null || $user===null) return response()->json(['success'=>false], 200, []);
         return response()->json(['success'=>true,'data'=>$obj->getMessagesBySeller($user->getInfo()->id,$seller->id)], 200, []);
+    }
+    public function getMessagesByCustomer(Request $req){
+        $idcus = $req->idcus;
+        $obj = new Message;
+        $customer = Customer::find(intval($idcus));
+        $user=Auth::user();
+        if($customer===null || $user===null) return response()->json(['success'=>false], 200, []);
+        if($user->role_id==3){
+            return response()->json(['success'=>true,'data'=>$obj->getMessagesBySeller($customer->id,$user->Seller()->id)], 200, []);
+        }else{
+            return response()->json(['success'=>false], 200, []);
+        }
     }
     /**
      * Update the specified resource in storage.

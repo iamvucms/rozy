@@ -22,6 +22,7 @@
 </head>
 <body>
 	<div class="rozy">
+		@if(isset($messages) && $user)
 		<div class="inbox" id="notactive">
 			<p class="intitle"><i class="far fa-comment-alt"></i> Trò Chuyện
 				<div class="boxchat">
@@ -30,9 +31,10 @@
 							Danh Sách
 						</div>
 						<ul id="sellerlist">
-							@if(isset($messages) && $user)
+							
 							@php
 							$MsgSellers = $messages->mySellers($user->getInfo()->id);
+							
 							@endphp
 							@foreach ($MsgSellers as $slr)
 							<li @if($slr==$MsgSellers->first()) class="active" @endif 
@@ -42,7 +44,7 @@
 							data-avatar="{{url($slr->Seller->Avatar->src ?? '')}}">
 							{{$slr->Seller->name}}</li>
 							@endforeach
-							@endif
+							
 						</ul>
 					</div>
 					
@@ -68,7 +70,7 @@
 							</div>
 						</div>
 						<div class="send">
-							<input id="msgTxt" type="text" placeholder="Nhập tin nhắn">
+							<input id="msgTxt" onkeypress="CheckEnter(event)" type="text" placeholder="Nhập tin nhắn">
 							<button id="sendMsg"><i class="far fa-paper-plane"></i></button>
 						</div>
 					</div>
@@ -77,17 +79,23 @@
 
 		</div>
 		<script>
-			document.querySelector('#sendMsg').onclick = (e)=>{
-				txtInp = document.querySelector('#msgTxt')
-				let to =document.querySelector('#chatlog').dataset.current
-				SendMessage(txtInp.value,{{$user->id}},to)
-				html = `<li class="right">
-							<p class="msgcontent">${document.querySelector('#msgTxt').value}</p>
-						</li>`
-				txtInp.value = ''
-				document.querySelector('#chatlog').innerHTML = document.querySelector('#chatlog').innerHTML+html
-				$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+			function CheckEnter(e){
+				if(e.keyCode==13) SendNow()
 			}
+			function SendNow(){
+				txtInp = document.querySelector('#msgTxt')
+				if(txtInp.value!=''){
+					let to =document.querySelector('#chatlog').dataset.current
+					SendMessage(txtInp.value,{{$user->id}},to)
+					html = `<li class="right">
+								<p class="msgcontent">${document.querySelector('#msgTxt').value}</p>
+							</li>`
+					txtInp.value = ''
+					document.querySelector('#chatlog').innerHTML = document.querySelector('#chatlog').innerHTML+html
+					$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+				}
+			}
+			document.querySelector('#sendMsg').onclick = SendNow
 			document.querySelectorAll('#sellerlist li').forEach(v=>{
 				v.onclick = (e)=>{
 					document.querySelectorAll('#sellerlist li').forEach(x=>{
@@ -112,11 +120,24 @@
 										</li>`
 						}
 						document.querySelector('#chatlog').innerHTML = html
-						$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+						$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 300);
 					})
 				}
 			})
+			$(document).ready(()=>{
+				$('.inbox p.intitle').click(() => {
+					$('.inbox').attr('id', 'active')
+					$('.boxchat').css('display', 'flex')
+					$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+				})
+				$('.closechat').click(() => {
+				
+					$('.boxchat').hide()
+					$('.inbox').attr('id', 'notactive')
+				})
+			})
 		</script>
+		@endif
 		<!-- header -->
 		<div class="header">
 			<div class="bannertop">
@@ -1116,6 +1137,7 @@
 	<script src="assets/js/index.js"></script>
 	<script src="assets/js/socket.init.js"></script>
 	<script>
+		var getMsgURI = '{{url()->route('getMsgBySeller')}}'
 		@if($user)
 			socketAuth({{$user->id}},1,'{{$user->password}}')
 		@endif

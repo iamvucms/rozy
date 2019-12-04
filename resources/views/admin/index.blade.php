@@ -18,7 +18,7 @@
 
 <body>
     <div class="vucms">
-    @if(isset($messages) && $user->role_id==3)
+    @if(isset($messages) && $user->role_id==3 && $messages->myCustomers($user->Seller()->id)->count()>0)
 		<div class="inbox" id="notactive">
 			<p class="intitle" style="margin:0px!important"><i class="far fa-comment-alt"></i> Trò Chuyện
 				<div class="boxchat">

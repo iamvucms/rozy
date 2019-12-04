@@ -447,9 +447,24 @@ inputs.onclick = () => {
     $('.ideaforsearch').fadeIn()
 }
 inputs.oninput = () => {
-    document.querySelectorAll('#idealist li').forEach(v => {
-        if (v.childNodes[0].childNodes[1].innerHTML.toLowerCase().indexOf(inputs.value.toLowerCase()) > -1) {
-            v.style.display = "block"
-        } else v.style.display = "none"
+    let key = inputs.value.toLowerCase()
+    axios.post('../findkey',{
+        keyword:key
+    }).then(d=>{
+        data = d.data
+        html = ''
+        for(let product of data.data){
+            if(product.img_avt){
+                html += `<li>
+                <a href="../../../products/${product.slug}"><img class="notchange" src="${product.img_avt.src}"><span>${product.name}</span></a>
+                </li>`
+            }
+            else {
+                html += `<li>
+                <a href="../../../products/${product.slug}"><img src=""><span>${product.name}</span></a>
+                </li>`
+            }
+        }
+        document.querySelector('#idealist').innerHTML = html
     })
 }

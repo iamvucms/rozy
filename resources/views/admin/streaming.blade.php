@@ -8,19 +8,23 @@
     <link rel="stylesheet" href="../../assetsAdmin/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="../../assetsAdmin/css/index.css">
     <link rel="stylesheet" href="../../assetsAdmin/css/cat.css">
-    <link rel="stylesheet" href="../../assetsAdmin/css/product.css">
+    <link rel="stylesheet" href="../../assetsAdmin/css/order.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="../../assetsAdmin/css/chart.min.css">
-    <script src="../../../assets/js/socket.io.js"></script>
-    <script src="../../../assets/js/socket.init.js"></script>
-    <script src="../../assets/js/axios.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <title>Admin::Products</title>
+    <title>Admin::Streaming</title>
+    <script src="../../../assets/js/axios.js"></script>
+    <script src="../../../assets/js/socket.io.js"></script>
+    <script src="../../../assets/js/socket.init.js"></script>
+    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
 </head>
-
 <body>
     <div class="vucms">
+        @include('includes.menubar')
+        <div class="right">
         @if(isset($messages) && $user->role_id==3 && $messages->myCustomers($user->Seller()->id)->count()>0)
 		<div class="inbox" id="notactive">
 			<p class="intitle" style="margin:0px!important"><i class="far fa-comment-alt"></i> Trò Chuyện
@@ -104,14 +108,15 @@
 					axios.post('{{url()->route('getMsgByCustomer')}}',{
 						idcus:v.dataset.customer
 					}).then(d=>{
-						data = d.data
+                        data = d.data
 						if(data.success){
                             document.querySelector('.toptool .centername').innerHTML='Khách Hàng: '+v.dataset.name
                             document.querySelector('#chatlog').setAttribute('data-current',v.dataset.user)
                             msg = data.data
+                            console.log(msg)
                             html = ''
                             for(let m of msg){
-                                if(m.position==1) html += `<li class="right">
+                                if(m.position==2) html += `<li class="right">
                                                 <p class="msgcontent">${m.msg}</p>
                                             </li>`;
                                 else html += `<li class="left">
@@ -126,102 +131,149 @@
 				}
 			})
 		</script>
-		@endif
-        @include('includes.menubar')
-        <div class="right">
-        @include('includes.top')
+        @endif
+        <div class="popupStream">
+            <div class="boxStreamVideo">
+                <video src="" id="popup_video"></video>
+            </div>
+        </div>
+            @include('includes.top')
             <div class="bottom">
                 <div class="headtitle">
-                    <p>SẢN PHẨM</p>
+                    <p>Streaming</p>
                     <div class="breadcrumb">
                         <ul>
                             <li><span class="sub">Quản lí</span></li>
                             <li><span class="aright"><i class="fas fa-angle-right"></i></span></li>
-                            <li><span class="main"><a href="">Sản Phẩm</a></span></li>
+                            <li><span class="main"><a href="">Live Streaming</a></span></li>
 
                         </ul>
                     </div>
                     <div class="groupbtn">
-                        <a href="{{url()->route('superAddProduct')}}" class="add"><button id="add">+</button></a>
                         <a href="" class="f5"><button id="f5"><i class="fas fa-sync"></i></button></a>
-                        <a href="javascript:void(0)" onclick="deleteSelected()" class="remove"><button id="remove"><i
+                        <a onclick="deleteSelected()" href="javascript:void(0)" class="remove"><button id="remove"><i
                                     class="far fa-trash-alt"></i></button></a>
                     </div>
                 </div>
                 <div class="catlist">
                     <p class="cattitle">
-                        <i class="fas fa-list-ul"></i> Danh Sách Sản Phẩm
+                        <i class="fas fa-list-ul"></i> Live Streaming
                     </p>
-                    <div class="tabcat" id="listbox">
+                    
+                    @if ($user->role_id==1)
+                    <div class="tabcat taborder" id="listbox">
                         <table border="1">
                             <tr>
-                                <th><input type="checkbox" id="checkall"></th>
-                                <th>Ảnh</th>
-                                <th>Tên Sản Phẩm</th>
-                                <th>Nhà cung cấp</th>
-                                <th>Giá</th>
-                                <th>Số lượng</th>
+                                <th></th>
+                                <th>Tên gian hàng</th>
+                                <th>Danh mục LiveStream</th>
+                                <th>Mô tả</th>
                                 <th>Trạng thái</th>
+                                <th>Lần Cuối LiveStream</th>
                                 <th>Thao tác</th>
                             </tr>
-                            @foreach ($products as $product)
-                            <tr>
-                                <td><input data-idcat="{{$product->id}}" type="checkbox" id="check"></td>
-                                <td>
-                                    <p><img src="{{url($product->Avatar()->src ?? '')}}" alt=""></p>
-                                </td>
-                                <td><a href="{{url()->route('superGetProduct',['id'=>$product->id])}}">{{$product->name}}</a></td>
-                                <td>{{$product->Seller()->name}}</td>
-                                <td>{{number_format($product->sale_price)}} <sup>VND</sup></td>
-                                <td>
-                                    @if($product->quantity >= 30)
-                                        <p><span>{{$product->quantity}}</span></p>
-                                    @elseif($product->quantity <=0)
-                                        <p class="dan"><span>{{$product->quantity}}</span></p>    
-                                    @else
-                                        <p class="war"><span>{{$product->quantity}}</span></p> 
-                                    @endif
-                                </td>
-                                <td>
-                                    @switch($product->status)
-                                        @case(1)
-                                        <p class="sellstt" id="selling">Đang Kinh Doanh</p>
-                                            @break
-                                        @case(2)
-                                        <p class="sellstt" id="hethang">Hết Hàng</p>
-                                            @break
-                                        @default
-                                        <p class="sellstt" id="stopsell">Ngừng Kinh Doanh</p>
-                                    @endswitch
-                                </td>
-                                <td><a href="{{url()->route('superGetProduct',['id'=>$product->id])}}"><button><i class="far fa-edit"></i></button></a></td>
-                            </tr>
+                            @foreach ($streams as $stream)
+                                <tr>
+                                    <td><input type="checkbox" data-idcat="{{$stream->id}}"></td>
+                                    <td><a href="{{url()->route('superEditSeller',['id'=>$stream->Seller->id])}}">{{$stream->Seller->name}}</a></td>
+                                    <td><a href="{{url()->route('superEditCategory',['slug'=>$stream->Category->slug])}}">{{$stream->Category->name}}</a></td>
+                                    <td style="max-width:200px">{{$stream->description}}</td>
+                                    <td>@if($stream->status==0)Offline @else Online @endif</td>
+                                    <td>{{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($stream->updated_at,'Asia/Ho_Chi_Minh')) <60 ? Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInMinutes(Carbon\Carbon::parse($stream->updated_at,'Asia/Ho_Chi_Minh')).' phút' : Carbon\Carbon::now('Asia/Ho_Chi_Minh')->diffInHours(Carbon\Carbon::parse($stream->updated_at,'Asia/Ho_Chi_Minh')).' giờ'}}  trước</td>
+                                    <td>
+                                        <div class="lasttd">
+                                            <a href="javascript:void(0)" onclick="showDetail({{$stream->status}},'{{$stream->stream_key}}')"><button><i class="far fa-eye"></i></button></a>
+                                            <li id="showoption"><i class="fas fa-angle-down"></i>
+                                                <ul>
+                                                    <li onclick="clearStream('{{$stream->stream_key}}')"><i class="far fa-trash-alt" ></i> Xóa</li>
+                                                </ul>
+                                            </li>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </table>
                         <div class="paginationx">
-                            {{$products->links()}}
+                            {{$streams->links()}}
                         </div>
                     </div>
-
+                    @else
+                    <div class="streambox">
+                        <div class="video">
+                            <video id="streamVideo"></video>
+                        </div>
+                        <div class="postTool">
+                            <u><h2>Mô tả Live Streaming</h2></u>
+                            <label for="description">Mô tả:</label><br>
+                            <textarea style="width:100%;padding:10px"  name="" id="description" cols="30" rows="10"></textarea>
+                            <label for=""></label>
+                            <select style="width:100%"  class="js-example-basic-single" id="idcat">
+                                @foreach ($categories as $cat)
+                                <option value="{{$cat->id}}" >{{$cat->name}}</option>
+                                @endforeach
+                            </select>
+                            <button id="finishBtn">Kết Thúc</button>
+                            <button id="startBtn">Bắt Đầu</button>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-    <script src="../../../../assets/js/jquery.min.js"></script>
+    <script src="../../../assets/js/jquery.min.js"></script>
+    @if($user->role_id==3)
+    <script src="../../../assets/js/streaming.js"></script>
+    @endif
     <script src="../../assetsAdmin/js/chart.min.js"></script>
     <script src="../../assetsAdmin/js/cat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
     <script>
-        function deleteSelected(){
-            if(selectedCat.length ==0) return;
-            if(confirm('Bạn có chắc muốn xoá '+selectedCat.length+' sản phẩm này') ){
-                axios.post('{{url()->route('superDeleteEditProduct')}}',{
-                    ids:selectedCat
-                }).then(d=>{
-                    data = d.data
-                    window.location.reload()
-                })  
-            }   
+        @if($user->role_id==1)
+        const peer = new Peer( {host: 'localhost', port: 9000, path: '/' });
+        @endif
+        function clearStream(key){
+            console.log(key)
+            socket.emit('clearStream',{key:key})
         }
+        function showDetail(status,keyStream){
+            if(status==0) return;
+            const createEmptyAudioTrack = () => {
+                const ctx = new AudioContext();
+                const oscillator = ctx.createOscillator();
+                const dst = oscillator.connect(ctx.createMediaStreamDestination());
+                oscillator.start();
+                const track = dst.stream.getAudioTracks()[0];
+                return Object.assign(track, { enabled: false });
+            };
+            const createEmptyVideoTrack = ({ width, height }) => {
+                const canvas = Object.assign(document.createElement('canvas'), { width, height });
+                canvas.getContext('2d').fillRect(0, 0, width, height);
+                const stream = canvas.captureStream();
+                const track = stream.getVideoTracks()[0];
+                return Object.assign(track, { enabled: false });
+            };
+            let audioTrack = createEmptyAudioTrack();
+            let videoTrack = createEmptyVideoTrack({ width:640, height:480 });
+            let mediaStream = new MediaStream([audioTrack, videoTrack]);
+            let call = peer.call(keyStream,mediaStream)
+            call.on('stream',stream=>{
+                document.querySelector('.popupStream').style.display = 'flex'
+                document.querySelector('.popupStream').onclick = (e)=>{
+                    if(e.target.className=='popupStream'){
+                        e.target.style.display = 'none'
+                    }
+                }
+                let popup = document.querySelector('#popup_video')
+                popup.click()
+                popup.srcObject = stream
+                popup.play()
+            })
+            return false
+        }
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
         var　getMsgURI='{{url()->route('getMsgByCustomer')}}';
         $('.inbox .intitle').click(() => {
             $('.inbox').attr('id', 'active')

@@ -14,8 +14,8 @@
 Route::get('/','HomeController@Index')->name('home');
 Route::get('/products/{slug}','ProductController@Product')->name('myProduct');
 Route::get('/categories/{slug}','CategoryController@Category');
-Route::get('/shop/{slug}','SellerController@Seller');
 
+Route::post('/findkey','HomeController@findProduct')->name('findProduct');
 Route::get('/search','FilterController@Search')->name('filter');
 //Cart Route
 Route::get('/cart','CartController@Cart');
@@ -23,6 +23,7 @@ Route::post('/cart/add','CartController@addCart')->name('addCart');
 Route::post('/cart/edit','CartController@editCart')->name('editCart');
 Route::post('/cart/delete','CartController@deleteCart')->name('deleteCart');
 //PAYMENT Route
+
 Route::get('/payment','PayController@show')->name('payment');
 //Address Route
 Route::post('/address','AddressController@getMore')->name('address');
@@ -73,6 +74,9 @@ Route::post('/messages-getMsg.customer','MessageController@getMessagesByCustomer
 Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], function(){
     Route::get('/','Manager\DashboardController@Index')->name('dashboard');
     Route::get('/logout','Manager\LoginController@Logout')->name('superLogout');
+
+    Route::get('/streams','Manager\StreamController@show')->name('superStream');
+    Route::post('/streams','Manager\StreamController@addStream')->name('superAddStream');
 
     Route::get('/categories','Manager\CategoryController@show')->name('superCategory');
     Route::get('/categories.{slug}','Manager\CategoryController@editCategory')->name('superEditCategory');

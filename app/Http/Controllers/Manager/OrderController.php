@@ -60,7 +60,7 @@ class OrderController extends Controller
         $order = Order::find(intval($req->id));
         if($role_id==1 && $order) $orderDetails = (new Order)->where('id',$req->id)->with('OrderDetails')->with('Shipper')->get()->toArray();
         elseif($role_id==3 && $order && $order->idsell == $user->Seller()->id){
-            $orderDetails = (new Order)->where('id',$req->id)->with('OrderDetails')->with('Shipper')->OrderDetails()->get()->toArray();
+            $orderDetails = (new Order)->where('id',$req->id)->with('OrderDetails')->with('Shipper')->get()->toArray();
         }else{
             return response()->json(['success'=>false], 200, []);
         }

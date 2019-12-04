@@ -311,6 +311,40 @@ $('#keysforyou .leftarrow').click(function () {
     // Parameters has to be in square bracket '[]'
     owlkey.trigger('prev.owl.carousel', [300]);
 })
+var owlstream = $('#streamsforyou');
+owlstream.owlCarousel({
+    items: 5,
+    loop: true,
+    margin: 5,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    responsiveClass: true,
+    responsive: {
+        0: {
+            items: 1,
+            nav: true
+        },
+        600: {
+            items: 2,
+            nav: false
+        },
+        1000: {
+            items: 3,
+            nav: true,
+            loop: false
+        }
+    },
+    autoplayHoverPause: true
+});
+$('.streams .rightarrow').click(function () {
+    owlstream.trigger('next.owl.carousel');
+})
+// Go to the previous item
+$('.streams .leftarrow').click(function () {
+    // With optional speed parameter
+    // Parameters has to be in square bracket '[]'
+    owlstream.trigger('prev.owl.carousel', [300]);
+})
 $('#flashsales .loadmore').click(() => {
     $('#flashsales #loadmoretext').css('display', "none");
     $('#flashsales .loadingicon').attr('style', 'display:block !important;');
@@ -350,7 +384,7 @@ $('#foryou .loadmore').click(() => {
 })
 // lazy load
 document.querySelectorAll('img').forEach((val) => {
-    if(val.className!='avtsend'){
+    if(val.className!='avtsend' || val.className!='notchange'){
         val.setAttribute('data-src', val.src)
         val.setAttribute('src', "")
     }
@@ -383,6 +417,7 @@ try {
     var recognition = new SpeechRecognition();
 
     recognition.onresult = function (event) {
+        axios.post()
         var current = event.resultIndex;
         var transcript = event.results[current][0].transcript;
         $('.searchinput').val(transcript)
@@ -423,9 +458,24 @@ inputs.onclick = () => {
     $('.ideaforsearch').fadeIn()
 }
 inputs.oninput = () => {
-    document.querySelectorAll('#idealist li').forEach(v => {
-        if (v.childNodes[0].childNodes[1].innerHTML.toLowerCase().indexOf(inputs.value.toLowerCase()) > -1) {
-            v.style.display = "block"
-        } else v.style.display = "none"
+    let key = inputs.value.toLowerCase()
+    axios.post('/findkey',{
+        keyword:key
+    }).then(d=>{
+        data = d.data
+        html = ''
+        for(let product of data.data){
+            if(product.img_avt){
+                html += `<li>
+                <a href="../../../products/${product.slug}"><img class="notchange" src="${product.img_avt.src}"><span>${product.name}</span></a>
+                </li>`
+            }
+            else {
+                html += `<li>
+                <a href="../../../products/${product.slug}"><img src=""><span>${product.name}</span></a>
+                </li>`
+            }
+        }
+        document.querySelector('#idealist').innerHTML = html
     })
 }

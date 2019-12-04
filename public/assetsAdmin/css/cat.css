@@ -430,3 +430,21 @@ textarea {
         width: 100%!important;
     }
 }
+.popupStream{
+    position: fixed;
+    width:100%;
+    left:0%;
+    z-index: 9999999999;
+    background:rgba(0, 0, 0, 0.7);
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.boxStreamVideo{
+    display: inline-block;
+    height:80%;
+}
+.popupStream video{
+    height:100%
+}

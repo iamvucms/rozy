@@ -66,6 +66,7 @@
                                 <ul class="lv2items">
                                     <li class="lv2"><a href="{{url()->route('superOrder')}}">Đơn hàng</a></li>
                                     <li class="lv2"><a href="{{url()->route('superCoupon')}}"">Coupon</a></li>
+                                    <li class="lv2"><a href="{{url()->route('superStream')}}"">Live Streaming</a></li>
                                     @if($user->role_id==1) <li class="lv2"><a href="{{url()->route('superDiscount')}}"">Khuyến Mãi</a></li> @endif
                                 </ul>
                             </li>

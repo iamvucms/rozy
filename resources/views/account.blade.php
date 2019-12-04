@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
     <link rel="stylesheet" href="../assets/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="../assets/css/jquery-ui.theme.min.css">
+    <base href="{{url('/')}}">
     <script src="../assets/js/axios.js"></script>
 </head>
 
@@ -169,43 +170,25 @@
                                 </div>
                             </form>
                             <div class="ideaforsearch">
-                                <p class="ideatitle">
-                                    Gợi Ý Cho Bạn:
-                                </p>
-                                <ul id="idealist">
-                                    <li><a href="result.html"><img src="../assets/img/denwa.png"><span>SamSung Galaxy
-                                                A30</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product1.png"><span>iPhone
-                                                X</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product.jpg"><span>Móc
-                                                Khóa</span></a></li>
-                                    <li><a href="result.html"><img
-                                                src="../assets/img/product2.jpg"><span>SmartPhone</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product4.jpg"><span>Chuột Máy
-                                                Tính</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product5.jpg"><span>Đồng
-                                                Hồ</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/mega14.jpg"><span>Sách Hay</span></a>
-                                    </li>
-                                    <li><a href="result.html"><img src="../assets/img/denwa.png"><span>Điện
-                                                Thoại</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/bike.png"><span>Xe máy
-                                                Sirius</span></a></li>
-                                </ul>
-                                <p class="ideatitle">
-                                    Từ Khóa Hot:
-                                </p>
-                                <ul id="hotkeyidea">
-                                    <li><a href="result.html">bone </a></li>
-                                    <li><a href="result.html">then </a></li>
-                                    <li><a href="result.html">why </a></li>
-                                    <li><a href="result.html">prevent </a></li>
-                                    <li><a href="result.html">adventure </a></li>
-                                    <li><a href="result.html">blank </a></li>
-                                    <li><a href="result.html">enjoy </a></li>
-
-                                </ul>
-                            </div>
+								<p class="ideatitle">
+									Gợi Ý Cho Bạn:
+								</p>
+								<ul id="idealist">
+									@for ($i = count($recommandProducts)-1; $i >= count($recommandProducts)-11 ; $i--)
+									<li><a href="{{url()->route('myProduct',['slug'=>$recommandProducts[$i]['slug']])}}"><img src="{{url($recommandProducts[$i]->ImgAvt->src??'')}}"><span>{{$recommandProducts[$i]->name}}</span></a>
+									</li>
+									@endfor
+									
+								</ul>
+								<p class="ideatitle">
+									Từ Khóa Hot:
+								</p>
+								<ul id="hotkeyidea">
+									@foreach ($mostedKeyword[0] as $index => $key)
+									<li><a href="{{url()->route('filter',['keyword'=>urlencode($key['keyword'])])}}">{{$key['keyword']}}</a></li>
+									@endforeach
+								</ul>
+							</div>
                             <p>GIỎ HÀNG</p>
                         </div>
                         <div class="mobliecart" id="tools">
@@ -492,7 +475,7 @@
                         <li><a href="{{url()->route('myAccount')}}"><i class="fas fa-user"></i><span> Tài khoản
                                 </span></a></li>
                         <i class="fas fa-chevron-right breadarrow"></i>
-                        <li class="active"><a href="#cart"><i class="fas fa-info-circle"></i> Thông tin cá nhân
+                        <li class="active"><a href="{{url()->current()}}"><i class="fas fa-info-circle"></i> Thông tin cá nhân
                             </a></li>
 
                     </ul>
@@ -515,7 +498,6 @@
                             class=active
                         @endif><a href="{{url()->route('myNotify')}}"><i class="fas fa-bell"></i> Thông báo</a></li>
 							<li><a href="{{url()->route('logout')}}"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a></li>
-							<li><a href=""></a></li>
 						</ul>
 					</div>
 					<div class="manageBox">
@@ -623,8 +605,8 @@
                                             <div class="shopLine">
                                                 <div class="shopInfo">
                                                     <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" alt="" class="shopavt">
-                                                    <span class="shopName">VMOBILE</span>
-                                                    <button><a href=""><i class="fas fa-store"></i> Xem shop</a></button>
+                                                    <span class="shopName">{{$order->Seller->name}}</span>
+                                                    <button><a href="{{url()->route("shop",['slug'=>$order->Seller->slug])}}"><i class="fas fa-store"></i> Xem shop</a></button>
                                                 </div>
                                                 <div class="ostt">
                                                     <span>@switch($order->status)

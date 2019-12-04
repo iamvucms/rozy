@@ -188,43 +188,25 @@
                                 </div>
                             </form>
                             <div class="ideaforsearch">
-                                <p class="ideatitle">
-                                    Gợi Ý Cho Bạn:
-                                </p>
-                                <ul id="idealist">
-                                    <li><a href="result.html"><img src="assets/img/denwa.png"><span>SamSung Galaxy
-                                                A30</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product1.png"><span>iPhone
-                                                X</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product.jpg"><span>Móc
-                                                Khóa</span></a></li>
-                                    <li><a href="result.html"><img
-                                                src="assets/img/product2.jpg"><span>SmartPhone</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product4.jpg"><span>Chuột Máy
-                                                Tính</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/product5.jpg"><span>Đồng
-                                                Hồ</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/mega14.jpg"><span>Sách Hay</span></a>
-                                    </li>
-                                    <li><a href="result.html"><img src="assets/img/denwa.png"><span>Điện
-                                                Thoại</span></a></li>
-                                    <li><a href="result.html"><img src="assets/img/bike.png"><span>Xe máy
-                                                Sirius</span></a></li>
-                                </ul>
-                                <p class="ideatitle">
-                                    Từ Khóa Hot:
-                                </p>
-                                <ul id="hotkeyidea">
-                                    <li><a href="result.html">bone </a></li>
-                                    <li><a href="result.html">then </a></li>
-                                    <li><a href="result.html">why </a></li>
-                                    <li><a href="result.html">prevent </a></li>
-                                    <li><a href="result.html">adventure </a></li>
-                                    <li><a href="result.html">blank </a></li>
-                                    <li><a href="result.html">enjoy </a></li>
-
-                                </ul>
-                            </div>
+                                    <p class="ideatitle">
+                                        Gợi Ý Cho Bạn:
+                                    </p>
+                                    <ul id="idealist">
+                                        @for ($i = count($recommandProducts)-1; $i >= count($recommandProducts)-11 ; $i--)
+                                        <li><a href="{{url()->route('myProduct',['slug'=>$recommandProducts[$i]['slug']])}}"><img src="{{url($recommandProducts[$i]->ImgAvt->src??'')}}"><span>{{$recommandProducts[$i]->name}}</span></a>
+                                        </li>
+                                        @endfor
+                                        
+                                    </ul>
+                                    <p class="ideatitle">
+                                        Từ Khóa Hot:
+                                    </p>
+                                    <ul id="hotkeyidea">
+                                        @foreach ($mostedKeyword[0] as $index => $key)
+                                        <li><a href="{{url()->route('filter',['keyword'=>urlencode($key['keyword'])])}}">{{$key['keyword']}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             <p>THỜI TRANG NAM</p>
                         </div>
                         <div class="mobliecart"><i class="fas fa-shopping-cart"></i>

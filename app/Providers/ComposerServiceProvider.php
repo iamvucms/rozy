@@ -16,6 +16,7 @@ use App\Shipper;
 use App\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use App\Stream;
 class ComposerServiceProvider extends ServiceProvider
 {
     /**
@@ -45,7 +46,6 @@ class ComposerServiceProvider extends ServiceProvider
                 $traffic->save();
             }
         }
-         
         View::composer('*',function($view){
             if(Auth::user()){
                 $user = Auth::user();
@@ -72,7 +72,12 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('traffic',new Traffic);
             $view->with('category',new Category);
         });
+        View::composer(['filter','shop','detail','account','cart','payment'],function($view){
+            $view->with('recommandProducts',(new Product())->ProductForYou(60));
+            $view->with('mostedKeyword',(new Keyword)->MostSearchKeyword());
+        });
         View::composer('index', function ($view) {
+            $view->with('streams',Stream::with('Seller')->with('Category')->where('status',1)->limit(10)->get());
             $view->with('recommandCats',(new Category)->recommandCategories());
             $view->with('recommandProducts',(new Product())->ProductForYou(60));
             $view->with('mostedKeyword',(new Keyword)->MostSearchKeyword());

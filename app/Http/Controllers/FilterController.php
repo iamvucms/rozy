@@ -34,7 +34,9 @@ class FilterController extends Controller
             $req->address,  
             $req->star);
         if($req->keyword!==null && $products->count()>0){
-            $keyword = Keyword::where('keyword','like',urldecode($req->keyword).'%')->where('idcat',$req->cat ?? 0);
+            if($req->cat){
+                $keyword = Keyword::where('keyword','like',urldecode($req->keyword).'%');
+            }else $keyword = Keyword::where('keyword','like',urldecode($req->keyword).'%')->where('idcat',$req->cat ?? 0);
             if($keyword->count()>0){
                 $keyword = $keyword->first();
                 $keyword->update(['count'=>$keyword->count+1]);

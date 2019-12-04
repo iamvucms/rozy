@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../assets/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="../assets/css/jquery-ui.theme.min.css">
     <script src="../assets/js/axios.js"></script>
-
+    <base href="{{url('/')}}" >
 </head>
 
 <body>
@@ -81,43 +81,25 @@
                                 </div>
                             </form>
                             <div class="ideaforsearch">
-                                <p class="ideatitle">
-                                    Gợi Ý Cho Bạn:
-                                </p>
-                                <ul id="idealist">
-                                    <li><a href="result.html"><img src="../assets/img/denwa.png"><span>SamSung Galaxy
-                                                A30</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product1.png"><span>iPhone
-                                                X</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product.jpg"><span>Móc
-                                                Khóa</span></a></li>
-                                    <li><a href="result.html"><img
-                                                src="../assets/img/product2.jpg"><span>SmartPhone</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product4.jpg"><span>Chuột Máy
-                                                Tính</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/product5.jpg"><span>Đồng
-                                                Hồ</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/mega14.jpg"><span>Sách Hay</span></a>
-                                    </li>
-                                    <li><a href="result.html"><img src="../assets/img/denwa.png"><span>Điện
-                                                Thoại</span></a></li>
-                                    <li><a href="result.html"><img src="../assets/img/bike.png"><span>Xe máy
-                                                Sirius</span></a></li>
-                                </ul>
-                                <p class="ideatitle">
-                                    Từ Khóa Hot:
-                                </p>
-                                <ul id="hotkeyidea">
-                                    <li><a href="result.html">bone </a></li>
-                                    <li><a href="result.html">then </a></li>
-                                    <li><a href="result.html">why </a></li>
-                                    <li><a href="result.html">prevent </a></li>
-                                    <li><a href="result.html">adventure </a></li>
-                                    <li><a href="result.html">blank </a></li>
-                                    <li><a href="result.html">enjoy </a></li>
-
-                                </ul>
-                            </div>
+                                    <p class="ideatitle">
+                                        Gợi Ý Cho Bạn:
+                                    </p>
+                                    <ul id="idealist">
+                                        @for ($i = count($recommandProducts)-1; $i >= count($recommandProducts)-11 ; $i--)
+                                        <li><a href="{{url()->route('myProduct',['slug'=>$recommandProducts[$i]['slug']])}}"><img src="{{url($recommandProducts[$i]->ImgAvt->src??'')}}"><span>{{$recommandProducts[$i]->name}}</span></a>
+                                        </li>
+                                        @endfor
+                                        
+                                    </ul>
+                                    <p class="ideatitle">
+                                        Từ Khóa Hot:
+                                    </p>
+                                    <ul id="hotkeyidea">
+                                        @foreach ($mostedKeyword[0] as $index => $key)
+                                        <li><a href="{{url()->route('filter',['keyword'=>urlencode($key['keyword'])])}}">{{$key['keyword']}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             <p>THỜI TRANG NAM</p>
                         </div>
                         <div class="mobliecart"><i class="fas fa-shopping-cart"></i>
@@ -374,7 +356,7 @@
                                             @foreach ($myCart->getCart() as $myProduct)
                                             <li>
                                                 <img src="{{url($myProduct['avatar'])}}" alt="" class="cartimg">
-                                                <span class="cartname"><a href="#">{{$myProduct['name']}} </a></span>
+                                                <span class="cartname"><a href="javascript:void(0)">{{$myProduct['name']}} </a></span>
                                                 <span class="cartinfo">
                                                     <span class="cartcost">{{number_format($myProduct['price'])}}
                                                         <sup>VND</sup></span> x
@@ -598,7 +580,7 @@
                         <li><a href="{{url()->route('home')}}"><i class="fas fa-home"></i><span> Trang
                                     chủ</span></a></li>
                         <i class="fas fa-chevron-right breadarrow"></i>
-                        <li><a href="#shop"><i class="fas fa-list"></i><span> Cửa hàng</span></a></li>
+                        <li><a href="javascript:void(0)"><i class="fas fa-list"></i><span> Cửa hàng</span></a></li>
                         <i class="fas fa-chevron-right breadarrow"></i>
                         <li class="active"><a href="{{url('/shop/'.$seller->slug)}}">
                                 {{$seller->name}} </a></li>
@@ -719,7 +701,7 @@
                             @foreach ($products as $product)
                             <div class="product">
                                 <div class="imgbox">
-                                    <a href="#viewflash">
+                                    <a href="javascript:void(0)">
                                         <img src="{{isset($product->ImgAvt->src) ? url($product->ImgAvt->src) : 'assets/img/product5.jpg'}}"
                                             alt="">
                                     </a>
@@ -730,7 +712,7 @@
                                                  @else
                                                     far fa-heart
                                                  @endif"></i></button></a>
-                                        <a href="#cartoption"> <button onclick="addCartX({{$product->id}})" title="Thêm vào giỏ hàng"><i
+                                        <a href="javascript:void(0)"> <button onclick="addCartX({{$product->id}})" title="Thêm vào giỏ hàng"><i
                                                  class="fas fa-cart-plus"></i></button></a>
                                      </div>
                                     

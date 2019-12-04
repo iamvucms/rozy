@@ -19,6 +19,8 @@
 	<script src="assets/js/socket.io.js"></script>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="../../../assets/js/axios.js"></script>
+    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
 </head>
 <body>
 	<div class="rozy">
@@ -139,6 +141,13 @@
 		</script>
 		@endif
 		<!-- header -->
+		@if ($user && $streams->count()>0)
+			<div class="popupStream">
+				<div class="boxStreamVideo">
+					<video src="" id="popup_video"></video>
+				</div>
+			</div>
+		@endif
 		<div class="header">
 			<div class="bannertop">
 				<button class="view-banner-top"><a href="ads/event1.html" target="__blank">Xem chi tiết</a></button>
@@ -223,30 +232,19 @@
 									Gợi Ý Cho Bạn:
 								</p>
 								<ul id="idealist">
-									<li><a href="result.html"><img src="assets/img/denwa.png"><span>SamSung Galaxy A30</span></a>
+									@for ($i = count($recommandProducts)-1; $i >= count($recommandProducts)-11 ; $i--)
+									<li><a href="{{url()->route('myProduct',['slug'=>$recommandProducts[$i]['slug']])}}"><img src="{{url($recommandProducts[$i]->ImgAvt->src??'')}}"><span>{{$recommandProducts[$i]->name}}</span></a>
 									</li>
-									<li><a href="result.html"><img src="assets/img/product1.png"><span>iPhone X</span></a></li>
-									<li><a href="result.html"><img src="assets/img/product.jpg"><span>Móc Khóa</span></a></li>
-									<li><a href="result.html"><img src="assets/img/product2.jpg"><span>SmartPhone</span></a></li>
-									<li><a href="result.html"><img src="assets/img/product4.jpg"><span>Chuột Máy Tính</span></a>
-									</li>
-									<li><a href="result.html"><img src="assets/img/product5.jpg"><span>Đồng Hồ</span></a></li>
-									<li><a href="result.html"><img src="assets/img/mega14.jpg"><span>Sách Hay</span></a></li>
-									<li><a href="result.html"><img src="assets/img/denwa.png"><span>Điện Thoại</span></a></li>
-									<li><a href="result.html"><img src="assets/img/bike.png"><span>Xe máy Sirius</span></a></li>
+									@endfor
+									
 								</ul>
 								<p class="ideatitle">
 									Từ Khóa Hot:
 								</p>
 								<ul id="hotkeyidea">
-									<li><a href="result.html">bone </a></li>
-									<li><a href="result.html">then </a></li>
-									<li><a href="result.html">why </a></li>
-									<li><a href="result.html">prevent </a></li>
-									<li><a href="result.html">adventure </a></li>
-									<li><a href="result.html">blank </a></li>
-									<li><a href="result.html">enjoy </a></li>
-
+									@foreach ($mostedKeyword[0] as $index => $key)
+									<li><a href="{{url()->route('filter',['keyword'=>urlencode($key['keyword'])])}}">{{$key['keyword']}}</a></li>
+									@endforeach
 								</ul>
 							</div>
 						</div>
@@ -955,7 +953,6 @@
 					}, 1000);
 				</script>
 				<!-- endflashsales -->
-				<!-- categoriesforyou -->
 				<div class="catsforyou" id="catsforyou">
 					<p class="catsforyoutitle">
 						DANH MỤC ĐỀ XUẤT
@@ -980,6 +977,31 @@
 						@endforeach
 					</div>
 				</div>
+				<!-- categoriesforyou -->
+				@if ($user && $streams->count()>0)
+					<div class="catsforyou" id="streams">
+						<p class="catsforyoutitle">
+							LIVE STREAMING
+							<span><i class="fas fa-times"></i></span>
+						</p>
+						<button class="catbtn leftarrow"><i class="fas fa-chevron-left"></i></button>
+						<button class="catbtn rightarrow"><i class="fas fa-chevron-right"></i></button>
+						<div id="streamsforyou" class="owl-carousel">
+							@foreach ($streams as $stream)
+								<div class="item">
+									<div class="boxStream">
+									<video data-key="{{$stream->stream_key}}"></video>
+									</div>
+								<a href="{{url()->route('shop',['slug'=>$stream->Seller->slug])}}" class="shopnameStream">{{$stream->Seller->name}}</a>
+								<div class="streamDescription">
+									<p>{{$stream->description}}</p>
+									<p><a href="{{url()->route('filter',['idcat'=>$stream->Category->id])}}">#{{$stream->Category->name}}</a></p>
+								</div>
+								</div>
+							@endforeach
+						</div>
+					</div>
+				@endif
 				<!-- endcategoriesforyou -->
 				<!-- searchtrending -->
 				<div class="catsforyou" id="keysforyou">
@@ -1013,7 +1035,6 @@
 				<!-- centerbanner -->
 				<div class="centerbanner">
 					<a href="#centerbanner"><img src="assets/img/centerbanner.jpg"></a>
-
 				</div>
 				<!-- endcenterbanner -->
 				<!-- foryou -->
@@ -1137,11 +1158,56 @@
 	<script src="assets/js/index.js"></script>
 	<script src="assets/js/socket.init.js"></script>
 	<script>
+		const createEmptyAudioTrack = () => {
+			const ctx = new AudioContext();
+			const oscillator = ctx.createOscillator();
+			const dst = oscillator.connect(ctx.createMediaStreamDestination());
+			oscillator.start();
+			const track = dst.stream.getAudioTracks()[0];
+			return Object.assign(track, { enabled: false });
+		};
+
+		const createEmptyVideoTrack = ({ width, height }) => {
+			const canvas = Object.assign(document.createElement('canvas'), { width, height });
+			canvas.getContext('2d').fillRect(0, 0, width, height);
+			const stream = canvas.captureStream();
+			const track = stream.getVideoTracks()[0];
+			return Object.assign(track, { enabled: false });
+		};
 		var getMsgURI = '{{url()->route('getMsgBySeller')}}'
 		@if($user)
 			socketAuth({{$user->id}},1,'{{$user->password}}')
 		@endif
+		const peer = new Peer( {host: 'localhost', port: 9000, path: '/' });
+		
+		document.querySelectorAll('#streamsforyou video').forEach(video=>{
+			let audioTrack = createEmptyAudioTrack();
+			let videoTrack = createEmptyVideoTrack({ width:640, height:480 });
+			let mediaStream = new MediaStream([audioTrack, videoTrack]);
+			let call = peer.call(video.dataset.key,mediaStream)
+			call.on('stream',stream=>{
+				document.querySelector('body').click()
+				video.srcObject = stream
+				video.muted = true
+				video.play()
+				video.onclick = ()=>{
+					console.log('xxx')
+					document.querySelector('.popupStream').style.display = 'flex'
+					document.querySelector('.popupStream').onclick = (e)=>{
+						if(e.target.className=='popupStream'){
+							e.target.style.display = 'none'
+						}
+					}
+					let popup = document.querySelector('#popup_video')
+					popup.click()
+					popup.srcObject = stream
+					popup.play()
+				}
+			})
+		})
+		
+		
 	</script>
+	
 </body>
-
 </html>

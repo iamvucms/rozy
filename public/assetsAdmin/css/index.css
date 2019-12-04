@@ -918,6 +918,44 @@ ul.actions li.act {
     font-weight: bold;
 }
 
+
+/* STREAMING AREA */
+.streambox{
+    display: flex;
+}
+.streambox .video{
+    width:75%;
+    padding:25px
+}
+.streambox .video video{
+    width: 100%;
+    border-radius: 10px;
+    padding:5px;    
+    border: 2px dashed tomato
+}
+.streambox .postTool{
+    width:25%;
+    padding:20px;
+    border-left: 2px solid rgba(0, 0, 0, 0.5);
+}
+.postTool button{
+    width:45%;
+    outline:none;
+    border:none;
+    border-radius: 4px;
+    padding:5px 0px;
+    text-align: center;
+    margin-top: 20px;
+    color:white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.postTool button#finishBtn{
+    background:red
+}
+.postTool button#startBtn{
+    background: #5eba00;
+}
 @media only screen and (max-width:1376px) {
     * {
         font-size: 0.99em;

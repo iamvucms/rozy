@@ -24,4 +24,9 @@ class HomeController extends Controller
         $flashsales = $flashsales->Flashsales();
         return view('index',compact('products','alias','flashsales','viewedList'));
     }
+    public function findProduct(Request $req){
+        $keyword = $req->keyword;
+        $products = Product::with('ImgAvt')->where('name','like',"$keyword%")->orderBy('view_count','DESC')->limit(10)->get();
+        return response()->json(['data'=>$products], 200, []);
+    }
 }

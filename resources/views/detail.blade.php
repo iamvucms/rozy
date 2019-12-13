@@ -67,7 +67,7 @@
                 })
             </script>
         </div>
-        @if(isset($messages) && $user)
+        @if(isset($messages) && $user && $messages->mySellers($user->getInfo()->id)->count()>0)
 		<div class="inbox" id="notactive">
 			<p class="intitle"><i class="far fa-comment-alt"></i> Trò Chuyện
 				<div class="boxchat">

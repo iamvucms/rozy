@@ -94,7 +94,7 @@ class LoginController extends Controller
     public function GoogleLoginRedirect(){
         return Socialite::driver('google')->redirect();
     }
-    public function GoogleCallBackHandler(){
+    public function GoogleCallBackHandler(Request $req){
         $google = Socialite::driver('google')->stateless()->user();
         if($google->id ===null) return redirect(url('/'));
         $user = User::where('email',$google->email);

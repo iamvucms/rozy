@@ -1178,7 +1178,7 @@
 		@if($user)
 			socketAuth({{$user->id}},1,'{{$user->password}}')
 		@endif
-		const peer = new Peer( {host: 'localhost', port: 9000, path: '/' });
+		const peer = new Peer( {host: 'http://'+window.location.hostname, port: 9000, path: '/' });
 		
 		document.querySelectorAll('#streamsforyou video').forEach(video=>{
 			let audioTrack = createEmptyAudioTrack();

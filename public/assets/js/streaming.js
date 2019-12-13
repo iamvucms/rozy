@@ -1,6 +1,6 @@
 const streamSocket   = new io('http://'+window.location.hostname+':3333')
 
-const peer = new Peer( {host: 'http://'+window.location.hostname, port: 9000, path: '/' });
+const peer = new Peer( {host: window.location.hostname, port: 9000, path: '/' });
 const OpenStream = ()=>{
     const config = { video: true, audio: true }
     return navigator.mediaDevices.getUserMedia(config);

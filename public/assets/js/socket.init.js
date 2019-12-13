@@ -1,4 +1,4 @@
-var socket = io('http://127.0.0.1:3333')
+var socket = io('http://'+window.location.hostname+':3333')
 socket.on('seller-msg',(m)=>{
     document.querySelectorAll('#sellerlist li').forEach(v=>{
         v.classList.remove('active')

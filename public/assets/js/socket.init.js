@@ -77,6 +77,14 @@ socket.on('client-msg',(m)=>{
         }
     })
 })
+socket.on('receivedView',data=>{
+    console.log(data)
+    document.querySelectorAll('#streamsforyou video').forEach(v=>{
+        if(v.dataset.key==data.key){
+            v.parentNode.parentNode.childNodes[3].childNodes[3].childNodes[2].innerHTML = data.view
+        }
+    })
+})
 function socketAuth(user_id,position=1,hash){
     socket.emit('config_socket_id',{
         user_id:user_id,

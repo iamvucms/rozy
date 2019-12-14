@@ -15,7 +15,7 @@ peer.on('connection',conn=>{
 })
 // peer.on('disconnected','')
 OpenStream().then(function (stream) {
-    streamSocket.emit('join_stream',{key:myID})
+    
     streamSocket.on('closeStream',()=>{
         window.location.reload()
     })
@@ -46,6 +46,7 @@ document.querySelector('#startBtn').onclick = (e)=>{
         idcat:document.querySelector('#idcat').value,
     }).then(d=>{
         data = d.data
+        streamSocket.emit('join_stream',{key:myID})
         console.log(data)
     })
     document.querySelector('#startBtn').setAttribute('disabled','disabled')

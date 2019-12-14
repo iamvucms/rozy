@@ -78,6 +78,20 @@ li {
      left:15px;
      color:white;
      font-weight: bold;
+     display:flex
+}
+.shopnameStream a{
+     color: white;
+}
+.shopnameStream button{
+     background:red;
+     color:white;
+     font-weight: bold;
+     border:none;
+     margin-left: 10px;
+     padding:5px 10px;
+     border-radius: 4px;
+     font-size: 0.8em;
 }
 .header {
      background-color: #25586b;

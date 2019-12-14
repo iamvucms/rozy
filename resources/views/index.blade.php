@@ -992,11 +992,13 @@
 									<div class="boxStream">
 									<video data-key="{{$stream->stream_key}}"></video>
 									</div>
-								<a href="{{url()->route('shop',['slug'=>$stream->Seller->slug])}}" class="shopnameStream">{{$stream->Seller->name}}</a>
-								<div class="streamDescription">
-									<p>{{$stream->description}}</p>
-									<p><a href="{{url()->route('filter',['idcat'=>$stream->Category->id])}}">#{{$stream->Category->name}}</a></p>
-								</div>
+									<div class="shopnameStream">
+									<a href="{{url()->route('shop',['slug'=>$stream->Seller->slug])}}" >{{$stream->Seller->name}}</a>
+									<button><i class="far fa-eye"></i> <span>{{$stream->view}}</span></button></div>
+									<div class="streamDescription">
+										<p>{{$stream->description}}</p>
+										<p><a href="{{url()->route('filter',['idcat'=>$stream->Category->id])}}">#{{$stream->Category->name}}</a></p>
+									</div>
 								</div>
 							@endforeach
 						</div>
@@ -1191,17 +1193,22 @@
 				video.muted = true
 				video.play()
 				video.onclick = ()=>{
-					console.log('xxx')
+					socket.emit('view_stream',video.dataset.key)
 					document.querySelector('.popupStream').style.display = 'flex'
-					document.querySelector('.popupStream').onclick = (e)=>{
-						if(e.target.className=='popupStream'){
-							e.target.style.display = 'none'
-						}
-					}
 					let popup = document.querySelector('#popup_video')
 					popup.click()
 					popup.srcObject = stream
+					popup.muted = false
 					popup.play()
+					document.querySelector('.popupStream').onclick = (e)=>{
+						if(e.target.className=='popupStream'){
+							e.target.style.display = 'none'
+							popup.muted = true
+							popup.pause()
+							socket.emit('out_stream',video.dataset.key)
+						}
+					}
+					
 				}
 			})
 		})

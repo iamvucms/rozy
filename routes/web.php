@@ -129,6 +129,7 @@ Route::group(['prefix' => '/panel/manager',  'middleware' => 'roleauth'], functi
     Route::get('/orders.{id}','Manager\OrderController@getOrder')->name('superGetOrder');
     Route::post('/orders-details','Manager\OrderController@getOrderDetail')->name('superGetOrderDetail');
     Route::post('/orders-accept','Manager\OrderController@editOrder')->name('superAcceptOrder');
+    Route::get('/orders-accept.{id}','Manager\OrderController@editOrder')->name('superAcceptOrder');
     Route::post('/orders/deleteOrderDetail','Manager\OrderController@postDeleteOrderDetail')->name('superDeleteOrderDetail');
     Route::post('/orders/deleteMany','Manager\OrderController@postDeleteOrder')->name('superDeleteEditOrder');
     Route::post('/orders/moneys','Manager\OrderController@getMoneyEachDay')->name('getMoneyEachDay');

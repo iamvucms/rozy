@@ -42,7 +42,7 @@ class OrderController extends Controller
         return response()->json(['success'=>true,'isF5' => false], 200, []);
     }
     public function editOrder(Request $req){
-        $ids = $req->ids??[];
+        $ids = $req->ids??[$req->id];
         $user = Auth::user();
         $role_id = $user->role_id;
         foreach($ids as $id){

@@ -360,8 +360,6 @@
                                             <li id="showoption"><i class="fas fa-angle-down"></i>
                                                 <ul>
                                                     <li><i class="far fa-trash-alt"></i> Xóa</li>
-                                                    <li><a href="{{url()->route('supergetAcceptOrder',['id'=>$order->id])}}" style="color:#555"><i
-                                                                class="far fa-edit"></i> Duyệt</a></li>
                                                     <li><a href="print.html" style="color:#555" target="__blank"><i
                                                                 class="fas fa-print"></i> In đơn hàng</a></li>
                                                     <li><a href="print.html" style="color:#555" target="__blank"><i

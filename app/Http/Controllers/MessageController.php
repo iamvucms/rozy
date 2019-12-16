@@ -61,6 +61,20 @@ class MessageController extends Controller
     {
         //
     }
+    public function GettingStarted(Request $req){
+        $seller = Seller::where('id',$req->idsell)->first();
+        if($seller===null) return response()->json(['success' =>false], 200, []);
+        else{
+            $user=Auth::user();
+            $obj = new Message;
+            $obj->idsell = $seller->id;
+            $obj->idcus = $user->getInfo()->id;
+            $obj->msg = 'Xin chào';
+            $obj->position = 1;
+            $obj->save();
+            return response()->json(['success' =>true], 200, []);
+        }
+    }
     public function getMessagesBySeller(Request $req){
         $idsell = $req->idsell;
         $obj = new Message;

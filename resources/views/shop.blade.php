@@ -24,7 +24,111 @@
 
 <body>
     <div class="rozy">
+    @if(isset($messages) && $user && $messages->mySellers($user->getInfo()->id)->count()>0)
+		<div class="inbox" id="notactive">
+			<p class="intitle"><i class="far fa-comment-alt"></i> Trò Chuyện
+				<div class="boxchat">
+					<div class="listuser">
+						<div class="toptool" style="border-radius:10px 0 0 0;color:white">
+							Danh Sách
+						</div>
+						<ul id="sellerlist">
+							
+							@php
+							$MsgSellers = $messages->mySellers($user->getInfo()->id);
+							
+							@endphp
+							@foreach ($MsgSellers as $slr)
+							<li @if($slr==$MsgSellers->first()) class="active" @endif 
+							data-name="{{$slr->Seller->name}}"
+							data-user="{{$slr->Seller->user_id}}"
+							data-seller="{{$slr->Seller->id}}" data-user="{{$slr->Seller->user_id}}" 
+							data-avatar="{{url($slr->Seller->Avatar->src ?? '')}}">
+							{{$slr->Seller->name}}</li>
+							@endforeach
+							
+						</ul>
+					</div>
+					
+					<div class="preboxchat">
+						<div class="toptool"><span class="centername">SHOP: {{$MsgSellers->first()->Seller->name}}</span> <button
+								class="closechat">×</button></div>
+						<div class="chatlist">
+							<div class="scrolllog">
+								<ul id="chatlog" data-current="{{$MsgSellers->first()->Seller->user_id}}">
+									@foreach ($messages->getMessagesBySeller($user->getInfo()->id,$MsgSellers->first()->Seller->id) as $msg)
+										@if($msg->position==1) 
+										<li class="right">
+											<p class="msgcontent">{{$msg->msg}}</p>
+										</li>
+										@else
+										<li class="left">
+											<img src="{{url($MsgSellers->first()->Seller->Avatar->src ?? '')}}" alt="" class="avtsend">
+											<p class="msgcontent">{{$msg->msg}}</p>
+										</li>
+										@endif
+									@endforeach
+								</ul>
+							</div>
+						</div>
+						<div class="send">
+							<input id="msgTxt" onkeypress="CheckEnter(event)" type="text" placeholder="Nhập tin nhắn">
+							<button id="sendMsg"><i class="far fa-paper-plane"></i></button>
+						</div>
+					</div>
+				</div>
+			</p>
 
+		</div>
+		<script>
+			function CheckEnter(e){
+				if(e.keyCode==13) SendNow()
+			}
+			function SendNow(){
+				txtInp = document.querySelector('#msgTxt')
+				if(txtInp.value!=''){
+					let to =document.querySelector('#chatlog').dataset.current
+					SendMessage(txtInp.value,{{$user->id}},to)
+					html = `<li class="right">
+								<p class="msgcontent">${document.querySelector('#msgTxt').value}</p>
+							</li>`
+					txtInp.value = ''
+					document.querySelector('#chatlog').innerHTML = document.querySelector('#chatlog').innerHTML+html
+					$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+				}
+			}
+			document.querySelector('#sendMsg').onclick = SendNow
+			document.querySelectorAll('#sellerlist li').forEach(v=>{
+				v.onclick = (e)=>{
+					document.querySelectorAll('#sellerlist li').forEach(x=>{
+							x.classList.remove('active')
+					})
+					v.classList.add('active')
+					axios.post('{{url()->route('getMsgBySeller')}}',{
+						idsell:v.dataset.seller
+					}).then(d=>{
+						data = d.data
+						document.querySelector('.toptool .centername').innerHTML='SHOP: '+v.dataset.name
+						document.querySelector('#chatlog').setAttribute('data-current',v.dataset.user)
+						msg = data.data
+						html = ''
+						for(let m of msg){
+							if(m.position==1) html += `<li class="right">
+											<p class="msgcontent">${m.msg}</p>
+										</li>`;
+							else html += `<li class="left">
+											<img src="${v.dataset.avatar}" alt="" class="avtsend">
+											<p class="msgcontent">${m.msg}</p>
+										</li>`
+						}
+						document.querySelector('#chatlog').innerHTML = html
+						$(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 300);
+					})
+				}
+			})
+			
+		</script>
+		@endif
         <!-- header -->
         <div class="header">
 
@@ -616,7 +720,13 @@
 
                             }
                             function addToChat(){
-
+                                axios.post('{{url()->route('postSendHello')}}',{
+                                    idsell:{{$seller->id}},
+                                    _token: '{{ csrf_token() }}'
+                                }).then(d=>{
+                                    data =d.data
+                                    if(data.success) window.location.href = '{{url()->route('shop',['inbox'=>'show','slug'=>$seller->slug])}}'
+                                })
                             }
                             </script>
                         </div>
@@ -960,6 +1070,31 @@
     <!-- <script src="../assets/js/lazy.plugin.js"></script> -->
     <script src="../assets/js/jquery-ui.js"></script>
     <script src="../assets/js/filter.js"></script>
+    <script src="../../../assets/js/socket.io.js"></script>
+    <script src="../../../assets/js/socket.init.js"></script>
+    <script>
+    var getMsgURI = '{{url()->route('getMsgBySeller')}}'
+        @if(request()->inbox=='show')
+            $('.inbox').attr('id', 'active')
+            $('.boxchat').css('display', 'flex')
+            $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+        @endif
+        $(document).ready(()=>{
+            $('.inbox p.intitle').click(() => {
+                $('.inbox').attr('id', 'active')
+                $('.boxchat').css('display', 'flex')
+                $(".chatlist").animate({ scrollTop: $('.scrolllog').height() }, 1000);
+            })
+            $('.closechat').click(() => {
+            
+                $('.boxchat').hide()
+                $('.inbox').attr('id', 'notactive')
+            })
+        })
+		@if($user)
+			socketAuth({{$user->id}},1,'{{$user->password}}')
+		@endif
+    </script>
 </body>
 
 </html>

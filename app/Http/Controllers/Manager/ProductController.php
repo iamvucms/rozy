@@ -15,9 +15,9 @@ class ProductController extends Controller
     public function show(){
         $user = Auth::user();
         if($user->role_id==1){
-            $products = Product::paginate(20);
+            $products = Product::orderBy('id','desc')->paginate(20);
         }elseif($user->role_id==3){
-            $products = Product::where('idsell',$user->Seller()->id)->paginate(20);
+            $products = Product::where('idsell',$user->Seller()->id)->orderBy('id','desc')->paginate(20);
         }else return abort(403);
         return view('Admin.product',compact('products'));
     }
@@ -97,7 +97,7 @@ class ProductController extends Controller
         foreach($keyName as $key=>$value){
             $keyName[$key]= $this->viToEng($keyName[$key]);
             $jsonData[$keyName[$key]]=$req->propertyValue[$key];
-            $alias = Alias::where('prop',$keyName[$key])->count();
+            $alias = Alias::where('prop',$keyName[$key])->where('idcat',intval($req->idcat))->count();
             if($alias==0){
                 $newAlias = new Alias;
                 $newAlias->prop = $keyName[$key];
@@ -227,7 +227,7 @@ class ProductController extends Controller
         foreach($keyName as $key=>$value){
             $keyName[$key]= $this->viToEng($keyName[$key]);
             $jsonData[$keyName[$key]]=$req->propertyValue[$key];
-            $alias = Alias::where('prop',$keyName[$key])->count();
+            $alias = Alias::where('prop',$keyName[$key])->where('idcat',intval($req->idcat))->count();
             if($alias==0){
                 $newAlias = new Alias;
                 $newAlias->prop = $keyName[$key];
@@ -299,7 +299,9 @@ class ProductController extends Controller
             'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ|Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
             'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
             'y'=>'ý|ỳ|ỷ|ỹ|ỵ|Ý|Ỳ|Ỷ|Ỹ|Ỵ',
-            '-'=>' ');
+            '-'=>' ',
+            ''=>'/',
+            ''=>',');
         foreach($utf8 as $ascii=>$uni) $str = preg_replace("/($uni)/i",$ascii,$str);
         return strtolower($str);
     }

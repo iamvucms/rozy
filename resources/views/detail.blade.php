@@ -220,6 +220,7 @@
                                     <p class="ideatitle">
                                         Gợi Ý Cho Bạn:
                                     </p>
+                                    @if($recommandProducts->count()>11)
                                     <ul id="idealist">
                                         @for ($i = count($recommandProducts)-1; $i >= count($recommandProducts)-11 ; $i--)
                                         <li><a href="{{url()->route('myProduct',['slug'=>$recommandProducts[$i]['slug']])}}"><img src="{{url($recommandProducts[$i]->ImgAvt->src??'')}}"><span>{{$recommandProducts[$i]->name}}</span></a>
@@ -227,6 +228,7 @@
                                         @endfor
                                         
                                     </ul>
+                                    @endif
                                     <p class="ideatitle">
                                         Từ Khóa Hot:
                                     </p>
@@ -818,7 +820,7 @@
                                 <small>Cam kết chính hiệu 100%</small>
                             </span>
                             <a href="{{url('/shop/'.$product->Seller()->slug)}}" id="viewshop" class="tabfade">
-                                <button class="viewshop">
+                                <button onclick="window.location.href='{{url('/shop/'.$product->Seller()->slug)}}'" class="viewshop">
                                     <small>Xem shop</small>
                                 </button>
                             </a>
@@ -860,7 +862,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <a href="#viewshop" id="viewshop" class="tabhiden">
+                        <a href="{{url('/shop/'.$product->Seller()->slug)}}" id="viewshop" class="tabhiden">
                             <button class="viewshop">
                                 <small>Xem shop</small>
                             </button>

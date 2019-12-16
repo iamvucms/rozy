@@ -231,6 +231,8 @@
 								<p class="ideatitle">
 									Gợi Ý Cho Bạn:
 								</p>
+								
+								@if($recommandProducts->count()>11)
 								<ul id="idealist">
 									@for ($i = count($recommandProducts)-1; $i >= count($recommandProducts)-11 ; $i--)
 									<li><a href="{{url()->route('myProduct',['slug'=>$recommandProducts[$i]['slug']])}}"><img src="{{url($recommandProducts[$i]->ImgAvt->src??'')}}"><span>{{$recommandProducts[$i]->name}}</span></a>
@@ -238,6 +240,7 @@
 									@endfor
 									
 								</ul>
+								@endif
 								<p class="ideatitle">
 									Từ Khóa Hot:
 								</p>
@@ -652,7 +655,8 @@
 									<div class="colmenu">
 										<div class="megafilter"><i class="fas fa-file-signature"
 												style="color:rgb(0, 238, 255)"></i> Thương hiệu</div>
-										@foreach ($alias::GetTradeMarks($category->id) as $brand)
+										@foreach ($alias::GetTradeMarks($category['id'])  as $brand)
+											
 										<li><a
 												href="{{url('categories/'.$category->slug.'?thuonghieu='.trim($brand->name,'"'))}}">{{trim($brand->name,'"')}}</a>
 										</li>
@@ -1006,6 +1010,7 @@
 				@endif
 				<!-- endcategoriesforyou -->
 				<!-- searchtrending -->
+				@if(count($mostedKeyword[0])>0)
 				<div class="catsforyou" id="keysforyou">
 					<p class="catsforyoutitle">
 						XU HƯỚNG TÌM KIẾM
@@ -1033,6 +1038,8 @@
 
 					</div>
 				</div>
+				@endif
+				
 				<!-- endsearchtrending -->
 				<!-- centerbanner -->
 				<div class="centerbanner">

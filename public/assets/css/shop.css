@@ -85,8 +85,8 @@
 .btnIntro button{
     cursor: pointer;
     height:30px;
-    border:1px solid white;
-    color:white;
+    border:1px solid  #01dbdf;
+    color: #01dbdf;
     background:transparent;
     border-radius: 3px;
     text-align: center;

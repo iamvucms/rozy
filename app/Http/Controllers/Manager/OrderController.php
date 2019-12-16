@@ -41,6 +41,19 @@ class OrderController extends Controller
         
         return response()->json(['success'=>true,'isF5' => false], 200, []);
     }
+    public function completedOrder(Request $req){
+        $ids = $req->ids??[];
+        $user = Auth::user();
+        $role_id = $user->role_id;
+        foreach($ids as $id){
+            $order = Order::find(intval($id));
+            if(($role_id==1 || $user->Seller()->id == $order->idsell) && $order->status<4){
+                $order->status = 4;
+                $order->save();
+            }
+        }
+        return response()->json(['success'=>true], 200, []);
+    }
     public function editOrder(Request $req){
         $ids = $req->ids??[];
         $user = Auth::user();

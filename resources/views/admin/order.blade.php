@@ -293,7 +293,10 @@
                                 <ul>
                                     <li onclick="acceptOrder()"><i class="fas fa-plus-circle"></i>
                                             Duyện đơn</li>
-                                    @if($user->role_id==1) <li onclick="deleteSelected()"><i class="far fa-trash-alt"></i> Xóa</li> @endif
+                                    @if($user->role_id==1)
+                                    <li onclick="CompletedSelected()"><i class="far fa-check-circle"></i> Hoàn thành</li>
+                                    <li onclick="deleteSelected()"><i class="far fa-trash-alt"></i> Xóa</li>
+                                     @endif
                                 </ul>
                             </li>
                         </ul>
@@ -462,6 +465,18 @@
                 })  
             }   
         }
+        function CompletedSelected(){
+            if(selectedCat.length ==0) return;
+            if(confirm('Bạn có chắc muốn đánh dấu đơn hàng đã hoàn thành') ){
+                axios.post('{{url()->route('superCompleteOrder')}}',{
+                    ids:selectedCat
+                }).then(d=>{
+                    data = d.data
+                    window.location.reload()
+                })  
+            }   
+        }
+            
         function acceptOrder(){
             if(selectedCat.length ==0) return;
             if(confirm('Bạn có chắc muốn duyệt đơn hàng này') ){

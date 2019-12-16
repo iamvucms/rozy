@@ -1034,7 +1034,7 @@
                                     $discount = $product->Discount->toArray();
                                     @endphp
                                     @if (count($discount)>0)
-                                    <div class="salespercent">{{$discount[0]->percent ?? ''}}% </div>
+                                    <div class="salespercent">{{$discount[0]['percent']}}% </div>
                                     @endif
                
                                     <div class="product_name"><a href="{{url('./products/'.$product->slug)}}">{{$product->name}}</a>

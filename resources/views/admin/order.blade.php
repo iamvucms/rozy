@@ -16,6 +16,11 @@
     <script src="../../../assets/js/socket.init.js"></script>
     <link rel="stylesheet" href="../../../assets/css/all.css"
         >
+        <style>
+        body,html{
+            height: 100%;
+        }
+        </style>
     <title>Admin::Orders</title>
 </head>
 
